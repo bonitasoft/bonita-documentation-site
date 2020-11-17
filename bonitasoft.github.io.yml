@@ -1,16 +1,19 @@
 site:
   title: Bonita documentation 2.0
   url: http://localhost:8080/documentation
-  start_page: bonita::index.adoc
+  start_page: bici::index.adoc
 content:
   sources:
-    - url: https://github.com/alachambre/antora-sources-test.git
-      branches: [master, 7.11]
-    - url: git@github.com:alachambre/antora-source-api.git
-    - url: https://github.com/alachambre/antora-sources-test-2.git
+#    - url: https://github.com/alachambre/antora-sources-test.git
+#      branches: [master, 7.11]
+#    - url: git@github.com:alachambre/antora-source-api.git
+#    - url: https://github.com/alachambre/antora-sources-test-2.git
+    - url: https://github.com/bonitasoft/bonita-ici-doc.git
+      branches: [migrate_to_asciidoctor]
+
 ui:
   bundle:
-    url: ../antora-ui/build/ui-bundle.zip
+    url: ./antora-ui/ui-bundle.zip
 asciidoc:
   extensions:
   - ./lib/source-url-include-processor.js
