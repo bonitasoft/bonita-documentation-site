@@ -1,2 +1,2 @@
 rm -rf build
-antora --fetch antora-playbook.yml --stacktrace
+antora --fetch bonitasoft.github.io.yml --stacktrace
