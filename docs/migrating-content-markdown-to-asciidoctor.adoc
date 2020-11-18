@@ -1,0 +1,83 @@
+= Migration tips: from markdown to asciidoctor
+
+Note: current work used to migrate the BICI documentation, see https://github.com/bonitasoft/bonita-ici-doc/pull/118[PR #118]
+
+== Markdown to Asciidoctor generation
+
+=== Tool installation
+
+TIP: Proposed tool Kramdoc aka https://github.com/asciidoctor/kramdown-asciidoc:[kramdown-asciidoc]. See also this https://matthewsetter.com/technical-documentation/asciidoc/convert-markdown-to-asciidoc-with-kramdoc/:[article].
+
+
+* Require Ruby
+* gem install kramdown-asciidoc, see the https://kramdown.gettalong.org/installation.html:[installation guide] for more details
+* installation check: `kramdoc --version`
+
+*TODO*: docker ruby image with gem installed to avoid polluting our machines?
+
+=== Migrate sources
+
+Sources (markdown and images files) are stored in the `md` folder of the documentation content repository.
+
+[source,bash]
+----
+find ./ -name "*.md" \
+       -type f | xargs -I @@ \
+       bash -c 'kramdoc \
+               --format=GFM \
+               --output=@@.adoc @@';
+----
+
+WARNING: test with additional `--wrap=ventilate` option
+
+
+== Cleanup
+
+Migrate custom Bonita tags for notes, warnings, ....
+
+For instance, `:::info Note: for Enterprise, Performance and Efficiency editions only.:::` to
+`NOTE: Note: for Enterprise, Performance and Efficiency editions only.`
+
+
+Note:
+[source,bash]
+----
+sed -i 's/::: info/NOTE:/g' *.adoc
+sed -i 's/:::info/NOTE:/g' *.adoc
+sed -i 's/::: warning/WARNING:/g' *.adoc
+sed -i 's/:::warning/WARNING:/g' *.adoc
+sed -i 's/::://g' *.adoc
+----
+
+NOTE: for macOS add `''` after the -i option.
+
+
+
+== rename files
+
+[source,bash]
+----
+for f in *.md.adoc; do mv -- "$f" "${f%.md.adoc}.adoc"; done
+# Remove remaining md files
+rm -rf *.md
+----
+
+== move file to the right folder
+
+* Antora layout: move the `md` folder to `modules/ROOT/pages`
+* taxonomy: move the page to `modules/ROOT/pages`, otherwise it is considered as a regular pages
+* others
+
+== images management
+
+CAUTION: in progress, a definitive solution must be found
+
+Draft
+
+[source]
+----
+Dans le repo de sources, il faut mettre toutes les images dans le dossier modules/ROOT/assets/images/images.
+
+Il est nécessaire de faire un double dossier image, car ajd dans les pages de doc les images sont référencées dans un folder
+‘image’. Or lors de la construction du site, Antora va mettre tout ce qui se trouve dans assets/images dans un dossiers  _/_images, et se debrouiller pour que les references vers les images pointent vers ce dossier. Donc en rajoutant simplement un extra dossier image on a pas besoin de modifier les paths dans tous les fichiers pour enlever ‘image’.
+----
