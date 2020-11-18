@@ -1,0 +1,17 @@
+= New Bonita Documentation Site
+
+DISCLAIMER: this is a work in progress.
+
+== Build
+
+*Requirements*: Node 12.x (may work with newer versions, no guarantee). For more details, see the  https://docs.antora.org/antora/2.3/install-and-run-quickstart/[Antora installation guide].
+
+Run
+```bash
+npm install
+npm run build
+```
+The static site is then available in the `build` folder.
+
+
+The `antora` CLI is available by calling `./node_modules/.bin/antora --version`
