@@ -13,7 +13,7 @@ content:
 
 ui:
   bundle:
-    url: ./antora-ui/ui-bundle.zip
+    url: ./resources/antora-ui-bundle.zip
 asciidoc:
   extensions:
   - ./lib/source-url-include-processor.js
