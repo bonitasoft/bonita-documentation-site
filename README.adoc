@@ -2,6 +2,14 @@
 
 DISCLAIMER: this is a work in progress.
 
+
+== Architecture
+
+*_This is a starting draft_*
+
+Static site generation based on https://antora.org/:[Antora] from documentation https://asciidoctor.org/:[Asciidoctor] content.
+
+
 == Build
 
 *Requirements*: Node 12.x (may work with newer versions, no guarantee). For more details, see the  https://docs.antora.org/antora/2.3/install-and-run-quickstart/[Antora installation guide].
