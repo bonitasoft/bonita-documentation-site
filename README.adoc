@@ -12,7 +12,7 @@
 
 == Architecture
 
-Static site generation based on {url-antora}:[Antora] using {url-asciidoctor}:[Asciidoctor] documentation content stored in various Git repositories.
+Static site generation based on {url-antora}[Antora] using {url-asciidoctor}:[Asciidoctor] documentation content stored in various Git repositories.
 
 
 == Build
@@ -20,7 +20,7 @@ Static site generation based on {url-antora}:[Antora] using {url-asciidoctor}:[A
 === Requirements
 
 
-{url-node}:[Node 12.x] (may work with newer versions, no guarantee). For more details, see the  https://docs.antora.org/antora/2.3/install-and-run-quickstart/[Antora installation guide].
+{url-node}[Node 12.x] (may work with newer versions, no guarantee). For more details, see the  https://docs.antora.org/antora/2.3/install-and-run-quickstart/[Antora installation guide].
 
 While you can install Node from the official packages, we strongly recommend that you use {url-nvm}[nvm] (Node Version Manager) to install and manage Node.
 Follow the {url-nvm-install}[nvm installation instructions] to set up nvm on your machine.
@@ -36,3 +36,8 @@ The static site is then available in the `build` folder.
 
 
 The `antora` CLI is available by calling `./node_modules/.bin/antora --version`
+
+
+== Documentation
+
+See the xref:./docs/README[dedicated folder].
