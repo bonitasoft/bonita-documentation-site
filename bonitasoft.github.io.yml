@@ -4,6 +4,7 @@ site:
   # when building for local usage, this is overridden.
   url: https://bonitasoft.github.io/
   start_page: bici::index.adoc
+  robots: disallow
 
 # see https://docs.antora.org/antora/2.3/playbook/configure-runtime/
 runtime:
