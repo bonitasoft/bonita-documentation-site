@@ -25,7 +25,7 @@ Static site generation based on {url-antora}[Antora] using {url-asciidoctor}:[As
 While you can install Node from the official packages, we strongly recommend that you use {url-nvm}[nvm] (Node Version Manager) to install and manage Node.
 Follow the {url-nvm-install}[nvm installation instructions] to set up nvm on your machine.
 
-=== Build the static site
+=== Build the static site for production
 
 Run
 ```bash
@@ -35,10 +35,27 @@ npm run build
 The static site is then available in the `build/site` folder.
 
 
+=== Local development
+
 The `antora` CLI is available by calling `./node_modules/.bin/antora --version`
 
+For more CLI options, see https://docs.antora.org/antora/2.3/cli/options/
 
-=== Local http server
+
+==== Building for local developments
+
+For a site that can be load from local disk
+```bash
+npm run local:build-static
+```
+
+For a site to be served by the development <<http server>>
+```bash
+npm run local:build
+```
+
+
+==== http server
 
 Once the static site is build, you can run `npm run serve` and access to http://localhost:8080/ to check if everything is working correctly (urls in taxononmy, links, ....).
 

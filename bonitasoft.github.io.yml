@@ -1,7 +1,6 @@
 site:
   title: Bonita Documentation
-  # for local development
-  url: http://localhost:8080/
+  url: https://bonitasoft.github.io/
   start_page: bici::index.adoc
 
 # see https://docs.antora.org/antora/2.3/playbook/configure-runtime/
