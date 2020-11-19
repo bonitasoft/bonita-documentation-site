@@ -1,6 +1,7 @@
 site:
   title: Bonita Documentation
-  url: http://localhost:8080/documentation
+  # for local development
+  url: http://localhost:8080/
   start_page: bici::index.adoc
 content:
   sources:
