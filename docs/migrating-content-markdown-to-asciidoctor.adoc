@@ -84,12 +84,13 @@ rm -rf *.md
 
 CAUTION: in progress, a definitive solution must be found
 
-Draft
+[WARNING]
+====
+Antora expects (at least by default) that images are stored in the `modules/ROOT/assets/images` folder, then they are available
+directly in pages as link without having to add relative path. In the generated site, they are then stored in the `_/_images` folder.
 
-[source]
-----
-Dans le repo de sources, il faut mettre toutes les images dans le dossier modules/ROOT/assets/images/images.
+In the original markdown content, the images are accessed through the `images` relative folder. So, if the page content
+is not changed, the images must be stored in
+====
 
-Il est nécessaire de faire un double dossier image, car ajd dans les pages de doc les images sont référencées dans un folder
-‘image’. Or lors de la construction du site, Antora va mettre tout ce qui se trouve dans assets/images dans un dossiers  _/_images, et se debrouiller pour que les references vers les images pointent vers ce dossier. Donc en rajoutant simplement un extra dossier image on a pas besoin de modifier les paths dans tous les fichiers pour enlever ‘image’.
-----
+*_Draft_*
