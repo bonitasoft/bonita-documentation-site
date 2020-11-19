@@ -8,7 +8,10 @@ content:
 #      branches: [master, 7.11]
 #    - url: git@github.com:alachambre/antora-source-api.git
 #    - url: https://github.com/alachambre/antora-sources-test-2.git
-    - url: https://github.com/bonitasoft/bonita-ici-doc.git
+
+#    - url: https://github.com/bonitasoft/bonita-ici-doc.git
+     # local development
+    - url: ../bonita-ici-doc
       branches: [migrate_to_asciidoctor]
 
 ui:
