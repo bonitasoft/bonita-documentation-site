@@ -19,6 +19,18 @@ TIP: Proposed tool Kramdoc aka https://github.com/asciidoctor/kramdown-asciidoc:
 
 Sources (markdown and images files) are stored in the `md` folder of the documentation content repository.
 
+[WARNING]
+====
+index and releases-notes pages generally contain html elements that cannot be automatically migrated. +
+There is also a dependency on font-awesome css (`fa-` directives). Font awesome support is available in asciidoctor
+
+* 1st comment the html part
+* Run the migration
+* In the migrated content, manually migrate the html
+====
+
+
+Run the following command to generate the converted files:
 [source,bash]
 ----
 find ./ -name "*.md" \
