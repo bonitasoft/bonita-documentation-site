@@ -3,6 +3,8 @@ site:
   # for local development
   url: http://localhost:8080/
   start_page: bici::index.adoc
+
+# for fetch and cache used to retrieve the data from the git repositories, see https://docs.antora.org/antora/2.3/playbook/configure-runtime/
 content:
   sources:
 #    - url: https://github.com/alachambre/antora-sources-test.git
