@@ -1,5 +1,5 @@
 site:
-  title: Bonita documentation 2.0
+  title: Bonita Documentation
   url: http://localhost:8080/documentation
   start_page: bici::index.adoc
 content:
