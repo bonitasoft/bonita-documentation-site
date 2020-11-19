@@ -32,10 +32,17 @@ Run
 npm install
 npm run build
 ```
-The static site is then available in the `build` folder.
+The static site is then available in the `build/site` folder.
 
 
 The `antora` CLI is available by calling `./node_modules/.bin/antora --version`
+
+
+=== Local http server
+
+Once the static site is build, you can run `npm run serve` and access to http://localhost:8080/ to check if everything is working correctly (urls in taxononmy, links, ....).
+
+You can rebuild the site while the server is running, updated files are directly considered by the server (no cache).
 
 
 == Documentation

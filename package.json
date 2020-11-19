@@ -2,11 +2,14 @@
   "name": "bonita-documentation-site",
   "version": "0.0.1",
   "scripts": {
-    "build": "rimraf build && antora --fetch bonitasoft.github.io.yml --stacktrace"
+    "clean": "rimraf build",
+    "build": "rimraf build && antora --fetch bonitasoft.github.io.yml --stacktrace",
+    "serve": "http-server build/site -c-1 --port 8080"
   },
   "devDependencies": {
     "@antora/cli": "^2.3.4",
     "@antora/site-generator-default": "^2.3.4",
+    "http-server": "^0.12.3",
     "rimraf": "^3.0.2"
   }
 }
