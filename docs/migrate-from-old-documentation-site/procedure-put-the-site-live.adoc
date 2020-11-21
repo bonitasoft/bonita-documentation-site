@@ -30,6 +30,8 @@ image::images/doc_content_migration_supported_version_branch_01_while_developing
 
 ==== `supported version` branches while putting the new documentation site live
 
+We could redo the migration part from scratch and backport manual changes applied to ajust the doc after migration.
+
 image::images/doc_content_migration_supported_version_branch_02_while_putting_site_live.png[]
 
 
