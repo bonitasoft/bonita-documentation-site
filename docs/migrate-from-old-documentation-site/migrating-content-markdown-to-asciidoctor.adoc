@@ -1,6 +1,7 @@
 = Migration tips: from markdown to asciidoctor
+:icons: font
 
-Note: current work used to migrate the BICI documentation, see https://github.com/bonitasoft/bonita-ici-doc/pull/118[PR #118]
+NOTE: current work used to migrate the BICI documentation, see https://github.com/bonitasoft/bonita-ici-doc/pull/118[PR #118]
 
 == Markdown to Asciidoctor generation
 
