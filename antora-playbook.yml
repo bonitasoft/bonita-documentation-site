@@ -4,6 +4,7 @@ site:
   # when building for local usage, this is overridden.
   url: https://bonitasoft.github.io/
   start_page: bici::index.adoc
+  robots: disallow
 
 # see https://docs.antora.org/antora/2.3/playbook/configure-runtime/
 runtime:
@@ -23,6 +24,15 @@ content:
 ui:
   bundle:
     url: ./resources/antora-ui-bundle.zip
+  # Ensure we have a .nojekyll file to avoid Jekyll generation when using github-pages
+  # https://docs.antora.org/antora/2.3/publish-to-github-pages/#use-the-supplemental-ui
+  supplemental_files:
+    - path: ui.yml
+      contents: |
+        static_files: [ .nojekyll ]
+    - path: .nojekyll
+
+
 asciidoc:
   extensions:
   - ./lib/source-url-include-processor.js
