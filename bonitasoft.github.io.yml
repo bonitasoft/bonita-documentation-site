@@ -18,7 +18,7 @@ content:
 
     # local development: use ../bonita-ici-doc (see also https://docs.antora.org/antora/2.3/playbook/author-mode/)
     - url: https://github.com/bonitasoft/bonita-ici-doc.git
-      branches: [migrate_to_asciidoctor]
+      branches: [master]
 
 ui:
   bundle:
