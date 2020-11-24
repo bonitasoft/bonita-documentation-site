@@ -1,16 +1,28 @@
 site:
-  title: Bonita documentation 2.0
-  url: http://localhost:8080/documentation
-  start_page: bonita::index.adoc
+  title: Bonita Documentation
+  # features that depend on the site URL: https://docs.antora.org/antora/2.3/playbook/site-url/#when-should-the-site-url-be-set
+  # when building for local usage, this is overridden.
+  url: https://bonitasoft.github.io/
+  start_page: bici::index.adoc
+
+# see https://docs.antora.org/antora/2.3/playbook/configure-runtime/
+runtime:
+  cache_dir: ./.cache/antora
+
 content:
   sources:
-    - url: https://github.com/alachambre/antora-sources-test.git
-      branches: [master, 7.11]
-    - url: git@github.com:alachambre/antora-source-api.git
-    - url: https://github.com/alachambre/antora-sources-test-2.git
+#    - url: https://github.com/alachambre/antora-sources-test.git
+#      branches: [master, 7.11]
+#    - url: git@github.com:alachambre/antora-source-api.git
+#    - url: https://github.com/alachambre/antora-sources-test-2.git
+
+    # local development: use ../bonita-ici-doc (see also https://docs.antora.org/antora/2.3/playbook/author-mode/)
+    - url: https://github.com/bonitasoft/bonita-ici-doc.git
+      branches: [master]
+
 ui:
   bundle:
-    url: ../antora-ui/build/ui-bundle.zip
+    url: ./resources/antora-ui-bundle.zip
 asciidoc:
   extensions:
   - ./lib/source-url-include-processor.js
