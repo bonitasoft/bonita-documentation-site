@@ -8,6 +8,10 @@ on:
   push:
     branches: 
       - master
+    paths:
+      - 'resources/*'
+      - 'antora-playbook.yml'
+      - '.github/workflows/generate-documentation.yml'
 jobs:
   generate_doc:
     runs-on: ubuntu-20.04
@@ -20,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build docs
-        run: npm run build
+        run: npm run local:build-static
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
