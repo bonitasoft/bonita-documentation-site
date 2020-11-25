@@ -1,0 +1,28 @@
+name: Generate documentation
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: 
+      - master
+  push:
+    branches: 
+      - master
+jobs:
+  generate_doc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install dependencies
+        run: npm install
+      - name: Build docs
+        run: npm run build
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: documentation-${{github.sha}}
+          path: build/site
