@@ -10,34 +10,36 @@ CAUTION: early draft
 Everything is done at branch management level
 
 * all existing branches must be kept untouched as they are used by the old doc site solution
-* we are creating new branches based on the existing ones, then xref:migrating-content-markdown-to-asciidoctor.adoc[migrate the content from markdown to asciidoctor]
-  * for `out-of support version` branch: we can migrate the branch while developing the new documentation site. The branch for out-of-support version are no more updated
-  * for `supported version` branch: they may have been migrated for testing, need to be removed prior the actual migration
-* branch naming convention: `7.4` migrated into a new branch based on `7.4` named `7.4_asciidoctor`
+* we are creating new branches based on the existing ones, then xref:converting-content-markdown-to-asciidoctor.adoc[convert the content from markdown to asciidoctor]
+  * for `out-of support version` branch: we can convert the branch while developing the new documentation site. The branch for out-of-support version are no more updated
+  * for `supported version` branch: they have to be converted for testing, need to be removed prior the actual migration
+    * at least some of them to check if we expect conversion issues
+   *  for sure, the latest supported version for each component,
+* branch naming convention: `7.4` converted into a new branch based on `7.4` named `7.4_asciidoctor`
 
 
 === Strategy in images
 
 ==== `out-of support version` branches
 
-image::images/doc_content_migration_out-of-support_version_branch.png[]
+image::images/doc_content_conversion_out-of-support_version_branch.png[]
 
 
 ==== `supported version` branches while developing the new documentation site
 
-image::images/doc_content_migration_supported_version_branch_01_while_developing.png[]
+image::images/doc_content_conversion_supported_version_branch_01_while_developing.png[]
 
 
 ==== `supported version` branches while putting the new documentation site live
 
-We could redo the migration part from scratch and backport manual changes applied to ajust the doc after migration.
+We could redo the conversion part from scratch and backport manual changes applied to adjust the doc after conversion.
 
-image::images/doc_content_migration_supported_version_branch_02_while_putting_site_live.png[]
+image::images/doc_content_conversion_supported_version_branch_02_while_putting_site_live.png[]
 
 
 ==== branches after the new documentation site is live
 
-image::images/doc_content_migration_supported_version_branch_03_after_site_live.png[]
+image::images/doc_content_conversion_supported_version_branch_03_after_site_live.png[]
 
 
 
@@ -48,8 +50,8 @@ image::images/doc_content_migration_supported_version_branch_03_after_site_live.
 
 Strategy: mixed
 
-* out-of-support version branches from `7.3` to `7.7` (and `7.8` starting from December 2020): migrate right away
-* supported version branches: at least few versions are temporary migrated to test the new documentation site
+* out-of-support version branches from `7.3` to `7.7` (and `7.8` starting from December 2020): convert them right away
+* supported version branches: at least few versions are temporary converted to test the new documentation site
 
 
 ==== bonita-ici-doc
@@ -59,7 +61,7 @@ branch.
 
 Strategy:
 
-* migrate right away as we are going to keep only a single branch.
+* convert right away as we are going to keep only a single branch.
 * single new branch: `master`
 * the former `1.x` existing branches will be kept untouched, so, no extra work will be needed on this repository prior and
 after the switch to the new site.
@@ -69,16 +71,16 @@ See also https://github.com/bonitasoft/bonitasoft.github.io/issues/11[#11]
 
 ==== bonita-continuous-delivery-doc
 
-* out-of-support version branches from `1.0` to `?` (and `?` starting from December 2020): migrate right away
+* out-of-support version branches from `1.0` to `?` (and `?` starting from December 2020): convert right away
 * supported version branches: same as for bonita-doc
 
 ==== bonita-cloud-doc
 
-There is a single `master` branch as bonita-cloud is versionless.
+There is a single `master` branch as bonita-cloud is version-less.
 
 Strategy:
 
-* temporary migration while developing and remigrate from scratch when switching to the new site
+* temporary conversion while developing and remigrate from scratch when switching to the new site
 * single new branch: `master_asciidoctor`
 
 

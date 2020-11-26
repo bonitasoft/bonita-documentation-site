@@ -1,7 +1,7 @@
-= Migration tips: from markdown to asciidoctor
+= Conversion tips: from markdown to asciidoctor
 :icons: font
 
-NOTE: current work used to migrate the BICI documentation, see https://github.com/bonitasoft/bonita-ici-doc/pull/118[PR #118]
+NOTE: current work used to convert the BICI documentation, see https://github.com/bonitasoft/bonita-ici-doc/pull/118[PR #118]
 
 == Markdown to Asciidoctor generation
 
@@ -22,12 +22,12 @@ Sources (markdown and images files) are stored in the `md` folder of the documen
 
 [WARNING]
 ====
-index and releases-notes pages generally contain html elements that cannot be automatically migrated. +
-There is also a dependency on font-awesome css (`fa-` directives). Font awesome support is available in asciidoctor
+index and releases-notes pages generally contain html elements that cannot be automatically converted. +
+There is also a dependency on font-awesome css (`fa-` directives). Font awesome support is available in Asciidoctor
 
 * 1st comment the html part
 * Run the migration
-* In the migrated content, manually migrate the html
+* In the converted content, manually convert the html
 ====
 
 
@@ -46,7 +46,7 @@ WARNING: test with additional `--wrap=ventilate` option
 
 == Cleanup
 
-Migrate custom Bonita tags for notes, warnings, ....
+Convert custom Bonita tags for notes, warnings, ....
 
 For instance, `:::info Note: for Enterprise, Performance and Efficiency editions only.:::` to
 `NOTE: Note: for Enterprise, Performance and Efficiency editions only.`
@@ -88,10 +88,10 @@ CAUTION: in progress, a definitive solution must be found
 [WARNING]
 ====
 Antora expects (at least by default) that images are stored in the `modules/ROOT/assets/images` folder, then they are available
-directly in pages as link without having to add relative path. In the generated site, they are then stored in the `_/_images` folder.
+directly in pages as link without having to add a relative path. In the generated site, they are then stored in the `_/_images` folder.
 
 In the original markdown content, the images are accessed through the `images` relative folder. So, if the page content
-is not changed, the images must be stored in
+is not changed, the images must be stored in a `images` folder of the Antora images folder, so in `modules/ROOT/assets/images` (double `images` part in the path).
 ====
 
 *_Draft_*
