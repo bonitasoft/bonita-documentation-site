@@ -1,4 +1,4 @@
-= Procedure: steps to put the new site live
+= Migration steps to put the new site live
 :icons: font
 
 CAUTION: early draft
