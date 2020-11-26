@@ -114,7 +114,9 @@ WARNING: the gh-pages custom settings could be done earlier if this has no impac
 === infra
 
 * update CDN: warn propagation can take time, decide how to do the switch
-
+* disable webhooks configured on doc content repositories that target the internal Bonitasoft CI
+  * BICI doc webhooks have already been disabled on 2020-11-26 as there was no update on 1.x branch and the new master branch
+made the builds fail
 
 
 
@@ -122,6 +124,7 @@ WARNING: the gh-pages custom settings could be done earlier if this has no impac
 == Old site shutdown
 
 * stop internal Bonitasoft CI and archive resources
+  * remove webhooks configured on doc content repositories that target the internal Bonitasoft CI
 * archive old internal Bonitasoft documentation
 * decommission servers managed by Bonitasoft
 * archive the old documentation site GitHub repository (private)
