@@ -46,5 +46,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
           keep_files: true
-          user_name: 'bonitasoft-documentation-bot'
-          user_email: 'bonitasoft-documentation-bot@users.noreply.github.com'
+          user_name: 'bonita-ci'
+          user_email: 'hudson.mailer@bonitasoft.com'
