@@ -1,6 +1,7 @@
 {
   "name": "bonita-documentation-site",
   "version": "0.0.1",
+  "license": "GPL-2.0-or-later",
   "scripts": {
     "clean": "rimraf build .cache",
     "build": "antora --stacktrace --fetch --clean antora-playbook.yml",
