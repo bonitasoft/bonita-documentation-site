@@ -30,3 +30,21 @@ jobs:
         with:
           name: documentation-${{github.sha}}
           path: build/site
+  push_to_gh_pages:
+    # only when 'on push/workflow_dispatch to master'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&  github.event.ref == 'refs/heads/master'
+    runs-on: ubuntu-20.04
+    needs: generate_doc
+    steps:
+      - name: Download
+        uses: actions/download-artifact@v2
+        with:
+          name: documentation-${{github.sha}}
+      - name: Push to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          keep_files: true
+          user_name: 'bonitasoft-documentation-bot'
+          user_email: 'bonitasoft-documentation-bot@users.noreply.github.com'
