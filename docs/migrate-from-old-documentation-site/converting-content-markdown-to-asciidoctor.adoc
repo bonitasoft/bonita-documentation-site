@@ -87,11 +87,15 @@ CAUTION: in progress, a definitive solution must be found
 
 [WARNING]
 ====
-Antora expects (at least by default) that images are stored in the `modules/ROOT/assets/images` folder, then they are available
-directly in pages as link without having to add a relative path. In the generated site, they are then stored in the `_/_images` folder.
+Antora expects (at least by default, see https://docs.antora.org/antora/2.3/images-directory/) that images are stored in the `modules/ROOT/assets/images`
+folder, then they are available directly in pages as link without having to add a relative path. In the generated site, they are then stored in the `_/_images`
+folder.
 
 In the original markdown content, the images are accessed through the `images` relative folder. So, if the page content
-is not changed, the images must be stored in a `images` folder of the Antora images folder, so in `modules/ROOT/assets/images` (double `images` part in the path).
+is not changed, the images must be stored in a `images` folder of the Antora images folder, so in `modules/ROOT/assets/images/images` (double `images` part
+in the path).
+
+We may also have a look at the https://asciidoctor.org/docs/user-manual/#builtin-attributes[imagesdir Asciidoctor attribute]
 ====
 
 *_Draft_*
