@@ -52,8 +52,15 @@ find ./ -name "*.md" \
 
 WARNING: test with additional `--wrap=ventilate` option
 
+=== Removing markdown sources
 
-== Cleanup
+Run `rm -f *.md`
+
+Then commit the changes: at that point, git should have detected that the files have been renamed, at least for some of them
+(check in the git history).
+
+
+== Content cleanup
 
 Convert custom Bonita tags for notes, warnings, ....
 
