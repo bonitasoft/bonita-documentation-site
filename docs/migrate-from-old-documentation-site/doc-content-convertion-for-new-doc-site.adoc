@@ -84,8 +84,8 @@ Then commit the changes: at that point, git should have detected that the files 
 This is required to follow the https://docs.antora.org/antora/2.3/standard-directories/[Antora directories structure]
 ====
 
-* Antora layout: move the `md` folder to `modules/ROOT/pages`
-* taxonomy: move the page to `modules/ROOT/pages`, otherwise it is considered as a regular pages
+* rename the `md` folder into `modules/ROOT/pages`
+* taxonomy: move the page to `modules/ROOT`, otherwise it is considered as a regular pages
 
 
 ==== Move Images
@@ -143,3 +143,19 @@ We should use the https://asciidoctor.org/docs/user-manual/#admonition[admonitio
 WARNING: For now, we don't have a solution, see https://github.com/bonitasoft/bonitasoft.github.io/issues/40[issue #40]
 
 This is the content that has been commented generally in the index page.
+
+
+=== Create the Antora configuration file
+
+See https://docs.antora.org/antora/2.3/component-version-descriptor/
+
+The version defined in the configuration file depends on the <<migration-strategy-per-repository, documentation content repository>>.
+
+
+
+== Testing the new content in the documentation site
+
+Update the Antora Playbook to reference the new Documentation repository and/or branch. +
+See https://docs.antora.org/antora/2.3/playbook/configure-content-sources/
+
+No need to push the documentation content, this can be done locally.
