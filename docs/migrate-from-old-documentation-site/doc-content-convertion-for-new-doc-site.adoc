@@ -86,10 +86,9 @@ This is required to follow the https://docs.antora.org/antora/2.3/standard-direc
 
 * Antora layout: move the `md` folder to `modules/ROOT/pages`
 * taxonomy: move the page to `modules/ROOT/pages`, otherwise it is considered as a regular pages
-* others
 
 
-=== Images management
+==== Move Images
 
 CAUTION: in progress, a definitive solution must be found
 
