@@ -73,9 +73,14 @@ for f in *.md.adoc; do mv -- "$f" "${f%.md.adoc}.adoc"; done
 rm -rf *.md
 ----
 
+=== Final steps
+
 Then commit the changes: at that point, git should have detected that the files have been renamed, at least for some of them
 (check in the git history).
+You can also start reviewing the converted content. Some issues will remain, they will be fixed later (see *TODO add link to manual cleanup*)
 
+
+== Prepare files for Antora
 
 === Move files to the right folder
 
@@ -104,6 +109,21 @@ in the path).
 
 We may also have a look at the https://asciidoctor.org/docs/user-manual/#builtin-attributes[imagesdir Asciidoctor attribute]
 ====
+
+
+=== Create the Antora configuration file
+
+See https://docs.antora.org/antora/2.3/component-version-descriptor/
+
+The version defined in the configuration file depends on the <<migration-strategy-per-repository, documentation content repository>>.
+
+
+== Testing the new content in the documentation site
+
+Update the Antora Playbook to reference the new Documentation repository and/or branch. +
+See https://docs.antora.org/antora/2.3/playbook/configure-content-sources/
+
+No need to push the documentation content, this can be done locally.
 
 
 == Post conversion manual processing
@@ -143,19 +163,3 @@ We should use the https://asciidoctor.org/docs/user-manual/#admonition[admonitio
 WARNING: For now, we don't have a solution, see https://github.com/bonitasoft/bonitasoft.github.io/issues/40[issue #40]
 
 This is the content that has been commented generally in the index page.
-
-
-=== Create the Antora configuration file
-
-See https://docs.antora.org/antora/2.3/component-version-descriptor/
-
-The version defined in the configuration file depends on the <<migration-strategy-per-repository, documentation content repository>>.
-
-
-
-== Testing the new content in the documentation site
-
-Update the Antora Playbook to reference the new Documentation repository and/or branch. +
-See https://docs.antora.org/antora/2.3/playbook/configure-content-sources/
-
-No need to push the documentation content, this can be done locally.
