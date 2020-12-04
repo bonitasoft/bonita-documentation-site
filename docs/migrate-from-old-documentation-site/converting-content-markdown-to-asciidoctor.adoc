@@ -2,7 +2,7 @@
 :icons: font
 
 
-== Additional tasks 
+== Additional tasks
 
 The documentation content branch for the old documentation site also contained scripts and extra files that are not needed anymore.
 They should be removed as part of the initial conversion.
@@ -29,8 +29,10 @@ Sources (markdown and images files) are stored in the `md` folder of the documen
 
 [WARNING]
 ====
-index and releases-notes pages generally contain html elements that cannot be automatically converted. +
+The index page generally contain html elements that cannot be automatically converted (some other pages way also be impacted). +
 There is also a dependency on font-awesome css (`fa-` directives). Font awesome support is available in Asciidoctor
+
+For such a page, the following procedure must be done
 
 * 1st comment the html part
 * Run the migration
