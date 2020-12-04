@@ -1,7 +1,14 @@
 = Conversion tips: from markdown to asciidoctor
 :icons: font
 
-NOTE: current work used to convert the BICI documentation, see https://github.com/bonitasoft/bonita-ici-doc/pull/118[PR #118]
+
+== Additional tasks 
+
+The documentation content branch for the old documentation site also contained scripts and extra files that are not needed anymore.
+They should be removed as part of the initial conversion.
+
+See https://github.com/bonitasoft/bonita-ici-doc/pull/118[BICI Doc PR #118] for an example.
+
 
 == Markdown to Asciidoctor generation
 
