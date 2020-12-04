@@ -3,7 +3,7 @@ site:
   # features that depend on the site URL: https://docs.antora.org/antora/2.3/playbook/site-url/#when-should-the-site-url-be-set
   # when building for local usage, this is overridden.
   url: https://bonitasoft.github.io/
-  start_page: bici::index.adoc
+  start_page: bonita::index.adoc
   robots: disallow
 
 # see https://docs.antora.org/antora/2.3/playbook/configure-runtime/
@@ -19,6 +19,8 @@ content:
 
     - url: https://github.com/bonitasoft/bonita-ici-doc.git
       branches: [master]
+    - url: https://github.com/bonitasoft/bonita-doc.git
+      branches: [ 7.5_new ]
 
 ui:
   bundle:
