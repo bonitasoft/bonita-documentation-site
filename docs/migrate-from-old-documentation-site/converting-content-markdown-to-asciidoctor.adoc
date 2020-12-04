@@ -39,8 +39,8 @@ For such a page, the following procedure must be done
 * In the converted content, manually convert the html
 ====
 
-
-Run the following command to generate the converted files:
+Markdown source files are stored in the md folder of the repository. +
+From this folder, run the following command to generate the converted files:
 [source,bash]
 ----
 find ./ -name "*.md" \
