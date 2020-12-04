@@ -35,11 +35,12 @@ TIP: Proposed tool Kramdoc aka https://github.com/asciidoctor/kramdown-asciidoc:
 
 *TODO*: docker ruby image with gem installed to avoid polluting our machines?
 
-=== Migrate sources
+=== Convert sources
 
 Sources (markdown and images files) are stored in the `md` folder of the documentation content repository.
 
-[WARNING]
+
+[CAUTION]
 ====
 The index page generally contains html elements that cannot be automatically converted (some other pages way also be impacted). +
 There is also a dependency on font-awesome css (`fa-` directives). Font awesome support is available in Asciidoctor
@@ -88,7 +89,27 @@ This is required to follow the https://docs.antora.org/antora/2.3/standard-direc
 * others
 
 
-== Old custom tags cleanup
+=== Images management
+
+CAUTION: in progress, a definitive solution must be found
+
+[WARNING]
+====
+Antora expects (at least by default, see https://docs.antora.org/antora/2.3/images-directory/) that images are stored in the `modules/ROOT/assets/images`
+folder, then they are available directly in pages as link without having to add a relative path. In the generated site, they are then stored in the `_/_images`
+folder.
+
+In the original markdown content, the images are accessed through the `images` relative folder. So, if the page content
+is not changed, the images must be stored in a `images` folder of the Antora images folder, so in `modules/ROOT/assets/images/images` (double `images` part
+in the path).
+
+We may also have a look at the https://asciidoctor.org/docs/user-manual/#builtin-attributes[imagesdir Asciidoctor attribute]
+====
+
+
+== Post conversion manual processing
+
+=== Old custom tags cleanup
 
 Convert custom 'Bonita' tags for notes, warnings, ....
 
@@ -118,31 +139,8 @@ The conversion commands works if the content is on the same line as the header
 We should use the https://asciidoctor.org/docs/user-manual/#admonition[admonition syntax] that supports multilines
 ====
 
-=== HTML Content
+=== HTML Content manual conversion
 
 WARNING: For now, we don't have a solution, see https://github.com/bonitasoft/bonitasoft.github.io/issues/40[issue #40]
 
-This is the
-
-
-
-
-
-== Images management
-
-CAUTION: in progress, a definitive solution must be found
-
-[WARNING]
-====
-Antora expects (at least by default, see https://docs.antora.org/antora/2.3/images-directory/) that images are stored in the `modules/ROOT/assets/images`
-folder, then they are available directly in pages as link without having to add a relative path. In the generated site, they are then stored in the `_/_images`
-folder.
-
-In the original markdown content, the images are accessed through the `images` relative folder. So, if the page content
-is not changed, the images must be stored in a `images` folder of the Antora images folder, so in `modules/ROOT/assets/images/images` (double `images` part
-in the path).
-
-We may also have a look at the https://asciidoctor.org/docs/user-manual/#builtin-attributes[imagesdir Asciidoctor attribute]
-====
-
-*_Draft_*
+This is the content that has been commented generally in the index page.
