@@ -68,7 +68,6 @@ For instance, `:::info Note: for Enterprise, Performance and Efficiency editions
 `NOTE: Note: for Enterprise, Performance and Efficiency editions only.`
 
 
-Note:
 [source,bash]
 ----
 sed -i 's/::: info/NOTE:/g' *.adoc
@@ -79,6 +78,17 @@ sed -i 's/::://g' *.adoc
 ----
 
 NOTE: for macOS add `''` after the -i option.
+
+[WARNING]
+====
+The note conversion should be improved as very often, the md content have an extra `Note` word to introduce the explanation,
+which is now useless. +
+// the \ before the * is to have a correct rendering of this page
+This introduction can be `\*Note:* ` (with an ending space)
+
+The conversion commands works if the content is on the same line as the header
+We should use the complete form (TODO)
+====
 
 
 
