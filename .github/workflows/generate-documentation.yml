@@ -5,6 +5,10 @@ on:
   pull_request:
     branches: 
       - master
+    paths:
+      - 'resources/*'
+      - 'antora-playbook.yml'
+      - '.github/workflows/generate-documentation.yml'
   push:
     branches: 
       - master
