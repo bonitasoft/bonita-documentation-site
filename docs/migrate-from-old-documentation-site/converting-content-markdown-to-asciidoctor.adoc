@@ -1,8 +1,20 @@
-= Conversion tips: from markdown to asciidoctor
+= Documentation content conversion steps
 :icons: font
 
+The following describes how to convert content repository branch from Markdown for the old documentation site to Asciidoctor
+for the new documentation site using Antora.
 
-== Additional tasks
+The steps describe here are supposed to be followed in the order they appear.
+
+
+== New branch content initialization
+
+Create a new branch starting from the existing one.
+
+See explanation and images in xref:migration-steps-put-the-site-live.adoc[global migration steps documentation].
+
+
+== Branch cleanup
 
 The documentation content branch for the old documentation site also contained scripts and extra files that are not needed anymore.
 They should be removed as part of the initial conversion.
@@ -52,15 +64,8 @@ find ./ -name "*.md" \
 
 WARNING: test with additional `--wrap=ventilate` option
 
-=== Removing markdown sources
 
-Run `rm -f *.md`
-
-Then commit the changes: at that point, git should have detected that the files have been renamed, at least for some of them
-(check in the git history).
-
-
-=== Rename files
+=== Rename Asciidoctor files and remove old markdown files
 
 From `md.adoc` to `.adoc`.
 
@@ -70,6 +75,10 @@ for f in *.md.adoc; do mv -- "$f" "${f%.md.adoc}.adoc"; done
 # Remove remaining md files
 rm -rf *.md
 ----
+
+Then commit the changes: at that point, git should have detected that the files have been renamed, at least for some of them
+(check in the git history).
+
 
 === Move files to the right folder
 
