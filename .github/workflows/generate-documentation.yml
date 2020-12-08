@@ -2,6 +2,11 @@ name: Generate documentation
 
 on:
   workflow_dispatch:
+   inputs:    
+      branch: 
+         description: 'Branch of component'
+      component: 
+         description: 'Name of component which triggers the build'
   pull_request:
     branches: 
       - master
@@ -38,6 +43,7 @@ jobs:
         with:
           name: documentation-${{github.sha}}
           path: build/site
+    
   push_to_gh_pages:
     # only when 'on push/workflow_dispatch to master'
     if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&  github.event.ref == 'refs/heads/master'
@@ -47,7 +53,19 @@ jobs:
       - name: Download
         uses: actions/download-artifact@v2
         with:
-          name: documentation-${{github.sha}}
+          name: documentation-${{github.sha}}            
+      - name: Create commit message if no component defined
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.component == ''
+        run: 
+          echo "commit_message=deploy ${{github.sha}} from manual request" >> $GITHUB_ENV          
+      - name: Create commit message if component defined
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.component != ''
+        run: 
+          echo "commit_message=deploy ${{ github.event.inputs.component }} ${{ github.event.inputs.branch }} update" >> $GITHUB_ENV          
+      - name: Create commit message if push
+        if: github.event_name == 'push'
+        run: 
+          echo "commit_message=deploy ${{ github.sha }}" >> $GITHUB_ENV 
       - name: Push to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -56,3 +74,4 @@ jobs:
           keep_files: true
           user_name: 'bonita-ci'
           user_email: 'hudson.mailer@bonitasoft.com'
+          full_commit_message: ${{ env.commit_message }}
