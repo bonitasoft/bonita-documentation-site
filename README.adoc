@@ -56,6 +56,13 @@ For a site to be served by the development <<http server>>
 npm run local:build
 ```
 
+===== Using local documentation content repository
+
+```bash
+npm run local:build-static:local-content
+```
+
+
 
 ==== http server
 
