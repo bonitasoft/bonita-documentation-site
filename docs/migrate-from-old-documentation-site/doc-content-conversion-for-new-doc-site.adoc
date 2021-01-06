@@ -128,6 +128,9 @@ No need to push the documentation content, this can be done locally.
 
 == Post conversion manual processing
 
+The following explanations provide ways to fix html generation errors and warnings that can be seen in the console while
+generating the site or when visually checking the rendered site.
+
 === Old custom tags cleanup
 
 Convert custom 'Bonita' tags for notes, warnings, ....
@@ -163,3 +166,49 @@ We should use the https://asciidoctor.org/docs/user-manual/#admonition[admonitio
 WARNING: For now, we don't have a solution, see https://github.com/bonitasoft/bonitasoft.github.io/issues/40[issue #40]
 
 This is the content that has been commented generally in the index page.
+
+
+=== Fix Taxonomy: links targeting non-existing page
+
+NOTE: This has been detected while converting Bonita 7.5 and probably impact all Bonita versions
+
+Most collapsed entries related to generated pages (listing subpages only) in the markdown solution, so a link was available.
+There is no more generated page with Antora, so replace link by raw text.
+
+
+=== Wrongly migrated numbered list
+
+NOTE: Detected while converting Bonita 7.5 and probably impact all Bonita versions
+
+When code example is present in numbered list, the code example is not converted and the subsequent text is kept in the
+markdown form. +
+This impacts a few pages so manual migration can be managed
+
+Detected in Bonita 7.5
+
+* connector-development-toolkit.adoc (_asciidoctor: WARNING: connector-development-toolkit.adoc: line 75: list item index: expected 1, got 4_)
+* enforce-password-policy.adoc (_asciidoctor: WARNING: enforce-password-policy.adoc: line 43: unterminated listing block_)
+* ssl.adoc (_asciidoctor: WARNING: ssl.adoc: line 36: unterminated listing block_)
+
+
+=== Not migrated page
+
+NOTE: Detected while converting Bonita 7.5 and probably impact all Bonita 7.5+ versions (not seen with Bonita 7.3, but
+could exist in Bonita 7.4)
+
+The web-service-tutorial.md conversion failed with error due to an `xml declaration` in a source code example.
+Removing this element from the example makes the conversion work.
+
+In addition, after conversion, this page has the following issues
+
+* wrongly converted 'bold italic' elements
+* the 'numbered list with code example issue': web-service-tutorial.adoc
+(_asciidoctor: WARNING: web-service-tutorial.adoc: line 70: unterminated listing block_)
+
+
+=== Wrong headers in source page
+
+This generates site generation errors like in the following
+----
+ERROR: building-community-edition-from-source.adoc: line xx: invalid part, must have at least one section (e.g., chapter, appendix, etc.)
+----
