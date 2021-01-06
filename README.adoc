@@ -58,6 +58,27 @@ npm run local:build
 
 ===== Using local documentation content repository
 
+This activates the https://docs.antora.org/antora/2.3/playbook/author-mode/[Antora author mode]. The local content of the
+repository is used instead of fetching the remote one.
+
+It provides a fast feedback loop as you don't need to push nor commit content as the current work
+
+[NOTE]
+.Repositories location
+====
+This requires to clone all repository sources locally is the parent folder of this project.
+For instance
+```
+root
+  |
+  -- bonita-doc
+  |
+  -- bonita-ici-doc
+  |
+  -- bonitasoft.github.io
+```
+====
+
 ```bash
 npm run local:build-static:local-content
 ```
