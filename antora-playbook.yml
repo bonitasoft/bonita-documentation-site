@@ -17,7 +17,6 @@ content:
 #    - url: git@github.com:alachambre/antora-source-api.git
 #    - url: https://github.com/alachambre/antora-sources-test-2.git
 
-    # local development: use ../bonita-ici-doc (see also https://docs.antora.org/antora/2.3/playbook/author-mode/)
     - url: https://github.com/bonitasoft/bonita-ici-doc.git
       branches: [master]
 

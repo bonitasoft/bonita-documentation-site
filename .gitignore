@@ -3,3 +3,6 @@ build/
 node_modules/
 .cache/
 *.DS_Store
+
+# generated files
+antora-playbook-local-sources.yml
