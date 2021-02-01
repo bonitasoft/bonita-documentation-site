@@ -2,11 +2,13 @@ name: Generate documentation
 
 on:
   workflow_dispatch:
-   inputs:    
-      branch: 
-         description: 'Branch of component'
-      component: 
-         description: 'Name of component which triggers the build'
+   inputs:
+      branch:
+        required: false
+        description: 'Branch of component'
+      component:
+        required: false
+        description: 'Name of component which triggers the build'
   pull_request:
     branches: 
       - master
