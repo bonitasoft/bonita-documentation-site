@@ -26,10 +26,10 @@ See https://github.com/bonitasoft/bonita-ici-doc/pull/118[BICI Doc PR #118] for 
 
 === Tool installation
 
-TIP: Proposed tool Kramdoc aka https://github.com/asciidoctor/kramdown-asciidoc:[kramdown-asciidoc]. See also this https://matthewsetter.com/technical-documentation/asciidoc/convert-markdown-to-asciidoc-with-kramdoc/:[article].
+TIP: Proposed tool Kramdoc aka https://github.com/asciidoctor/kramdown-asciidoc[kramdown-asciidoc]. See also this https://matthewsetter.com/technical-documentation/asciidoc/convert-markdown-to-asciidoc-with-kramdoc/[article].
 
 
-* Require Ruby
+* Require Ruby (tested with 2.5.1 on Ubuntu 18.04, 2.6.5/2.6.6 on Windows 10)
 * gem install kramdown-asciidoc, see the https://kramdown.gettalong.org/installation.html:[installation guide] for more details
 * installation check: `kramdoc --version`
 
