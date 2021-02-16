@@ -20,8 +20,7 @@ content:
     - url: https://github.com/bonitasoft/bonita-ici-doc.git
       branches: [master]
     - url: https://github.com/bonitasoft/bonita-doc.git
-      branches: [7.5_new, 7.7_asciidoctor]
-
+      branches: [7.4_asciidoc, 7.5_new, 7.6_asciidoctor, 7.7_asciidoctor]
 ui:
   bundle:
     url: ./resources/antora-ui-bundle.zip
