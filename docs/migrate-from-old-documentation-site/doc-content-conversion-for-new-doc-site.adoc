@@ -169,6 +169,8 @@ After conversion to adoc format, we got some anchor with bad syntax. To replace 
 [source,bash]
 ----
 sed -i -E 's/^\+\+\+<a id="(.+)">\+\+\+\+\+\+<\/a>\+\+\+$/[#\1]/g' *.adoc
+// for macos
+sed -i '' -E 's/^\+\+\+<a id="(.+)">\+\+\+\+\+\+<\/a>\+\+\+$/[#\1]/g' *.adoc
 ----
 
 In each file you should get update like this:
