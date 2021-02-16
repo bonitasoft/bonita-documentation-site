@@ -66,9 +66,10 @@ From this folder, run the following command to generate the converted files:
 ----
 find ./ -name "*.md" \
        -type f | xargs -I @@ \
-       bash -c 'kramdoc \
-               --format=GFM \
-               --output=@@.adoc @@';
+       bash -c '{ echo Converting "@@" && \
+         kramdoc --format=GFM --output=@@.adoc @@ && \
+         echo Done \
+         ; }';
 ----
 
 WARNING: test with additional `--wrap=ventilate` option
