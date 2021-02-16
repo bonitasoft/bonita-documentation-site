@@ -168,12 +168,54 @@ WARNING: For now, we don't have a solution, see https://github.com/bonitasoft/bo
 This is the content that has been commented generally in the index page.
 
 
-=== Fix Taxonomy: links targeting non-existing page
+=== Fix the Taxonomy file: links targeting non-existing page
 
 NOTE: This has been detected while converting Bonita 7.5 and probably impact all Bonita versions
 
 Most collapsed entries related to generated pages (listing subpages only) in the markdown solution, so a link was available.
 There is no more generated page with Antora, so replace link by raw text.
+
+
+=== Links still containing a reference to a markdown file
+
+WARNING: root cause to be confirmed
+
+*TODO*: provide a single sed (or an equivalent command) to fix this massively because they are a lot of links like this.
+
+After conversion, a successfully converted link uses the `xref` directive. But, we also see links converted using the `link`
+directive and pointing to a `md` file.
+For instance, in Bonita 7.5, in the release-notes: `link:software-extensibility.md#stable_extension_points`
+
+It seems that link containing an anchor are not correctly converted.
+
+
+=== Fix broken links
+
+==== Detection
+In the generated html page, the links have a `unresolved` CSS class (generally, the produced html contains `class="page unresolved"`).
+See this https://github.com/bonitasoft/bonitasoft.github.io/commit/8b2485800cbeaf8924ab3d4317cdb7e595541338#diff-c57f6e0008151cc92f79f21a76ffcc37334c2a11e7d3185db1e1daa2d55d3f1fL1190[commit that fixes such an issue].
+
+==== Links targeting old generated taxonomy pages
+
+NOTE: This has been detected while converting Bonita 7.5 and probably impact all Bonita versions
+
+There is no more pages generated from the taxonomy so links targeting such page must be updated.
+
+For instance, in Bonita 7.5:
+
+* index.adoc: link to the taxonomy index page in the `Explore Bonita`
+* software-extensibility.adoc: replace `xref:_connectivity.adoc` by `xref:connectivity-overview.adoc` (introduction to connectivity)
+
+
+==== Already existing dead links
+
+NOTE: This has been detected while converting Bonita 7.5 and probably impact all Bonita versions
+
+For instance:
+
+* set-up-continuous-integration.adoc
+`xref:automating-process-builds.adoc` by `xref:automating-builds.adoc`
+
 
 
 === Wrongly migrated numbered list

@@ -131,7 +131,8 @@ made the builds fail
 * decommission servers managed by Bonitasoft
 * archive the old documentation site GitHub repository (private)
 
-doc content update
+=== doc content update
+
 * progressively rename version branch. As we started migrated branches from the original ones
   * we can safely remove the old branches (ex: `7.4`)
   * rename migrated branches to the original names: 7.4_asciidoctor` to `7.4`
