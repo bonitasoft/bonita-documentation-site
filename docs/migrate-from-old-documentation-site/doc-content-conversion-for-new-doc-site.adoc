@@ -21,6 +21,18 @@ They should be removed as part of the initial conversion.
 
 See https://github.com/bonitasoft/bonita-ici-doc/pull/118[BICI Doc PR #118] for an example.
 
+Examples of removed files
+
+* Jenkinsfile
+* package*.json files
+* scripts/
+* .jshintrc
+* CONTRIBUTING.md (will be manage later as part of https://github.com/bonitasoft/bonitasoft.github.io/issues/52[#52])
+
+Clean files
+
+* README.md: everything can be removed except the title. This needs rework as part of https://github.com/bonitasoft/bonitasoft.github.io/issues/52[#52]
+
 
 == Markdown to Asciidoctor conversion
 
