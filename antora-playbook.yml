@@ -17,10 +17,10 @@ content:
 #    - url: git@github.com:alachambre/antora-source-api.git
 #    - url: https://github.com/alachambre/antora-sources-test-2.git
 
+    - url: https://github.com/bonitasoft/bonita-doc.git
+      branches: [ 7.3_asciidoctor, 7.4_asciidoc, 7.5_new, 7.6_asciidoctor ]
     - url: https://github.com/bonitasoft/bonita-ici-doc.git
       branches: [master]
-    - url: https://github.com/bonitasoft/bonita-doc.git
-      branches: [ 7.4_asciidoc, 7.5_new, 7.6_asciidoctor ]
 
 ui:
   bundle:
