@@ -150,6 +150,7 @@ sed -i 's/::://g' *.adoc
 
 NOTE: for macOS add `''` after the -i option.
 
+
 [WARNING]
 ====
 The note conversion should be improved as very often, the md content have an extra `Note` word to introduce the explanation,
@@ -160,6 +161,24 @@ This introduction can be `\*Note:* ` (with an ending space)
 The conversion commands works if the content is on the same line as the header
 We should use the https://asciidoctor.org/docs/user-manual/#admonition[admonition syntax] that supports multilines
 ====
+
+=== Anchor link update
+
+After conversion to adoc format, we got some anchor with bad syntax. To replace it by ascidoctor syntax, run :
+
+[source,bash]
+----
+sed -i -E 's/^\+\+\+<a id="(.+)">\+\+\+\+\+\+<\/a>\+\+\+$/[#\1]/g' *.adoc
+// for macos
+sed -i '' -E 's/^\+\+\+<a id="(.+)">\+\+\+\+\+\+<\/a>\+\+\+$/[#\1]/g' *.adoc
+----
+
+In each file you should get update like this:
+
+image::images/doc_anchor_conversion.png[]
+
+NOTE: for macOS add `''` after the -i option.
+
 
 === HTML Content manual conversion
 
