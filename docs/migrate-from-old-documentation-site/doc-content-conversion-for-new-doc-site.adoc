@@ -146,6 +146,8 @@ sed -i 's/:::info/NOTE:/g' *.adoc
 sed -i 's/::: warning/WARNING:/g' *.adoc
 sed -i 's/:::warning/WARNING:/g' *.adoc
 sed -i 's/::://g' *.adoc
+sed -i -E -z 's/(WARNING:)\n/\1 /g' *.adoc
+sed -i -E -z 's/(NOTE:)\n/\1 /g' *.adoc
 ----
 
 NOTE: for macOS add `''` after the -i option.
