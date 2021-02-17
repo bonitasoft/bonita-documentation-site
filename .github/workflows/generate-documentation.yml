@@ -56,8 +56,9 @@ jobs:
           name: documentation-${{github.sha}}
           path: build/site.zip
 
-  get_docs_artifact:
-    if: github.event_name == 'pull_request'
+  push_to_gh_pages:
+    # only when 'on push/workflow_dispatch to master'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&  github.event.ref == 'refs/heads/master'
     runs-on: ubuntu-20.04
     needs: generate_doc
     steps:
@@ -72,17 +73,6 @@ jobs:
           rm -rf site.zip
           echo "Docs unzipped"
           ls -lh
-
-  push_to_gh_pages:
-    # only when 'on push/workflow_dispatch to master'
-    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&  github.event.ref == 'refs/heads/master'
-    runs-on: ubuntu-20.04
-    needs: generate_doc
-    steps:
-      - name: Download
-        uses: actions/download-artifact@v2
-        with:
-          name: documentation-${{github.sha}}
       - name: Create commit message if no component defined
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.component == ''
         run:
