@@ -66,6 +66,8 @@ jobs:
       - name: where am I
         run: |
           pwd
+          rm -rf build/
+          ls -lh
       - name: Download zip
         uses: actions/download-artifact@v2
         with:
@@ -73,6 +75,9 @@ jobs:
       - name: UnZip site
         run: |
           pwd
+          ls -lh -R
+          unzip site.zip
+          rm -rf site.zip
           ls -lh -R
 
   push_to_gh_pages:
