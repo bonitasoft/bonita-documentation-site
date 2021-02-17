@@ -41,7 +41,7 @@ Clean files
 TIP: Proposed tool Kramdoc aka https://github.com/asciidoctor/kramdown-asciidoc[kramdown-asciidoc]. See also this https://matthewsetter.com/technical-documentation/asciidoc/convert-markdown-to-asciidoc-with-kramdoc/[article].
 
 
-* Require Ruby (tested with 2.5.1 on Ubuntu 18.04, 2.6.5/2.6.6 on Windows 10)
+* Require Ruby (tested with 2.5.1 on Ubuntu 18.04, 2.6.5/2.6.6 on Windows 10, 2.6.3 on macos)
 * gem install kramdown-asciidoc, see the https://kramdown.gettalong.org/installation.html[installation guide] for more details
 * installation check: `kramdoc --version`
 
