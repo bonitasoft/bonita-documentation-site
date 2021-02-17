@@ -71,7 +71,7 @@ jobs:
           ls -lh -R
           unzip -q site.zip
           rm -rf site.zip
-          ls -lh -R
+          ls -lh
 
   push_to_gh_pages:
     # only when 'on push/workflow_dispatch to master'
