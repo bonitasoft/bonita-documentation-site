@@ -65,12 +65,12 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: documentation-${{github.sha}}
-      - name: UnZip site
+      - name: Unzip Docs
         run: |
-          pwd
-          ls -lh -R
+          echo "Unzipping docs..."
           unzip -q site.zip
           rm -rf site.zip
+          echo "Docs unzipped"
           ls -lh
 
   push_to_gh_pages:
