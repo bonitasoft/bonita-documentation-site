@@ -27,30 +27,41 @@ jobs:
   generate_doc:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Install dependencies
-        run: npm ci
-      - name: Build docs PR
-        if: github.event_name == 'pull_request'
-        run: npm run local:build-static
-      - name: Build docs
-        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-        run: npm run build
+#      - uses: actions/checkout@v2
+#      - name: Setup node
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: 12.x
+#      - uses: actions/cache@v2
+#        with:
+#          path: ~/.npm
+#          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+#          restore-keys: |
+#            ${{ runner.os }}-node-
+#      - name: Install dependencies
+#        run: npm ci
+      - name: Simulate Build docs PR
+#        if: github.event_name == 'pull_request'
+        run: |
+          mkdir -p build/site/sub1
+          touch build/site/file1.txt
+          touch build/site/file2.txt
+          touch build/site/sub1/file1.txt
+          ls -lh -R build/site
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
           name: documentation-${{github.sha}}
           path: build/site
+      - name: Zip site
+        run: |
+          cd build/site/
+          zip -r ../site .
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: documentation-zip-${{github.sha}}
+          path: build/site.zip
 
   push_to_gh_pages:
     # only when 'on push/workflow_dispatch to master'
