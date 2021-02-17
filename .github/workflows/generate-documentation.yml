@@ -49,7 +49,7 @@ jobs:
       - name: Zip docs
         run: |
           cd build/site/
-          zip -r ../site .
+          zip -q -r ../site .
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
@@ -69,7 +69,7 @@ jobs:
         run: |
           pwd
           ls -lh -R
-          unzip site.zip
+          unzip -q site.zip
           rm -rf site.zip
           ls -lh -R
 
