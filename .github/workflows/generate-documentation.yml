@@ -43,6 +43,7 @@ jobs:
       - name: Simulate Build docs PR
 #        if: github.event_name == 'pull_request'
         run: |
+          pwd
           mkdir -p build/site/sub1
           touch build/site/file1.txt
           touch build/site/file2.txt
@@ -57,11 +58,22 @@ jobs:
         run: |
           cd build/site/
           zip -r ../site .
-      - name: Upload
+      - name: Upload zip
         uses: actions/upload-artifact@v2
         with:
           name: documentation-zip-${{github.sha}}
           path: build/site.zip
+      - name: where am I
+        run: |
+          pwd
+      - name: Download zip
+        uses: actions/download-artifact@v2
+        with:
+          name: documentation-zip-${{github.sha}}
+      - name: UnZip site
+        run: |
+          pwd
+          ls -lh -R
 
   push_to_gh_pages:
     # only when 'on push/workflow_dispatch to master'
