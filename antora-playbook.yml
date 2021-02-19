@@ -11,6 +11,7 @@ runtime:
   cache_dir: ./.cache/antora
 
 content:
+  # When adding a new url, add a new entry in generate-doc-content-pr-preview-antora-playbook.js to manage PR preview
   sources:
 #    - url: https://github.com/bonitasoft/bonita-cloud-doc.git
 #      branches: [master_asciidoctor]
