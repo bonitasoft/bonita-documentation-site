@@ -46,11 +46,15 @@ jobs:
       - name: Build docs
         if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         run: npm run build
+      - name: Zip docs
+        run: |
+          cd build/site/
+          zip -q -r ../site .
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
           name: documentation-${{github.sha}}
-          path: build/site
+          path: build/site.zip
 
   push_to_gh_pages:
     # only when 'on push/workflow_dispatch to master'
@@ -62,6 +66,13 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: documentation-${{github.sha}}
+      - name: Unzip Docs
+        run: |
+          echo "Unzipping docs..."
+          unzip -q site.zip
+          rm -rf site.zip
+          echo "Docs unzipped"
+          ls -lh
       - name: Create commit message if no component defined
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.component == ''
         run:
