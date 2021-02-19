@@ -45,7 +45,7 @@ jobs:
         run: npm run local:build-static
       - name: Build docs
         if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-        run: npm run build
+        run: GOOGLE_ANALYTICS_KEY=${{secrets.GOOGLE_ANALYTICS_KEY}} npm run build
       - name: Zip docs
         run: |
           cd build/site/
