@@ -23,9 +23,10 @@ rm -rf build/
 
 extraAntoraArgs=
 # if arguments contain '--type local', use html extension in urls
-if [[ "$args" != *"--type local"* ]]; then
+if [[ "$args" == *"--type local"* ]]; then
   extraAntoraArgs="--html-url-extension-style default"
 fi
+echo "extra Antora Args: ${extraAntoraArgs}"
+./node_modules/.bin/antora --stacktrace --fetch ${extraAntoraArgs} antora-playbook-doc-content-pr-preview.yml
 
-./node_modules/.bin/antora --stacktrace --fetch "${extraAntoraArgs}" antora-playbook-doc-content-pr-preview.yml
 echo "Preview built"
