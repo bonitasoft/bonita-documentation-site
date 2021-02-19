@@ -1,0 +1,24 @@
+= Contributing
+
+We are pleased to receive any kind of contribution (issues, pull requests, suggestions ...).
+
+== Commit message format
+
+
+Here is the expected commit format, please follow https://www.conventionalcommits.org/en/v1.0.0/[conventionnal commits rules]. We give you a little summary about basic commit templating message.
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+== Pull request
+
+Each improvment, fix must be submit with a pull request. When a pull request is submit, a action is running to check if your pull request follow commit message format.
+
+== Intregration policy
+
+By default, all pull requests is squash when Maintainer has validated your contribution. If you don't want squash your commit, please tell us by a comment in your pull request.
