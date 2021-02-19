@@ -5,6 +5,8 @@ site:
   url: https://bonitasoft.github.io/
   start_page: bonita::index.adoc
   robots: disallow
+  keys:
+    google_analytics: 'G-7LLM509FEH'
 
 # see https://docs.antora.org/antora/2.3/playbook/configure-runtime/
 runtime:
