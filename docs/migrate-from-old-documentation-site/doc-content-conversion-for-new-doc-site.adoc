@@ -21,16 +21,28 @@ They should be removed as part of the initial conversion.
 
 See https://github.com/bonitasoft/bonita-ici-doc/pull/118[BICI Doc PR #118] for an example.
 
+Examples of removed files
+
+* Jenkinsfile
+* package*.json files
+* scripts/
+* .jshintrc
+* CONTRIBUTING.md (will be manage later as part of https://github.com/bonitasoft/bonitasoft.github.io/issues/52[#52])
+
+Clean files
+
+* README.md: everything can be removed except the title. This needs rework as part of https://github.com/bonitasoft/bonitasoft.github.io/issues/52[#52]
+
 
 == Markdown to Asciidoctor conversion
 
 === Tool installation
 
-TIP: Proposed tool Kramdoc aka https://github.com/asciidoctor/kramdown-asciidoc:[kramdown-asciidoc]. See also this https://matthewsetter.com/technical-documentation/asciidoc/convert-markdown-to-asciidoc-with-kramdoc/:[article].
+TIP: Proposed tool Kramdoc aka https://github.com/asciidoctor/kramdown-asciidoc[kramdown-asciidoc]. See also this https://matthewsetter.com/technical-documentation/asciidoc/convert-markdown-to-asciidoc-with-kramdoc/[article].
 
 
-* Require Ruby
-* gem install kramdown-asciidoc, see the https://kramdown.gettalong.org/installation.html:[installation guide] for more details
+* Require Ruby (tested with 2.5.1 on Ubuntu 18.04, 2.6.5/2.6.6 on Windows 10, 2.6.3 on macos)
+* gem install kramdown-asciidoc, see the https://kramdown.gettalong.org/installation.html[installation guide] for more details
 * installation check: `kramdoc --version`
 
 *TODO*: docker ruby image with gem installed to avoid polluting our machines?
@@ -54,9 +66,10 @@ From this folder, run the following command to generate the converted files:
 ----
 find ./ -name "*.md" \
        -type f | xargs -I @@ \
-       bash -c 'kramdoc \
-               --format=GFM \
-               --output=@@.adoc @@';
+       bash -c '{ echo Converting "@@" && \
+         kramdoc --format=GFM --output=@@.adoc @@ && \
+         echo Done \
+         ; }';
 ----
 
 WARNING: test with additional `--wrap=ventilate` option
