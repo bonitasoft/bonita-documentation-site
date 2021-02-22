@@ -21,16 +21,28 @@ They should be removed as part of the initial conversion.
 
 See https://github.com/bonitasoft/bonita-ici-doc/pull/118[BICI Doc PR #118] for an example.
 
+Examples of removed files
+
+* Jenkinsfile
+* package*.json files
+* scripts/
+* .jshintrc
+* CONTRIBUTING.md (will be manage later as part of https://github.com/bonitasoft/bonitasoft.github.io/issues/52[#52])
+
+Clean files
+
+* README.md: everything can be removed except the title. This needs rework as part of https://github.com/bonitasoft/bonitasoft.github.io/issues/52[#52]
+
 
 == Markdown to Asciidoctor conversion
 
 === Tool installation
 
-TIP: Proposed tool Kramdoc aka https://github.com/asciidoctor/kramdown-asciidoc:[kramdown-asciidoc]. See also this https://matthewsetter.com/technical-documentation/asciidoc/convert-markdown-to-asciidoc-with-kramdoc/:[article].
+TIP: Proposed tool Kramdoc aka https://github.com/asciidoctor/kramdown-asciidoc[kramdown-asciidoc]. See also this https://matthewsetter.com/technical-documentation/asciidoc/convert-markdown-to-asciidoc-with-kramdoc/[article].
 
 
-* Require Ruby
-* gem install kramdown-asciidoc, see the https://kramdown.gettalong.org/installation.html:[installation guide] for more details
+* Require Ruby (tested with 2.5.1 on Ubuntu 18.04, 2.6.5/2.6.6 on Windows 10, 2.6.3 on macos)
+* gem install kramdown-asciidoc, see the https://kramdown.gettalong.org/installation.html[installation guide] for more details
 * installation check: `kramdoc --version`
 
 *TODO*: docker ruby image with gem installed to avoid polluting our machines?
@@ -48,30 +60,34 @@ There is also a dependency on font-awesome css (`fa-` directives). Font awesome 
 For such a page, the html part must be commented prior running conversion otherwise the process fails.
 ====
 
-Markdown source files are stored in the md folder of the repository. +
-From this folder, run the following command to generate the converted files:
+The script link:../scripts/convert_md_to_asciidoc.py[convert_md_to_asciidoc.py] performs the conversion automatically.
+
+From the root of the old documentation folder, run the following command
 [source,bash]
 ----
-find ./ -name "*.md" \
-       -type f | xargs -I @@ \
-       bash -c 'kramdoc \
-               --format=GFM \
-               --output=@@.adoc @@';
+ python convert_md_to_asciidoc.py
 ----
 
-WARNING: test with additional `--wrap=ventilate` option
+.The script will :
+[info]
+* Sanitize the markdown source files to make theme convertible (update syntax).
+* Convert md files to asciidoctor using kramdoc
+* Sanitize the asciidoctors files generated
+** Convert custom 'Bonita' tags for notes, warnings, ....
+[Exemple]
+For instance:
 
+`:::info for Enterprise, Performance and Efficiency editions only.:::` to
+`[NOTE]==== for Enterprise, Performance and Efficiency editions only.====`
 
-=== Rename Asciidoctor files and remove old markdown files
+** Fix anchor with bad syntax
+[Exemple]
+In each file you should get update like this:
 
-From `md.adoc` to `.adoc`.
+image::images/doc_anchor_conversion.png[]
 
-[source,bash]
-----
-for f in *.md.adoc; do mv -- "$f" "${f%.md.adoc}.adoc"; done
-# Remove remaining md files
-rm -rf *.md
-----
+* Rename Asciidoctor files and remove old markdown files
+
 
 === Final steps
 
@@ -131,27 +147,6 @@ No need to push the documentation content, this can be done locally.
 The following explanations provide ways to fix html generation errors and warnings that can be seen in the console while
 generating the site or when visually checking the rendered site.
 
-=== Old custom tags cleanup
-
-Convert custom 'Bonita' tags for notes, warnings, ....
-
-For instance, `:::info Note: for Enterprise, Performance and Efficiency editions only.:::` to
-`NOTE: Note: for Enterprise, Performance and Efficiency editions only.`
-
-
-[source,bash]
-----
-sed -i 's/::: info/NOTE:/g' *.adoc
-sed -i 's/:::info/NOTE:/g' *.adoc
-sed -i 's/::: warning/WARNING:/g' *.adoc
-sed -i 's/:::warning/WARNING:/g' *.adoc
-sed -i 's/::://g' *.adoc
-sed -i -E -z 's/(WARNING:)\n/\1 /g' *.adoc
-sed -i -E -z 's/(NOTE:)\n/\1 /g' *.adoc
-----
-
-NOTE: for macOS add `''` after the -i option.
-
 
 [WARNING]
 ====
@@ -163,23 +158,6 @@ This introduction can be `\*Note:* ` (with an ending space)
 The conversion commands works if the content is on the same line as the header
 We should use the https://asciidoctor.org/docs/user-manual/#admonition[admonition syntax] that supports multilines
 ====
-
-=== Anchor link update
-
-After conversion to adoc format, we got some anchor with bad syntax. To replace it by ascidoctor syntax, run :
-
-[source,bash]
-----
-sed -i -E 's/^\+\+\+<a id="(.+)">\+\+\+\+\+\+<\/a>\+\+\+$/[#\1]/g' *.adoc
-// for macos
-sed -i '' -E 's/^\+\+\+<a id="(.+)">\+\+\+\+\+\+<\/a>\+\+\+$/[#\1]/g' *.adoc
-----
-
-In each file you should get update like this:
-
-image::images/doc_anchor_conversion.png[]
-
-NOTE: for macOS add `''` after the -i option.
 
 
 === HTML Content manual conversion
