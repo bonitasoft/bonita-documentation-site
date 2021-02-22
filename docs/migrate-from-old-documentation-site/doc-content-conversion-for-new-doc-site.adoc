@@ -48,9 +48,9 @@ There is also a dependency on font-awesome css (`fa-` directives). Font awesome 
 For such a page, the html part must be commented prior running conversion otherwise the process fails.
 ====
 
-Thanks to the scripts link:../scripts/convert_md_to_asciidoc.py[convert_md_to_asciidoc.py], the conversion was done automatically.
+The script link:../scripts/convert_md_to_asciidoc.py[convert_md_to_asciidoc.py] performs the conversion automatically.
 
-From the root old documentation  folder, run the following command
+From the root of the old documentation folder, run the following command
 [source,bash]
 ----
  python convert_md_to_asciidoc.py
@@ -58,7 +58,7 @@ From the root old documentation  folder, run the following command
 
 .The script will :
 [info]
-* Sanitize the markdown source file to render it more easy to be convertible.
+* Sanitize the markdown source files to make theme convertible (update syntax). 
 * Convert md files to asciidoctor using kramdoc
 * Sanitize the asciidoctors files generated
 ** Convert custom 'Bonita' tags for notes, warnings, ....
