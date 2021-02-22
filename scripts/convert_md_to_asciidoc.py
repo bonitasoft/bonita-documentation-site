@@ -7,7 +7,7 @@ def convert_to_adoc(f_name, f_path):
     doc = subprocess.Popen(["kramdoc", "--format=GFM", "--output=md/" + adoc_file, f_path]);
     doc.wait()
     adoc_file_path = os.path.join("md", adoc_file);
-
+ 
     with open(adoc_file_path) as adoc:
         adoc_read = adoc.read();
         adoc_read = re.sub(r"(::: info)", "[NOTE]\n====\n", adoc_read, 0, re.MULTILINE);
@@ -19,7 +19,7 @@ def convert_to_adoc(f_name, f_path):
             f.write(adoc_read);
             f.close();
     print("file " + f_path + " converted to adoc " + adoc_file);
-
+  
 
 def main():
     for dname, dirs, files in os.walk("md"):
@@ -31,6 +31,7 @@ def main():
                 result = re.sub(r".*(:::)", "\\1", result, 0)
                 result = re.sub(r"(::: warning\n)(\s*)(\*\*Warning:\*\*|\*\*Warning\*\*:)\s*(.*)", "\\1\\4", result)
                 result = re.sub(r"(::: info\n)(\s*)(\*\*Note:\*\*|\*\*Note\*\*:)\s*(.*)", "\\1\\4", result)
+                result = re.sub(r"^(\*.*\n)(```(\n.*)*```)(\n\*.*)$", "\\1\\n\\2\\n\\4", result)
             with open(f_path, "w") as f:
                 f.write(result)
                 f.close();
