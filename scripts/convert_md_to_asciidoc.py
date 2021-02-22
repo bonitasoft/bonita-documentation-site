@@ -11,6 +11,7 @@ def convert_to_adoc(f_name, f_path):
         adoc_read = adoc.read();
         adoc_read = re.sub(r"(::: info)", "[NOTE]\n====\n", adoc_read, 0, re.MULTILINE);
         adoc_read = re.sub(r"(::: warning)", "[WARNING]\n====\n", adoc_read, 0, re.MULTILINE);
+        adoc_read = re.sub(r"(::: danger)", "[IMPORTANT]\n====\n", adoc_read, 0, re.MULTILINE);
         adoc_read = re.sub(r":::", "====", adoc_read, 0, re.MULTILINE);
         adoc_read = re.sub(r" ====", "====", adoc_read, 0, re.MULTILINE);
         adoc_read = re.sub(r"^\+\+\+<a id=\"(.+)\">\+\+\+\+\+\+<\/a>\+\+\+$", "[#\\1]", adoc_read, 0, re.MULTILINE);
@@ -29,6 +30,7 @@ def main():
                 result = re.sub(r".*(:::)", "\\1", result, 0)
                 result = re.sub(r"(::: warning\n)(\s*)(\*\*Warning:\*\*|\*\*Warning\*\*:|\s*)\s*(.*)", "\\1\\4", result)
                 result = re.sub(r"(::: info\n)(\s*)(\*\*Note:\*\*|\*\*Note\*\*:|\s*)\s*(.*)", "\\1\\4", result)
+                result = re.sub(r"(::: danger\n)(\s*)(\*\*Danger:\*\*|\*\*Danger\*\*:|\s*)\s*(.*)", "\\1\\4", result)
                 result = re.sub(r"^(\*.*\n)(```(\n.*)*```)(\n\*.*)$", "\\1\\n\\2\\n\\4", result)
             with open(f_path, "w") as f:
                 f.write(result)
