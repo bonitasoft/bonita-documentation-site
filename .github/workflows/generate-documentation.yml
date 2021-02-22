@@ -26,6 +26,8 @@ on:
 jobs:
   generate_doc:
     runs-on: ubuntu-20.04
+    env:
+      GOOGLE_ANALYTICS_KEY: G-7LLM509FEH
     steps:
       - uses: actions/checkout@v2
       - name: Setup node
@@ -45,7 +47,7 @@ jobs:
         run: npm run local:build-static
       - name: Build docs
         if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-        run: GOOGLE_ANALYTICS_KEY=${{secrets.GOOGLE_ANALYTICS_KEY}} npm run build
+        run: GOOGLE_ANALYTICS_KEY=${{env.GOOGLE_ANALYTICS_KEY}} npm run build
       - name: Zip docs
         run: |
           cd build/site/
