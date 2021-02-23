@@ -96,3 +96,34 @@ jobs:
           user_name: 'bonita-ci'
           user_email: 'hudson.mailer@bonitasoft.com'
           full_commit_message: ${{ env.commit_message }}
+
+  deploy_to_netlify:
+    if: (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-20.04
+    needs: generate_doc
+    steps:
+      - name: Download
+        uses: actions/download-artifact@v2
+        with:
+          name: documentation-${{github.sha}}
+      - name: Unzip Docs
+        run: |
+          echo "Unzipping docs..."
+          unzip -q site.zip
+          rm -rf site.zip
+          echo "Docs unzipped"
+          ls -lh
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './'
+          production-branch: master
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
