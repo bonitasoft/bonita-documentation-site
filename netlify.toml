@@ -3,6 +3,7 @@
 ########################################
 [[redirects]]
   from = "/bonita/latest/*"
+# TODO if we want proxy/rewrite instead, add status = 200 (https://docs.netlify.com/routing/redirects/rewrites-proxies/)
   to = "/bonita/7.12/:splat"
 
 [[redirects]]
@@ -15,6 +16,7 @@
 ########################################
 [[redirects]]
 from = "/bcd/latest/*"
+# TODO if we want proxy/rewrite instead, add status = 200 (https://docs.netlify.com/routing/redirects/rewrites-proxies/)
 to = "/bcd/3.4/:splat"
 
 [[redirects]]
