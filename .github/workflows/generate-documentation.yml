@@ -102,6 +102,11 @@ jobs:
     runs-on: ubuntu-20.04
     needs: generate_doc
     steps:
+      - uses: actions/checkout@v2
+      - name: Where am I
+        run: |
+          pwd
+          ls -lha
       - name: Download
         uses: actions/download-artifact@v2
         with:
@@ -109,20 +114,21 @@ jobs:
       - name: Unzip Docs
         run: |
           echo "Unzipping docs..."
-          unzip -q site.zip
-          rm -rf site.zip
+          mkdir site/
+          unzip -q site.zip -d site/
           echo "Docs unzipped"
           ls -lh
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
-          publish-dir: './'
+          publish-dir: './site'
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           enable-pull-request-comment: false
           enable-commit-comment: true
           overwrites-pull-request-comment: true
+          netlify-config-path: ./netlify.toml
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
