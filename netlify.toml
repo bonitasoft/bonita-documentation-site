@@ -10,6 +10,12 @@
   from = "/bonita/"
   to = "/bonita/7.12/"
 
+# Special redirect after introduction of Bonita branding version
+# TODO we may prefer to have 2021.1 in the doc and use a dedicated redirect from 7.12 to 2021.1 instead
+[[redirects]]
+  from = "/bonita/2021.1/*"
+  to = "/bonita/7.12/:splat"
+
 
 ########################################
 # BCD redirects
