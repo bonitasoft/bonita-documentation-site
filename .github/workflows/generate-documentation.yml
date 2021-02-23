@@ -118,16 +118,27 @@ jobs:
           unzip -q site.zip -d site/
           echo "Docs unzipped"
           ls -lh
+      - name: Create deploy message if no component defined
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.component == ''
+        run:
+          echo "deploy_message=deploy ${{github.sha}} from manual request" >> $GITHUB_ENV
+      - name: Create deploy message if component defined
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.component != ''
+        run:
+          echo "deploy_message=deploy ${{ github.event.inputs.component }} ${{ github.event.inputs.branch }} update" >> $GITHUB_ENV
+      - name: Create deploy message if push or pull request
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        run:
+          echo "deploy_message=deploy ${{ github.sha }}" >> $GITHUB_ENV
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './site'
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
+          deploy-message: ${{ env.deploy_message }}
           enable-pull-request-comment: false
           enable-commit-comment: true
-          overwrites-pull-request-comment: true
           netlify-config-path: ./netlify.toml
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
