@@ -98,15 +98,12 @@ jobs:
           full_commit_message: ${{ env.commit_message }}
 
   deploy_to_netlify:
+    # TODO restore push only (as for gh-pages)
     if: (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-20.04
     needs: generate_doc
     steps:
       - uses: actions/checkout@v2
-      - name: Where am I
-        run: |
-          pwd
-          ls -lha
       - name: Download
         uses: actions/download-artifact@v2
         with:
