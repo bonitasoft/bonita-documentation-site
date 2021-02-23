@@ -118,15 +118,15 @@ jobs:
       - name: Create deploy message if no component defined
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.component == ''
         run:
-          echo "deploy_message=deploy ${{github.sha}} from manual request" >> $GITHUB_ENV
+          echo "deploy_message=Deploy ${{github.sha}} from manual request" >> $GITHUB_ENV
       - name: Create deploy message if component defined
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.component != ''
         run:
-          echo "deploy_message=deploy ${{ github.event.inputs.component }} ${{ github.event.inputs.branch }} update" >> $GITHUB_ENV
+          echo "deploy_message=Deploy ${{ github.event.inputs.component }} ${{ github.event.inputs.branch }} update" >> $GITHUB_ENV
       - name: Create deploy message if push or pull request
         if: github.event_name == 'push' || github.event_name == 'pull_request'
         run:
-          echo "deploy_message=deploy ${{ github.sha }}" >> $GITHUB_ENV
+          echo "deploy_message=Deploy ${{ github.sha }}" >> $GITHUB_ENV
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
