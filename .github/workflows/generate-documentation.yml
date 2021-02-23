@@ -98,8 +98,8 @@ jobs:
           full_commit_message: ${{ env.commit_message }}
 
   deploy_to_netlify:
-    # TODO restore push only (as for gh-pages)
-    if: (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch')
+    # only when 'on push/workflow_dispatch to master'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&  github.event.ref == 'refs/heads/master'
     runs-on: ubuntu-20.04
     needs: generate_doc
     steps:
