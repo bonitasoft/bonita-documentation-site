@@ -1,10 +1,38 @@
-#[build]
-#  publish = "./"
-
+########################################
+# Bonita redirects
+########################################
 [[redirects]]
-  from = "/bonita/latest"
-  to = "/bonita/7.12"
+  from = "/bonita/latest/*"
+  to = "/bonita/7.12/*"
 
 [[redirects]]
   from = "/bonita/"
-  to = "/bonita/7.12"
+  to = "/bonita/7.12/"
+
+
+########################################
+# BCD redirects
+########################################
+[[redirects]]
+from = "/bcd/latest/*"
+to = "/bcd/3.4/*"
+
+[[redirects]]
+from = "/bcd/"
+to = "/bcd/3.4/"
+
+
+########################################
+# BICI redirects
+########################################
+[[redirects]]
+from = "/bici/"
+to = "/bici/latest/"
+
+
+########################################
+# Bonita Cloud redirects
+########################################
+[[redirects]]
+from = "/cloud/"
+to = "/cloud/latest/"
