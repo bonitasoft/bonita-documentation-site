@@ -3,7 +3,7 @@
 ########################################
 [[redirects]]
   from = "/bonita/latest/*"
-  to = "/bonita/7.12/*"
+  to = "/bonita/7.12/:splat"
 
 [[redirects]]
   from = "/bonita/"
@@ -15,7 +15,7 @@
 ########################################
 [[redirects]]
 from = "/bcd/latest/*"
-to = "/bcd/3.4/*"
+to = "/bcd/3.4/:splat"
 
 [[redirects]]
 from = "/bcd/"
