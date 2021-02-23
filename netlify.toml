@@ -1,0 +1,10 @@
+#[build]
+#  publish = "./"
+
+[[redirects]]
+  from = "/bonita/latest"
+  to = "/bonita/7.12"
+
+[[redirects]]
+  from = "/bonita/"
+  to = "/bonita/7.12"
