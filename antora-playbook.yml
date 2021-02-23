@@ -20,8 +20,8 @@ content:
       branches: [7.12_asciidoc]
     # - url: https://github.com/bonitasoft/bonita-ici-doc.git
     #   branches: [master]
-    # - url: https://github.com/bonitasoft/bonita-continuous-delivery-doc.git
-    #   branches: [ 3.4_asciidoctor ]
+    - url: https://github.com/bonitasoft/bonita-continuous-delivery-doc.git
+      branches: [ 3.4_asciidoctor ]
 ui:
   bundle:
     url: ./resources/antora-ui-bundle.zip
