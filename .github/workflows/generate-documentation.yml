@@ -134,9 +134,10 @@ jobs:
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: ${{ env.deploy_message }}
-          enable-pull-request-comment: false
-          enable-commit-comment: true
           netlify-config-path: ./netlify.toml
+          # no comment, we only publish to production, github commit status and environment are set correctly
+          enable-pull-request-comment: false
+          enable-commit-comment: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
