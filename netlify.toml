@@ -4,17 +4,17 @@
 [[redirects]]
   from = "/bonita/latest/*"
 # TODO if we want proxy/rewrite instead, add status = 200 (https://docs.netlify.com/routing/redirects/rewrites-proxies/)
-  to = "/bonita/7.12/:splat"
+  to = "/bonita/2021.1/:splat"
 
 [[redirects]]
   from = "/bonita/"
-  to = "/bonita/7.12/"
+  to = "/bonita/2021.1/"
 
 # Special redirect after introduction of Bonita branding version
 # TODO we may prefer to have 2021.1 in the doc and use a dedicated redirect from 7.12 to 2021.1 instead
 [[redirects]]
-  from = "/bonita/2021.1/*"
-  to = "/bonita/7.12/:splat"
+  from = "/bonita/7.12/:splat"
+  to = "/bonita/2021.1/*"
 
 
 ########################################
