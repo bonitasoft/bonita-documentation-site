@@ -96,3 +96,49 @@ jobs:
           user_name: 'bonita-ci'
           user_email: 'hudson.mailer@bonitasoft.com'
           full_commit_message: ${{ env.commit_message }}
+
+  deploy_to_netlify:
+    # only when 'on push/workflow_dispatch to master'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&  github.event.ref == 'refs/heads/master'
+    runs-on: ubuntu-20.04
+    needs: generate_doc
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download
+        uses: actions/download-artifact@v2
+        with:
+          name: documentation-${{github.sha}}
+      - name: Unzip Docs
+        run: |
+          echo "Unzipping docs..."
+          mkdir site/
+          unzip -q site.zip -d site/
+          echo "Docs unzipped"
+          ls -lh
+      - name: Create deploy message if no component defined
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.component == ''
+        run:
+          echo "deploy_message=Deploy ${{github.sha}} from manual request" >> $GITHUB_ENV
+      - name: Create deploy message if component defined
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.component != ''
+        run:
+          echo "deploy_message=Deploy ${{ github.event.inputs.component }} ${{ github.event.inputs.branch }} update" >> $GITHUB_ENV
+      - name: Create deploy message if push or pull request
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        run:
+          echo "deploy_message=Deploy ${{ github.sha }}" >> $GITHUB_ENV
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './site'
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: ${{ env.deploy_message }}
+          netlify-config-path: ./netlify.toml
+          # no comment, we only publish to production, github commit status and environment are set correctly
+          enable-pull-request-comment: false
+          enable-commit-comment: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
