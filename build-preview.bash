@@ -5,13 +5,6 @@
 ########################################################################################################################
 set -euo pipefail
 
-
-function displayHelpAndExit() {
-
-    exit 0;
-}
-
-
 # Parse arguments
 runOnCI=true
 extraAntoraArgs=
