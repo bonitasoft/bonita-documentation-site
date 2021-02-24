@@ -9,9 +9,9 @@ def convert_to_adoc(f_name, f_path):
     adoc_file_path = os.path.join("md", adoc_file);
     with open(adoc_file_path) as adoc:
         adoc_read = adoc.read();
-        adoc_read = re.sub(r"(::: info)", "[NOTE]\n====\n", adoc_read, 0, re.MULTILINE);
-        adoc_read = re.sub(r"(::: warning)", "[WARNING]\n====\n", adoc_read, 0, re.MULTILINE);
-        adoc_read = re.sub(r"(::: danger)", "[IMPORTANT]\n====\n", adoc_read, 0, re.MULTILINE);
+        adoc_read = re.sub(r"(::: info)", "[NOTE]\n====\n", adoc_read, 0, re.MULTILINE | re.IGNORECASE);
+        adoc_read = re.sub(r"(::: warning)", "[WARNING]\n====\n", adoc_read, 0, re.MULTILINE | re.IGNORECASE);
+        adoc_read = re.sub(r"(::: danger)", "[IMPORTANT]\n====\n", adoc_read, 0, re.MULTILINE | re.IGNORECASE);
         adoc_read = re.sub(r":::", "====", adoc_read, 0, re.MULTILINE);
         adoc_read = re.sub(r" ====", "====", adoc_read, 0, re.MULTILINE);
         adoc_read = re.sub(r"(^=.*\n)\r*\n*(.*)", "\\1:description: \\2\\n\\n\\2", adoc_read, 1, re.MULTILINE);
@@ -20,6 +20,7 @@ def convert_to_adoc(f_name, f_path):
             f.write(adoc_read);
             f.close();
     print("file " + f_path + " converted to adoc " + adoc_file);
+
 
 def main():
     for dname, dirs, files in os.walk("md"):
