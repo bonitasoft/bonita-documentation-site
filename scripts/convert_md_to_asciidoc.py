@@ -9,9 +9,9 @@ def convert_to_adoc(file_name, file_path):
     adoc_file_path = os.path.join("md", adoc_file)
     with open(adoc_file_path) as adoc:
         adoc_read = adoc.read();
-        adoc_read = re.sub(r"(::: info)", "[NOTE]\n====\n", adoc_read, 0, re.MULTILINE | re.IGNORECASE);
-        adoc_read = re.sub(r"(::: warning)", "[WARNING]\n====\n", adoc_read, 0, re.MULTILINE | re.IGNORECASE);
-        adoc_read = re.sub(r"(::: danger)", "[IMPORTANT]\n====\n", adoc_read, 0, re.MULTILINE | re.IGNORECASE);
+        adoc_read = re.sub(r"(::: info)", "[NOTE]\n====\n", adoc_read, 0, re.MULTILINE | re.IGNORECASE)
+        adoc_read = re.sub(r"(::: warning)", "[WARNING]\n====\n", adoc_read, 0, re.MULTILINE | re.IGNORECASE)
+        adoc_read = re.sub(r"(::: danger)", "[IMPORTANT]\n====\n", adoc_read, 0, re.MULTILINE | re.IGNORECASE)
         adoc_read = re.sub(r":::", "====", adoc_read, 0, re.MULTILINE)
         adoc_read = re.sub(r" ====", "====", adoc_read, 0, re.MULTILINE)
         adoc_read = re.sub(r"(^=.*\n)\r*\n*(.*)", "\\1:description: \\2\\n\\n\\2", adoc_read, 1, re.MULTILINE)
@@ -21,7 +21,7 @@ def convert_to_adoc(file_name, file_path):
         adoc_read = re.sub(r"xref\:(.*)\.md", "xref:\\1.adoc]", adoc_read, 0, re.MULTILINE)
         adoc_read = re.sub(r"\+\+\+(<asciinema-player(.*)>)\+\+\+\+\+\+", "\\n++++\\n\\1", adoc_read, 0, re.MULTILINE)
         adoc_read = re.sub(r"(</asciinema-player>)\+\+\+", "\\1\\n++++\\n", adoc_read, 0, re.MULTILINE)
-        adoc_read = re.sub(r"<asciinema-player src=\"bonita/images/\$\{varVersion\}/(.*).cast\"","<asciinema-player src=\"images/\\1.cast\"", adoc_read, 0, re.MULTILINE)
+        adoc_read = re.sub(r"<asciinema-player src=\"bonita/images/\$\{varVersion\}/(.*).cast\"","<asciinema-player src=\"_images/images/\\1.cast\"", adoc_read, 0, re.MULTILINE)
         with open(adoc_file_path, "w") as f:
             f.write(adoc_read)
             f.close()
