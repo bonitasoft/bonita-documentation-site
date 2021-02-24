@@ -27,7 +27,7 @@ jobs:
   generate_doc:
     runs-on: ubuntu-20.04
     env:
-      GOOGLE_ANALYTICS_KEY: G-7LLM509FEH
+      GOOGLE_ANALYTICS_KEY: G-28XHJL53C5
     steps:
       - uses: actions/checkout@v2
       - name: Setup node
