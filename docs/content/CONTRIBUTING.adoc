@@ -1,0 +1,102 @@
+= Contributing to Bonitasoft's product documentation
+
+We are pleased to receive any kind of contribution (issues, pull requests, suggestions ...).
+
+== Contribution check
+
+Before open a pull request, please check our few recommendations:
+
+Verify for each updated `adoc` if content start with:
+
+[source,adoc]
+----
+= A short title
+:description: Put just after title (without whitespace) a litle description to explain what we can retrieve in this page.
+
+You can put you content after metadata block
+----
+
+NOTE: This metadata information is useful to improve our visibility for search engine (SEO)
+
+
+
+== Antora
+
+We are using https://docs.antora.org/[Antora] to generated the bonita documentation WebSite.
+
+WARNING: WIP
+
+== Asciidoc
+
+https://docs.asciidoctor.org/asciidoc/latest/[Asciidoc] is the language choose to work our documentation content. You can check the official documentation site to learn more on Asciidoc syntax.
+
+WARNING: WIP
+
+=== Tips and tricks
+
+We will give some tips and tricks already use and available in our documentation site.
+
+==== Asciinema
+
+WARNING: WIP
+
+==== Cards
+
+You can use card style in your page.
+
+.Card display in after HTML generation
+image::images/displayCard.png[Html Card Display,200,100]
+
+You can update *link*, *title* and description for each card.
+
+To do it, you need to use this following syntax:
+
+[source,adoc]
+----
+[.card-section]
+== Highlight
+
+[.card.card-index]
+--
+yourInternalOrExternalLink[[.card-title]#Card Title# [.card-body.card-content-overflow]#pass:q[You can write a litle description here to display it in card body]#]
+--
+
+----
+
+You can use many card in same card section. +
+Please keep this technical syntax to avoid error.
+
+NOTE: If you wanna see a real example, please consult the index.adoc file in https://github.com/bonitasoft/bonita-doc/blob/7.12/md/index.md[bonita documentation github repository].
+
+WARNING: If description in card body is too long (more than 3 lines), we will hide the excess.
+
+==== Variables and attributes
+
+Some attributes are available and define in antora.yml at repository root and could be use in content page.
+
+[source,yml]
+----
+asciidoc:
+  attributes:
+    varVersion: 2021.1
+----
+[example]
+ Use *{varVersion}* syntax to reference this attributes. It will be replaced by 2021.1 for each occurrence.
+
+==== GitHub may not rendered admonition
+
+==== Antora modules
+
+// Antora modules to clarify content (for instance, getting-started guides, how-to articles): https://docs.antora.org/antora/2.3/module-directories/#module.
+
+==== Alias when renaming pages
+
+IMPORTANT: Impact on SEO
+
+==== Adding link between two components
+
+//reference to documentation pages of another component: for instance, bcd doc has link to bonita doc. To avoid hard coded url, use https://docs.antora.org/antora/2.3/page/page-id/ (see https://opendevise.com/blog/referencing-pages/ for rationale). Warn: won't work with PR preview in the document content repository, as that kind of preview only build a single component version
+
+== How to integrate a new component
+
+// examples directory to store source code which can then easily be integrated in the doc https://docs.antora.org/antora/2.3/examples-directory/ We should allow user to download the source as attachments by providing a link directly for the code (no dup between actual examples and doc)
