@@ -1,0 +1,45 @@
+########################################
+# Bonita redirects
+########################################
+[[redirects]]
+  from = "/bonita/latest/*"
+# TODO if we want proxy/rewrite instead, add status = 200 (https://docs.netlify.com/routing/redirects/rewrites-proxies/)
+  to = "/bonita/2021.1/:splat"
+
+[[redirects]]
+  from = "/bonita/"
+  to = "/bonita/2021.1/"
+
+# Special redirect after introduction of Bonita branding version
+[[redirects]]
+  from = "/bonita/7.12/*"
+  to = "/bonita/2021.1/:splat"
+
+
+########################################
+# BCD redirects
+########################################
+[[redirects]]
+from = "/bcd/latest/*"
+# TODO if we want proxy/rewrite instead, add status = 200 (https://docs.netlify.com/routing/redirects/rewrites-proxies/)
+to = "/bcd/3.4/:splat"
+
+[[redirects]]
+from = "/bcd/"
+to = "/bcd/3.4/"
+
+
+########################################
+# BICI redirects
+########################################
+[[redirects]]
+from = "/bici/"
+to = "/bici/latest/"
+
+
+########################################
+# Bonita Cloud redirects
+########################################
+[[redirects]]
+from = "/cloud/"
+to = "/cloud/latest/"
