@@ -9,9 +9,9 @@ def convert_to_adoc(file_name, file_path):
     adoc_file_path = os.path.join("md", adoc_file)
     with open(adoc_file_path) as adoc:
         adoc_read = adoc.read();
-        adoc_read = re.sub(r"(::: info)", "[NOTE]\n====\n", adoc_read, 0, re.MULTILINE | re.IGNORECASE)
-        adoc_read = re.sub(r"(::: warning)", "[WARNING]\n====\n", adoc_read, 0, re.MULTILINE | re.IGNORECASE)
-        adoc_read = re.sub(r"(::: danger)", "[IMPORTANT]\n====\n", adoc_read, 0, re.MULTILINE | re.IGNORECASE)
+        adoc_read = re.sub(r"(:::\s*info)", "[NOTE]\n====\n", adoc_read, 0, re.MULTILINE | re.IGNORECASE)
+        adoc_read = re.sub(r"(:::\s*warning)", "[WARNING]\n====\n", adoc_read, 0, re.MULTILINE | re.IGNORECASE)
+        adoc_read = re.sub(r"(:::\s*danger)", "[IMPORTANT]\n====\n", adoc_read, 0, re.MULTILINE | re.IGNORECASE)
         adoc_read = re.sub(r":::", "====", adoc_read, 0, re.MULTILINE)
         adoc_read = re.sub(r" ====", "====", adoc_read, 0, re.MULTILINE)
         adoc_read = re.sub(r"(^=.*\n)\r*\n*(.*)", "\\1:description: \\2\\n\\n\\2", adoc_read, 1, re.MULTILINE)
@@ -37,9 +37,9 @@ def main():
                 result = re.sub(r"(\|.*\n.*\-\|)", "\\n\\1", f.read(), 0, re.MULTILINE)
                 result = re.sub(r"(\`\`\`xml)", "\\n\\1", result, 0, re.MULTILINE)
                 result = re.sub(r".*(:::)", "\\1", result, 0)
-                result = re.sub(r"(::: warning\n)(\s*)(\*\*Warning:\*\*|\*\*Warning\*\*:|\s*)\s*(.*)", "\\1\\4", result)
-                result = re.sub(r"(::: info\n)(\s*)(\*\*Note:\*\*|\*\*Note\*\*:|\s*)\s*(.*)", "\\1\\4", result)
-                result = re.sub(r"(::: danger\n)(\s*)(\*\*Danger:\*\*|\*\*Danger\*\*:|\s*)\s*(.*)", "\\1\\4", result)
+                result = re.sub(r"(:::\s*warning\s*\n)(\s*)(\*\*Warning:\*\*|\*\*Warning\*\*:|\s*)\s*(.*)", "\\1\\4", result)
+                result = re.sub(r"(:::\s*info\s*\n)(\s*)(\*\*Note:\*\*|\*\*Note\*\*:|\s*)\s*(.*)", "\\1\\4", result)
+                result = re.sub(r"(:::\s*danger\s*\n)(\s*)(\*\*Danger:\*\*|\*\*Danger\*\*:|\s*)\s*(.*)", "\\1\\4", result)
                 result = re.sub(r"^(\*.*\n)(```(\n.*)*```)(\n\*.*)$", "\\1\\n\\2\\n\\4", result)
                 result = re.sub(r"<script(.*)(\n.*)*(<asciinema-player(.*)</asciinema-player>)(\n.*)*(<script(.*)</script>)", "\\3\\n", result)
             with open(f_path, "w") as f:
