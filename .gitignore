@@ -6,4 +6,4 @@ node_modules/
 
 # generated files
 antora-playbook-local-sources.yml
-/antora-playbook-doc-content-pr-preview.yml
+antora-playbook-content-for-preview.yml
