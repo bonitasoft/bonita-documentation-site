@@ -14,6 +14,7 @@ def convert_to_adoc(f_name, f_path):
         adoc_read = re.sub(r"(::: danger)", "[IMPORTANT]\n====\n", adoc_read, 0, re.MULTILINE);
         adoc_read = re.sub(r":::", "====", adoc_read, 0, re.MULTILINE);
         adoc_read = re.sub(r" ====", "====", adoc_read, 0, re.MULTILINE);
+        adoc_read = re.sub(r"(^=.*\n)\r*\n*(.*)", "\\1:description: \\2\\n\\n\\2", adoc_read, 1, re.MULTILINE);
         adoc_read = re.sub(r"^\+\+\+<a id=\"(.+)\">\+\+\+\+\+\+<\/a>\+\+\+$", "[#\\1]", adoc_read, 0, re.MULTILINE);
         with open(adoc_file_path, "w") as f:
             f.write(adoc_read);
