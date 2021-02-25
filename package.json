@@ -6,7 +6,6 @@
     "clean": "rimraf build .cache",
     "build": "antora --stacktrace --fetch --clean antora-playbook.yml",
     "local:build-static": "antora --stacktrace --fetch --html-url-extension-style default antora-playbook.yml",
-    "local:build-static:local-content": "node scripts/generate-local-sources-antora-playbook.js && antora --stacktrace --fetch --html-url-extension-style default antora-playbook-local-sources.yml",
     "local:build": "antora --stacktrace --fetch --url http://localhost:8080 antora-playbook.yml",
     "serve": "http-server build/site -c-1 --port 8080"
   },

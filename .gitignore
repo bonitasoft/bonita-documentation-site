@@ -5,5 +5,4 @@ node_modules/
 *.DS_Store
 
 # generated files
-antora-playbook-local-sources.yml
 antora-playbook-content-for-preview.yml
