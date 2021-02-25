@@ -70,14 +70,49 @@ else {
     doc.site.title = `Preview PR #${prNumber}`;
 }
 
+
+// use local sources for the documentation content repostiories
+const useLocalSources = getArgument(argv, 'local-sources', false)
+console.info(`Use Local Sources: ${useLocalSources}`);
+if (useLocalSources === 'true') {
+    doc.content.sources
+        .filter(source => source.url.includes('http') || source.url.includes('ssh'))
+        .forEach(source => {
+            source.url = `../${(repositoryNameForUrl(source.url))}`
+        });
+}
+
+
 if (siteUrl) {
     doc.site.url = siteUrl;
 }
 // We want to ensure that wherever a preview is published, Search Engines won't index it
 doc.site.robots = 'disallow';
 
+// Allow local file browsing
+const previewType = getArgument(argv, 'type', false)
+console.info(`Preview Type: ${previewType}`);
+if (previewType === 'local') {
+    doc.urls.html_extension_style = 'default';
+}
+
+// Fetch sources
+const fetchSources = getArgument(argv, 'fetch-sources', false)
+console.info(`Fetch Sources: ${fetchSources}`);
+if (fetchSources === 'true') {
+    doc.runtime.fetch = true
+}
+
+
 console.info('Dumping yaml....');
 const generatedYaml = `# Generated from 'antora-playbook.yml'
 ${(yaml.dump(doc))}`;
 fs.writeFileSync(outputFile, generatedYaml);
 console.info(`Antora Playbook generated in ${outputFile}`);
+
+
+function repositoryNameForUrl(url) {
+    const urlParts = url.split('/');
+    const repositoryName = urlParts[urlParts.length-1];
+    return repositoryName.split('.git')[0];
+}
