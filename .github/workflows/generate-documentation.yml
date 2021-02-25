@@ -58,45 +58,6 @@ jobs:
           name: documentation-${{github.sha}}
           path: build/site.zip
 
-  push_to_gh_pages:
-    # only when 'on push/workflow_dispatch to master'
-    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&  github.event.ref == 'refs/heads/master'
-    runs-on: ubuntu-20.04
-    needs: generate_doc
-    steps:
-      - name: Download
-        uses: actions/download-artifact@v2
-        with:
-          name: documentation-${{github.sha}}
-      - name: Unzip Docs
-        run: |
-          echo "Unzipping docs..."
-          unzip -q site.zip
-          rm -rf site.zip
-          echo "Docs unzipped"
-          ls -lh
-      - name: Create commit message if no component defined
-        if: github.event_name == 'workflow_dispatch' && github.event.inputs.component == ''
-        run:
-          echo "commit_message=deploy ${{github.sha}} from manual request" >> $GITHUB_ENV
-      - name: Create commit message if component defined
-        if: github.event_name == 'workflow_dispatch' && github.event.inputs.component != ''
-        run:
-          echo "commit_message=deploy ${{ github.event.inputs.component }} ${{ github.event.inputs.branch }} update" >> $GITHUB_ENV
-      - name: Create commit message if push
-        if: github.event_name == 'push'
-        run:
-          echo "commit_message=deploy ${{ github.sha }}" >> $GITHUB_ENV
-      - name: Push to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-          keep_files: true
-          user_name: 'bonita-ci'
-          user_email: 'hudson.mailer@bonitasoft.com'
-          full_commit_message: ${{ env.commit_message }}
-
   deploy_to_netlify:
     # only when 'on push/workflow_dispatch to master'
     if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&  github.event.ref == 'refs/heads/master'
