@@ -11,7 +11,7 @@ Verify for each updated `adoc` if content start with:
 [source,adoc]
 ----
 = A short title
-:description: Put just after title (without whitespace) a litle description to explain what we can retrieve in this page.
+:description: Put just after title (without whitespace) a little description to explain what we can retrieve in this page.
 
 You can put you content after metadata block
 ----
@@ -58,7 +58,7 @@ To do it, you need to use this following syntax:
 
 [.card.card-index]
 --
-yourInternalOrExternalLink[[.card-title]#Card Title# [.card-body.card-content-overflow]#pass:q[You can write a litle description here to display it in card body]#]
+yourInternalOrExternalLink[[.card-title]#Card Title# [.card-body.card-content-overflow]#pass:q[You can write a little description here to display it in the card body.]#]
 --
 
 ----
