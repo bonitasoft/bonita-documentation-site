@@ -1,0 +1,23 @@
+name: Generate static version
+on:
+  workflow_dispatch:
+    inputs:
+      component:
+        description: Component name to generate documentation
+        default: bonita
+        required: true
+      branch:
+        description: Branch version to generate
+        required: true
+jobs:
+  generate_static_doc:
+    runs-on: ubuntu-20.04
+    steps: 
+      - name: Generate static documentation
+        run: |
+            ./build-preview.bash --branch "${{ github.event.inputs.branch }}" --component "${{ github.event.inputs.component }}" --type local
+      - name: Upload preview
+        uses: actions/upload-artifact@v2
+        with:
+          name: documentation-${{ github.event.inputs.component }}-${{ github.event.inputs.branch }}
+          path: build/site
