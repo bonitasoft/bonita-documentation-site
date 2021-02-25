@@ -2,7 +2,7 @@ site:
   title: Bonita Documentation
   # features that depend on the site URL: https://docs.antora.org/antora/2.3/playbook/site-url/#when-should-the-site-url-be-set
   # when building for local usage, this is overridden.
-  url: https://bonitasoft.github.io/
+  url: https://preview.documentation.bonitasoft.com/
   start_page: bonita::index.adoc
   robots: disallow
 
