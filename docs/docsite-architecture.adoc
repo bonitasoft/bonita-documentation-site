@@ -41,6 +41,6 @@ The docsite documents the 4 currently supported Bonita versions, and **the 4 ver
 
 == Host solution: Netlify
 
-To be less dependent on the IT team, we choose to host our documentation on https://app.netlify.com/sites/documentation-bonita[Netlify].
+The documentation is hosted on https://app.netlify.com/sites/documentation-bonita[Netlify].
 
 Netlify allow us to manage redirection with netlify.toml file at root of this repository.
