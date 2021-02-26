@@ -109,13 +109,32 @@ Strategy:
 update the antora playbook
 
 * site.url: https://documentation.bonitasoft.com
-* update the gh-pages settings and set the https://docs.github.com/articles/using-a-custom-domain-with-github-pages/[custom domain]
 
-WARNING: the gh-pages custom settings could be done earlier if this has no impact on existing site. *TO BE INVESTIGATED.*
+
+=== Search
+
+Update the DocSearch configuration: use the new domain
+
+
+=== Hosting
+
+* add a new Netlify Custom Domain and make it use the final https://docs.netlify.com/domains-https/custom-domains/[custom domain]
+
+[WARNING]
+====
+to be investigated
+
+we probably need to keep the preview domain for docsearch:
+
+* until the crawler has been run using the new url, the preview one must be available
+* once the new domain has crawled, the preview domain can be removed from netlify and from the DNS
+====
+
+
 
 === infra
 
-* update CDN: warn propagation can take time, decide how to do the switch
+* update DNS: warn propagation can take time, decide how to do the switch
 * disable webhooks configured on doc content repositories that target the internal Bonitasoft CI
   * BICI doc webhooks have already been disabled on 2020-11-26 as there was no update on 1.x branch and the new master branch
 made the builds fail

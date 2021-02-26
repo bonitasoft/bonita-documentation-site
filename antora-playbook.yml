@@ -38,13 +38,6 @@ content:
 ui:
   bundle:
     url: ./resources/antora-ui-bundle.zip
-  # Ensure we have a .nojekyll file to avoid Jekyll generation when using github-pages
-  # https://docs.antora.org/antora/2.3/publish-to-github-pages/#use-the-supplemental-ui
-  supplemental_files:
-    - path: ui.yml
-      contents: |
-        static_files: [ .nojekyll ]
-    - path: .nojekyll
 
 asciidoc:
   extensions:
