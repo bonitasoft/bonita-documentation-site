@@ -47,8 +47,25 @@ We will give some tips and tricks already use and available in our documentation
 
 ==== Asciinema
 
-WARNING: WIP
+https://asciinema.org/[Asciinema] provides a great way for sharing shell sessions recording, making documentation more lively !
 
+Once you have created a `.cast` file, you can add it to your document with the following markup
+
+.sample asciinema adoc.
+[source, asciidoc]
+----
+== Asciinema embedded
+
+Example of embedded asciinema recording:
+
+++++
+<asciinema-player src="_images/images/<path_to_your_cast_file>.cast" speed="2" theme="monokai" title="Example of embedded asciinema recording" cols="240" rows="32"></asciinema-player>
+++++
+----
+
+The generated asciidoctor (before transformation by Antora) document should render like something like this:
+[.thumb]
+image::images/asciinema_sample_rendering.png[]
 
 ==== Cards
 
