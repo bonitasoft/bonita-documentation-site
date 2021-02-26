@@ -1,0 +1,17 @@
+= Documentation Site architecture
+
+This document provides details on the architecture of the documentation site, in order to ease future developments. 
+
+== Chore solution: Antora
+
+TOUT DOUX
+
+== UI Bundle
+
+The UI bundle source repository can be found here: https://github.com/bonitasoft/bonita-documentation-theme[bonita-documentation-theme].
+
+UI Bundle architecture is detailed on the UI bundle readme. 
+
+== Search solution: Algolia
+
+TOUT DOUX
