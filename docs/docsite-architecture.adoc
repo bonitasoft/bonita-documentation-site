@@ -14,4 +14,18 @@ UI Bundle architecture is detailed on the UI bundle readme.
 
 == Search solution: Algolia
 
-TOUT DOUX
+Because of our open source status, https://docsearch.algolia.com/[Docsearch by Algolia] offers us freely a search solution (Thanks a lot to them! ❤️). +
+The configuration file can be found https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[here]. This file indicates to the docsearch crawler the pages to crawl, and the elements to index. +
+Each time a new version of a documented Bonitasoft project is released, this configuration file has to be updated:
+
+- The latest version has to be added to the projects to index 
+- The oldest version should be removed from the projects to index
+
+[NOTE]
+====
+For Bonita, the rule is the following one: +
+The docsite documents the 4 currently supported Bonita versions, and **the 4 versions before**. +
+-> It means that the docsearch conf file should reflect this behavior. 
+====
+
+
