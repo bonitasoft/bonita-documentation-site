@@ -2,9 +2,18 @@
 
 This document provides details on the architecture of the documentation site, in order to ease future developments. 
 
-== Chore solution: Antora
+== Chore solution: https://antora.org/[Antora]
 
-TOUT DOUX
+Antora is a multi-repository documentation site generator.
+
+The main file to configure our antora playbook is antora-playbook.yml and list each component and branch build.
+
+The generator will get asciidoc files in ours documents repositories, process this files and generate a static web-site.
+
+[NOTE]
+====
+A Github worflow is available to generate this static documentation (usefull for oldest version not host on this documentation site).
+====
 
 == UI Bundle
 
@@ -29,3 +38,8 @@ The docsite documents the 4 currently supported Bonita versions, and **the 4 ver
 ====
 
 
+== Host solution: Netlify
+
+To be less dependent on the IT team, we choose to host our documentation on https://app.netlify.com/sites/documentation-bonita[Netlify].
+
+Netlify allow us to manage redirection with netlify.toml file at root of this repository.
