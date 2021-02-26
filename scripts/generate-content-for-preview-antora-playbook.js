@@ -22,8 +22,10 @@ function getArgument(argv, argName, isMandatory) {
 const useSingleBranchPerComponent = getArgument(argv, 'single-branch-per-repo', false);
 const siteUrl = getArgument(argv, 'site-url', false)
 const prNumber = getArgument(argv, 'pr', false)
+const siteTitle = getArgument(argv, 'title', false)
 console.info(`PR: ${prNumber}`);
 console.info(`Site Url: ${siteUrl}`);
+console.info(`Title: ${siteTitle}`);
 
 const doc = yaml.load(fs.readFileSync('antora-playbook.yml', 'utf8'));
 console.info('Antora Playbook source file loaded');
@@ -54,7 +56,7 @@ if (!useSingleBranchPerComponent) {
     doc.content.sources = [{url: repoUrl, branches: [branchName]}];
 
     const titlePreviewPart = prNumber ? `PR #${prNumber}` : `branch '${branchName}'`;
-    doc.site.title = `Preview ${componentName} ${titlePreviewPart}`;
+    doc.site.title = siteTitle ? siteTitle : `Preview ${componentName} ${titlePreviewPart}`;
     // override the start page to use the one of the component
     doc.site.start_page = `${componentName}::index.adoc`;
 }
