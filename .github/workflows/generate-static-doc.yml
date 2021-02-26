@@ -16,11 +16,11 @@ on:
 jobs:
   generate_static_doc:
     runs-on: ubuntu-20.04
-    steps: 
+    steps:
       - uses: actions/checkout@v2
       - name: Generate static documentation
         run: |
-            ./build-preview.bash --branch "${{ github.event.inputs.branch }}" --component "${{ github.event.inputs.component }}" --type local --title "${{ github.event.inputs.title }}"
+            ./build-preview.bash --branch "${{ github.event.inputs.branch }}" --component "${{ github.event.inputs.component }}" --type local --site-title "${{ github.event.inputs.title }}"
       - name: Upload preview
         uses: actions/upload-artifact@v2
         with:

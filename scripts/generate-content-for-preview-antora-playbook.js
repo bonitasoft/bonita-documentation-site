@@ -22,10 +22,10 @@ function getArgument(argv, argName, isMandatory) {
 const useSingleBranchPerComponent = getArgument(argv, 'single-branch-per-repo', false);
 const siteUrl = getArgument(argv, 'site-url', false)
 const prNumber = getArgument(argv, 'pr', false)
-const siteTitle = getArgument(argv, 'title', false)
+const siteTitle = getArgument(argv, 'site-title', false)
 console.info(`PR: ${prNumber}`);
 console.info(`Site Url: ${siteUrl}`);
-console.info(`Title: ${siteTitle}`);
+console.info(`Site Title: ${siteTitle}`);
 
 const doc = yaml.load(fs.readFileSync('antora-playbook.yml', 'utf8'));
 console.info('Antora Playbook source file loaded');
@@ -73,7 +73,7 @@ else {
 }
 
 
-// use local sources for the documentation content repostiories
+// use local sources for the documentation content repositories
 const useLocalSources = getArgument(argv, 'local-sources', false)
 console.info(`Use Local Sources: ${useLocalSources}`);
 if (useLocalSources === 'true') {
@@ -82,6 +82,12 @@ if (useLocalSources === 'true') {
         .forEach(source => {
             source.url = `../${(repositoryNameForUrl(source.url))}`
         });
+}
+// use local source for the UI bundle
+const useLocalUIBundle = getArgument(argv, 'local-ui-bundle', false)
+console.info(`Use Local UI Bundle: ${useLocalUIBundle}`);
+if (useLocalUIBundle === 'true') {
+    doc.ui.bundle.url = '../bonita-documentation-theme/build/ui-bundle.zip';
 }
 
 
@@ -105,6 +111,17 @@ if (fetchSources === 'true') {
     doc.runtime.fetch = true
 }
 
+// Set the non-production mode (custom navbar for preview)
+const forceProductionNavbar = getArgument(argv, 'force-production-navbar', false)
+console.info(`Force Production Navbar: ${forceProductionNavbar}`);
+if (forceProductionNavbar !== 'true') {
+    if (!doc.site.keys) {
+        doc.site.keys = {};
+    }
+    doc.site.keys['non-production'] = true;
+} else {
+    console.info('--> Force usage of production navbar');
+}
 
 console.info('Dumping yaml....');
 const generatedYaml = `# Generated from 'antora-playbook.yml'
