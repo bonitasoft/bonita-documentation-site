@@ -3,7 +3,7 @@ site:
   # features that depend on the site URL: https://docs.antora.org/antora/2.3/playbook/site-url/#when-should-the-site-url-be-set
   # when building for local usage, this is overridden.
   url: https://preview.documentation.bonitasoft.com/
-  start_page: bonita::index.adoc
+  start_page: 2021.1@bonita::index.adoc
   robots: disallow
 
 # see https://docs.antora.org/antora/2.3/playbook/configure-runtime/
@@ -19,6 +19,7 @@ content:
         - master_asciidoctor
     - url: https://github.com/bonitasoft/bonita-doc.git
       branches:
+        - archives
         - 7.3_asciidoctor
         - 7.4_asciidoc
         - 7.5_new
