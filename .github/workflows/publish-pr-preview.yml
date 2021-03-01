@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       PR_NUMBER: ${{ github.event.pull_request.number }}
-#      GOOGLE_ANALYTICS_KEY: G-7LLM509FEH
     steps:
       - uses: actions/checkout@v2
         if: github.event.action != 'closed'
@@ -45,7 +44,6 @@ jobs:
           dist: build/site
           failOnError: true
           teardown: 'true'
-#        GOOGLE_ANALYTICS_KEY=${{env.GOOGLE_ANALYTICS_KEY}} xxxx
           build: |
             ./build-preview.bash --single- --pr "${{ env.PR_NUMBER }}" --site-url "${{ env.PREVIEW_URL }}" --single-branch-per-repo true
             ls -lh build/site
