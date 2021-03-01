@@ -19,6 +19,7 @@ function usage() {
   echo "        --pr <PR_NUMBER>                        Number of the Pull Request related to the preview (when apply). Used to display context information within the preview."
   echo "        --single-branch-per-repo <boolean>      'true': only keep the latest declared branch for each component, 'false': use all branches. Defaults to 'false'"
   echo "        --site-url <url>                        Custom Url of the site preview. Defaults to the original url defined in the Antora playbook."
+  echo "        --title <string>                        Title of the site preview. Use generated title if not set."
   echo "        --type <string>                         If 'local' use html extension in urls to allow local file browsing"
 
   echo "  Environment configuration"
