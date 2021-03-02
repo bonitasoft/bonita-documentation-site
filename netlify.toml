@@ -28,6 +28,33 @@ to = "/bcd/3.4/:splat"
 from = "/bcd/"
 to = "/bcd/3.4/"
 
+[[redirects]]
+from = "/bcd/1.0/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/2.0/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/2.1/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/3.0/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/3.1/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/3.2/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/3.3/*"
+to = "/bcd/latest/:splat"
 
 ########################################
 # BICI redirects
