@@ -42,9 +42,9 @@ if (!useSingleBranchPerComponent) {
 
     const repoUrls = new Map([
         ['bcd', 'https://github.com/bonitasoft/bonita-continuous-delivery-doc.git'],
-        ['bici', 'https://github.com/bonitasoft/bonita-ici-doc.git'],
         ['bonita', 'https://github.com/bonitasoft/bonita-doc.git'],
         ['cloud', 'https://github.com/bonitasoft/bonita-cloud-doc.git'],
+        ['labs', 'https://github.com/bonitasoft/bonita-ici-doc.git'],
     ]);
     const repoUrl = repoUrls.get(componentName);
     if (!repoUrl) {
