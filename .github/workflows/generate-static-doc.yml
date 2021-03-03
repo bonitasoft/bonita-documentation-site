@@ -20,7 +20,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Generate static documentation
         run: |
-            ./build-preview.bash --branch "${{ github.event.inputs.branch }}" --component "${{ github.event.inputs.component }}" --type local --site-title "${{ github.event.inputs.title }}"
+            ./build-preview.bash --branch "${{ github.event.inputs.branch }}" --component "${{ github.event.inputs.component }}" \
+                                  --site-title "${{ github.event.inputs.title }}" \
+                                  --type local --site-url DISABLED --hide-edit-page-links true --hide-navbar-components-list true
       - name: Upload preview
         uses: actions/upload-artifact@v2
         with:
