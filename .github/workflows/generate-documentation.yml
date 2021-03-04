@@ -23,6 +23,7 @@ on:
       - 'resources/*'
       - 'antora-playbook.yml'
       - '.github/workflows/generate-documentation.yml'
+      - 'netlify.toml'
 jobs:
   generate_doc:
     runs-on: ubuntu-20.04
