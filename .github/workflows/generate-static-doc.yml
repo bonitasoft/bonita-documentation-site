@@ -44,7 +44,7 @@ jobs:
           commit: ${{github.event.inputs.branch}}
           tag: ${{github.event.inputs.tagName}}
           artifactContentType: application/zip
-          artifact: documentation-*.zip
+          artifacts: "documentation-*.zip"
           token: ${{ secrets.GH_PAT_TOKEN }}
       - name: archives-artefact
         uses: actions/upload-artifact@v2
