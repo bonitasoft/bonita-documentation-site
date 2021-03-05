@@ -2,6 +2,14 @@ name: Generate static version
 on:
   workflow_dispatch:
     inputs:
+      newRelease:
+        description: True to create a new github Release
+        default: true
+        required: true
+      tagName:
+        description: Tag name
+        default: 7.3_test
+        required: false
       component:
         description: Component name to generate documentation
         default: bonita
@@ -21,9 +29,24 @@ jobs:
       - name: Generate static documentation
         run: |
             ./build-preview.bash --branch "${{ github.event.inputs.branch }}" --component "${{ github.event.inputs.component }}" \
-                                  --site-title "${{ github.event.inputs.title }}" \
-                                  --type local --site-url DISABLED --hide-edit-page-links true --hide-navbar-components-list true
-      - name: Upload preview
+                                 --site-title "${{ github.event.inputs.title }}" \
+                                 --type local --site-url DISABLED --hide-edit-page-links true --hide-navbar-components-list true
+      - name: Zip docs
+        if: (github.event.inputs.newRelease == 'true')
+          run: |
+            cd build/site/
+            zip -q -r ../documentation-"${{ github.event.inputs.component }}"-"${{ github.event.inputs.branch }}" .
+      - uses: ncipollo/release-action@v1
+        if: (github.event.inputs.newRelease == 'true')
+        with:
+          owner: bonitasoft
+          repo: bonita-doc
+          commit: ${{github.event.inputs.branch}}
+          tag: ${{github.event.inputs.tagName}}
+          artifactContentType: application/zip
+          artifact: documentation-*.zip
+          token: ${{ secrets.GH_PAT_TOKEN }}
+      - name: archives-artefact
         uses: actions/upload-artifact@v2
         with:
           name: documentation-${{ github.event.inputs.component }}-${{ github.event.inputs.branch }}
