@@ -47,7 +47,7 @@ jobs:
         run:
           echo "deploy_message=Deploy ${{ github.event.inputs.component }} ${{ github.event.inputs.branch }} update" >> $GITHUB_ENV
       - name: Create deploy message if push or pull request
-        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        if: github.event_name == 'push'
         run:
           echo "deploy_message=Deploy ${{ github.sha }}" >> $GITHUB_ENV
       - name: Deploy to Netlify
