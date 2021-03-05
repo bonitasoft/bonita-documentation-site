@@ -33,9 +33,9 @@ jobs:
                                  --type local --site-url DISABLED --hide-edit-page-links true --hide-navbar-components-list true
       - name: Zip docs
         if: (github.event.inputs.newRelease == 'true')
-          run: |
-            cd build/site/
-            zip -q -r ../documentation-"${{ github.event.inputs.component }}"-"${{ github.event.inputs.branch }}" .
+        run: |
+          cd build/site/
+          zip -q -r ../documentation-"${{ github.event.inputs.component }}"-"${{ github.event.inputs.branch }}" .
       - uses: ncipollo/release-action@v1
         if: (github.event.inputs.newRelease == 'true')
         with:
