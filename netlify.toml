@@ -22,6 +22,32 @@
 
 # TODO: Add redirect to Groovydoc
 
+
+########################################
+# Bonita Legacy Doc redirects
+########################################
+
+# specific redirects for 6.x-7.2
+[[redirects]]
+from = "/6.x-7.2/install-tomcat-service-windows"
+to = "/bonita/latest/bonita-as-windows-service"
+
+[[redirects]]
+from = "/6.x-7.2/create-your-first-project-web-rest-api-and-maven"
+to = "/bonita/latest/rest-api-extensions"
+
+# defaults redirects for 6.x-7.2
+# WARN: ensure specific redirects are defined before this one
+[[redirects]]
+from = "/6.x-7.2/*"
+to = "/bonita/latest/:splat"
+
+# Redirect 5x url to archives
+[[redirects]]
+from = "/5x/*"
+to = "/bonita/0/"
+
+
 ########################################
 # BCD redirects
 ########################################
@@ -62,8 +88,9 @@ to = "/bcd/latest/:splat"
 from = "/bcd/3.3/*"
 to = "/bcd/latest/:splat"
 
+
 ########################################
-# BICI redirects
+# LABS redirects
 ########################################
 [[redirects]]
 from = "/bici/"
@@ -90,24 +117,9 @@ from = "/ici/:version/*"
 to = "/labs/latest/bici/:splat"
 
 
-
 ########################################
 # Bonita Cloud redirects
 ########################################
 [[redirects]]
 from = "/cloud/"
 to = "/cloud/latest/"
-
-########################################
-# Bonita Legacy Doc redirects
-########################################
-[[redirects]]
-from = "/6.x-7.2/*"
-to = "https://documentation-legacy.bonitasoft.com/6.x-7.2/:splat"
-
-# Redirect 5x url to archive version documentation
-[[redirects]]
-from = "/5x/*"
-to = "/bonita/0/"
-
-
