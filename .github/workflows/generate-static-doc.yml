@@ -30,7 +30,7 @@ jobs:
       - name: Zip docs
         if: (github.event.inputs.newRelease == 'true')
         run: |
-          echo 'timeStamp=$(date + "%Y%m%d_%H%M%S")' >> $GITHUB_ENV
+          echo "timeStamp=$(date +"%Y%m%d_%H%M%S")" >> $GITHUB_ENV
           cd build/site/
           zip -q -r ../documentation-"${{ github.event.inputs.component }}"-"${{ github.event.inputs.branch }}".zip .
       - uses: ncipollo/release-action@v1
