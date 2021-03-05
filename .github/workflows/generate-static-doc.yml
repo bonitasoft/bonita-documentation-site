@@ -46,6 +46,7 @@ jobs:
           artifacts: "build/documentation-*"
           token: ${{ secrets.GH_PAT_TOKEN }}
       - name: archives-artefact
+        if: (github.event.inputs.newRelease != 'true')
         uses: actions/upload-artifact@v2
         with:
           name: documentation-${{ github.event.inputs.component }}-${{ github.event.inputs.branch }}
