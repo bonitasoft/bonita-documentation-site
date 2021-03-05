@@ -9,13 +9,6 @@ on:
       component:
         required: false
         description: 'Name of component which triggers the build'
-  pull_request:
-    branches:
-      - master
-    paths:
-      - 'resources/*'
-      - 'antora-playbook.yml'
-      - '.github/workflows/generate-documentation.yml'
   push:
     branches:
       - master
@@ -23,8 +16,9 @@ on:
       - 'resources/*'
       - 'antora-playbook.yml'
       - '.github/workflows/generate-documentation.yml'
+      - 'netlify.toml'
 jobs:
-  generate_doc:
+  deploy_to_netlify:
     runs-on: ubuntu-20.04
     env:
       GOOGLE_ANALYTICS_KEY: G-28XHJL53C5
@@ -42,40 +36,8 @@ jobs:
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: npm ci
-      - name: Build docs PR
-        if: github.event_name == 'pull_request'
-        run: npm run local:build-static
       - name: Build docs
-        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         run: GOOGLE_ANALYTICS_KEY=${{env.GOOGLE_ANALYTICS_KEY}} npm run build
-      - name: Zip docs
-        run: |
-          cd build/site/
-          zip -q -r ../site .
-      - name: Upload
-        uses: actions/upload-artifact@v2
-        with:
-          name: documentation-${{github.sha}}
-          path: build/site.zip
-
-  deploy_to_netlify:
-    # only when 'on push/workflow_dispatch to master'
-    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&  github.event.ref == 'refs/heads/master'
-    runs-on: ubuntu-20.04
-    needs: generate_doc
-    steps:
-      - uses: actions/checkout@v2
-      - name: Download
-        uses: actions/download-artifact@v2
-        with:
-          name: documentation-${{github.sha}}
-      - name: Unzip Docs
-        run: |
-          echo "Unzipping docs..."
-          mkdir site/
-          unzip -q site.zip -d site/
-          echo "Docs unzipped"
-          ls -lh
       - name: Create deploy message if no component defined
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.component == ''
         run:
@@ -85,13 +47,13 @@ jobs:
         run:
           echo "deploy_message=Deploy ${{ github.event.inputs.component }} ${{ github.event.inputs.branch }} update" >> $GITHUB_ENV
       - name: Create deploy message if push or pull request
-        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        if: github.event_name == 'push'
         run:
           echo "deploy_message=Deploy ${{ github.sha }}" >> $GITHUB_ENV
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
-          publish-dir: './site'
+          publish-dir: './build/site'
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: ${{ env.deploy_message }}
