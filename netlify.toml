@@ -3,8 +3,8 @@
 ########################################
 [[redirects]]
   from = "/bonita/latest/*"
-# TODO if we want proxy/rewrite instead, add status = 200 (https://docs.netlify.com/routing/redirects/rewrites-proxies/)
   to = "/bonita/2021.1/:splat"
+  status = 200
 
 [[redirects]]
   from = "/bonita/"
@@ -15,26 +15,106 @@
   from = "/bonita/7.12/*"
   to = "/bonita/2021.1/:splat"
 
+# Bonita Javadoc redirect
+[[redirects]]
+  from = "/javadoc/api/*"
+  to = "https://javadoc.bonitasoft.com/api/:splat"
+
+# TODO: Add redirect to Groovydoc
+
+
+########################################
+# Bonita Legacy Doc redirects
+########################################
+
+# specific redirects for 6.x-7.2
+[[redirects]]
+from = "/6.x-7.2/install-tomcat-service-windows"
+to = "/bonita/latest/bonita-as-windows-service"
+
+[[redirects]]
+from = "/6.x-7.2/create-your-first-project-web-rest-api-and-maven"
+to = "/bonita/latest/rest-api-extensions"
+
+# defaults redirects for 6.x-7.2
+# WARN: ensure specific redirects are defined before this one
+[[redirects]]
+from = "/6.x-7.2/*"
+to = "/bonita/latest/:splat"
+
+# Redirect 5x url to archives
+[[redirects]]
+from = "/5x/*"
+to = "/bonita/0/"
+
 
 ########################################
 # BCD redirects
 ########################################
 [[redirects]]
 from = "/bcd/latest/*"
-# TODO if we want proxy/rewrite instead, add status = 200 (https://docs.netlify.com/routing/redirects/rewrites-proxies/)
 to = "/bcd/3.4/:splat"
+status = 200
 
 [[redirects]]
 from = "/bcd/"
 to = "/bcd/3.4/"
 
+[[redirects]]
+from = "/bcd/1.0/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/2.0/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/2.1/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/3.0/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/3.1/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/3.2/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/3.3/*"
+to = "/bcd/latest/:splat"
+
 
 ########################################
-# BICI redirects
+# LABS redirects
 ########################################
 [[redirects]]
 from = "/bici/"
-to = "/bici/latest/"
+to = "/labs/latest/bici/"
+
+[[redirects]]
+from = "/bici/1.0/*"
+to = "/labs/latest/bici/:splat"
+
+[[redirects]]
+from = "/bici/1.1/*"
+to = "/labs/latest/bici/:splat"
+
+[[redirects]]
+from = "/bici/1.2/*"
+to = "/labs/latest/bici/:splat"
+
+[[redirects]]
+from = "/bici/1.3/*"
+to = "/labs/latest/bici/:splat"
+
+[[redirects]]
+from = "/ici/:version/*"
+to = "/labs/latest/bici/:splat"
 
 
 ########################################

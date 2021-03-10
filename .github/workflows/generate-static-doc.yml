@@ -2,6 +2,10 @@ name: Generate static version
 on:
   workflow_dispatch:
     inputs:
+      newRelease:
+        description: True to create a new github Release
+        default: true
+        required: true
       component:
         description: Component name to generate documentation
         default: bonita
@@ -20,8 +24,27 @@ jobs:
       - uses: actions/checkout@v2
       - name: Generate static documentation
         run: |
-            ./build-preview.bash --branch "${{ github.event.inputs.branch }}" --component "${{ github.event.inputs.component }}" --type local --site-title "${{ github.event.inputs.title }}"
-      - name: Upload preview
+            ./build-preview.bash --branch "${{ github.event.inputs.branch }}" --component "${{ github.event.inputs.component }}" \
+                                 --site-title "${{ github.event.inputs.title }}" \
+                                 --type local --site-url DISABLED --hide-edit-page-links true --hide-navbar-components-list true
+      - name: Zip docs
+        if: (github.event.inputs.newRelease == 'true')
+        run: |
+          echo "timeStamp=$(date +"%Y%m%d_%H%M%S")" >> $GITHUB_ENV
+          cd build/site/
+          zip -q -r ../documentation-"${{ github.event.inputs.component }}"-"${{ github.event.inputs.branch }}".zip .
+      - uses: ncipollo/release-action@v1
+        if: (github.event.inputs.newRelease == 'true')
+        with:
+          owner: bonitasoft
+          repo: bonita-doc
+          commit: ${{github.event.inputs.branch}}
+          tag: ${{ github.event.inputs.branch }}-${{ env.timeStamp}}
+          artifacts: "build/documentation-*"
+          body: ${{ github.event.inputs.title }}
+          token: ${{ secrets.GH_PAT_TOKEN }}
+      - name: archives-artefact
+        if: (github.event.inputs.newRelease != 'true')
         uses: actions/upload-artifact@v2
         with:
           name: documentation-${{ github.event.inputs.component }}-${{ github.event.inputs.branch }}

@@ -42,9 +42,9 @@ if (!useSingleBranchPerComponent) {
 
     const repoUrls = new Map([
         ['bcd', 'https://github.com/bonitasoft/bonita-continuous-delivery-doc.git'],
-        ['bici', 'https://github.com/bonitasoft/bonita-ici-doc.git'],
         ['bonita', 'https://github.com/bonitasoft/bonita-doc.git'],
         ['cloud', 'https://github.com/bonitasoft/bonita-cloud-doc.git'],
+        ['labs', 'https://github.com/bonitasoft/bonita-ici-doc.git'],
     ]);
     const repoUrl = repoUrls.get(componentName);
     if (!repoUrl) {
@@ -92,7 +92,7 @@ if (useLocalUIBundle === 'true') {
 
 
 if (siteUrl) {
-    doc.site.url = siteUrl;
+    doc.site.url = (siteUrl === 'DISABLED') ? undefined: siteUrl;
 }
 // We want to ensure that wherever a preview is published, Search Engines won't index it
 doc.site.robots = 'disallow';
@@ -115,14 +115,26 @@ if (fetchSources === 'true') {
 const forceProductionNavbar = getArgument(argv, 'force-production-navbar', false)
 console.info(`Force Production Navbar: ${forceProductionNavbar}`);
 if (forceProductionNavbar !== 'true') {
-    if (!doc.site.keys) {
-        doc.site.keys = {};
-    }
-    doc.site.keys['non-production'] = true;
+    getSiteKeys(doc)['non-production'] = true;
 } else {
     console.info('--> Force usage of production navbar');
 }
 
+// Hide 'Edit this Page' links
+const hideEditPageLinks = getArgument(argv, 'hide-edit-page-links', false)
+console.info(`Hide Edit Page Links: ${hideEditPageLinks}`);
+if (hideEditPageLinks === 'true') {
+    getSiteKeys(doc)['hide-edit-page-links'] = true;
+}
+
+// Hide components list in navbar
+const hideNavbarComponentsList = getArgument(argv, 'hide-navbar-components-list', false)
+console.info(`Hide Navbar Components List: ${hideNavbarComponentsList}`);
+if (hideNavbarComponentsList === 'true') {
+    getSiteKeys(doc)['hide-navbar-components-list'] = true;
+}
+
+// Generate the preview Antora playbook
 console.info('Dumping yaml....');
 const generatedYaml = `# Generated from 'antora-playbook.yml'
 ${(yaml.dump(doc))}`;
@@ -134,4 +146,11 @@ function repositoryNameForUrl(url) {
     const urlParts = url.split('/');
     const repositoryName = urlParts[urlParts.length-1];
     return repositoryName.split('.git')[0];
+}
+
+function getSiteKeys(doc) {
+    if (!doc.site.keys) {
+        doc.site.keys = {};
+    }
+    return doc.site.keys;
 }

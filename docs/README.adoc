@@ -1,1 +1,6 @@
-TODO
+= Developers documentation
+
+* migration from the old documentation site
+** xref:./migrate-from-old-documentation-site/doc-content-conversion-from-md-to-adoc.adoc[Convert markdown content to asciidoctor]
+** xref:./migrate-from-old-documentation-site/migration-steps-put-the-site-live.adoc[Migration to put the site live]
+* xref:configure-netlify-redirects.adoc[Configure netlify redirects]
