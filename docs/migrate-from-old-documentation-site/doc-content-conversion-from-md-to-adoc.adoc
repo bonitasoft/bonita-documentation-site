@@ -27,11 +27,11 @@ Examples of removed files
 * package*.json files
 * scripts/
 * .jshintrc
-* CONTRIBUTING.md (will be manage later as part of https://github.com/bonitasoft/bonitasoft.github.io/issues/52[#52])
+* CONTRIBUTING.md (will be manage later as part of https://github.com/bonitasoft/bonita-documentation-site/issues/52[#52])
 
 Clean files
 
-* README.md: everything can be removed except the title. This needs rework as part of https://github.com/bonitasoft/bonitasoft.github.io/issues/52[#52]
+* README.md: everything can be removed except the title. This needs rework as part of https://github.com/bonitasoft/bonita-documentation-site/issues/52[#52]
 
 
 == Markdown to Asciidoctor conversion
@@ -150,7 +150,7 @@ generating the site or when visually checking the rendered site.
 
 === HTML Content manual conversion
 
-WARNING: For now, we don't have a solution, see https://github.com/bonitasoft/bonitasoft.github.io/issues/40[issue #40]
+WARNING: For now, we don't have a solution, see https://github.com/bonitasoft/bonita-documentation-site/issues/40[issue #40]
 
 This is the content that has been commented generally in the index page.
 
@@ -178,7 +178,7 @@ It seems that link containing an anchor are not correctly converted.
 
 ==== Detection
 In the generated html page, the links have an `unresolved` CSS class (generally, the produced html contains `class="page unresolved"`).
-See this https://github.com/bonitasoft/bonitasoft.github.io/commit/8b2485800cbeaf8924ab3d4317cdb7e595541338#diff-c57f6e0008151cc92f79f21a76ffcc37334c2a11e7d3185db1e1daa2d55d3f1fL1190[commit that fixes such an issue].
+See this https://github.com/bonitasoft/bonita-documentation-site/commit/8b2485800cbeaf8924ab3d4317cdb7e595541338#diff-c57f6e0008151cc92f79f21a76ffcc37334c2a11e7d3185db1e1daa2d55d3f1fL1190[commit that fixes such an issue].
 
 ==== Links targeting old generated taxonomy pages
 

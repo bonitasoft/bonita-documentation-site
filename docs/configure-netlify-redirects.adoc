@@ -13,5 +13,5 @@ Currently, we manually test the redirects by deploying the `netlify.toml` file o
 dashboard. In this case, we only want to check the redirects, so we don't care to have real pages available. +
 We don't update the redirects very often, so this is enough for our current usage.
 
-See https://github.com/bonitasoft/bonitasoft.github.io/issues/168[#168] for a more integrated solution.
+See https://github.com/bonitasoft/bonita-documentation-site/issues/168[#168] for a more integrated solution.
 
