@@ -23,9 +23,6 @@ def convert_to_adoc(file_name, file_path):
         adoc_read = re.sub(r"(</asciinema-player>)\+\+\+", "\\1\\n++++\\n", adoc_read, 0, re.MULTILINE)
         adoc_read = re.sub(r"<asciinema-player src=\"bonita/images/\$\{varVersion\}/(.*).cast\"",
                            "<asciinema-player src=\"_images/images/\\1.cast\"", adoc_read, 0, re.MULTILINE)
-        if adoc_file == "portal-api.adoc" or adoc_file == "rest-api-overview.adoc":
-            adoc_read = re.sub(r"({)((?!bonitaDocVersion|varVersion).*?)(})", "\\\\\\1\\2\\3", adoc_read, 0,
-                               re.MULTILINE)
         with open(adoc_file_path, "w") as f:
             f.write(adoc_read)
             f.close()
