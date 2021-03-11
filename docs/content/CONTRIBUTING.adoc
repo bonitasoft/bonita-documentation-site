@@ -85,7 +85,7 @@ To do it, you need to use this following syntax:
 
 [.card.card-index]
 --
-yourInternalOrExternalLink[[.card-title]#Card Title# [.card-body.card-content-overflow]#pass:q[You can write a little description here to display it in the card body.]#]
+yourInternalOrExternalLink[[.card-title]#Card Title# [.card-body.card-content-overflow]#pass:q[You can write a short description here to display it in the card body.]#]
 --
 
 ----
@@ -172,4 +172,3 @@ Create a new branch in the repository related to the component
 Add an antora configuration file: version + prerelase flag if needed
 Declare the new branch in the antora playbook
 Update the docsearch configuration
-
