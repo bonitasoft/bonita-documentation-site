@@ -15,7 +15,7 @@ content:
   sources:
     - url: https://github.com/bonitasoft/bonita-cloud-doc.git
       branches:
-        - master_asciidoctor
+        - master
     - url: https://github.com/bonitasoft/bonita-doc.git
       branches:
         - archives
