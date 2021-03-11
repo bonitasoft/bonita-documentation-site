@@ -19,12 +19,12 @@ content:
     - url: https://github.com/bonitasoft/bonita-doc.git
       branches:
         - archives
-        - 7.3_asciidoctor
-        - 7.4_asciidoc
-        - 7.5_new
-        - 7.6_asciidoctor
-        - 7.7_asciidoctor
-        - 7.8_asciidoc
+        - 7.3
+        - 7.4
+        - 7.5
+        - 7.6
+        - 7.7
+        - 7.8
         - 7.9_asciidoctor
         - 7.10_asciidoctor
         - 7.11_asciidoctor
