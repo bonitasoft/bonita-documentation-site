@@ -2,9 +2,12 @@
 # General redirects
 ########################################
 # Ensure old preview urls are redirected to the primary domain
+# https://docs.netlify.com/routing/redirects/redirect-options/#domain-level-redirects
 [[redirects]]
   from = "https://preview.documentation.bonitasoft.com/*"
   to = "https://documentation.bonitasoft.com/:splat"
+  status = 301
+  force = true
 
 
 ########################################
