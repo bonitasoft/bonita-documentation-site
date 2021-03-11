@@ -1,7 +1,15 @@
 = Migration steps to put the new site live
 :icons: font
+ifdef::env-github[]
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 
-CAUTION: early draft
+
+CAUTION: in progress
 
 
 == Documentation content strategy while migrating
@@ -70,8 +78,9 @@ See also https://github.com/bonitasoft/bonitasoft.github.io/issues/11[#11] and h
 
 ==== bonita-continuous-delivery-doc
 
-* out-of-support version branches from `1.0` to `?` (and `?` starting from December 2020): convert right away
-* supported version branches: same as for bonita-doc
+* 3.4: convert right away
+* other branches won't be kept
+
 
 ==== bonita-cloud-doc
 
