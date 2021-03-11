@@ -29,6 +29,7 @@ content:
         - 7.10_asciidoctor
         - 7.11_asciidoctor
         - 7.12_asciidoc
+        - 2021.2
     - url: https://github.com/bonitasoft/bonita-ici-doc.git
       branches:
         - master
