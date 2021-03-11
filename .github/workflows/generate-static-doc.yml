@@ -15,7 +15,7 @@ on:
         required: true
       title:
         description: Title to put in the header and tab
-        default: BonitaBPM - Archived
+        default: Bonita BPM - Archived
         required: true
 jobs:
   generate_static_doc:
