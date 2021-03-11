@@ -1,4 +1,13 @@
 ########################################
+# General redirects
+########################################
+# Ensure old preview urls are redirected to the primary domain
+[[redirects]]
+  from = "https://preview.documentation.bonitasoft.com/*"
+  to = "https://documentation.bonitasoft.com/:splat"
+
+
+########################################
 # Bonita redirects
 ########################################
 [[redirects]]
