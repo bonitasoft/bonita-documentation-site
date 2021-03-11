@@ -34,7 +34,7 @@ content:
         - master
     - url: https://github.com/bonitasoft/bonita-continuous-delivery-doc.git
       branches:
-        - 3.4_asciidoctor
+        - 3.4
 ui:
   bundle:
     url: ./resources/antora-ui-bundle.zip
