@@ -31,19 +31,10 @@ NOTE: This metadata information is useful to improve our visibility for search e
 
 https://docs.asciidoctor.org/asciidoc/latest/[Asciidoc] is the markdown language chosen to write our documentation content. You can check the official documentation site to learn more on Asciidoc syntax.
 
-WARNING: WIP
-
 
 == Antora
 
 We are using https://docs.antora.org/[Antora] to generate the Bonita documentation.
-
-WARNING: WIP
-
-
-=== Tips and tricks
-
-We will give some tips and tricks already use and available in our documentation site.
 
 ==== Asciinema
 
@@ -72,8 +63,6 @@ image::images/asciinema_sample_rendering.png[]
 You can use card style in your page. Please don't abuse it, and try to only use it on index pages.
 
 .Card display in after HTML generation
-image::images/displayCard.png[Html Card Display,200,100]
-
 You can update *link*, *title* and description for each card.
 
 To do it, you need to use this following syntax:
@@ -109,15 +98,11 @@ asciidoc:
     varVersion: 2021.1
 ----
 [example]
- Use *{varVersion}* syntax to reference this attributes. It will be replaced by 2021.1 for each occurrence.
-
-
+ Use `{varVersion}` syntax to reference this attributes in content. It will be replaced by 2021.1 for each occurrence.
 
 ==== GitHub may not render admonitions
 
-
-See https://docs.asciidoctor.org/asciidoc/latest/blocks/admonitions/#using-emoji-for-admonition-icons
-
+https://docs.asciidoctor.org/asciidoc/latest/blocks/admonitions/#using-emoji-for-admonition-icons[See to more details]
 
 ==== Antora modules
 
@@ -150,25 +135,30 @@ avoid hard coded url, use https://docs.antora.org/antora/2.3/page/page-id/ (see 
 The `examples` directory can be used to store source code which can then easily be integrated in the documentation. +
 See https://docs.antora.org/antora/2.3/examples-directory/
 
-This allows user to download the source as attachments by providing a link directly for the code (no duplication between
-the actual examples and the documentation)
-
+This allows user to download the source as attachments by providing a link directly for the code (no duplication between the actual examples and the documentation)
 
 
 == How to integrate a new component
 
-WARNING: WIP
+Add a new source in the Antora playbook and reference a new branch. In this branch, put a `antora.yml` file at root which contains:
 
-Add a new source in the antora playbook and reference a new branch
-
-
-
+[source,yml]
+name: componentName
+title: yourTitle
+version: yourVersion
+asciidoc:
+ attributes:
+  varVersion: 7.8
+# default
+#start_page: ROOT:index.adoc
+nav:
+- modules/ROOT/taxonomy.adoc
 
 == How to integrate a new version of an existing component
 
-WARNING: WIP
+When we need to add a new version of one component, we need to:
 
-Create a new branch in the repository related to the component
-Add an antora configuration file: version + prerelase flag if needed
-Declare the new branch in the antora playbook
-Update the docsearch configuration
+1. Create a new branch (in the repository related to the component
+1. To add a new component, you first need to create a Github repository which will contain the asciidoc sources of this component (i.e the documentation content). This repository must be organized according to the https://docs.antora.org/antora/2.3/organize-content-files/[Antora recommendations]. You can check existing repositories for working examples.
+1. Then, you need to add a new source in the https://github.com/bonitasoft/bonitasoft.github.io/blob/master/antora-playbook.yml[Antora playbook]. A source references the URL of the repository and all the branches to retrieve.
+1. Finally, you have to update the https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[search configuration] to make this component searchable.

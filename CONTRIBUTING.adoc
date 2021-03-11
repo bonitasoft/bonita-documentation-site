@@ -17,7 +17,7 @@ Here is the expected commit format, please follow https://www.conventionalcommit
 
 == Pull request
 
-Each improvement, fix must be submit with a pull request. When a pull request is submit, an action is running to check if your pull request follow commit message format.
+For each improvement, the fix must be submitted with a pull request. When a pull request is submitted, an action is run to check if the pull request follows the commit message format.
 
 == Integration policy
 
