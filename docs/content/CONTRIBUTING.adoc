@@ -1,4 +1,4 @@
-= Contributing to the Bonita documentation
+= Contribute to the Bonita documentation
 :icons: font
 ifdef::env-github[]
 :note-caption: :information_source:
