@@ -138,6 +138,10 @@ from = "/bici/1.3/*"
 to = "/labs/latest/bici/:splat"
 
 [[redirects]]
+from = "/bici/latest/*"
+to = "/labs/latest/bici/:splat"
+
+[[redirects]]
 from = "/ici/:version/*"
 to = "/labs/latest/bici/:splat"
 
