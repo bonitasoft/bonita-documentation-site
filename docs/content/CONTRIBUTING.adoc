@@ -143,6 +143,7 @@ This allows user to download the source as attachments by providing a link direc
 Add a new source in the Antora playbook and reference a new branch. In this branch, put a `antora.yml` file at root which contains:
 
 [source,yml]
+----
 name: componentName
 title: yourTitle
 version: yourVersion
@@ -153,6 +154,7 @@ asciidoc:
 #start_page: ROOT:index.adoc
 nav:
 - modules/ROOT/taxonomy.adoc
+----
 
 == How to integrate a new version of an existing component
 
@@ -177,6 +179,20 @@ On new Bonita Platform GA release, an old version must be archived.
 . .... more info here
 
 
+== Out of support versions
 
+NOTE: this mainly applies to Bonita Platform but all components with multi-supported versions should follow the same rules
 
-When a new version 
+when: On new Bonita Platform GA release, an old version is considered as out of support.
+
+Edit the related antora.yml file of the component version, and make the pages non editable
+
+[source,yml]
+----
+name: componentName
+....
+asciidoc:
+  attributes:
+    page-editable: false
+----
+
