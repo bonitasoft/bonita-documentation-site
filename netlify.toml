@@ -1,4 +1,16 @@
 ########################################
+# General redirects
+########################################
+# Ensure old preview urls are redirected to the primary domain
+# https://docs.netlify.com/routing/redirects/redirect-options/#domain-level-redirects
+[[redirects]]
+  from = "https://preview.documentation.bonitasoft.com/*"
+  to = "https://documentation.bonitasoft.com/:splat"
+  status = 301
+  force = true
+
+
+########################################
 # Bonita redirects
 ########################################
 [[redirects]]
@@ -24,7 +36,20 @@
 
 
 ########################################
-# Bonita Legacy Doc redirects
+# Bonita Old Documentation redirects to Archives
+########################################
+
+[[redirects]]
+from = "/bonita/7.3/*"
+to = "/bonita/0/"
+
+[[redirects]]
+from = "/bonita/7.4/*"
+to = "/bonita/0/"
+
+
+########################################
+# Bonita Legacy Documentation redirects
 ########################################
 
 # specific redirects for 6.x-7.2
@@ -110,6 +135,10 @@ to = "/labs/latest/bici/:splat"
 
 [[redirects]]
 from = "/bici/1.3/*"
+to = "/labs/latest/bici/:splat"
+
+[[redirects]]
+from = "/bici/latest/*"
 to = "/labs/latest/bici/:splat"
 
 [[redirects]]

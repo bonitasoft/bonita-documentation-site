@@ -1,9 +1,9 @@
 site:
   title: Bonita Documentation
   # features that depend on the site URL: https://docs.antora.org/antora/2.3/playbook/site-url/#when-should-the-site-url-be-set
-  url: https://preview.documentation.bonitasoft.com/
+  url: https://documentation.bonitasoft.com/
   start_page: 2021.1@bonita::index.adoc
-  robots: disallow
+  robots: allow
 
 # see https://docs.antora.org/antora/2.3/playbook/configure-runtime/
 runtime:
@@ -15,26 +15,24 @@ content:
   sources:
     - url: https://github.com/bonitasoft/bonita-cloud-doc.git
       branches:
-        - master_asciidoctor
+        - "master"
     - url: https://github.com/bonitasoft/bonita-doc.git
       branches:
-        - archives
-        - 7.3_asciidoctor
-        - 7.4_asciidoc
-        - 7.5_new
-        - 7.6_asciidoctor
-        - 7.7_asciidoctor
-        - 7.8_asciidoc
-        - 7.9_asciidoctor
-        - 7.10_asciidoctor
-        - 7.11_asciidoctor
-        - 7.12_asciidoc
+        - "archives"
+        - "7.5"
+        - "7.6"
+        - "7.7"
+        - "7.8"
+        - "7.9"
+        - "7.10"
+        - "7.11"
+        - "2021.1"
     - url: https://github.com/bonitasoft/bonita-ici-doc.git
       branches:
-        - master
+        - "master"
     - url: https://github.com/bonitasoft/bonita-continuous-delivery-doc.git
       branches:
-        - 3.4_asciidoctor
+        - "3.4"
 ui:
   bundle:
     url: ./resources/antora-ui-bundle.zip

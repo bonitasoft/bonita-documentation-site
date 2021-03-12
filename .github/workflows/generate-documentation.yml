@@ -1,6 +1,8 @@
 name: Generate documentation
 
 on:
+  repository_dispatch:
+    types: [ source_documentation_change ]
   workflow_dispatch:
    inputs:
       branch:
@@ -21,7 +23,9 @@ jobs:
   deploy_to_netlify:
     runs-on: ubuntu-20.04
     env:
-      GOOGLE_ANALYTICS_KEY: G-28XHJL53C5
+      GOOGLE_ANALYTICS_KEY: GTM-TXHBK7
+      COMPONENT: ${{ github.event.client_payload.component || github.event.inputs.component }}
+      BRANCH: ${{ github.event.client_payload.branch || github.event.inputs.branch }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup node
@@ -39,13 +43,13 @@ jobs:
       - name: Build docs
         run: GOOGLE_ANALYTICS_KEY=${{env.GOOGLE_ANALYTICS_KEY}} npm run build
       - name: Create deploy message if no component defined
-        if: github.event_name == 'workflow_dispatch' && github.event.inputs.component == ''
+        if: ( github.event_name == 'workflow_dispatch' ||  github.event_name == 'repository_dispatch' ) && env.COMPONENT == ''
         run:
           echo "deploy_message=Deploy ${{github.sha}} from manual request" >> $GITHUB_ENV
       - name: Create deploy message if component defined
-        if: github.event_name == 'workflow_dispatch' && github.event.inputs.component != ''
+        if: ( github.event_name == 'workflow_dispatch' ||  github.event_name == 'repository_dispatch' ) && env.COMPONENT != ''
         run:
-          echo "deploy_message=Deploy ${{ github.event.inputs.component }} ${{ github.event.inputs.branch }} update" >> $GITHUB_ENV
+          echo "deploy_message=Deploy ${{ env.COMPONENT }} ${{ env.BRANCH }} update" >> $GITHUB_ENV
       - name: Create deploy message if push or pull request
         if: github.event_name == 'push'
         run:
