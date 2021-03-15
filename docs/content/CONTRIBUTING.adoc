@@ -101,7 +101,21 @@ asciidoc:
  Use `{varVersion}` syntax to reference this attributes in content. It will be replaced by 2021.1 for each occurrence.
 
 
-==== Attributes substitution in blocks
+===== Disabling attribute substitution
+
+To avoid asciidoctor 
+
+Any elements around braces are interpreted as attribute and so, Asciidoctor tries to substitue them. If the value around braces is not related to
+a declared attributes, warnings are emitted when generating the html files. +
+For instance, in `+${CATALINA_HOME}/conf/jaas.cfg+`, Asciidoctor tries by default to stubstitue `CATALINA_HOME` which is not something we want
+as we want to document an example with bash substitution.
+
+To disable attribute substitution in inline text, add a `+` character around the text that contains the braces like `\+${CATALINA_HOME}/conf/jaas.cfg+`.
+
+See https://docs.asciidoctor.org/asciidoc/latest/pass/pass-macro/#inline-passthrough-macros for more details.
+
+
+===== Attributes substitution in blocks
 
 Notice that by default there is no attribute substitution in blocks, so extra configuration is needed in that case.
 More details are available in https://docs.asciidoctor.org/asciidoc/latest/subs/apply-subs-to-blocks/
@@ -166,8 +180,6 @@ version: yourVersion
 asciidoc:
  attributes:
   varVersion: 7.8
-# default
-#start_page: ROOT:index.adoc
 nav:
 - modules/ROOT/taxonomy.adoc
 ----
@@ -209,6 +221,9 @@ name: componentName
 ....
 asciidoc:
   attributes:
+    # remove the 'Edit this Page' link in all pages 
     page-editable: false
+    # display a dedicated banner to warn the reader about the out-of-support state
+    page-out-of-support: true
 ----
 
