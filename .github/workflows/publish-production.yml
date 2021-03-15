@@ -1,4 +1,4 @@
-name: Generate documentation
+name: Publish production
 
 on:
   repository_dispatch:
