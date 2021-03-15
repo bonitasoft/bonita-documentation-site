@@ -188,10 +188,10 @@ nav:
 
 When we need to add a new version of one component, we need to:
 
-1. Create a new branch (in the repository related to the component
-1. To add a new component, you first need to create a Github repository which will contain the asciidoc sources of this component (i.e the documentation content). This repository must be organized according to the https://docs.antora.org/antora/2.3/organize-content-files/[Antora recommendations]. You can check existing repositories for working examples.
-1. Then, you need to add a new source in the https://github.com/bonitasoft/bonitasoft.github.io/blob/master/antora-playbook.yml[Antora playbook]. A source references the URL of the repository and all the branches to retrieve.
-1. Finally, you have to update the https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[search configuration] to make this component searchable.
+. Create a new branch (in the repository related to the component
+. To add a new component, you first need to create a Github repository which will contain the asciidoc sources of this component (i.e the documentation content). This repository must be organized according to the https://docs.antora.org/antora/2.3/organize-content-files/[Antora recommendations]. You can check existing repositories for working examples.
+. Then, you need to add a new source in the https://github.com/bonitasoft/bonitasoft.github.io/blob/master/antora-playbook.yml[Antora playbook]. A source references the URL of the repository and all the branches to retrieve.
+. Finally, you have to update the https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[search configuration] to make this component searchable.
 
 == How to remove a component version
 
@@ -226,4 +226,3 @@ asciidoc:
     # display a dedicated banner to warn the reader about the out-of-support state
     page-out-of-support: true
 ----
-
