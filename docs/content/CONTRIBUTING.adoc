@@ -110,7 +110,12 @@ a declared attributes, warnings are emitted when generating the html files. +
 For instance, in `+${CATALINA_HOME}/conf/jaas.cfg+`, Asciidoctor tries by default to stubstitue `CATALINA_HOME` which is not something we want
 as we want to document an example with bash substitution.
 
-To disable attribute substitution in inline text, add a `+` character around the text that contains the braces like `\+${CATALINA_HOME}/conf/jaas.cfg+`.
+To disable attribute substitution in inline text, add a `+` character around the text that contains the braces
+
+* globally around a inline code extract like `\+${CATALINA_HOME}/conf/jaas.cfg+`
+* just around the braces: `$+{CATALINA_HOME}+/conf/jaas.cfg`
+
+
 
 See https://docs.asciidoctor.org/asciidoc/latest/pass/pass-macro/#inline-passthrough-macros for more details.
 
