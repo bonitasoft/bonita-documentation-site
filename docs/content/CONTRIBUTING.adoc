@@ -100,6 +100,22 @@ asciidoc:
 [example]
  Use `{varVersion}` syntax to reference this attributes in content. It will be replaced by 2021.1 for each occurrence.
 
+
+==== Attributes substitution in blocks
+
+Notice that by default there is no attribute substitution in blocks, so extra configuration is needed in that case.
+More details are available in https://docs.asciidoctor.org/asciidoc/latest/subs/apply-subs-to-blocks/
+
+We recommend to use explicit macro on part of the block that requires substitution. This allow to mix the `{..}` for elements that
+should not been substituted (for instance, maven properties or bash variables).
+
+In the block, enable the macros by adding the `subs` configuration like `[source,xml,subs="+macros"]` and in the block content, set `pass:a[{...}]` around
+the attribute you want to substitue. For instance, `<bonita.version>pass:a[{varVersion}].0</bonita.version>`. +
+This configuration then let parts like `<version>${bonita.version}</version>` not substituted.
+
+It is also possible to configure substitution globally for the block (see the documentation).
+
+
 ==== GitHub may not render admonitions
 
 https://docs.asciidoctor.org/asciidoc/latest/blocks/admonitions/#using-emoji-for-admonition-icons[See to more details]
