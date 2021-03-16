@@ -17,10 +17,18 @@ endif::[]
 
 *_DISCLAIMER: this is a work in progress._*
 
+This repository let you generate the Bonita documentation site. It uses {url-antora}[Antora] which processes {url-asciidoctor}:[Asciidoctor]
+documentation content stored in various Git repositories.
 
-== Architecture
 
-Static site generation based on {url-antora}[Antora] using {url-asciidoctor}:[Asciidoctor] documentation content stored in various Git repositories.
+== Documentation
+
+See the xref:./docs/README[dedicated folder] for
+
+* documentation content contribution tips/guidelines
+* architecture
+* maintainers guides
+* and much more
 
 
 == Build
@@ -28,63 +36,79 @@ Static site generation based on {url-antora}[Antora] using {url-asciidoctor}:[As
 === Requirements
 
 
-{url-node}[Node 12.x] (may work with newer versions, no guarantee). For more details, see the  https://docs.antora.org/antora/2.3/install-and-run-quickstart/[Antora installation guide].
+{url-node}[Node 12.x] (may work with newer versions, no guarantee).For more details, see the  https://docs.antora.org/antora/2.3/install-and-run-quickstart/[Antora installation guide].
 
 While you can install Node from the official packages, we strongly recommend that you use {url-nvm}[nvm] (Node Version Manager) to install and manage Node.
 Follow the {url-nvm-install}[nvm installation instructions] to set up nvm on your machine.
 
-NOTE: all npm commands are intended to be run from the repository root folder.
-
-=== Build the static site for production
-
-Run
-```bash
-npm install
-npm run build
-```
-The static site is then available in the `build/site` folder.
-
-
-=== Local development
-
-The `antora` CLI is available by calling `./node_modules/.bin/antora --version`
-
-For more CLI options, see https://docs.antora.org/antora/2.3/cli/options/
-
-
-==== Building for local developments
-
-[WARNING]
+[NOTE]
 ====
-The following command https://docs.antora.org/antora/2.3/playbook/runtime-fetch/[fetch the documentation content repositories] each time they are run. +
-<<local-content>> or <<preview>> can prevent this to happen.
+* all commands are intended to be run from the repository root folder.
+* the generated documentation is available in the `build/site` folder.
 ====
 
+Don't forget to run `npm install` the first time you build the project or on `package.json` changes.
 
-For a site that can be load from local disk
-```bash
-npm run local:build-static
-```
+Check that the `Antora` CLI is available by calling `./node_modules/.bin/antora --version`.
 
-For a site to be served by the development <<http server>>
-```bash
-npm run local:build
-```
+
+[#non-production-build]
+== Non production build
+
+[[preview]]
+=== Preview support
+
+The easiest way is to use a script that generates the documentation partially and/or with specific settings for both local
+developments, Pull Request previews or to produce documentation archives.
+
+This includes building the documentation using:
+
+* already checkout local documentation content repositories
+* single branch for all components
+* single branch of a single component
+* ....
+
+To know all available options, run
+[source,shell script]
+----
+./build-preview.bash --help
+----
+
+[NOTE]
+=====
+An additional `build-preview-dev.bash` script is available: it calls `build-preview.bash` with convenient defaults for
+local build. +
+In the following, we use both scripts indifferently.
+=====
+
+==== Preview support overview
+
+The documentation is built by passing a playbook file to the Antora CLI. For more details, see
+https://docs.antora.org/antora/2.3/cli/options/[Antora CLI documentation].
+
+For the preview support, we generate a dedicated Antora playbook based on the production playbook store in the repository
+and options passed to the `build-preview.bash`. +
+Then, this custom playbook is passed to the Antora CLI along with specific options when needed.
+
 
 [[local-content]]
-===== Using local documentation content repositories
+==== Using local documentation content repositories
 
-This activates the https://docs.antora.org/antora/2.3/playbook/author-mode/[Antora author mode]. The local content of the
-repository is used instead of fetching the remote one.
+This activates the https://docs.antora.org/antora/2.3/playbook/author-mode/[Antora author mode]. +
+Antora uses the locally cloned repositories as they are on your local machine instead of cloning them from their remote location.
 
-It provides a fast feedback loop as you don't need to push nor commit content as the current work
+This provides a fast feedback loop as you don't need to push nor commit sources content as the current work or make developments
+easier when working offline.
 
 [NOTE]
 .Repositories location
 ====
-This requires to clone all repository sources locally is the parent folder of this project.
-For instance
-```
+This requires to clone content sources repositories locally is the parent folder of this project.
+Depending on which sources you use (see the options of the bash script), you may have to clone all, or a part of the repositories
+used by the Bonita documentation.
+
+For instance:
+----
 root
   |
   -- bonita-doc
@@ -92,22 +116,25 @@ root
   -- bonita-ici-doc
   |
   -- bonita-documentation-site
-```
+----
 ====
 
-For more information about the `build-preview.bash` script, see later in this document
-```bash
-./build-preview.bash --ci false  --type local --local-sources true
-```
+This can be achieved by running
+
+[source,shell script]
+----
+./build-preview-dev.bash --local-sources ....
+----
 
 [[local-ui-bundle]]
 ===== Using local UI Bundle
 
 The prebuilt UI Bundle is stored in this repository and sources are located in the https://github.com/bonitasoft/bonita-documentation-theme[bonita-documentation theme]
 repository. +
-If you are developing in the theme repository and want to see the resulting changes in the documentation. It provides a
-fast feedback loop as you don't need to push nor commit content as the current work.
-
+If you are developing in the theme repository and want to see the resulting changes in the documentation, you can directly
+use the UI Bundle built by the theme repository. +
+This provides a fast feedback loop as you don't need to build copy the UI bundle from the theme repository and then run
+a build command: everything can be done by running a single command once the push nor commit content as the current work.
 
 Remember that the theme repository provides a preview with mock content that make development easier. But sometimes, integration
 tests are required to ensure everything is ok, especially when dealing with https://docs.antora.org/antora/2.3/playbook/site-keys/[site keys].
@@ -117,45 +144,56 @@ tests are required to ensure everything is ok, especially when dealing with http
 ====
 This requires to clone the theme repository locally is the parent folder of this project.
 For instance
-```
+----
 root
   |
   -- bonita-documentation-theme
   |
   -- bonita-documentation-site
-```
+----
 ====
 
-For more information about the `build-preview.bash` script, see later in this document
-```bash
-./build-preview.bash --ci false  --type local --local-ui-bundle true
-```
+This can be achieved by running
 
-[[preview]]
-==== Building for preview
+[source,shell script]
+----
+./build-preview-dev.bash --local-ui-bundle ...
+----
 
-It is possible to use a script that let's generate the documentation partially or with specific settings for both local
-developments or Pull Request previews.
+For a faster loop, don't forget you can build the UI Bundle and the preview by chaining the commands
 
-This includes building the documentation using:
+[source,shell script]
+----
+<ui_bundle_build_command> ; ./build-preview-dev.bash --local-ui-bundle ...
+----
 
-- already checkout local documentation content repositories
-- single branch for all components
-- single branch of a single component
-- ....
 
-To know all available options, run
-```bash
-./build-preview.bash --help
-```
+
 
 ==== http server
 
-Once the static site is build, you can run `npm run serve` and access to http://localhost:8080/ to check if everything is working correctly (urls in taxononmy, links, ....).
+Once the static site is build, you can run `npm run serve` and access it with `+http://localhost:8080+` to check if everything is working correctly (urls in taxonomy, links, ....).
 
 You can rebuild the site while the server is running, updated files are directly considered by the server (no cache).
 
+To ensure all links are correctly generated for local deployment, pass the `+--site-url http://localhost:8080+` options
+when building the preview.
 
-== Documentation
+[TIP]
+====
+A http server is needed to correctly see the Asciinema resources (loading fail when using a local file browsing). +
+For instance, have a look at http://localhost:8080/bonita/2021.1/migrate-from-an-earlier-version-of-bonita-bpm#update-case-overview-pages
+====
 
-See the xref:./docs/README[dedicated folder].
+
+=== Production build
+
+WARNING: This is probably something you won't often do as the site is not fully working for local browsing nor for simple http server.
+
+[CAUTION]
+====
+The following command https://docs.antora.org/antora/2.3/playbook/runtime-fetch/[fetch the documentation content repositories] each time it runs. +
+See <<non-production-build>> for alternatives.
+====
+
+Run `npm run build`
