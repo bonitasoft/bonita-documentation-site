@@ -21,7 +21,8 @@ def convert_to_adoc(file_name, file_path):
         adoc_read = re.sub(r"xref\:(.*)\.md", "xref:\\1.adoc]", adoc_read, 0, re.MULTILINE)
         adoc_read = re.sub(r"\+\+\+(<asciinema-player(.*)>)\+\+\+\+\+\+", "\\n++++\\n\\1", adoc_read, 0, re.MULTILINE)
         adoc_read = re.sub(r"(</asciinema-player>)\+\+\+", "\\1\\n++++\\n", adoc_read, 0, re.MULTILINE)
-        adoc_read = re.sub(r"<asciinema-player src=\"bonita/images/\$\{varVersion\}/(.*).cast\"","<asciinema-player src=\"_images/images/\\1.cast\"", adoc_read, 0, re.MULTILINE)
+        adoc_read = re.sub(r"<asciinema-player src=\"bonita/images/\$\{varVersion\}/(.*).cast\"",
+                           "<asciinema-player src=\"_images/images/\\1.cast\"", adoc_read, 0, re.MULTILINE)
         with open(adoc_file_path, "w") as f:
             f.write(adoc_read)
             f.close()
@@ -35,6 +36,7 @@ def main():
             f_path = os.path.join(dname, f_name)
             with open(f_path) as f:
                 result = re.sub(r"(\|.*\n.*\-\|)", "\\n\\1", f.read(), 0, re.MULTILINE)
+                result = re.sub(r"(`http.*?)(\s*)(`)", "\\1\\3", result, 0, re.MULTILINE)
                 result = re.sub(r"(\`\`\`xml)", "\\n\\1", result, 0, re.MULTILINE)
                 result = re.sub(r".*(:::)", "\\1", result, 0)
                 result = re.sub(r"(:::\s*warning\s*\n)(\s*)(\*\*Warning:\*\*|\*\*Warning\*\*:|\s*)\s*(.*)", "\\1\\4", result)

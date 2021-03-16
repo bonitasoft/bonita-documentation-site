@@ -94,13 +94,44 @@ root
   |
   -- bonita-ici-doc
   |
-  -- bonitasoft.github.io
+  -- bonita-documentation-site
 ```
 ====
 
 For more information about the `build-preview.bash` script, see later in this document
 ```bash
 ./build-preview.bash --ci false  --type local --local-sources true
+```
+
+[[local-ui-bundle]]
+===== Using local UI Bundle
+
+The prebuilt UI Bundle is stored in this repository and sources are located in the https://github.com/bonitasoft/bonita-documentation-theme[bonita-documentation theme]
+repository. +
+If you are developing in the theme repository and want to see the resulting changes in the documentation. It provides a
+fast feedback loop as you don't need to push nor commit content as the current work.
+
+
+Remember that the theme repository provides a preview with mock content that make development easier. But sometimes, integration
+tests are required to ensure everything is ok, especially when dealing with https://docs.antora.org/antora/2.3/playbook/site-keys/[site keys].
+
+[NOTE]
+.Repositories location
+====
+This requires to clone the theme repository locally is the parent folder of this project.
+For instance
+```
+root
+  |
+  -- bonita-documentation-theme
+  |
+  -- bonita-documentation-site
+```
+====
+
+For more information about the `build-preview.bash` script, see later in this document
+```bash
+./build-preview.bash --ci false  --type local --local-ui-bundle true
 ```
 
 [[preview]]

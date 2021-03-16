@@ -1,0 +1,17 @@
+= Netlify redirects configuration
+
+== Configuration files
+
+We use a `netlify.toml` file at the root of the project.
+
+See the https://docs.netlify.com/routing/redirects/#syntax-for-the-netlify-configuration-file[Netlify documentation]
+for more details about the how to configure the redirects.
+
+== Testing the redirects
+
+Currently, we manually test the redirects by deploying the `netlify.toml` file on a single page test site using the Netlify
+dashboard. In this case, we only want to check the redirects, so we don't care to have real pages available. +
+We don't update the redirects very often, so this is enough for our current usage.
+
+See https://github.com/bonitasoft/bonita-documentation-site/issues/168[#168] for a more integrated solution.
+
