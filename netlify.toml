@@ -34,6 +34,10 @@
 
 # TODO: Add redirect to Groovydoc
 
+# Bonita Community redirect to getting Started
+[[redirects]]
+  from = "/bonita/*/_getting-started-tutorial"
+  to = "/bonita/latest/tutorial-overview"
 
 ########################################
 # Bonita Old Documentation redirects to Archives
