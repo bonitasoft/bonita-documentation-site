@@ -128,15 +128,16 @@ Update the DocSearch configuration: use the new domain
 
 * add a new Netlify Custom Domain and make it use the final https://docs.netlify.com/domains-https/custom-domains/[custom domain]
 
-[WARNING]
-====
-to be investigated
-
-we probably need to keep the preview domain for docsearch:
+We need to keep the preview domain for docsearch:
 
 * until the crawler has been run using the new url, the preview one must be available
-* once the new domain has crawled, the preview domain can be removed from netlify and from the DNS
-====
+* once the new domain has crawled, the preview domain may be removed from netlify and from the DNS
+
+Decision: keep the preview domain
+* in both DNS and Netlify (secondary domain)
+* a redirect from preview to production has been setup, see PR https://github.com/bonitasoft/bonita-documentation-site/pull/207[207] and
+https://github.com/bonitasoft/bonita-documentation-site/pull/209[209]
+* keeping this domain will redirect any users that would have bookmarks preview urls
 
 
 
