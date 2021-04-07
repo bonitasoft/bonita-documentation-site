@@ -24,6 +24,8 @@ image::https://api.netlify.com/api/v1/badges/df65c069-bb52-46d2-8bf0-8e16b6b2148
 
 Static site generation based on {url-antora}[Antora] using {url-asciidoctor}:[Asciidoctor] documentation content stored in various Git repositories.
 
+More details are available in the xref:docs/architecture.adoc[Architecture Documentation].
+
 
 == Build
 
