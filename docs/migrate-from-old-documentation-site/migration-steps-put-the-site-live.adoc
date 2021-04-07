@@ -9,7 +9,7 @@ ifdef::env-github[]
 endif::[]
 
 
-CAUTION: in progress
+CAUTION: keep for archives
 
 
 == Documentation content strategy while migrating
@@ -134,6 +134,7 @@ We need to keep the preview domain for docsearch:
 * once the new domain has crawled, the preview domain may be removed from netlify and from the DNS
 
 Decision: keep the preview domain
+
 * in both DNS and Netlify (secondary domain)
 * a redirect from preview to production has been setup, see PR https://github.com/bonitasoft/bonita-documentation-site/pull/207[207] and
 https://github.com/bonitasoft/bonita-documentation-site/pull/209[209]
