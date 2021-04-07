@@ -1,0 +1,27 @@
+= Documentation Versions
+:icons: font
+ifdef::env-github[]
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+CAUTION: this is a work in progress
+
+NOTE: the following mainly applies to the Bonita Platform documentation part
+
+== Bonita versions that are documented
+
+For Bonita, the rule is the following one: +
+We document the 4 currently supported Bonita versions, and **the 4 versions before**. +
+
+== Impact on Algolia DocSearch
+
+Each time a new version of a documented Bonitasoft project is released, this DocSearch configuration file has to be updated:
+
+- The latest version has to be added to the projects to index
+- The oldest version should be removed from the projects to index
+
+-> It means that the DocSearch conf file should reflect this behavior.

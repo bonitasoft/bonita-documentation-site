@@ -1,46 +1,46 @@
 = Documentation Site architecture
 
-This document provides details on the architecture of the documentation site, in order to ease future developments. 
+This document provides details on the architecture of the documentation site, in order to ease future developments.
 
 == Chore solution: https://antora.org/[Antora]
 
 Antora is a multi-repository documentation site generator.
 
 The Antora playbook is configured by the file _antora-playbook.yml_. +
-This configuration file lists all the components and the branches to build. It also references the UI bundle and some additional Asciidoctor extensions, both used to generate the HTML.
+This configuration file lists all the components, and the branches to build. It also references the UI bundle and some additional Asciidoctor extensions, both used to generate the HTML.
 
-The Antora generator retrieves Asciidoctor sources from our documentation content repositories, and then generate a static HTML web site from those sources.
+The Antora generator retrieves Asciidoctor sources from our documentation content repositories, and then generate a static HTML website from those sources.
 
 [NOTE]
 ====
-A Github worflow is available to generate this static documentation (usefull for oldest version not host on this documentation site).
+A GitHub workflow is available to generate this static documentation (useful for oldest version not host on this documentation site).
 ====
 
 == UI Bundle
 
 The UI bundle source repository can be found here: https://github.com/bonitasoft/bonita-documentation-theme[bonita-documentation-theme].
 
-UI Bundle architecture is detailed on the UI bundle readme. 
+The UI Bundle architecture is detailed on the UI bundle Readme.
 
 == Search solution: Algolia
 
-Because of our open source status, https://docsearch.algolia.com/[Docsearch by Algolia] offers us freely a search solution (Thanks a lot to them! ❤️). +
-The configuration file can be found https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[here]. This file indicates to the docsearch crawler the pages to crawl, and the elements to index. +
-Each time a new version of a documented Bonitasoft project is released, this configuration file has to be updated:
-
-- The latest version has to be added to the projects to index 
-- The oldest version should be removed from the projects to index
-
-[NOTE]
-====
-For Bonita, the rule is the following one: +
-The docsite documents the 4 currently supported Bonita versions, and **the 4 versions before**. +
--> It means that the docsearch conf file should reflect this behavior. 
-====
+Because of our open source status, https://docsearch.algolia.com/[DocSearch by Algolia] offers us freely a search solution (Thanks a lot to them! ❤️). +
+The configuration file can be found https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[here].
+This file indicates to the DocSearch crawler the pages to crawl, and the elements to index.
 
 
 == Host solution: Netlify
 
 The documentation is hosted on https://app.netlify.com/sites/documentation-bonita[Netlify].
 
-Netlify allow us to manage redirection with netlify.toml file at root of this repository.
+Netlify allow us to manage redirection with the `netlify.toml` file at root of this repository.
+
+== Preview with Surge
+
+https://surge.sh/[Surge] let us deploy previews for the
+
+* theme development
+* site development
+* documentation preview when updating the content with Pull Requests
+
+
