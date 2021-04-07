@@ -12,6 +12,8 @@ CAUTION: this is a work in progress
 
 NOTE: the following mainly applies to the Bonita Platform documentation part
 
+image::images/DocToCloud-Architecture-BigPicture.png[]
+
 == Bonita versions that are documented
 
 For Bonita, the rule is the following one: +
