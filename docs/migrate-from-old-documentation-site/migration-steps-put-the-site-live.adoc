@@ -73,7 +73,7 @@ Strategy:
 * single new branch: `master`
 * the former `1.x` existing branches will be kept
 
-See also https://github.com/bonitasoft/bonitasoft.github.io/issues/11[#11] and https://github.com/bonitasoft/bonitasoft.github.io/issues/175[#175]
+See also https://github.com/bonitasoft/bonita-documentation-site/issues/11[#11] and https://github.com/bonitasoft/bonita-documentation-site/issues/175[#175]
 
 
 ==== bonita-continuous-delivery-doc
@@ -112,7 +112,7 @@ Strategy:
 
 == D-Day Switch
 
-=== bonitasoft.github.io repository
+=== bonita-documentation-site repository
 
 update the antora playbook
 

@@ -1,4 +1,4 @@
-name: Generate documentation
+name: Publish production
 
 on:
   repository_dispatch:
@@ -23,7 +23,7 @@ jobs:
   deploy_to_netlify:
     runs-on: ubuntu-20.04
     env:
-      GOOGLE_ANALYTICS_KEY: G-28XHJL53C5
+      GOOGLE_ANALYTICS_KEY: GTM-TXHBK7
       COMPONENT: ${{ github.event.client_payload.component || github.event.inputs.component }}
       BRANCH: ${{ github.event.client_payload.branch || github.event.inputs.branch }}
     steps:

@@ -91,7 +91,7 @@ root
   |
   -- bonita-ici-doc
   |
-  -- bonitasoft.github.io
+  -- bonita-documentation-site
 ```
 ====
 
@@ -122,7 +122,7 @@ root
   |
   -- bonita-documentation-theme
   |
-  -- bonitasoft.github.io
+  -- bonita-documentation-site
 ```
 ====
 
