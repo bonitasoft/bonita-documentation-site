@@ -16,6 +16,7 @@ function usage() {
   echo "Options priority order for choosing the content of the preview when several options are provided:"
   echo "  - use-all-repositories"
   echo "  - single-branch-per-repo"
+  echo "  - use-multi-repositorie"
   echo "If no specific options: single branch per component"
   echo ""
   echo "Globals"
