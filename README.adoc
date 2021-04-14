@@ -82,6 +82,23 @@ local build. +
 In the following, we use both scripts indifferently.
 =====
 
+[source,shell script]
+.Build a single component version using locally modified document content sources (see <<local-content, required setup>>)
+----
+./build-preview-dev.bash --local-sources \
+  --component bonita \
+  --branch fix/a_major_documentation_content_fix
+----
+
+[source,shell script]
+.Build BCD 3.4, Bonita 7.11 and Bonita 2021.1 versions (cross reference component versions check)
+----
+./build-preview-dev.bash \
+  --use-multi-repositories \
+  --component-with-branches bcd:3.4 \
+  --component-with-branches bonita:7.11,2021.1
+----
+
 ==== Preview support overview
 
 The documentation is built by passing a playbook file to the Antora CLI. For more details, see
