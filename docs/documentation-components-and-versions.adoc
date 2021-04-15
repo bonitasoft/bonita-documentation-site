@@ -109,3 +109,14 @@ asciidoc:
     # display a dedicated banner to warn the reader about the out-of-support state
     page-out-of-support: true
 ----
+
+
+=== Pre-release versions
+
+apply to beta and RC versions
+
+See https://docs.antora.org/antora/2.3/component-prerelease/ to know how to
+
+* mark a prerelease version
+* display beta/rc additionnal information in the version
+* impact on default version and version ordering
