@@ -4,16 +4,16 @@ We are pleased to receive any kind of contribution (issues, pull requests, sugge
 
 == Commit message format
 
+Here is the expected commit format, please follow https://www.conventionalcommits.org/en/v1.0.0/[conventional commits rules]. We give you a little summary about basic commit templating message.
 
-Here is the expected commit format, please follow https://www.conventionalcommits.org/en/v1.0.0/[conventionnal commits rules]. We give you a little summary about basic commit templating message.
-
-```
+[source]
+----
 <type>[optional scope]: <description>
 
 [optional body]
 
 [optional footer(s)]
-```
+----
 
 == Pull request
 
