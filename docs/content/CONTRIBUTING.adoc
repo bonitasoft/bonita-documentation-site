@@ -29,7 +29,11 @@ NOTE: This metadata information is useful to improve our visibility for search e
 
 == Short presentation of the documentation environment
 
-https://docs.asciidoctor.org/asciidoc/latest/[Asciidoc] is the markup language chosen to write our documentation content. You can check the official documentation site to learn more on Asciidoc syntax.
+https://docs.asciidoctor.org/asciidoc/latest/[Asciidoc] is the markup language chosen to write our documentation content.
+You can check the official documentation site to learn more on Asciidoc syntax.
+
+If you know the Markdown syntax, please check the https://docs.asciidoctor.org/asciidoc/latest/asciidoc-vs-markdown[Asciidoc vs Markdown]
+documentation comparison to speedup the learning.
 
 We are using https://docs.antora.org/[Antora] to generate the Bonita documentation.
 
