@@ -22,8 +22,10 @@ function getArgument(argv, argName, isMandatory) {
 const useSingleBranchPerComponent = getArgument(argv, 'single-branch-per-repo', false);
 const siteUrl = getArgument(argv, 'site-url', false)
 const prNumber = getArgument(argv, 'pr', false)
+const siteTitle = getArgument(argv, 'site-title', false)
 console.info(`PR: ${prNumber}`);
 console.info(`Site Url: ${siteUrl}`);
+console.info(`Site Title: ${siteTitle}`);
 
 const doc = yaml.load(fs.readFileSync('antora-playbook.yml', 'utf8'));
 console.info('Antora Playbook source file loaded');
@@ -40,9 +42,9 @@ if (!useSingleBranchPerComponent) {
 
     const repoUrls = new Map([
         ['bcd', 'https://github.com/bonitasoft/bonita-continuous-delivery-doc.git'],
-        ['bici', 'https://github.com/bonitasoft/bonita-ici-doc.git'],
         ['bonita', 'https://github.com/bonitasoft/bonita-doc.git'],
         ['cloud', 'https://github.com/bonitasoft/bonita-cloud-doc.git'],
+        ['labs', 'https://github.com/bonitasoft/bonita-ici-doc.git'],
     ]);
     const repoUrl = repoUrls.get(componentName);
     if (!repoUrl) {
@@ -54,7 +56,7 @@ if (!useSingleBranchPerComponent) {
     doc.content.sources = [{url: repoUrl, branches: [branchName]}];
 
     const titlePreviewPart = prNumber ? `PR #${prNumber}` : `branch '${branchName}'`;
-    doc.site.title = `Preview ${componentName} ${titlePreviewPart}`;
+    doc.site.title = siteTitle ? siteTitle : `Preview ${componentName} ${titlePreviewPart}`;
     // override the start page to use the one of the component
     doc.site.start_page = `${componentName}::index.adoc`;
 }
@@ -71,7 +73,7 @@ else {
 }
 
 
-// use local sources for the documentation content repostiories
+// use local sources for the documentation content repositories
 const useLocalSources = getArgument(argv, 'local-sources', false)
 console.info(`Use Local Sources: ${useLocalSources}`);
 if (useLocalSources === 'true') {
@@ -81,10 +83,16 @@ if (useLocalSources === 'true') {
             source.url = `../${(repositoryNameForUrl(source.url))}`
         });
 }
+// use local source for the UI bundle
+const useLocalUIBundle = getArgument(argv, 'local-ui-bundle', false)
+console.info(`Use Local UI Bundle: ${useLocalUIBundle}`);
+if (useLocalUIBundle === 'true') {
+    doc.ui.bundle.url = '../bonita-documentation-theme/build/ui-bundle.zip';
+}
 
 
 if (siteUrl) {
-    doc.site.url = siteUrl;
+    doc.site.url = (siteUrl === 'DISABLED') ? undefined: siteUrl;
 }
 // We want to ensure that wherever a preview is published, Search Engines won't index it
 doc.site.robots = 'disallow';
@@ -103,7 +111,30 @@ if (fetchSources === 'true') {
     doc.runtime.fetch = true
 }
 
+// Set the non-production mode (custom navbar for preview)
+const forceProductionNavbar = getArgument(argv, 'force-production-navbar', false)
+console.info(`Force Production Navbar: ${forceProductionNavbar}`);
+if (forceProductionNavbar !== 'true') {
+    getSiteKeys(doc)['non-production'] = true;
+} else {
+    console.info('--> Force usage of production navbar');
+}
 
+// Hide 'Edit this Page' links
+const hideEditPageLinks = getArgument(argv, 'hide-edit-page-links', false)
+console.info(`Hide Edit Page Links: ${hideEditPageLinks}`);
+if (hideEditPageLinks === 'true') {
+    getSiteKeys(doc)['hide-edit-page-links'] = true;
+}
+
+// Hide components list in navbar
+const hideNavbarComponentsList = getArgument(argv, 'hide-navbar-components-list', false)
+console.info(`Hide Navbar Components List: ${hideNavbarComponentsList}`);
+if (hideNavbarComponentsList === 'true') {
+    getSiteKeys(doc)['hide-navbar-components-list'] = true;
+}
+
+// Generate the preview Antora playbook
 console.info('Dumping yaml....');
 const generatedYaml = `# Generated from 'antora-playbook.yml'
 ${(yaml.dump(doc))}`;
@@ -115,4 +146,11 @@ function repositoryNameForUrl(url) {
     const urlParts = url.split('/');
     const repositoryName = urlParts[urlParts.length-1];
     return repositoryName.split('.git')[0];
+}
+
+function getSiteKeys(doc) {
+    if (!doc.site.keys) {
+        doc.site.keys = {};
+    }
+    return doc.site.keys;
 }

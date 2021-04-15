@@ -1,10 +1,22 @@
 ########################################
+# General redirects
+########################################
+# Ensure old preview urls are redirected to the primary domain
+# https://docs.netlify.com/routing/redirects/redirect-options/#domain-level-redirects
+[[redirects]]
+  from = "https://preview.documentation.bonitasoft.com/*"
+  to = "https://documentation.bonitasoft.com/:splat"
+  status = 301
+  force = true
+
+
+########################################
 # Bonita redirects
 ########################################
 [[redirects]]
   from = "/bonita/latest/*"
-# TODO if we want proxy/rewrite instead, add status = 200 (https://docs.netlify.com/routing/redirects/rewrites-proxies/)
   to = "/bonita/2021.1/:splat"
+  status = 200
 
 [[redirects]]
   from = "/bonita/"
@@ -15,26 +27,127 @@
   from = "/bonita/7.12/*"
   to = "/bonita/2021.1/:splat"
 
+# Bonita Javadoc redirect
+[[redirects]]
+  from = "/javadoc/api/*"
+  to = "https://javadoc.bonitasoft.com/api/:splat"
+
+# TODO: Add redirect to Groovydoc
+
+# Bonita Community redirect to getting Started
+[[redirects]]
+  from = "/bonita/*/_getting-started-tutorial"
+  to = "/bonita/latest/tutorial-overview"
+
+########################################
+# Bonita Old Documentation redirects to Archives
+########################################
+
+[[redirects]]
+from = "/bonita/7.3/*"
+to = "/bonita/0/"
+
+[[redirects]]
+from = "/bonita/7.4/*"
+to = "/bonita/0/"
+
+
+########################################
+# Bonita Legacy Documentation redirects
+########################################
+
+# specific redirects for 6.x-7.2
+[[redirects]]
+from = "/6.x-7.2/install-tomcat-service-windows"
+to = "/bonita/latest/bonita-as-windows-service"
+
+[[redirects]]
+from = "/6.x-7.2/create-your-first-project-web-rest-api-and-maven"
+to = "/bonita/latest/rest-api-extensions"
+
+# defaults redirects for 6.x-7.2
+# WARN: ensure specific redirects are defined before this one
+[[redirects]]
+from = "/6.x-7.2/*"
+to = "/bonita/latest/:splat"
+
+# Redirect 5x url to archives
+[[redirects]]
+from = "/5x/*"
+to = "/bonita/0/"
+
 
 ########################################
 # BCD redirects
 ########################################
 [[redirects]]
 from = "/bcd/latest/*"
-# TODO if we want proxy/rewrite instead, add status = 200 (https://docs.netlify.com/routing/redirects/rewrites-proxies/)
 to = "/bcd/3.4/:splat"
+status = 200
 
 [[redirects]]
 from = "/bcd/"
 to = "/bcd/3.4/"
 
+[[redirects]]
+from = "/bcd/1.0/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/2.0/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/2.1/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/3.0/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/3.1/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/3.2/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/3.3/*"
+to = "/bcd/latest/:splat"
+
 
 ########################################
-# BICI redirects
+# LABS redirects
 ########################################
 [[redirects]]
 from = "/bici/"
-to = "/bici/latest/"
+to = "/labs/latest/bici/"
+
+[[redirects]]
+from = "/bici/1.0/*"
+to = "/labs/latest/bici/:splat"
+
+[[redirects]]
+from = "/bici/1.1/*"
+to = "/labs/latest/bici/:splat"
+
+[[redirects]]
+from = "/bici/1.2/*"
+to = "/labs/latest/bici/:splat"
+
+[[redirects]]
+from = "/bici/1.3/*"
+to = "/labs/latest/bici/:splat"
+
+[[redirects]]
+from = "/bici/latest/*"
+to = "/labs/latest/bici/:splat"
+
+[[redirects]]
+from = "/ici/:version/*"
+to = "/labs/latest/bici/:splat"
 
 
 ########################################
