@@ -180,10 +180,26 @@ IMPORTANT: Impact on SEO
 See https://docs.antora.org/antora/2.3/page/page-aliases. +
 Successfully experimented in https://github.com/bonitasoft/bonita-ici-doc#123
 
-=== Adding link between two components
+=== Adding link between two components or between versions of the same component
 
-You can reference to documentation pages of another component: for instance, bcd doc has links the to bonita doc. To
-avoid hard coded url, use https://docs.antora.org/antora/2.3/page/page-id/ (see https://opendevise.com/blog/referencing-pages/ for rationale). Warn: won't work with PR preview in the document content repository, as that kind of preview only build a single component version
+For instance
+
+* the BCD documentation contains links to various versions of the Bonita documentation (see https://github.com/bonitasoft/bonita-continuous-delivery-doc/pull/164[PR #164]).
+* the Bonita release-notes 7.9 contain a link to the latest BCD version (see https://github.com/bonitasoft/bonita-doc/pull/1494[PR #1494])
+
+To avoid introducing hard coded url, follow the Antora documentation (see https://opendevise.com/blog/referencing-pages/ for rationale)
+
+* https://docs.antora.org/antora/2.3/page/page-id/
+* https://docs.antora.org/antora/2.3/page/version-and-component-xrefs/
+
+[WARNING]
+====
+The generated site available in PR preview in the document content repository is not able to resolve such references, as
+that kind of preview only build a single component version.
+To be able to see them during documentation content writing, you need to build the documentation with both the source and
+target component versions. See https://github.com/bonitasoft/bonita-documentation-site/pull/222[PR #222] for more details.
+====
+
 
 === Make examples available as downloadable file
 
