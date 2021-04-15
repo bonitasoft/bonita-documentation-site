@@ -33,12 +33,12 @@ NOTE: *this is a work in progress*. TODO link lifecycle actions to the how-to la
 
 NOTE: this mainly applies to Bonita Platform but all components with multi-supported versions should follow the same rules
 
-out of support: On new Bonita Platform GA release, an old version is considered as out of support.
+GA release (actions to be performed detailed later in this document):
 
-GA release:
-remove the prerelease configuration (see below)
-
-
+* remove the prerelease configuration (see below)
+* update the redirect to make the latest token url go to the new GA version
+* archive the oldest version
+* mark the 5th version as out of support: On new Bonita Platform GA release, an old version is considered as out of support.
 
 == DocSearch and component versions
 
@@ -93,7 +93,7 @@ to make this component searchable.
 
 When we need to add a new version of one component, we need to:
 
-. Create a new branch (in the repository related to the component
+. Create a new branch (in the repository related to the component)
 . To add a new component, you first need to create a GitHub repository which will contain the asciidoc sources of this component (i.e. the documentation content).
 This repository must be organized according to the https://docs.antora.org/antora/2.3/organize-content-files/[Antora recommendations].
 You can check existing repositories for working examples.
@@ -102,7 +102,7 @@ A source references the URL of the repository and all the branches to retrieve.
 . Finally, you have to update the https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[search configuration]
 to make this component searchable.
 
-=== How to remove a component version
+=== How to remove a component version and make an archive available
 
 On new Bonita Platform GA release, an old version must be archived.
 
@@ -111,12 +111,15 @@ On new Bonita Platform GA release, an old version must be archived.
 . Create a PR targeting the bonita-doc archives branch and add the new archive version to the list
 . Remove the version from the Antora Playbook
 . Remove the version from the Algolia DocSearch configuration
+. Add a redirect to manage urls of the old version. See https://github.com/bonitasoft/bonita-documentation-site/pull/182[PR #182],
+https://github.com/bonitasoft/bonita-documentation-site/pull/195[PR #195] or https://github.com/bonitasoft/bonita-documentation-site/pull/201[PR #201]
+. in the documentation content repository, remove the GH workflow that triggers the push to production
 . .... *TODO* more info here, and link with lifecycle
 
 
 === Mark version as 'Out of Support'
 
-Edit the related antora.yml file of the component version, and make the pages non editable
+Edit the related antora.yml file of the component version, and make the pages non-editable
 
 [source,yml]
 ----
