@@ -25,3 +25,8 @@ Each time a new version of a documented Bonitasoft project is released, this Doc
 - The oldest version should be removed from the projects to index
 
 -> It means that the DocSearch conf file should reflect this behavior.
+
+
+== General how-to for components and versions management
+
+
