@@ -177,6 +177,11 @@ This allows user to download the source as attachments by providing a link direc
 
 Add a new source in the Antora playbook and reference a new branch. In this branch, put a `antora.yml` file at root which contains:
 
+To add a new component, you first need to create a GitHub repository which will contain the asciidoc sources of this component
+(i.e. the documentation content). This repository must be organized according to the https://docs.antora.org/antora/2.3/organize-content-files/[Antora recommendations].
+You can check existing repositories for working examples.
+At minimum, it will contain an `antora.yml` file at its root
+
 [source,yml]
 ----
 name: componentName
@@ -184,10 +189,17 @@ title: yourTitle
 version: yourVersion
 asciidoc:
  attributes:
-  varVersion: 7.8
+  # define here attributes you need to templatize the documentation content or the html generation
 nav:
 - modules/ROOT/taxonomy.adoc
 ----
+
+Then, you need to add a new source in the https://github.com/bonitasoft/bonitasoft.github.io/blob/master/antora-playbook.yml[Antora playbook].
+A source references the URL of the repository and all the branches to retrieve.
+
+Finally, you have to update the https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[search configuration]
+to make this component searchable.
+
 
 == How to integrate a new version of an existing component
 
