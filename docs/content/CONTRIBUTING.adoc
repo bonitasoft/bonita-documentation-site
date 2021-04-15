@@ -12,7 +12,7 @@ We are pleased to receive any kind of contribution (issues, pull requests, sugge
 
 == Contribution check
 
-Before open a pull request, please check our few recommendations:
+Before opening a pull request, please check our few recommendations:
 
 Verify that each updated `adoc` file starts with:
 
@@ -27,14 +27,15 @@ You can put you content after metadata block
 NOTE: This metadata information is useful to improve our visibility for search engine (SEO)
 
 
-== Asciidoc
+== Short presentation of the documentation environment
 
 https://docs.asciidoctor.org/asciidoc/latest/[Asciidoc] is the markup language chosen to write our documentation content. You can check the official documentation site to learn more on Asciidoc syntax.
 
-
-== Antora
-
 We are using https://docs.antora.org/[Antora] to generate the Bonita documentation.
+
+For more details about how the generation works, see the xref:../architecture.adoc[Architecture documentation] and the
+xref:../README.adoc[development documentation].
+
 
 ==== Asciinema
 
