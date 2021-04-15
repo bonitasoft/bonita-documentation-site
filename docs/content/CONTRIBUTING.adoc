@@ -43,6 +43,16 @@ xref:../README.adoc[development documentation].
 
 == Tips for writing the documentation content
 
+=== Embed videos
+
+It is possible to embed videos as it is done in Bonita 2021.1 index page: https://docs.asciidoctor.org/asciidoc/latest/macros/audio-and-video/
+
+* A default/max size is set for the mobile view
+* there is no default for the desktop view at the moment, so you should set the dimensions when declaring the `video` macro
+as in the following example
+[example]
++video::038g85tvzo4[youtube, width=640,height=380]+
+
 === Asciinema
 
 https://asciinema.org/[Asciinema] provides a great way for sharing shell sessions recording, making documentation more lively !
@@ -92,6 +102,11 @@ Please keep this technical syntax to avoid error.
 NOTE: If you want to see a real example, please consult the index.adoc file in https://github.com/bonitasoft/bonita-doc/blob/7.12/md/index.md[bonita documentation GitHub repository].
 
 WARNING: If description in card body is too long (more than 3 lines), we will hide the excess.
+
+
+=== Custom admonition for Cloud
+
+see https://github.com/bonitasoft/bonita-documentation-theme/pull/53
 
 
 === Variables and attributes
