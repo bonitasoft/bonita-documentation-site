@@ -19,7 +19,7 @@ Verify that each updated `adoc` file starts with:
 [source,adoc]
 ----
 = A short title
-:description: Put just after title (without whitespace) a little description to explain what we can retrieve in this page.
+:description: Put just after title (without whitespace) a short description to explain what we can retrieve in this page.
 
 You can put you content after metadata block
 ----
@@ -37,7 +37,9 @@ For more details about how the generation works, see the xref:../architecture.ad
 xref:../README.adoc[development documentation].
 
 
-==== Asciinema
+== Tips for writing the documentation content
+
+=== Asciinema
 
 https://asciinema.org/[Asciinema] provides a great way for sharing shell sessions recording, making documentation more lively !
 
@@ -80,40 +82,40 @@ yourInternalOrExternalLink[[.card-title]#Card Title# [.card-body.card-content-ov
 
 ----
 
-You can use many card in same card section. +
+You can use many cards in same card section. +
 Please keep this technical syntax to avoid error.
 
-NOTE: If you wanna see a real example, please consult the index.adoc file in https://github.com/bonitasoft/bonita-doc/blob/7.12/md/index.md[bonita documentation github repository].
+NOTE: If you want to see a real example, please consult the index.adoc file in https://github.com/bonitasoft/bonita-doc/blob/7.12/md/index.md[bonita documentation GitHub repository].
 
 WARNING: If description in card body is too long (more than 3 lines), we will hide the excess.
 
 
 ==== Variables and attributes
 
-Some attributes are available and define in antora.yml at repository root and could be use in content page.
+You can define asciidoc attributes in the `antora.yml` file at repository root and reference it in content page.
+For a detailed documentation about attributes, see the https://docs.asciidoctor.org/asciidoc/latest/attributes/attribute-entry-substitutions/[asciidoc attribute documentation].
 
 [source,yml]
 ----
 asciidoc:
   attributes:
-    varVersion: 2021.1
+    bonitaVersion: 2021.1
 ----
+
 [example]
- Use `{varVersion}` syntax to reference this attributes in content. It will be replaced by 2021.1 for each occurrence.
+Use `{bonitaVersion}` syntax to reference this attribute in content. It will be replaced by `2021.1` for each occurrence.
 
 
 ===== Disabling attribute substitution
 
-To avoid asciidoctor
-
-Any elements around braces are interpreted as attribute and so, Asciidoctor tries to substitue them. If the value around braces is not related to
+Any elements around braces are interpreted as attribute and so, Asciidoctor tries to substitute them. If the value around braces is not related to
 a declared attributes, warnings are emitted when generating the html files. +
-For instance, in `+${CATALINA_HOME}/conf/jaas.cfg+`, Asciidoctor tries by default to stubstitue `CATALINA_HOME` which is not something we want
+For instance, in `+${CATALINA_HOME}/conf/jaas.cfg+`, Asciidoctor tries by default to substitute `CATALINA_HOME` which is not something we want
 as we want to document an example with bash substitution.
 
 To disable attribute substitution in inline text, add a `+` character around the text that contains the braces
 
-* globally around a inline code extract like `\+${CATALINA_HOME}/conf/jaas.cfg+`
+* globally around an inline code extract like `\+${CATALINA_HOME}/conf/jaas.cfg+`
 * just around the braces: `$+{CATALINA_HOME}+/conf/jaas.cfg`
 
 
@@ -126,11 +128,11 @@ See https://docs.asciidoctor.org/asciidoc/latest/pass/pass-macro/#inline-passthr
 Notice that by default there is no attribute substitution in blocks, so extra configuration is needed in that case.
 More details are available in https://docs.asciidoctor.org/asciidoc/latest/subs/apply-subs-to-blocks/
 
-We recommend to use explicit macro on part of the block that requires substitution. This allow to mix the `{..}` for elements that
+We recommend to use explicit macro on part of the block that requires substitution. This allows to mix the `{..}` for elements that
 should not been substituted (for instance, maven properties or bash variables).
 
 In the block, enable the macros by adding the `subs` configuration like `[source,xml,subs="+macros"]` and in the block content, set `pass:a[{...}]` around
-the attribute you want to substitue. For instance, `<bonita.version>pass:a[{varVersion}].0</bonita.version>`. +
+the attribute you want to substitute. For instance, `<bonita.version>pass:a[{bonitaVersion}].0</bonita.version>`. +
 This configuration then let parts like `<version>${bonita.version}</version>` not substituted.
 
 It is also possible to configure substitution globally for the block (see the documentation).
@@ -138,7 +140,7 @@ It is also possible to configure substitution globally for the block (see the do
 
 ==== GitHub may not render admonitions
 
-https://docs.asciidoctor.org/asciidoc/latest/blocks/admonitions/#using-emoji-for-admonition-icons[See to more details]
+See this https://docs.asciidoctor.org/asciidoc/latest/blocks/admonitions/#using-emoji-for-admonition-icons[asciidoc documentation] for more details.
 
 ==== Antora modules
 
@@ -207,9 +209,13 @@ to make this component searchable.
 When we need to add a new version of one component, we need to:
 
 . Create a new branch (in the repository related to the component
-. To add a new component, you first need to create a Github repository which will contain the asciidoc sources of this component (i.e the documentation content). This repository must be organized according to the https://docs.antora.org/antora/2.3/organize-content-files/[Antora recommendations]. You can check existing repositories for working examples.
-. Then, you need to add a new source in the https://github.com/bonitasoft/bonitasoft.github.io/blob/master/antora-playbook.yml[Antora playbook]. A source references the URL of the repository and all the branches to retrieve.
-. Finally, you have to update the https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[search configuration] to make this component searchable.
+. To add a new component, you first need to create a GitHub repository which will contain the asciidoc sources of this component (i.e. the documentation content).
+This repository must be organized according to the https://docs.antora.org/antora/2.3/organize-content-files/[Antora recommendations].
+You can check existing repositories for working examples.
+. Then, you need to add a new source in the https://github.com/bonitasoft/bonitasoft.github.io/blob/master/antora-playbook.yml[Antora playbook].
+A source references the URL of the repository and all the branches to retrieve.
+. Finally, you have to update the https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[search configuration]
+to make this component searchable.
 
 == How to remove a component version
 
@@ -218,8 +224,8 @@ NOTE: this mainly applies to Bonita Platform but all components with multi-suppo
 On new Bonita Platform GA release, an old version must be archived.
 
 . Take the oldest one
-. Run the archive GitHub Actions: this create a new tag on the related component version
-. Create a PR targetting the bonita-doc archives branch and add the new archive version to the list
+. Run the archive GitHub Actions: this creates a new tag on the related component version
+. Create a PR targeting the bonita-doc archives branch and add the new archive version to the list
 . Remove the version from the Antora Playbook
 . Remove the version from the Algolia DocSearch configuration
 . .... more info here
