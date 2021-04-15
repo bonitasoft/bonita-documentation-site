@@ -27,6 +27,85 @@ Each time a new version of a documented Bonitasoft project is released, this Doc
 -> It means that the DocSearch conf file should reflect this behavior.
 
 
+== Versions lifecycle
+
+NOTE: *this is a work in progress*. TODO link lifecycle actions to the how-to later described in this page
+
+
+NOTE: this mainly applies to Bonita Platform but all components with multi-supported versions should follow the same rules
+
+out of support: On new Bonita Platform GA release, an old version is considered as out of support.
+
+
+
+
 == General how-to for components and versions management
 
+=== How to integrate a new component
 
+Add a new source in the Antora playbook and reference a new branch. In this branch, put a `antora.yml` file at root which contains:
+
+To add a new component, you first need to create a GitHub repository which will contain the asciidoc sources of this component
+(i.e. the documentation content). This repository must be organized according to the https://docs.antora.org/antora/2.3/organize-content-files/[Antora recommendations].
+You can check existing repositories for working examples.
+At minimum, it will contain an `antora.yml` file at its root
+
+[source,yml]
+----
+name: componentName
+title: yourTitle
+version: yourVersion
+asciidoc:
+ attributes:
+  # define here attributes you need to templatize the documentation content or the html generation
+nav:
+- modules/ROOT/taxonomy.adoc
+----
+
+Then, you need to add a new source in the https://github.com/bonitasoft/bonitasoft.github.io/blob/master/antora-playbook.yml[Antora playbook].
+A source references the URL of the repository and all the branches to retrieve.
+
+Finally, you have to update the https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[search configuration]
+to make this component searchable.
+
+
+=== How to integrate a new version of an existing component
+
+When we need to add a new version of one component, we need to:
+
+. Create a new branch (in the repository related to the component
+. To add a new component, you first need to create a GitHub repository which will contain the asciidoc sources of this component (i.e. the documentation content).
+This repository must be organized according to the https://docs.antora.org/antora/2.3/organize-content-files/[Antora recommendations].
+You can check existing repositories for working examples.
+. Then, you need to add a new source in the https://github.com/bonitasoft/bonitasoft.github.io/blob/master/antora-playbook.yml[Antora playbook].
+A source references the URL of the repository and all the branches to retrieve.
+. Finally, you have to update the https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[search configuration]
+to make this component searchable.
+
+=== How to remove a component version
+
+On new Bonita Platform GA release, an old version must be archived.
+
+. Take the oldest one
+. Run the archive GitHub Actions: this creates a new tag on the related component version
+. Create a PR targeting the bonita-doc archives branch and add the new archive version to the list
+. Remove the version from the Antora Playbook
+. Remove the version from the Algolia DocSearch configuration
+. .... *TODO* more info here, and link with lifecycle
+
+
+=== Mark version as 'Out of Support'
+
+Edit the related antora.yml file of the component version, and make the pages non editable
+
+[source,yml]
+----
+name: componentName
+....
+asciidoc:
+  attributes:
+    # remove the 'Edit this Page' link in all pages
+    page-editable: false
+    # display a dedicated banner to warn the reader about the out-of-support state
+    page-out-of-support: true
+----
