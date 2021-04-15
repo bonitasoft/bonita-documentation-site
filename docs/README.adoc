@@ -1,9 +1,15 @@
-= Developers documentation
+= How-to documentation
+
+== For Documentation Content Writers
+** xref:content/CONTRIBUTING.adoc[guidelines for contributing to documentation content]
+// is this really for such contributors and not for developers?
+** xref:documentation-versions.adoc[Documentation Content Versions]
+
+
+== Developers documentation
 
 * xref:configure-netlify-redirects.adoc[Configure netlify redirects]
 * xref:architecture.adoc[Architecture Overview]
-* Tips for Documentation Content Writers
-** xref:documentation-versions.adoc[Documentation Content Versions]
 * migration from the old documentation site (archives)
 ** xref:./migrate-from-old-documentation-site/doc-content-conversion-from-md-to-adoc.adoc[Convert markdown content to asciidoctor]
 ** xref:./migrate-from-old-documentation-site/migration-steps-put-the-site-live.adoc[Migration to put the site live]
