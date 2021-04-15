@@ -65,7 +65,7 @@ The generated asciidoctor (before transformation by Antora) document should rend
 [.thumb]
 image::images/asciinema_sample_rendering.png[]
 
-==== Cards
+=== Cards
 
 You can use card style in your page. Please don't abuse it, and try to only use it on index pages.
 
@@ -94,7 +94,7 @@ NOTE: If you want to see a real example, please consult the index.adoc file in h
 WARNING: If description in card body is too long (more than 3 lines), we will hide the excess.
 
 
-==== Variables and attributes
+=== Variables and attributes
 
 You can define asciidoc attributes in the `antora.yml` file at repository root and reference it in content page.
 For a detailed documentation about attributes, see the https://docs.asciidoctor.org/asciidoc/latest/attributes/attribute-entry-substitutions/[asciidoc attribute documentation].
@@ -110,7 +110,7 @@ asciidoc:
 Use `{bonitaVersion}` syntax to reference this attribute in content. It will be replaced by `2021.1` for each occurrence.
 
 
-===== Disabling attribute substitution
+=== Disabling attribute substitution
 
 Any elements around braces are interpreted as attribute and so, Asciidoctor tries to substitute them. If the value around braces is not related to
 a declared attributes, warnings are emitted when generating the html files. +
@@ -122,12 +122,10 @@ To disable attribute substitution in inline text, add a `+` character around the
 * globally around an inline code extract like `\+${CATALINA_HOME}/conf/jaas.cfg+`
 * just around the braces: `$+{CATALINA_HOME}+/conf/jaas.cfg`
 
-
-
 See https://docs.asciidoctor.org/asciidoc/latest/pass/pass-macro/#inline-passthrough-macros for more details.
 
 
-===== Attributes substitution in blocks
+=== Attributes substitution in blocks
 
 Notice that by default there is no attribute substitution in blocks, so extra configuration is needed in that case.
 More details are available in https://docs.asciidoctor.org/asciidoc/latest/subs/apply-subs-to-blocks/
@@ -142,11 +140,11 @@ This configuration then let parts like `<version>${bonita.version}</version>` no
 It is also possible to configure substitution globally for the block (see the documentation).
 
 
-==== GitHub may not render admonitions
+=== GitHub may not render admonitions
 
 See this https://docs.asciidoctor.org/asciidoc/latest/blocks/admonitions/#using-emoji-for-admonition-icons[asciidoc documentation] for more details.
 
-==== Antora modules
+=== Antora modules
 
 You can use Antora modules to clarify content (for instance, getting-started guides, how-to articles). +
 See https://docs.antora.org/antora/2.3/module-directories/#module.
@@ -160,19 +158,19 @@ are related to "getting started", easier maintenance, ....
 ____
 
 
-==== Alias when renaming pages
+=== Alias when renaming pages
 
 IMPORTANT: Impact on SEO
 
 See https://docs.antora.org/antora/2.3/page/page-aliases. +
 Successfully experimented in https://github.com/bonitasoft/bonita-ici-doc#123
 
-==== Adding link between two components
+=== Adding link between two components
 
 You can reference to documentation pages of another component: for instance, bcd doc has links the to bonita doc. To
 avoid hard coded url, use https://docs.antora.org/antora/2.3/page/page-id/ (see https://opendevise.com/blog/referencing-pages/ for rationale). Warn: won't work with PR preview in the document content repository, as that kind of preview only build a single component version
 
-==== Examples
+=== Make examples available as downloadable file
 
 The `examples` directory can be used to store source code which can then easily be integrated in the documentation. +
 See https://docs.antora.org/antora/2.3/examples-directory/
