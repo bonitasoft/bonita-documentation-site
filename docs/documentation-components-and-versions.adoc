@@ -17,7 +17,7 @@ NOTE: the following mainly applies to the Bonita Platform documentation part
 For Bonita, the rule is the following one: +
 We document the 4 currently supported Bonita versions, and **the 4 versions before**. +
 
-== Impact on Algolia DocSearch
+=== Impact on Algolia DocSearch
 
 Each time a new version of a documented Bonitasoft project is released, this DocSearch configuration file has to be updated:
 
@@ -31,12 +31,32 @@ Each time a new version of a documented Bonitasoft project is released, this Doc
 
 NOTE: *this is a work in progress*. TODO link lifecycle actions to the how-to later described in this page
 
-
 NOTE: this mainly applies to Bonita Platform but all components with multi-supported versions should follow the same rules
 
 out of support: On new Bonita Platform GA release, an old version is considered as out of support.
 
+GA release:
+remove the prerelease configuration (see below)
 
+
+
+== DocSearch and component versions
+
+=== Don't use Antora component without version
+
+No version Antora component: https://docs.antora.org/antora/2.3/component-with-no-version/
+
+The documentation site search crawling and widget we have setup, require a component and a version. In case of version less
+components, there is no version token in the url, so this defeats the mechanism in place.
+
+See https://github.com/bonitasoft/bonita-ici-doc/pull/127#discussion_r585309113 for extra information.
+
+
+=== DocSearch configuration
+
+The DocSearch configuration is public and can be updated by submitting Pull Request: https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json
+
+See https://github.com/algolia/docsearch-configs/pulls?q=is%3Apr+sort%3Aupdated-desc+bonitasoft[past Pull Requests] for inspiration.
 
 
 == General how-to for components and versions management
