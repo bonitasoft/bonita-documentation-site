@@ -3,7 +3,7 @@
 == For Documentation Content Writers
 ** xref:content/CONTRIBUTING.adoc[guidelines for contributing to documentation content]
 // is this really for such contributors and not for developers?
-** xref:documentation-versions.adoc[Documentation Content Versions]
+** xref:documentation-components-and-versions.adoc[Documentation Content Versions]
 
 
 == Developers documentation
