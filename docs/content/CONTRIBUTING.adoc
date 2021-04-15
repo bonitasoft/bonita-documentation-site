@@ -48,6 +48,18 @@ xref:../README.adoc[development documentation].
 
 === Media
 
+==== Prefer source code documentation to code screenshot images
+
+Please don't add screenshot of source code, configuration file.
+This has the following issues
+
+* maintenance: typo fixes, updates, ... can not be managed easily. Differences between documentation are harder to manage (binary merge issues)
+* the source cannot copy/paste for reuse
+* image content is larger than text, so this slow down the site display (especially on mobile if the image is too large) and increase the bandwith consumption
+in the infrastructure (increase bill)
+* the AsciiDoc code support is very easy to set up and powerful. See
+* for an example of image to source example replacement, check https://github.com/bonitasoft/bonita-doc/pull/1492[Bonita 2021.1 product-versioning replacement]
+
 ==== Embed videos
 
 It is possible to embed videos as it is done in Bonita 2021.1 index page: https://docs.asciidoctor.org/asciidoc/latest/macros/audio-and-video/
