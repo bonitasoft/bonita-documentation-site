@@ -2,6 +2,8 @@
 
 This document provides details on the architecture of the documentation site, in order to ease future developments.
 
+image::images/DocToCloud-Architecture-BigPicture.png[]
+
 == Chore solution: https://antora.org/[Antora]
 
 Antora is a multi-repository documentation site generator.
