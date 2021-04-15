@@ -1,5 +1,7 @@
 = Contribute to the Bonita documentation content
 :icons: font
+:toc:
+:toclevels: 4
 ifdef::env-github[]
 :note-caption: :information_source:
 :tip-caption: :bulb:
@@ -43,7 +45,10 @@ xref:../README.adoc[development documentation].
 
 == Tips for writing the documentation content
 
-=== Embed videos
+
+=== Media
+
+==== Embed videos
 
 It is possible to embed videos as it is done in Bonita 2021.1 index page: https://docs.asciidoctor.org/asciidoc/latest/macros/audio-and-video/
 
@@ -53,7 +58,7 @@ as in the following example
 [example]
 +video::038g85tvzo4[youtube, width=640,height=380]+
 
-=== Asciinema
+==== Asciinema
 
 https://asciinema.org/[Asciinema] provides a great way for sharing shell sessions recording, making documentation more lively !
 
@@ -74,6 +79,8 @@ Example of embedded asciinema recording:
 The generated asciidoctor (before transformation by Antora) document should render like something like this:
 [.thumb]
 image::images/asciinema_sample_rendering.png[]
+
+
 
 === Cards
 
@@ -104,10 +111,6 @@ NOTE: If you want to see a real example, please consult the index.adoc file in h
 WARNING: If description in card body is too long (more than 3 lines), we will hide the excess.
 
 
-=== Custom admonition for Cloud
-
-see https://github.com/bonitasoft/bonita-documentation-theme/pull/53
-
 
 === Variables and attributes
 
@@ -125,7 +128,7 @@ asciidoc:
 Use `{bonitaVersion}` syntax to reference this attribute in content. It will be replaced by `2021.1` for each occurrence.
 
 
-=== Disabling attribute substitution
+==== Disabling attribute substitution
 
 Any elements around braces are interpreted as attribute and so, Asciidoctor tries to substitute them. If the value around braces is not related to
 a declared attributes, warnings are emitted when generating the html files. +
@@ -140,7 +143,7 @@ To disable attribute substitution in inline text, add a `+` character around the
 See https://docs.asciidoctor.org/asciidoc/latest/pass/pass-macro/#inline-passthrough-macros for more details.
 
 
-=== Attributes substitution in blocks
+==== Attributes substitution in blocks
 
 Notice that by default there is no attribute substitution in blocks, so extra configuration is needed in that case.
 More details are available in https://docs.asciidoctor.org/asciidoc/latest/subs/apply-subs-to-blocks/
@@ -154,10 +157,19 @@ This configuration then let parts like `<version>${bonita.version}</version>` no
 
 It is also possible to configure substitution globally for the block (see the documentation).
 
+=== Admonitions
 
-=== GitHub may not render admonitions
+What are Admonitions: https://docs.asciidoctor.org/asciidoc/latest/blocks/admonitions
+
+==== GitHub may not render admonitions
 
 See this https://docs.asciidoctor.org/asciidoc/latest/blocks/admonitions/#using-emoji-for-admonition-icons[asciidoc documentation] for more details.
+
+==== Custom admonition for Cloud
+
+see https://github.com/bonitasoft/bonita-documentation-theme/pull/53
+
+
 
 === Antora modules
 
