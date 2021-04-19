@@ -1,0 +1,46 @@
+= Documentation Site architecture
+
+This document provides details on the architecture of the documentation site, in order to ease future developments.
+
+== Chore solution: https://antora.org/[Antora]
+
+Antora is a multi-repository documentation site generator.
+
+The Antora playbook is configured by the file _antora-playbook.yml_. +
+This configuration file lists all the components, and the branches to build. It also references the UI bundle and some additional Asciidoctor extensions, both used to generate the HTML.
+
+The Antora generator retrieves Asciidoctor sources from our documentation content repositories, and then generate a static HTML website from those sources.
+
+[NOTE]
+====
+A GitHub workflow is available to generate this static documentation (useful for oldest version not host on this documentation site).
+====
+
+== UI Bundle
+
+The UI bundle source repository can be found here: https://github.com/bonitasoft/bonita-documentation-theme[bonita-documentation-theme].
+
+The UI Bundle architecture is detailed on the UI bundle Readme.
+
+== Search solution: Algolia
+
+Because of our open source status, https://docsearch.algolia.com/[DocSearch by Algolia] offers us freely a search solution (Thanks a lot to them! ❤️). +
+The configuration file can be found https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[here].
+This file indicates to the DocSearch crawler the pages to crawl, and the elements to index.
+
+
+== Host solution: Netlify
+
+The documentation is hosted on https://app.netlify.com/sites/documentation-bonita[Netlify].
+
+Netlify allow us to manage redirection with the `netlify.toml` file at root of this repository.
+
+== Preview with Surge
+
+https://surge.sh/[Surge] let us deploy previews for the
+
+* theme development
+* site development
+* documentation preview when updating the content with Pull Requests
+
+
