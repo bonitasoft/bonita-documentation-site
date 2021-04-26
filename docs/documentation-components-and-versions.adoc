@@ -1,0 +1,145 @@
+= Documentation Versions
+:icons: font
+ifdef::env-github[]
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+CAUTION: this is a work in progress
+
+NOTE: the following mainly applies to the Bonita Platform documentation part
+
+== Bonita versions that are documented
+
+For Bonita, the rule is the following one: +
+We document the 4 currently supported Bonita versions, and **the 4 versions before**. +
+
+=== Impact on Algolia DocSearch
+
+Each time a new version of a documented Bonitasoft project is released, this DocSearch configuration file has to be updated:
+
+- The latest version has to be added to the projects to index
+- The oldest version should be removed from the projects to index
+
+-> It means that the DocSearch conf file should reflect this behavior.
+
+
+== Versions lifecycle
+
+NOTE: *this is a work in progress*. TODO link lifecycle actions to the how-to later described in this page
+
+NOTE: this mainly applies to Bonita Platform but all components with multi-supported versions should follow the same rules
+
+GA release (actions to be performed detailed later in this document):
+
+* remove the prerelease configuration (see below)
+* update the redirect to make the latest token url go to the new GA version
+* archive the oldest version
+* mark the 5th version as out of support: On new Bonita Platform GA release, an old version is considered as out of support.
+
+== DocSearch and component versions
+
+=== Don't use Antora component without version
+
+No version Antora component: https://docs.antora.org/antora/2.3/component-with-no-version/
+
+The documentation site search crawling and widget we have setup, require a component and a version. In case of version less
+components, there is no version token in the url, so this defeats the mechanism in place.
+
+See https://github.com/bonitasoft/bonita-ici-doc/pull/127#discussion_r585309113 for extra information.
+
+
+=== DocSearch configuration
+
+The DocSearch configuration is public and can be updated by submitting Pull Request: https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json
+
+See https://github.com/algolia/docsearch-configs/pulls?q=is%3Apr+sort%3Aupdated-desc+bonitasoft[past Pull Requests] for inspiration.
+
+
+== General how-to for components and versions management
+
+=== How to integrate a new component
+
+Add a new source in the Antora playbook and reference a new branch. In this branch, put a `antora.yml` file at root which contains:
+
+To add a new component, you first need to create a GitHub repository which will contain the asciidoc sources of this component
+(i.e. the documentation content). This repository must be organized according to the https://docs.antora.org/antora/2.3/organize-content-files/[Antora recommendations].
+You can check existing repositories for working examples.
+At minimum, it will contain an `antora.yml` file at its root
+
+[source,yml]
+----
+name: componentName
+title: yourTitle
+version: yourVersion
+asciidoc:
+ attributes:
+  # define here attributes you need to templatize the documentation content or the html generation
+nav:
+- modules/ROOT/taxonomy.adoc
+----
+
+Then, you need to add a new source in the https://github.com/bonitasoft/bonitasoft.github.io/blob/master/antora-playbook.yml[Antora playbook].
+A source references the URL of the repository and all the branches to retrieve.
+
+Finally, you have to update the https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[search configuration]
+to make this component searchable.
+
+
+=== How to integrate a new version of an existing component
+
+When we need to add a new version of one component, we need to:
+
+. Create a new branch (in the repository related to the component)
+. To add a new component, you first need to create a GitHub repository which will contain the asciidoc sources of this component (i.e. the documentation content).
+This repository must be organized according to the https://docs.antora.org/antora/2.3/organize-content-files/[Antora recommendations].
+You can check existing repositories for working examples.
+. Then, you need to add a new source in the https://github.com/bonitasoft/bonitasoft.github.io/blob/master/antora-playbook.yml[Antora playbook].
+A source references the URL of the repository and all the branches to retrieve.
+. Finally, you have to update the https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[search configuration]
+to make this component searchable.
+
+=== How to remove a component version and make an archive available
+
+On new Bonita Platform GA release, an old version must be archived.
+
+. Take the oldest one
+. Run the archive GitHub Actions: this creates a new tag on the related component version
+. Create a PR targeting the bonita-doc archives branch and add the new archive version to the list
+. Remove the version from the Antora Playbook
+. Remove the version from the Algolia DocSearch configuration
+. Add a redirect to manage urls of the old version. See https://github.com/bonitasoft/bonita-documentation-site/pull/182[PR #182],
+https://github.com/bonitasoft/bonita-documentation-site/pull/195[PR #195] or https://github.com/bonitasoft/bonita-documentation-site/pull/201[PR #201]
+. in the documentation content repository, remove the GH workflow that triggers the push to production
+. .... *TODO* more info here, and link with lifecycle
+
+
+=== Mark version as 'Out of Support'
+
+Edit the related antora.yml file of the component version, and make the pages non-editable
+
+[source,yml]
+----
+name: componentName
+....
+asciidoc:
+  attributes:
+    # remove the 'Edit this Page' link in all pages
+    page-editable: false
+    # display a dedicated banner to warn the reader about the out-of-support state
+    page-out-of-support: true
+----
+
+
+=== Pre-release versions
+
+apply to beta and RC versions
+
+See https://docs.antora.org/antora/2.3/component-prerelease/ to know how to
+
+* mark a prerelease version
+* display beta/rc additionnal information in the version
+* impact on default version and version ordering

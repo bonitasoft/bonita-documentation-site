@@ -1,7 +1,15 @@
 = Migration steps to put the new site live
 :icons: font
+ifdef::env-github[]
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 
-CAUTION: early draft
+
+CAUTION: keep for archives
 
 
 == Documentation content strategy while migrating
@@ -70,8 +78,9 @@ See also https://github.com/bonitasoft/bonita-documentation-site/issues/11[#11] 
 
 ==== bonita-continuous-delivery-doc
 
-* out-of-support version branches from `1.0` to `?` (and `?` starting from December 2020): convert right away
-* supported version branches: same as for bonita-doc
+* 3.4: convert right away
+* other branches won't be kept
+
 
 ==== bonita-cloud-doc
 
@@ -119,15 +128,17 @@ Update the DocSearch configuration: use the new domain
 
 * add a new Netlify Custom Domain and make it use the final https://docs.netlify.com/domains-https/custom-domains/[custom domain]
 
-[WARNING]
-====
-to be investigated
-
-we probably need to keep the preview domain for docsearch:
+We need to keep the preview domain for docsearch:
 
 * until the crawler has been run using the new url, the preview one must be available
-* once the new domain has crawled, the preview domain can be removed from netlify and from the DNS
-====
+* once the new domain has crawled, the preview domain may be removed from netlify and from the DNS
+
+Decision: keep the preview domain
+
+* in both DNS and Netlify (secondary domain)
+* a redirect from preview to production has been setup, see PR https://github.com/bonitasoft/bonita-documentation-site/pull/207[207] and
+https://github.com/bonitasoft/bonita-documentation-site/pull/209[209]
+* keeping this domain will redirect any users that would have bookmarks preview urls
 
 
 
