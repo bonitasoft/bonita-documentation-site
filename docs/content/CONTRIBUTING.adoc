@@ -1,0 +1,235 @@
+= Contribute to the Bonita documentation content
+:icons: font
+:toc:
+:toclevels: 4
+ifdef::env-github[]
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+We are pleased to receive any kind of contribution (issues, pull requests, suggestions ...).
+
+== Contribution check
+
+Before opening a pull request, please check our few recommendations:
+
+Verify that each updated `adoc` file starts with:
+
+[source,adoc]
+----
+= A short title
+:description: Put just after title (without whitespace) a short description to explain what we can retrieve in this page.
+
+You can put you content after metadata block
+----
+
+NOTE: This metadata information is useful to improve our visibility for search engine (SEO)
+
+
+== Short presentation of the documentation environment
+
+https://docs.asciidoctor.org/asciidoc/latest/[Asciidoc] is the markup language chosen to write our documentation content.
+You can check the official documentation site to learn more on Asciidoc syntax.
+
+If you know the Markdown syntax, please check the https://docs.asciidoctor.org/asciidoc/latest/asciidoc-vs-markdown[Asciidoc vs Markdown]
+documentation comparison to speedup the learning.
+
+We are using https://docs.antora.org/[Antora] to generate the Bonita documentation.
+
+For more details about how the generation works, see the xref:../architecture.adoc[Architecture documentation] and the
+xref:../README.adoc[development documentation].
+
+
+== Tips for writing the documentation content
+
+
+=== Media
+
+==== Prefer source code documentation to code screenshot images
+
+Please don't add screenshot of source code, configuration file.
+This has the following issues
+
+* maintenance: typo fixes, updates, ... can not be managed easily. Differences between documentation are harder to manage (binary merge issues)
+* the source cannot copy/paste for reuse
+* image content is larger than text, so this slow down the site display (especially on mobile if the image is too large) and increase the bandwith consumption
+in the infrastructure (increase bill)
+* the AsciiDoc code support is very easy to set up and powerful. See
+* for an example of image to source example replacement, check https://github.com/bonitasoft/bonita-doc/pull/1492[Bonita 2021.1 product-versioning replacement]
+
+==== Embed videos
+
+It is possible to embed videos as it is done in Bonita 2021.1 index page: https://docs.asciidoctor.org/asciidoc/latest/macros/audio-and-video/
+
+* A default/max size is set for the mobile view
+* there is no default for the desktop view at the moment, so you should set the dimensions when declaring the `video` macro
+as in the following example
+[example]
++video::038g85tvzo4[youtube, width=640,height=380]+
+
+==== Asciinema
+
+https://asciinema.org/[Asciinema] provides a great way for sharing shell sessions recording, making documentation more lively !
+
+Once you have created a `.cast` file, you can add it to your document with the following markup
+
+.sample asciinema adoc.
+[source, asciidoc]
+----
+== Asciinema embedded
+
+Example of embedded asciinema recording:
+
+++++
+<asciinema-player src="_images/images/<path_to_your_cast_file>.cast" speed="2" theme="monokai" title="Example of embedded asciinema recording" cols="240" rows="32"></asciinema-player>
+++++
+----
+
+The generated asciidoctor (before transformation by Antora) document should render like something like this:
+[.thumb]
+image::images/asciinema_sample_rendering.png[]
+
+
+
+=== Cards
+
+You can use card style in your page. Please don't abuse it, and try to only use it on index pages.
+
+.Card display in after HTML generation
+You can update *link*, *title* and description for each card.
+
+To do it, you need to use this following syntax:
+
+[source,adoc]
+----
+[.card-section]
+== Highlight
+
+[.card.card-index]
+--
+yourInternalOrExternalLink[[.card-title]#Card Title# [.card-body.card-content-overflow]#pass:q[You can write a short description here to display it in the card body.]#]
+--
+
+----
+
+You can use many cards in same card section. +
+Please keep this technical syntax to avoid error.
+
+NOTE: If you want to see a real example, please consult the index.adoc file in https://github.com/bonitasoft/bonita-doc/blob/7.12/md/index.md[bonita documentation GitHub repository].
+
+WARNING: If description in card body is too long (more than 3 lines), we will hide the excess.
+
+
+
+=== Variables and attributes
+
+You can define asciidoc attributes in the `antora.yml` file at repository root and reference it in content page.
+For a detailed documentation about attributes, see the https://docs.asciidoctor.org/asciidoc/latest/attributes/attribute-entry-substitutions/[asciidoc attribute documentation].
+
+[source,yml]
+----
+asciidoc:
+  attributes:
+    bonitaVersion: 2021.1
+----
+
+[example]
+Use `{bonitaVersion}` syntax to reference this attribute in content. It will be replaced by `2021.1` for each occurrence.
+
+
+==== Disabling attribute substitution
+
+Any elements around braces are interpreted as attribute and so, Asciidoctor tries to substitute them. If the value around braces is not related to
+a declared attributes, warnings are emitted when generating the html files. +
+For instance, in `+${CATALINA_HOME}/conf/jaas.cfg+`, Asciidoctor tries by default to substitute `CATALINA_HOME` which is not something we want
+as we want to document an example with bash substitution.
+
+To disable attribute substitution in inline text, add a `+` character around the text that contains the braces
+
+* globally around an inline code extract like `\+${CATALINA_HOME}/conf/jaas.cfg+`
+* just around the braces: `$+{CATALINA_HOME}+/conf/jaas.cfg`
+
+See https://docs.asciidoctor.org/asciidoc/latest/pass/pass-macro/#inline-passthrough-macros for more details.
+
+
+==== Attributes substitution in blocks
+
+Notice that by default there is no attribute substitution in blocks, so extra configuration is needed in that case.
+More details are available in https://docs.asciidoctor.org/asciidoc/latest/subs/apply-subs-to-blocks/
+
+We recommend to use explicit macro on part of the block that requires substitution. This allows to mix the `{..}` for elements that
+should not been substituted (for instance, maven properties or bash variables).
+
+In the block, enable the macros by adding the `subs` configuration like `[source,xml,subs="+macros"]` and in the block content, set `pass:a[{...}]` around
+the attribute you want to substitute. For instance, `<bonita.version>pass:a[{bonitaVersion}].0</bonita.version>`. +
+This configuration then let parts like `<version>${bonita.version}</version>` not substituted.
+
+It is also possible to configure substitution globally for the block (see the documentation).
+
+=== Admonitions
+
+What are Admonitions: https://docs.asciidoctor.org/asciidoc/latest/blocks/admonitions
+
+==== GitHub may not render admonitions
+
+See this https://docs.asciidoctor.org/asciidoc/latest/blocks/admonitions/#using-emoji-for-admonition-icons[asciidoc documentation] for more details.
+
+==== Custom admonition for Cloud
+
+see https://github.com/bonitasoft/bonita-documentation-theme/pull/53
+
+
+
+=== Antora modules
+
+You can use Antora modules to clarify content (for instance, getting-started guides, how-to articles). +
+See https://docs.antora.org/antora/2.3/module-directories/#module.
+
+[quote]
+____
+Modules allow to better separate content and resources (for instance specific images and
+attachments). For Bonita doc, this will avoid for instance to have all "getting started" pages at
+the same level as other pages (currently in the md folder): easier to identify what pages and images
+are related to "getting started", easier maintenance, ....
+____
+
+
+=== Alias when renaming pages
+
+IMPORTANT: Impact on SEO
+
+See https://docs.antora.org/antora/2.3/page/page-aliases. +
+Successfully experimented in https://github.com/bonitasoft/bonita-ici-doc#123
+
+=== Adding link between two components or between versions of the same component
+
+For instance
+
+* the BCD documentation contains links to various versions of the Bonita documentation (see https://github.com/bonitasoft/bonita-continuous-delivery-doc/pull/164[PR #164]).
+* the Bonita release-notes 7.9 contain a link to the latest BCD version (see https://github.com/bonitasoft/bonita-doc/pull/1494[PR #1494])
+
+To avoid introducing hard coded url, follow the Antora documentation (see https://opendevise.com/blog/referencing-pages/ for rationale)
+
+* https://docs.antora.org/antora/2.3/page/page-id/
+* https://docs.antora.org/antora/2.3/page/version-and-component-xrefs/
+
+[WARNING]
+====
+The generated site available in PR preview in the document content repository is not able to resolve such references, as
+that kind of preview only build a single component version.
+To be able to see them during documentation content writing, you need to build the documentation with both the source and
+target component versions. See https://github.com/bonitasoft/bonita-documentation-site/pull/222[PR #222] for more details.
+====
+
+
+=== Make assets available as downloadable file
+
+The `examples` directory can be used to store source code which can then easily be integrated in the documentation. +
+See https://docs.antora.org/antora/2.3/examples-directory/
+
+This allows user to download the source as attachments by providing a link directly for the code (no duplication between the actual examples and the documentation)
+
+Attachments are also possible: https://docs.antora.org/antora/2.3/attachments-directory/
