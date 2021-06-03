@@ -3,7 +3,10 @@ site:
   # features that depend on the site URL: https://docs.antora.org/antora/2.3/playbook/site-url/#when-should-the-site-url-be-set
   url: https://documentation.bonitasoft.com/
   start_page: bonita::index.adoc
-  robots: allow
+  robots: |
+    User-agent: *
+    Allow: /0/archives/release-notes*
+    Disallow: */0/archives*
 
 # see https://docs.antora.org/antora/2.3/playbook/configure-runtime/
 runtime:
