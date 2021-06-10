@@ -118,7 +118,7 @@ yourInternalOrExternalLink[[.card-title]#Card Title# [.card-body.card-content-ov
 You can use many cards in same card section. +
 Please keep this technical syntax to avoid error.
 
-NOTE: If you want to see a real example, please consult the index.adoc file in https://github.com/bonitasoft/bonita-doc/blob/7.12/md/index.md[bonita documentation GitHub repository].
+NOTE: If you want to see a real example, please consult the index.adoc file in https://github.com/bonitasoft/bonita-doc/blob/2021.1/modules/ROOT/pages/index.adoc[bonita documentation GitHub repository].
 
 WARNING: If description in card body is too long (more than 3 lines), we will hide the excess.
 
