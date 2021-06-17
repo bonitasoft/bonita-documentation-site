@@ -57,7 +57,7 @@ This has the following issues
 * the source cannot copy/paste for reuse
 * image content is larger than text, so this slow down the site display (especially on mobile if the image is too large) and increase the bandwith consumption
 in the infrastructure (increase bill)
-* the AsciiDoc code support is very easy to set up and powerful. See
+* the AsciiDoc code support is very easy to set up and powerful. See https://docs.asciidoctor.org/asciidoc/latest/verbatim/source-blocks/[Source Code documentation]
 * for an example of image to source example replacement, check https://github.com/bonitasoft/bonita-doc/pull/1492[Bonita 2021.1 product-versioning replacement]
 
 ==== Embed videos
@@ -118,7 +118,7 @@ yourInternalOrExternalLink[[.card-title]#Card Title# [.card-body.card-content-ov
 You can use many cards in same card section. +
 Please keep this technical syntax to avoid error.
 
-NOTE: If you want to see a real example, please consult the index.adoc file in https://github.com/bonitasoft/bonita-doc/blob/7.12/md/index.md[bonita documentation GitHub repository].
+NOTE: If you want to see a real example, please consult the index.adoc file in https://github.com/bonitasoft/bonita-doc/blob/2021.1/modules/ROOT/pages/index.adoc[bonita documentation GitHub repository].
 
 WARNING: If description in card body is too long (more than 3 lines), we will hide the excess.
 
