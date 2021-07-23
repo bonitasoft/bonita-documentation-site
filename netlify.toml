@@ -24,6 +24,10 @@
 
 # Special redirect after introduction of Bonita branding version
 [[redirects]]
+  from = "/bonita/7.13/*"
+  to = "/bonita/2021.2/:splat"
+
+[[redirects]]
   from = "/bonita/7.12/*"
   to = "/bonita/2021.1/:splat"
 
