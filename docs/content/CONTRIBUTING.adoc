@@ -88,7 +88,7 @@ Example of embedded asciinema recording:
 ++++
 ----
 
-The generated Asciidoc (before transformation by Antora) document should render like something like this:
+The generated AsciiDoc (before transformation by Antora) document should render like something like this:
 [.thumb]
 image::images/asciinema_sample_rendering.png[]
 

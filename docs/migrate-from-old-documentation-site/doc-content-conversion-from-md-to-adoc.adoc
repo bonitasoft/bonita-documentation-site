@@ -1,7 +1,7 @@
 = Documentation content conversion steps
 :icons: font
 
-The following describes how to convert content repository branch from Markdown for the old documentation site to Asciidoc
+The following describes how to convert content repository branch from Markdown for the old documentation site to AsciiDoc
 for the new documentation site using Antora.
 
 The steps describe here are supposed to be followed in the order they appear.
@@ -34,7 +34,7 @@ Clean files
 * README.md: everything can be removed except the title. This needs rework as part of https://github.com/bonitasoft/bonita-documentation-site/issues/52[#52]
 
 
-== Markdown to Asciidoc conversion
+== Markdown to AsciiDoc conversion
 
 === Tool installation
 
@@ -55,7 +55,7 @@ Sources (markdown and images files) are stored in the `md` folder of the documen
 [CAUTION]
 ====
 The index page generally contains html elements that cannot be automatically converted (some other pages way also be impacted). +
-There is also a dependency on font-awesome css (`fa-` directives). Font awesome support is available in Asciidoc.
+There is also a dependency on font-awesome css (`fa-` directives). Font awesome support is available in AsciiDoc.
 
 For such a page, the html part must be commented prior running conversion otherwise the process fails.
 ====
@@ -71,8 +71,8 @@ From the root of the old documentation folder, run the following command
 .The script will :
 [info]
 * Sanitize the markdown source files to make theme convertible (update syntax).
-* Convert md files to asciidoc using kramdoc
-* Sanitize the asciidoc files generated
+* Convert md files to AsciiDoc using kramdoc
+* Sanitize the AsciiDoc files generated
 ** Convert custom 'Bonita' tags for notes, warnings, ....
 [Exemple]
 For instance:
@@ -86,7 +86,7 @@ In each file you should get update like this:
 
 image::images/doc_anchor_conversion.png[]
 
-* Rename Asciidoc files and remove old markdown files
+* Rename AsciiDoc files and remove old markdown files
 
 
 === Final steps

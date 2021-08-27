@@ -18,7 +18,7 @@ CAUTION: keep for archives
 Everything is done at branch management level
 
 * all existing branches must be kept untouched as they are used by the old doc site solution
-* we are creating new branches based on the existing ones, then xref:doc-content-conversion-from-md-to-adoc.adoc[convert the content from markdown to asciidoc]
+* we are creating new branches based on the existing ones, then xref:doc-content-conversion-from-md-to-adoc.adoc[convert the content from markdown to AsciiDoc]
   * for `out-of support version` branch: we can convert the branch while developing the new documentation site. The branch for out-of-support version are no more updated
   * for `supported version` branch: they have to be converted for testing, need to be removed prior the actual migration
     * at least some of them to check if we expect conversion issues

@@ -11,5 +11,5 @@
 * xref:architecture.adoc[Architecture Overview]
 * xref:configure-netlify-redirects.adoc[Configure netlify redirects]
 * migration from the old documentation site (archives)
-** xref:./migrate-from-old-documentation-site/doc-content-conversion-from-md-to-adoc.adoc[Convert markdown content to asciidoc]
+** xref:./migrate-from-old-documentation-site/doc-content-conversion-from-md-to-adoc.adoc[Convert markdown content to AsciiDoc]
 ** xref:./migrate-from-old-documentation-site/migration-steps-put-the-site-live.adoc[Migration to put the site live]
