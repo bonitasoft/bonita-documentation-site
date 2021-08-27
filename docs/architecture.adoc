@@ -11,7 +11,7 @@ Antora is a multi-repository documentation site generator.
 The Antora playbook is configured by the file _antora-playbook.yml_. +
 This configuration file lists all the components, and the branches to build. It also references the UI bundle and some additional Asciidoctor extensions, both used to generate the HTML.
 
-The Antora generator retrieves Asciidoctor sources from our documentation content repositories, and then generate a static HTML website from those sources.
+The Antora generator retrieves Asciidoc sources from our documentation content repositories, and then generate a static HTML website from those sources.
 
 [NOTE]
 ====
