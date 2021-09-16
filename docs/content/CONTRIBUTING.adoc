@@ -88,7 +88,7 @@ Example of embedded asciinema recording:
 ++++
 ----
 
-The generated asciidoctor (before transformation by Antora) document should render like something like this:
+The generated AsciiDoc (before transformation by Antora) document should render like something like this:
 [.thumb]
 image::images/asciinema_sample_rendering.png[]
 
@@ -142,9 +142,9 @@ Use `{bonitaVersion}` syntax to reference this attribute in content. It will be 
 
 ==== Disabling attribute substitution
 
-Any elements around braces are interpreted as attribute and so, Asciidoctor tries to substitute them. If the value around braces is not related to
+Any elements around braces are interpreted as attribute and so, they will be substitued in the generated output. If the value around braces is not related to
 a declared attributes, warnings are emitted when generating the html files. +
-For instance, in `+${CATALINA_HOME}/conf/jaas.cfg+`, Asciidoctor tries by default to substitute `CATALINA_HOME` which is not something we want
+For instance, in `+${CATALINA_HOME}/conf/jaas.cfg+`, `CATALINA_HOME` is substituted by default which is not something we want
 as we want to document an example with bash substitution.
 
 To disable attribute substitution in inline text, add a `+` character around the text that contains the braces
