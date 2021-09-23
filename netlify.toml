@@ -15,12 +15,12 @@
 ########################################
 [[redirects]]
   from = "/bonita/latest/*"
-  to = "/bonita/2021.1/:splat"
+  to = "/bonita/2021.2/:splat"
   status = 200
 
 [[redirects]]
   from = "/bonita/"
-  to = "/bonita/2021.1/"
+  to = "/bonita/2021.2/"
 
 # Special redirect after introduction of Bonita branding version
 [[redirects]]
@@ -55,6 +55,9 @@ to = "/bonita/0/"
 from = "/bonita/7.4/*"
 to = "/bonita/0/"
 
+[[redirects]]
+from = "/bonita/7.5/*"
+to = "/bonita/0/"
 
 ########################################
 # Bonita Legacy Documentation redirects
