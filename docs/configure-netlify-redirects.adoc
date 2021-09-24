@@ -15,3 +15,22 @@ We don't update the redirects very often, so this is enough for our current usag
 
 See https://github.com/bonitasoft/bonita-documentation-site/issues/168[#168] for a more integrated solution.
 
+=== Step by step procedure
+
+- In [Netlify](https://app.netlify.com/teams/bonita-ci/overview), sign in with the bonita-ci github account
+- Open the _Bonita test redirect_ site
+- From the _site overview_, click on the latest _production deploy_ (with the `published` tag)
+- Download the zip of this deploy (using the small download arrow next to the deployment date). 
+- Open the zip and replace the content of the `netlify.toml` file with the new one (with the redirect you want to test). 
+- Re-zip, and go back to the _site overview_ view
+- Upload the new zip (i.e the new site) using the drag and drop area (at the bottom of the _site overview_ view)
+- When the deployment is done, click on it and click on _preview deploy_. It opens the site (with only one page), you can now test your redirect. For ex, if you want to test that _/bonita_ redirects to _/bonita/2021.2_ then add /bonita at the end of the url and check that the redirect is done. 
+
+[WARNING]
+====
+If your redirect returns `200`, the url won't be updated on the fake site if there is no page for the redirect. It returns 200 so you don't go to the 404 page. It is the case for the /latest redirect on the current configuration.  
+====
+
+
+
+
