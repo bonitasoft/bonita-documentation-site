@@ -17,7 +17,7 @@ See https://github.com/bonitasoft/bonita-documentation-site/issues/168[#168] for
 
 === Step by step procedure
 
-- In [Netlify](https://app.netlify.com/teams/bonita-ci/overview), sign in with the bonita-ci github account
+- Connect to Netlify
 - Open the _Bonita test redirect_ site
 - From the _site overview_, click on the latest _production deploy_ (with the `published` tag)
 - Download the zip of this deploy (using the small download arrow next to the deployment date). 
