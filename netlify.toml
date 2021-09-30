@@ -89,36 +89,36 @@ to = "/bonita/0/"
 ########################################
 [[redirects]]
 from = "/bcd/latest/*"
-to = "/bcd/3.4/:splat"
+to = "/bcd/3.5/:splat"
 status = 200
 
 [[redirects]]
 from = "/bcd/"
-to = "/bcd/3.4/"
+to = "/bcd/3.5/"
 
 [[redirects]]
 from = "/bcd/1.0/*"
-to = "/bcd/latest/:splat"
+to = "/bcd/3.4/:splat"
 
 [[redirects]]
 from = "/bcd/2.0/*"
-to = "/bcd/latest/:splat"
+to = "/bcd/3.4/:splat"
 
 [[redirects]]
 from = "/bcd/2.1/*"
-to = "/bcd/latest/:splat"
+to = "/bcd/3.4/:splat"
 
 [[redirects]]
 from = "/bcd/3.0/*"
-to = "/bcd/latest/:splat"
+to = "/bcd/3.4/:splat"
 
 [[redirects]]
 from = "/bcd/3.1/*"
-to = "/bcd/latest/:splat"
+to = "/bcd/3.4/:splat"
 
 [[redirects]]
 from = "/bcd/3.2/*"
-to = "/bcd/latest/:splat"
+to = "/bcd/3.4/:splat"
 
 [[redirects]]
 from = "/bcd/3.3/*"
