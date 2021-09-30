@@ -88,6 +88,11 @@ to = "/bonita/0/"
 # BCD redirects
 ########################################
 [[redirects]]
+from = "/bcd/latest"
+to = "/bcd/latest/"
+status = 200
+
+[[redirects]]
 from = "/bcd/latest/*"
 to = "/bcd/3.5/:splat"
 status = 200
