@@ -32,6 +32,7 @@ content:
         - "master"
     - url: https://github.com/bonitasoft/bonita-continuous-delivery-doc.git
       branches:
+        - "3.5"
         - "3.4"
 ui:
   bundle:
