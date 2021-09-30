@@ -5,6 +5,7 @@
   "scripts": {
     "clean": "rimraf build .cache",
     "build": "antora --stacktrace --fetch --clean antora-playbook.yml",
+    "netlify-serve": "netlify dev -d build/site --debug -c-1 --port 8080",
     "serve": "http-server build/site -c-1 --port 8080"
   },
   "devDependencies": {
