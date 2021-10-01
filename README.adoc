@@ -17,8 +17,6 @@ endif::[]
 image::https://api.netlify.com/api/v1/badges/df65c069-bb52-46d2-8bf0-8e16b6b21482/deploy-status[alt=Netlify Status,link=https://app.netlify.com/sites/documentation-bonita/deploys]
 
 
-*_DISCLAIMER: this is a work in progress._*
-
 This repository let you generate the Bonita documentation site. It uses {url-antora}[Antora] which processes {url-asciidoc}:[AsciiDoc]
 documentation content stored in various Git repositories.
 
