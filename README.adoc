@@ -189,9 +189,14 @@ For a faster loop, don't forget you can build the UI Bundle and the preview by c
 ----
 
 
+==== http dev server
 
+[NOTE]
+====
+Most of the time, pages can be browsed locally without requiring a http dev server. +
+You may need it to test specific features like displaying Asciinema resources or testing redirects. See below for more details.
+====
 
-==== http server
 
 Once the static site is build, you can run `npm run serve` and access it with `+http://localhost:8080+` to check if everything is working correctly (urls in taxonomy, links, ....).
 
@@ -205,6 +210,15 @@ when building the preview.
 A http server is needed to correctly see the Asciinema resources (loading fail when using a local file browsing). +
 For instance, have a look at http://localhost:8080/bonita/2021.1/migrate-from-an-earlier-version-of-bonita-bpm#update-case-overview-pages
 ====
+
+[TIP]
+====
+The http dev server is provided by the https://docs.netlify.com/cli/get-started/[Netlify CLI], so it is able to replicate a lot of the Netlify Edge features. +
+In particular it is able to apply the same redirects as those used in production.
+
+See for xref:./docs/configure-netlify-redirects[configure Netlify redirects how-to] more details.
+====
+
 
 
 === Production build
