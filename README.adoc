@@ -23,7 +23,7 @@ documentation content stored in various Git repositories.
 
 == Documentation
 
-See the xref:./docs/README[dedicated folder] for
+See the xref:docs/README[dedicated folder] for
 
 * documentation content contribution tips/guidelines
 * architecture
@@ -214,7 +214,7 @@ For instance, have a look at http://localhost:8080/bonita/2021.1/migrate-from-an
 The http dev server is provided by the https://docs.netlify.com/cli/get-started/[Netlify CLI], so it is able to replicate a lot of the Netlify Edge features. +
 In particular it is able to apply the same redirects as those used in production.
 
-See for xref:./docs/configure-netlify-redirects[configure Netlify redirects how-to] more details.
+See for xref:docs/configure-netlify-redirects[configure Netlify redirects how-to] more details.
 ====
 
 
