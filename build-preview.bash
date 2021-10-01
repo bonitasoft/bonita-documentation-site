@@ -16,7 +16,7 @@ function usage() {
   echo "Options priority order for choosing the content of the preview when several options are provided:"
   echo "  - use-all-repositories"
   echo "  - single-branch-per-repo"
-  echo "  - use-multi-repositorie"
+  echo "  - use-multi-repositories"
   echo "If no specific options: single branch per component"
   echo ""
   echo "Globals"
@@ -43,7 +43,7 @@ function usage() {
 
   echo "Environment configuration"
   echo "      --ci <boolean>                          'false': assume the script is running on local dev machine and don't run some setup commands. Defaults to 'true'"
-  echo "      --only-generate-playbook                If this option is pass, only generate the preview Antora playbook and skip the documentation generation"
+  echo "      --only-generate-playbook                If set, only generate the preview Antora playbook and skip the documentation generation"
 }
 
 
