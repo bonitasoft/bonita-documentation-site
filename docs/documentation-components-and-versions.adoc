@@ -124,13 +124,35 @@ Edit the related antora.yml file of the component version, and make the pages no
 [source,yml]
 ----
 name: componentName
-....
+...
 asciidoc:
   attributes:
     # remove the 'Edit this Page' link in all pages
     page-editable: false
     # display a dedicated banner to warn the reader about the out-of-support state
     page-out-of-support: true
+----
+
+=== Mark version as 'Next-release'
+
+Edit the related antora.yml file of the component version, make the content not searchable, and adding an information message.
+
+[source,yml]
+----
+name: componentName
+# TODO: When we are in beta release, put version: theRealVersion
+version: 1
+# TODO: remove this line when we are in beta phase
+display_version: 2022.1-alpha
+# TODO when integrating this version to the documentation, update push-content.yml and replace alpha by beta
+prerelease: alpha
+...
+asciidoc:
+  attributes:
+    # Adding an info message on the top of any pages
+    page-next-release: true
+    # remove search bar for this version (Because the content of next-release is not indexing by Algolia)
+    page-hide-search-bar: true
 ----
 
 
