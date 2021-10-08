@@ -17,15 +17,13 @@ endif::[]
 image::https://api.netlify.com/api/v1/badges/df65c069-bb52-46d2-8bf0-8e16b6b21482/deploy-status[alt=Netlify Status,link=https://app.netlify.com/sites/documentation-bonita/deploys]
 
 
-*_DISCLAIMER: this is a work in progress._*
-
-This repository let you generate the Bonita documentation site. It uses {url-antora}[Antora] which processes {url-asciidoc}:[AsciiDoc]
+This repository lets you generate the Bonita documentation site. It uses {url-antora}[Antora] which processes {url-asciidoc}:[AsciiDoc]
 documentation content stored in various Git repositories.
 
 
 == Documentation
 
-See the xref:./docs/README[dedicated folder] for
+See the xref:docs/README.adoc[dedicated folder] for
 
 * documentation content contribution tips/guidelines
 * architecture
@@ -70,7 +68,7 @@ This includes building the documentation using:
 * already checkout local documentation content repositories
 * single branch for all components
 * single branch of a single component
-* a set of branches of various components. This is let validate https://docs.antora.org/antora/2.3/page/version-and-component-xrefs/[references between pages that belong to different docs components and/or versions]
+* a set of branches of various components. This lets validate https://docs.antora.org/antora/2.3/page/version-and-component-xrefs/[references between pages that belong to different docs components and/or versions]
 * ....
 
 To know all available options, run
@@ -189,9 +187,14 @@ For a faster loop, don't forget you can build the UI Bundle and the preview by c
 ----
 
 
+==== http dev server
 
+[NOTE]
+====
+Most of the time, pages can be browsed locally without requiring a http dev server. +
+You may need it to test specific features like displaying Asciinema resources or testing redirects. See below for more details.
+====
 
-==== http server
 
 Once the static site is build, you can run `npm run serve` and access it with `+http://localhost:8080+` to check if everything is working correctly (urls in taxonomy, links, ....).
 
@@ -205,6 +208,15 @@ when building the preview.
 A http server is needed to correctly see the Asciinema resources (loading fail when using a local file browsing). +
 For instance, have a look at http://localhost:8080/bonita/2021.1/migrate-from-an-earlier-version-of-bonita-bpm#update-case-overview-pages
 ====
+
+[TIP]
+====
+The http dev server is provided by the https://docs.netlify.com/cli/get-started/[Netlify CLI], so it is able to replicate a lot of the Netlify Edge features. +
+In particular it is able to apply the same redirects as those used in production.
+
+See for xref:docs/configure-netlify-redirects.adoc[configure Netlify redirects how-to] more details.
+====
+
 
 
 === Production build

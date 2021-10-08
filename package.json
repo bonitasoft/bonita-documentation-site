@@ -5,15 +5,15 @@
   "scripts": {
     "clean": "rimraf build .cache",
     "build": "antora --stacktrace --fetch --clean antora-playbook.yml",
-    "serve": "http-server build/site -c-1 --port 8080"
+    "serve": "netlify dev -d build/site --debug --port 8080"
   },
   "devDependencies": {
     "@antora/cli": "^2.3.4",
     "@antora/site-generator-default": "^2.3.4",
     "fs-extra": "^9.0.1",
-    "http-server": "^0.12.3",
     "js-yaml": "^4.0.0",
     "minimist": "^1.2.5",
+    "netlify-cli": "^6.9.28",
     "rimraf": "^3.0.2"
   }
 }
