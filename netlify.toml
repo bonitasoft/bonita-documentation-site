@@ -43,6 +43,12 @@
   from = "/bonita/*/_getting-started-tutorial"
   to = "/bonita/latest/tutorial-overview"
 
+# Redirect for next dev version
+[[redirects]]
+  from = "/bonita/next/*"
+  to = "/bonita/1/:splat"
+  status = 200
+
 ########################################
 # Bonita Old Documentation redirects to Archives
 ########################################
