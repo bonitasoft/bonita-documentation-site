@@ -23,6 +23,17 @@ function getRepoUrl(componentName) {
     return repoUrl;
 }
 
+function ensureArray(object) {
+    if (!object) {
+        return [];
+    }
+    // we can probably improve the implementation if needed
+    if (typeof object === 'string') {
+        return [object];
+    }
+    return object;
+}
+
 // parse arguments
 const argv = require('minimist')(process.argv.slice(2), {
     string: 'branch', // as bonita branches match versions, branch could be considered as number, so this config prevents '7.10' from being converted into '7.1'
@@ -33,6 +44,9 @@ function getArgument(argv, argName, isMandatory) {
         throw Error(`You must pass a '${argName}' argument`);
     }
     return value;
+}
+function getArgumentAsArray(argv, argName, isMandatory) {
+    return ensureArray(getArgument(argv, argName, isMandatory))
 }
 
 // TODO rename options to use components instead of repositories
@@ -68,10 +82,7 @@ else if(useSingleBranchPerComponent) {
 // multiple components, each with its own set of branches
 else if (useMultiComponents) {
     console.info('Documentation content: multi components and branches');
-    let componentsWithBranches = getArgument(argv, 'component-with-branches', true);
-    if (typeof componentsWithBranches === 'string') {
-        componentsWithBranches = [componentsWithBranches];
-    }
+    const componentsWithBranches = getArgumentAsArray(argv, 'component-with-branches', true);
     console.info('Components with branches:', componentsWithBranches);
 
     const sources = []
@@ -126,15 +137,29 @@ if (siteUrl) {
 // We want to ensure that wherever a preview is published, Search Engines won't index it
 doc.site.robots = 'disallow';
 
-// Allow local file browsing
-const previewType = getArgument(argv, 'type', false)
-console.info(`Preview Type: ${previewType}`);
-if (previewType === 'local') {
-    doc.urls.html_extension_style = 'default';
-}
 
-// Ensure we generate html pages for redirects (https://docs.antora.org/antora/2.3/playbook/urls-redirect-facility/)
+// By default, generate html pages for redirects (https://docs.antora.org/antora/2.3/playbook/urls-redirect-facility/)
+// Work with file browsing and http servers that don't provide redirects.
 doc.urls.redirect_facility = 'static';
+
+// Preview type
+const previewTypeArgs = getArgumentAsArray(argv, 'type', false);
+// only keep the latest element
+const previewType = previewTypeArgs.slice(-1)[0];
+console.info(`Preview Type: ${previewType}`);
+switch (previewType) {
+    // Allow local file browsing
+    case 'local':
+        doc.urls.html_extension_style = 'default';
+        break;
+    // For Netlify environment simulation (use the dev server)
+    case 'netlify':
+        doc.urls.redirect_facility = 'netlify';
+        doc.urls.html_extension_style = 'drop';
+        break;
+    default:
+        console.info('--> no specific preview type');
+}
 
 // Fetch sources
 const fetchSources = getArgument(argv, 'fetch-sources', false)
