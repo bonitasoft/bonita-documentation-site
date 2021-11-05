@@ -50,3 +50,10 @@ asciidoc:
 urls:
   html_extension_style: drop
   redirect_facility: netlify
+  ##### new with Antora 3.0
+  latest_version_segment: latest
+  latest_prerelease_version_segment: next
+#  what we target
+#  latest_version_segment_strategy: redirect:to
+#  to simulate what we have now
+  latest_version_segment_strategy: redirect:from
