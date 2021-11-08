@@ -40,9 +40,9 @@ ui:
     url: ./resources/antora-ui-bundle.zip
 
 asciidoc:
+  # Only enable for preview, we don't care for production and it can have performance impacts
   # https://docs.antora.org/antora/3.0/playbook/asciidoc-sourcemap/
-  # TODO decide if it is always activated or only for preview (possible performance impact)
-  sourcemap: true
+  sourcemap: false
   extensions:
     - ./lib/source-url-include-processor.js
     - ./lib/json-config-ui-block-macro.js

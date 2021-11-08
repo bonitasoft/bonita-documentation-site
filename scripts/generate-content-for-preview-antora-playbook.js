@@ -189,6 +189,10 @@ if (hideNavbarComponentsList) {
     getSiteKeys(doc)['hide-navbar-components-list'] = true;
 }
 
+// Ensure we get details where xref resolution fails
+// https://docs.antora.org/antora/3.0/playbook/asciidoc-sourcemap/
+doc.asciidoc.sourcemap = true;
+
 // Generate the preview Antora playbook
 console.info('Dumping yaml....');
 const generatedYaml = `# Generated from 'antora-playbook.yml'
