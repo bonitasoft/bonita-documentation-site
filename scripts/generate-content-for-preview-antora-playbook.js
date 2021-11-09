@@ -38,15 +38,15 @@ function ensureArray(object) {
 const argv = require('minimist')(process.argv.slice(2), {
     string: 'branch', // as bonita branches match versions, branch could be considered as number, so this config prevents '7.10' from being converted into '7.1'
 });
-function getArgument(argv, argName, isMandatory) {
-    const value = argv[argName];
+function getArgument(args, argName, isMandatory) {
+    const value = args[argName];
     if (isMandatory && !value) {
         throw Error(`You must pass a '${argName}' argument`);
     }
     return value;
 }
-function getArgumentAsArray(argv, argName, isMandatory) {
-    return ensureArray(getArgument(argv, argName, isMandatory))
+function getArgumentAsArray(args, argName, isMandatory) {
+    return ensureArray(getArgument(args, argName, isMandatory))
 }
 
 // TODO rename options to use components instead of repositories
