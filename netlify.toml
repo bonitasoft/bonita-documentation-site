@@ -36,7 +36,10 @@
   from = "/javadoc/api/*"
   to = "https://javadoc.bonitasoft.com/api/:splat"
 
-# TODO: Add redirect to Groovydoc
+# Bonita 'asciidoc-templating' redirect
+[[redirects]]
+  from = "/asciidoc-templating/*"
+  to = "https://javadoc.bonitasoft.com/asciidoc-templating/:splat"
 
 # Bonita Community redirect to getting Started
 [[redirects]]
