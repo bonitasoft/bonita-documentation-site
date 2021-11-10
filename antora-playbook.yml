@@ -49,3 +49,4 @@ asciidoc:
     - ./lib/tabs-block.js
 urls:
   html_extension_style: drop
+  redirect_facility: netlify

@@ -37,7 +37,8 @@ function usage() {
   echo "      --single-branch-per-repo <boolean>      'true': only keep the latest declared branch for each component, 'false': use all branches. Defaults to 'false'"
   echo "      --site-url <url>                        Custom Url of the site preview. If set to 'DISABLED', remove the site.url from the Antora playbook. Defaults to the original url defined in the Antora playbook."
   echo "      --site-title <string>                   Title of the site preview. Use generated title if not set."
-  echo "      --type <string>                         If set to 'local', use html extension in urls to allow local file browsing"
+  echo "      --type <string>                         If set to 'local', use html extension in urls to allow local file browsing."
+  echo "                                              If set to 'netlify', use the configuration for the whole Netlify environment (for use with the dev server)."
   echo "      --use-all-repositories <boolean>        If set to 'true', use all sources repositories and branches defined in the production Antora playbook. Defaults to 'false'"
   echo "      --use-multi-repositories <boolean>      If set to 'true', use several repositories and branches passed with the --component-with-branches options. Defaults to 'false'"
 
