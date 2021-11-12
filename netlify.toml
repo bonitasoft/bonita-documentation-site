@@ -13,10 +13,10 @@
 ########################################
 # Bonita redirects
 ########################################
-[[redirects]]
-  from = "/bonita/latest/*"
-  to = "/bonita/2021.2/:splat"
-  status = 200
+#[[redirects]]
+#  from = "/bonita/latest/*"
+#  to = "/bonita/2021.2/:splat"
+#  status = 200
 
 [[redirects]]
   from = "/bonita/"
@@ -47,10 +47,10 @@
   to = "/bonita/latest/tutorial-overview"
 
 # Redirect for next dev version
-[[redirects]]
-  from = "/bonita/next/*"
-  to = "/bonita/1/:splat"
-  status = 200
+#[[redirects]]
+#  from = "/bonita/next/*"
+#  to = "/bonita/1/:splat"
+#  status = 200
 
 ########################################
 # Bonita Old Documentation redirects to Archives
@@ -96,10 +96,10 @@ to = "/bonita/0/"
 ########################################
 # BCD redirects
 ########################################
-[[redirects]]
-from = "/bcd/latest/*"
-to = "/bcd/3.5/:splat"
-status = 200
+#[[redirects]]
+#from = "/bcd/latest/*"
+#to = "/bcd/3.5/:splat"
+#status = 200
 
 [[redirects]]
 from = "/bcd/"
