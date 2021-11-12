@@ -193,6 +193,20 @@ if (hideNavbarComponentsList) {
 // https://docs.antora.org/antora/3.0/playbook/asciidoc-sourcemap/
 doc.asciidoc.sourcemap = true;
 
+
+// Version redirects (latest and next)
+const forceLatestVersionRedirects = getArgument(argv, 'force-latest-version-redirects', false)
+console.info(`Force Latest Version Redirects: ${hideNavbarComponentsList}`);
+
+const useLatestVersionRedirects = (previewType === 'netlify') || !!forceLatestVersionRedirects;
+console.info('--> using latest version redirects', useLatestVersionRedirects);
+if (!useLatestVersionRedirects) {
+    console.info('--> dropping the latest version redirects configuration');
+    delete doc.urls.latest_version_segment;
+    delete doc.urls.latest_prerelease_version_segment;
+    delete doc.urls.latest_version_segment_strategy;
+}
+
 // Generate the preview Antora playbook
 console.info('Dumping yaml....');
 const generatedYaml = `# Generated from 'antora-playbook.yml'
