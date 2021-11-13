@@ -1,6 +1,6 @@
 name: bonita
 title: Bonita
-version: 0
+version: '0'
 display_version: Archives
 start_page: ROOT:archives.adoc
 asciidoc:
