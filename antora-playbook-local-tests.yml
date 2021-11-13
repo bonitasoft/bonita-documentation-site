@@ -11,12 +11,14 @@ runtime:
 
 content:
   sources:
-    - url: ./local-content-for-tests/bonita/v0
+    - url: ./
+      start_paths: ./resources/local-content-for-tests/bonita/v0, ./resources/local-content-for-tests/bonita/v2-prerelease, ./resources/local-content-for-tests/bonita/v7.11
       branches: HEAD
-    - url: ./local-content-for-tests/bonita/v2-prereleases
-      branches: HEAD
-    - url: ./local-content-for-tests/bonita/v7.11
-      branches: HEAD
+#    - url: ./
+#          start_path: ./resources/local-content-for-tests/bonita/v2-prereleases
+#      branches: HEAD
+#          start_path: ./resources/local-content-for-tests/bonita/v7.11
+#      branches: HEAD
 ui:
   bundle:
     url: ./resources/antora-ui-bundle.zip
