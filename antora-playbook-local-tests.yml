@@ -10,10 +10,12 @@ runtime:
   cache_dir: ./.cache/antora
 
 content:
-  # When adding a new url, add a new entry in generate-content-for-preview-antora-playbook.js to manage PR preview
-  # The site preview only use the latest declared branch for each source
   sources:
+    - url: ./local-content-for-tests/bonita/v0
+      branches: HEAD
     - url: ./local-content-for-tests/bonita/v2-prereleases
+      branches: HEAD
+    - url: ./local-content-for-tests/bonita/v7.11
       branches: HEAD
 ui:
   bundle:
@@ -31,9 +33,11 @@ asciidoc:
     - ./lib/swagger-ui-block-macro.js
     - ./lib/tabs-block.js
 urls:
-  html_extension_style: drop
-  redirect_facility: netlify
+  html_extension_style: default
+  redirect_facility: static
+#  html_extension_style: drop
+#  redirect_facility: netlify
   ##### new with Antora 3.0
-  latest_version_segment: latest
-  latest_prerelease_version_segment: next
-  latest_version_segment_strategy: redirect:to
+#  latest_version_segment: latest
+#  latest_prerelease_version_segment: next
+#  latest_version_segment_strategy: redirect:to
