@@ -1,13 +1,20 @@
 name: bonita
 title: Bonita
-version: 2
-display_version: '2023.2'
-start_page: ROOT:index.adoc
-asciidoc:
-  attributes:
-    page-editable: true
-    page-out-of-support: false
-    page-hide-search-bar: false
-    page-navigation: true
 nav:
   - modules/ROOT/taxonomy.adoc
+
+version: 1
+display_version: 2022.1-alpha
+## When set with Antora 3, the version is put on top of the list. It is correctly considered as a prerelease (not selected by default)
+# Act like if prereleases are always on top of the list regardless the version key value is
+#prerelease: alpha
+asciidoc:
+  attributes:
+    bonitaVersion: 2022.1
+    bonitaTechnicalVersion: '7.14.0' # latest public community version
+    javadocVersion: 7.14
+    crowdinBonitaVersion: 7.14
+    # page attributes
+    page-editable: true
+    page-next-release: true # TODO: When releasing beta version, set this field to false
+    page-hide-search-bar: true # TODO: When releasing beta version, set this field to false
