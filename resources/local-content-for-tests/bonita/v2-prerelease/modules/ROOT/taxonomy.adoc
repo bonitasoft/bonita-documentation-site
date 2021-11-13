@@ -1,4 +1,4 @@
-* Base
-** xref:page-01.adoc Page 01
-** xref:page-02.adoc Page 02
-** xref:page-03.adoc Page 03
+* Next version
+** xref:page-01.adoc[Page 01]
+** xref:page-02.adoc[Page 02]
+** xref:page-03.adoc[Page 03]
