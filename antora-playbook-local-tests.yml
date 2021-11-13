@@ -1,0 +1,39 @@
+site:
+  title: Local Tests
+  # features that depend on the site URL: https://docs.antora.org/antora/2.3/playbook/site-url/#when-should-the-site-url-be-set
+  url: https://documentation.bonitasoft.com/
+  start_page: bonita::index.adoc
+  robots: allow
+
+# see https://docs.antora.org/antora/2.3/playbook/configure-runtime/
+runtime:
+  cache_dir: ./.cache/antora
+
+content:
+  # When adding a new url, add a new entry in generate-content-for-preview-antora-playbook.js to manage PR preview
+  # The site preview only use the latest declared branch for each source
+  sources:
+    - url: ./local-content-for-tests/bonita/v2-prereleases
+      branches: HEAD
+ui:
+  bundle:
+    url: ./resources/antora-ui-bundle.zip
+
+asciidoc:
+  # Only enable for preview, we don't care for production and it can have performance impacts
+  # https://docs.antora.org/antora/3.0/playbook/asciidoc-sourcemap/
+  sourcemap: false
+  extensions:
+    - ./lib/source-url-include-processor.js
+    - ./lib/json-config-ui-block-macro.js
+    - ./lib/inline-man-macro.js
+    - ./lib/multirow-table-head-tree-processor.js
+    - ./lib/swagger-ui-block-macro.js
+    - ./lib/tabs-block.js
+urls:
+  html_extension_style: drop
+  redirect_facility: netlify
+  ##### new with Antora 3.0
+  latest_version_segment: latest
+  latest_prerelease_version_segment: next
+  latest_version_segment_strategy: redirect:to
