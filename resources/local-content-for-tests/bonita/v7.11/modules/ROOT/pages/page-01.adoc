@@ -1,3 +1,4 @@
 = Page 01
+:page-aliases: old-page-01.adoc
 
 Content
