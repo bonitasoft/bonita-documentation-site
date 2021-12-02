@@ -1,5 +1,6 @@
 name: bonita
 title: Bonita
+#version: 0
 version: '0' # Must be a string with Antora 3, otherwise act like if value is ~ or undefined (new version-less value)
 display_version: Archives
 start_page: ROOT:archives.adoc

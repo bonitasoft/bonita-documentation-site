@@ -13,6 +13,7 @@ content:
   sources:
     - url: ./
       start_paths:
+        - ./resources/local-content-for-tests/bonita/v2021.1
         - ./resources/local-content-for-tests/bonita/v7.11
         - ./resources/local-content-for-tests/bonita/v0
         - ./resources/local-content-for-tests/bonita/v1-prerelease
