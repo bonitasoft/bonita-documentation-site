@@ -44,7 +44,7 @@
 # Bonita Community redirect to getting Started
 [[redirects]]
   from = "/bonita/*/_getting-started-tutorial"
-  to = "/bonita/latest/tutorial-overview"
+  to = "/bonita/latest/getting-started/getting-started-index"
 
 # Redirect for next dev version
 [[redirects]]
@@ -75,11 +75,11 @@ to = "/bonita/0/"
 # specific redirects for 6.x-7.2
 [[redirects]]
 from = "/6.x-7.2/install-tomcat-service-windows"
-to = "/bonita/latest/bonita-as-windows-service"
+to = "/bonita/latest/runtime/bonita-as-windows-service"
 
 [[redirects]]
 from = "/6.x-7.2/create-your-first-project-web-rest-api-and-maven"
-to = "/bonita/latest/rest-api-extensions"
+to = "/bonita/latest/api/rest-api-extension-archetype"
 
 # defaults redirects for 6.x-7.2
 # WARN: ensure specific redirects are defined before this one
