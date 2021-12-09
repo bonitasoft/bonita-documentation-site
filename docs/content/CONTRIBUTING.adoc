@@ -234,6 +234,7 @@ Attachments are also possible: https://docs.antora.org/antora/2.3/attachments-di
 
 === Troubleshooting sections
 https://documentation.bonitasoft.com/bonita/2021.2/bonita-overview/ui-designer-overview#_troubleshooting[Here is a good example] of what *Troubleshooting sections* should look like:
+
 * What is always here: 
  ** The icon with a screen and a monkey wrench. xref:image:images/troubleshooting.png[Here is the link] to reference it
  ** Use the word "Troubleshooting" and not "Troubleshoot"
