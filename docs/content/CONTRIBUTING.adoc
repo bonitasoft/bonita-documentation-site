@@ -238,6 +238,8 @@ This allows user to download the source as attachments by providing a link direc
 ==== Attachments
 
 Attachments are also possible: https://docs.antora.org/antora/2.3/attachments-directory/
-The syntax is described in https://docs.antora.org/antora/2.3/navigation/reference-resources/
+The syntax is described in https://docs.antora.org/antora/2.3/navigation/reference-resources/ (it uses the `link` macro)
 
-TIP: Antora 3 provide a new syntax for referencing attachments. Please use this syntax instead. See https://docs.antora.org/antora/3.0/navigation/reference-resources/
+TIP: Antora 3 provide a new syntax for referencing attachments. See https://docs.antora.org/antora/3.0/navigation/reference-resources/
+Please use this syntax instead: it allows detecting broken references because it uses the `xref` macro.
+
