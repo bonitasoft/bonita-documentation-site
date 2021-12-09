@@ -38,11 +38,12 @@ asciidoc:
     - ./lib/swagger-ui-block-macro.js
     - ./lib/tabs-block.js
 urls:
-  html_extension_style: default
-  redirect_facility: static
-#  html_extension_style: drop
-#  redirect_facility: netlify
+#  html_extension_style: default
+#  redirect_facility: static
+  # For netlify tests
+  html_extension_style: drop
+  redirect_facility: netlify
   ##### new with Antora 3.0
-#  latest_version_segment: latest
-#  latest_prerelease_version_segment: next
-#  latest_version_segment_strategy: redirect:to
+  latest_version_segment: latest
+  latest_prerelease_version_segment: next
+  latest_version_segment_strategy: redirect:to
