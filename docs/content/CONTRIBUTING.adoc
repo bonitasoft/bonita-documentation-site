@@ -122,8 +122,6 @@ NOTE: If you want to see a real example, please consult the index.adoc file in h
 
 WARNING: If description in card body is too long (more than 3 lines), we will hide the excess.
 
-
-
 === Variables and attributes
 
 You can define asciidoc attributes in the `antora.yml` file at repository root and reference it in content page.
@@ -233,3 +231,16 @@ See https://docs.antora.org/antora/2.3/examples-directory/
 This allows user to download the source as attachments by providing a link directly for the code (no duplication between the actual examples and the documentation)
 
 Attachments are also possible: https://docs.antora.org/antora/2.3/attachments-directory/
+
+=== Troubleshooting sections
+https://documentation.bonitasoft.com/bonita/2021.2/bonita-overview/ui-designer-overview#_troubleshooting[Here is a good example] of what *Troubleshooting sections* should look like:
+* What is always here: 
+ ** The icon with a screen and a monkey wrench. xref:image:images/troubleshooting.png[Here is the link] to reference it
+ ** Use the word "Troubleshooting" and not "Troubleshoot"
+ 
+* What should not be there:
+  ** Additional lines above and below the content of the section. The title already provides a separator between the title and the content.
+
+* What depends on the position of the troubleshooting section in the page:
+  ** A separator above the "Troubleshooting" title of the section, only needed if this section appears at the bottom of the page and addresses the whole content of the page
+  ** The level of the header ; it should be the same than the content if is related to
