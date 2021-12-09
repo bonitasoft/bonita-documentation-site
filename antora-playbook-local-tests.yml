@@ -8,6 +8,9 @@ site:
 # see https://docs.antora.org/antora/2.3/playbook/configure-runtime/
 runtime:
   cache_dir: ./.cache/antora
+  log:
+    # use pretty even on CI
+    format: pretty
 
 content:
   sources:
