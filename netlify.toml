@@ -13,10 +13,13 @@
 ########################################
 # Bonita redirects
 ########################################
+# use http 302 as the Antora 3 does with https://docs.antora.org/antora/3.0/playbook/urls-latest-version-segment-strategy/
+# Comparing to http 200, the user doesn't have the 'latest' url in the browser navigation bar
+# but this ensures that other redirects (especially those generated from aliases) are considered when using the 'latest' url
 [[redirects]]
   from = "/bonita/latest/*"
   to = "/bonita/2021.2/:splat"
-  status = 200
+  status = 302
 
 [[redirects]]
   from = "/bonita/"
