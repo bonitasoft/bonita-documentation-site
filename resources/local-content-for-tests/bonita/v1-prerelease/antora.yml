@@ -5,9 +5,10 @@ nav:
 
 version: 1
 display_version: 2022.1-alpha
-## When set with Antora 3, the version is put on top of the list. It is correctly considered as a prerelease (not selected by default)
-# Act like if prereleases are always on top of the list regardless the version key value is
-#prerelease: alpha
+# When set with Antora 3, the version is put on top of the list. It is correctly considered as a prerelease (not selected by default)
+# pre-releases are always on top of the list regardless the version key value is
+# Change is Antora 3: see https://antora.zulipchat.com/#narrow/stream/282400-users/topic/Antora.203.20question.20-.20component.20prerelease.20versions.20order
+prerelease: alpha
 asciidoc:
   attributes:
     bonitaVersion: 2022.1
