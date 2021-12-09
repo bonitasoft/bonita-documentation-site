@@ -225,11 +225,19 @@ target component versions. See https://github.com/bonitasoft/bonita-documentatio
 ====
 
 
-=== Make assets available as downloadable file
+=== Make assets available as downloadable files
+
+
+==== Examples
 
 The `examples` directory can be used to store source code which can then easily be integrated in the documentation. +
 See https://docs.antora.org/antora/2.3/examples-directory/
 
 This allows user to download the source as attachments by providing a link directly for the code (no duplication between the actual examples and the documentation)
 
+==== Attachments
+
 Attachments are also possible: https://docs.antora.org/antora/2.3/attachments-directory/
+The syntax is described in https://docs.antora.org/antora/2.3/navigation/reference-resources/
+
+TIP: Antora 3 provide a new syntax for referencing attachments. Please use this syntax instead. See https://docs.antora.org/antora/3.0/navigation/reference-resources/
