@@ -20,7 +20,7 @@ content:
         - ./resources/local-content-for-tests/bonita/v2021.1
         - ./resources/local-content-for-tests/bonita/v7.11
         - ./resources/local-content-for-tests/bonita/v0
-        - ./resources/local-content-for-tests/bonita/v1-prerelease
+        - ./resources/local-content-for-tests/bonita/v1-for-2022.1-alpha
       branches: HEAD
 ui:
   bundle:
