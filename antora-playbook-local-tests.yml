@@ -25,12 +25,12 @@ content:
         # Simulate 2022.1 beta
         - ./resources/local-content-for-tests/bonita/v2022.1-beta
         # Also starting 2022.2 alpha
-        # - ./resources/local-content-for-tests/bonita/v1-for-2022.2-alpha
+        - ./resources/local-content-for-tests/bonita/v1-for-2022.2-alpha
       branches: HEAD
 ui:
   bundle:
-    url: ./resources/local-content-for-tests/default-ui-bundle.zip
-#      url: ./resources/antora-ui-bundle.zip
+#    url: ./resources/local-content-for-tests/default-ui-bundle.zip
+      url: ./resources/antora-ui-bundle.zip
 
 asciidoc:
   # Only enable for preview, we don't care for production and it can have performance impacts
