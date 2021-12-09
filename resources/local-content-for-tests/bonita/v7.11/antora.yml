@@ -9,6 +9,7 @@ asciidoc:
     page-out-of-support: false
     page-hide-search-bar: false
     page-navigation: true
+    bonitaVersion: 7.11
 nav:
   - modules/ROOT/taxonomy.adoc
   - modules/module-01/nav.adoc
