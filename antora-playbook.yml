@@ -11,6 +11,7 @@ runtime:
   # use pretty even on CI
   log:
     format: pretty
+    level: info
 
 content:
   # When adding a new url, add a new entry in generate-content-for-preview-antora-playbook.js to manage PR preview
@@ -41,6 +42,12 @@ content:
 ui:
   bundle:
     url: ./resources/antora-ui-bundle.zip
+
+antora:
+  extensions:
+    - id: versions-sorter
+      require: ./lib/antora/versions-sorter-extension.js
+      enabled: true
 
 asciidoc:
   # Only enable for preview, we don't care for production and it can have performance impacts
