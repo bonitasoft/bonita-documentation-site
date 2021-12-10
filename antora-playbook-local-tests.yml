@@ -5,6 +5,9 @@ site:
   start_page: bonita::index.adoc
   robots: allow
 
+output:
+  clean: true
+
 # see https://docs.antora.org/antora/2.3/playbook/configure-runtime/
 runtime:
   cache_dir: ./.cache/antora
@@ -29,8 +32,15 @@ content:
       branches: HEAD
 ui:
   bundle:
-#    url: ./resources/local-content-for-tests/default-ui-bundle.zip
-      url: ./resources/antora-ui-bundle.zip
+    url: ./resources/local-content-for-tests/default-ui-bundle.zip
+#      url: ./resources/antora-ui-bundle.zip
+
+antora:
+  extensions:
+    - id: versions-sorter
+      require: ./lib/antora/versions-sorter-extension.js
+      enabled: true
+      custom: value
 
 asciidoc:
   # Only enable for preview, we don't care for production and it can have performance impacts
