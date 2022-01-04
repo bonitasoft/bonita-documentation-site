@@ -17,7 +17,7 @@ on:
     paths:
       - 'resources/*'
       - 'antora-playbook.yml'
-      - '.github/workflows/generate-documentation.yml'
+      - '.github/workflows/publish-production.yml'
       - 'netlify.toml'
 jobs:
   deploy_to_netlify:

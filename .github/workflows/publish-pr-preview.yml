@@ -9,7 +9,7 @@ on:
     paths:
       - 'resources/*'
       - 'antora-playbook.yml'
-      - '.github/workflows/generate-documentation.yml'
+      - '.github/workflows/publish-pr-preview.yml'
 jobs:
   build_preview:
     runs-on: ubuntu-20.04
