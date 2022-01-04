@@ -27,6 +27,8 @@ jobs:
       COMPONENT: ${{ github.event.client_payload.component || github.event.inputs.component }}
       BRANCH: ${{ github.event.client_payload.branch || github.event.inputs.branch }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - uses: ./.github/actions/build-setup
       - name: Install dependencies
         run: npm ci

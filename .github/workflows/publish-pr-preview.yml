@@ -16,6 +16,9 @@ jobs:
     env:
       PR_NUMBER: ${{ github.event.pull_request.number }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        if: github.event.action != 'closed'
       - uses: ./.github/actions/build-setup
         if: github.event.action != 'closed'
       - name: Compute environment variables
