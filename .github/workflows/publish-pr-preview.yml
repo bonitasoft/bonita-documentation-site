@@ -16,21 +16,10 @@ jobs:
     env:
       PR_NUMBER: ${{ github.event.pull_request.number }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: ./.github/actions/build-setup
         if: github.event.action != 'closed'
-      - name: Setup node
-        if: github.event.action != 'closed'
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - uses: actions/cache@v2
-        if: github.event.action != 'closed'
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
       - name: Compute environment variables
+        if: github.event.action != 'closed'
         run: |
           echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF#refs/heads/})" >> $GITHUB_ENV
           # the surge-preview action generates https://{{repository.owner}}-{{repository.name}}-{{job.name}}-pr-{{pr.number}}.surge.sh
