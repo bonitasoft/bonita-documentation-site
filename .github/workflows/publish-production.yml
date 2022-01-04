@@ -19,6 +19,11 @@ on:
       - 'antora-playbook.yml'
       - '.github/workflows/publish-production.yml'
       - 'netlify.toml'
+
+permissions:
+  # netlify: notify deployments
+  deployments: write
+
 jobs:
   deploy_to_netlify:
     runs-on: ubuntu-20.04
