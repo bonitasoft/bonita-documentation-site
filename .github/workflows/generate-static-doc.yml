@@ -23,7 +23,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - uses: ./.github/actions/build-setup
+      - name: Build Setup
+        uses: ./.github/actions/build-setup
       - name: Generate static documentation
         run: |
             ./build-preview.bash --branch "${{ github.event.inputs.branch }}" --component "${{ github.event.inputs.component }}" \

@@ -29,7 +29,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - uses: ./.github/actions/build-setup
+      - name: Build Setup
+        uses: ./.github/actions/build-setup
       - name: Install dependencies
         run: npm ci
       - name: Build docs
