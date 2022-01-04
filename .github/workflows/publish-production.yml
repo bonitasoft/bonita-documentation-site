@@ -17,6 +17,7 @@ on:
     paths:
       - 'resources/*'
       - 'antora-playbook.yml'
+      - '.github/actions/build-setup/*'
       - '.github/workflows/publish-production.yml'
       - 'netlify.toml'
 
