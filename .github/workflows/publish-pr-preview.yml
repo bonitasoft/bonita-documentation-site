@@ -12,7 +12,8 @@ on:
       - '.github/workflows/publish-pr-preview.yml'
 
 permissions:
-  pull-requests: read
+  # surge-preview creates or updates PR comments about the deployment status
+  pull-requests: write
 
 jobs:
   build_preview:
