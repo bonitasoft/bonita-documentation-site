@@ -38,10 +38,10 @@ More details are available in the xref:docs/architecture.adoc[Architecture Docum
 === Requirements
 
 
-{url-node}[Node 12.x] (may work with newer versions, no guarantee). For more details, see the  https://docs.antora.org/antora/2.3/install-and-run-quickstart/[Antora installation guide].
+{url-node}[Node 16.x] (may work with newer versions, no guarantee).
 
 While you can install Node from the official packages, we strongly recommend that you use {url-nvm}[nvm] (Node Version Manager) to install and manage Node.
-Follow the {url-nvm-install}[nvm installation instructions] to set up nvm on your machine.
+Follow the {url-nvm-install}[nvm installation instructions] to set up nvm on your machine. Then run `nvm use`.
 
 [NOTE]
 ====
