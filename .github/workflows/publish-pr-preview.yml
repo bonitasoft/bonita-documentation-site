@@ -23,8 +23,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         if: github.event.action != 'closed'
-      - name: Build Setup
-        uses: ./.github/actions/build-setup
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
         if: github.event.action != 'closed'
       - name: Compute environment variables
         if: github.event.action != 'closed'
