@@ -9,28 +9,27 @@ on:
     paths:
       - 'resources/*'
       - 'antora-playbook.yml'
-      - '.github/workflows/generate-documentation.yml'
+      - '.github/actions/build-setup/*'
+      - '.github/workflows/publish-pr-preview.yml'
+
+permissions:
+  # surge-preview creates or updates PR comments about the deployment status
+  pull-requests: write
+
 jobs:
   build_preview:
     runs-on: ubuntu-20.04
     env:
       PR_NUMBER: ${{ github.event.pull_request.number }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
         if: github.event.action != 'closed'
-      - name: Setup node
+      - name: Build Setup
+        uses: ./.github/actions/build-setup
         if: github.event.action != 'closed'
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - uses: actions/cache@v2
-        if: github.event.action != 'closed'
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
       - name: Compute environment variables
+        if: github.event.action != 'closed'
         run: |
           echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF#refs/heads/})" >> $GITHUB_ENV
           # the surge-preview action generates https://{{repository.owner}}-{{repository.name}}-{{job.name}}-pr-{{pr.number}}.surge.sh
