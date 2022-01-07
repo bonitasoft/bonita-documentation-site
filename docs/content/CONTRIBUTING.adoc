@@ -225,14 +225,26 @@ target component versions. See https://github.com/bonitasoft/bonita-documentatio
 ====
 
 
-=== Make assets available as downloadable file
+=== Make assets available as downloadable files
+
+==== Examples
 
 The `examples` directory can be used to store source code which can then easily be integrated in the documentation. +
 See https://docs.antora.org/antora/2.3/examples-directory/
 
 This allows user to download the source as attachments by providing a link directly for the code (no duplication between the actual examples and the documentation)
 
+==== Attachments
+
 Attachments are also possible: https://docs.antora.org/antora/2.3/attachments-directory/
+The syntax is described in https://docs.antora.org/antora/2.3/navigation/reference-resources/ (it uses the `link` macro)
+
+[TIP]
+====
+Antora 3 provides a new syntax for referencing attachments. See https://docs.antora.org/antora/3.0/navigation/reference-resources/ +
+Please prefer this syntax when Antora 3 will be used to build the site: it allows detecting broken references because it uses the `xref` macro.
+====
+
 
 === Troubleshooting sections
 https://documentation.bonitasoft.com/bonita/2021.2/bonita-overview/ui-designer-overview#_troubleshooting[Here is a good example] of what *Troubleshooting sections* should look like:
