@@ -227,7 +227,6 @@ target component versions. See https://github.com/bonitasoft/bonita-documentatio
 
 === Make assets available as downloadable files
 
-
 ==== Examples
 
 The `examples` directory can be used to store source code which can then easily be integrated in the documentation. +
