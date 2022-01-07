@@ -19,7 +19,7 @@ See explanation and images in xref:migration-steps-put-the-site-live.adoc[global
 The documentation content branch for the old documentation site also contained scripts and extra files that are not needed anymore.
 They should be removed as part of the initial conversion.
 
-See https://github.com/bonitasoft/bonita-ici-doc/pull/118[BICI Doc PR #118] for an example.
+See https://github.com/bonitasoft/bonita-labs-doc/pull/118[Labs Doc PR #118] for an example.
 
 Examples of removed files
 

@@ -130,11 +130,15 @@ For instance:
 ----
 root
   |
+  -- bonita-cloud-doc
+  |
+  -- bonita-continuous-delivery-doc
+  |
   -- bonita-doc
   |
-  -- bonita-ici-doc
-  |
   -- bonita-documentation-site
+  |
+  -- bonita-labs-doc
 ----
 ====
 

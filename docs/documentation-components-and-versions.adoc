@@ -49,7 +49,7 @@ No version Antora component: https://docs.antora.org/antora/2.3/component-with-n
 The documentation site search crawling and widget we have setup, require a component and a version. In case of version less
 components, there is no version token in the url, so this defeats the mechanism in place.
 
-See https://github.com/bonitasoft/bonita-ici-doc/pull/127#discussion_r585309113 for extra information.
+See https://github.com/bonitasoft/bonita-labs-doc/pull/127#discussion_r585309113 for extra information.
 
 
 === DocSearch configuration

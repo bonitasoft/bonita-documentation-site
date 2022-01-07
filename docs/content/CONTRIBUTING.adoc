@@ -199,8 +199,10 @@ ____
 
 IMPORTANT: Impact on SEO
 
-See https://docs.antora.org/antora/2.3/page/page-aliases. +
-Successfully experimented in https://github.com/bonitasoft/bonita-ici-doc#123
+See
+
+* https://docs.antora.org/antora/2.3/page/page-aliases
+* https://github.com/bonitasoft/bonita-labs-doc/pull/123 for an example applied to our documentation
 
 === Adding link between two components or between versions of the same component
 
@@ -235,10 +237,10 @@ Attachments are also possible: https://docs.antora.org/antora/2.3/attachments-di
 === Troubleshooting sections
 https://documentation.bonitasoft.com/bonita/2021.2/bonita-overview/ui-designer-overview#_troubleshooting[Here is a good example] of what *Troubleshooting sections* should look like:
 
-* What is always here: 
+* What is always here:
  ** The icon with a screen and a monkey wrench. https://github.com/bonitasoft/bonita-doc/blob/2021.2/modules/ROOT/assets/images/images/troubleshooting.png[Here is the link] to reference it
  ** Use the word "Troubleshooting" and not "Troubleshoot"
- 
+
 * What should not be there:
   ** Additional lines above and below the content of the section. The title already provides a separator between the title and the content.
 
