@@ -28,7 +28,7 @@ content:
         - "2021.1"
         - "2021.2"
         - "2022.1"
-    - url: https://github.com/bonitasoft/bonita-ici-doc.git
+    - url: https://github.com/bonitasoft/bonita-labs-doc.git
       branches:
         - "master"
     - url: https://github.com/bonitasoft/bonita-continuous-delivery-doc.git

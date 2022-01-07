@@ -17,8 +17,14 @@ on:
     paths:
       - 'resources/*'
       - 'antora-playbook.yml'
-      - '.github/workflows/generate-documentation.yml'
+      - '.github/actions/build-setup/*'
+      - '.github/workflows/publish-production.yml'
       - 'netlify.toml'
+
+permissions:
+  # netlify: notify deployments
+  deployments: write
+
 jobs:
   deploy_to_netlify:
     runs-on: ubuntu-20.04
@@ -27,17 +33,10 @@ jobs:
       COMPONENT: ${{ github.event.client_payload.component || github.event.inputs.component }}
       BRANCH: ${{ github.event.client_payload.branch || github.event.inputs.branch }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build Setup
+        uses: ./.github/actions/build-setup
       - name: Install dependencies
         run: npm ci
       - name: Build docs
