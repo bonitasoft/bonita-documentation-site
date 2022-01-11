@@ -260,14 +260,17 @@ https://documentation.bonitasoft.com/bonita/2021.2/bonita-overview/ui-designer-o
 * If there are several issues, or if there are several examples of a main issue, each one should be contained in a grey area (as you can see in https://documentation.bonitasoft.com/bonita/2021.2/identity/active-directory-or-ldap-authentication#_troubleshooting[this example]). +
 This is how to create such areas:
 
-[quote]
-____
+// here is what the writer should add as AsciiDoc markup
+[source,adoc]
+----
+
 ****
 *Symptom*
 *Cause*
 *Possible Solutions*
 ****
-____
+
+----
 
 * Depending on the position of the troubleshooting section in the page, you can:
   ** Add a separator above the "Troubleshooting" title of the section, if this section appears at the bottom of the page and addresses the whole content of the page
