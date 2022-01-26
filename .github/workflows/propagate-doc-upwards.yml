@@ -1,0 +1,75 @@
+name: Propagate documentation content upwards
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+jobs:
+  propagate-doc-upwards:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Setup checkout
+        uses: actions/checkout@v2
+        with:
+          path: ./bonita-documentation-site
+      - name: Setup checkout
+        uses: actions/checkout@v2
+        with:
+          repository: bonitasoft/bonita-doc/
+          token: ${{ secrets.GH_PERSONNAL_ACCES_TOKEN }}
+          path: ./bonita-doc
+
+      - name: Run propagate doc updward
+        run: |
+          cd ./bonita-doc
+          
+          # allow to keep our changes when merge=ours specified in .gitattributes
+          git config merge.ours.driver true
+          
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+                   
+          echo "########################################"
+          echo "Performing the doc propagation"
+          echo "########################################"
+          
+          chmod +x ./../bonita-documentation-site/scripts/propagate_doc_upwards.sh
+          ./.././bonita-documentation-site/scripts/propagate_doc_upwards.sh
+                    
+
+      - name: Send message to Slack channel
+        if: failure()
+        uses: slackapi/slack-github-action@v1.17.0
+        with:
+          channel-id: 'CCQGMR4ES'
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ":fire:  Propagation documentation upwards failed. \n \n  @channel *We need someone* ! \n  - Add a :fire_extinguisher:if you take the action to resolve the conflicts (only one person is required) \n - Add a :sweat_drops: when it’s done (and eventually a :party_parrot: )"
+                  }
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "More details <https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}?check_suite_focus=true| here>"
+                  }
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ":female-firefighter: Good luck my friend :male-firefighter: "
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
