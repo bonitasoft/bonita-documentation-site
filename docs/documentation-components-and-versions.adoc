@@ -133,6 +133,14 @@ asciidoc:
     page-out-of-support: true
 ----
 
+[WARNING]
+====
+Don't forget to update `../src/propagate_doc_upwards.sh`.
+
+More details <<update-merge-doc-upwards, here>>
+====
+
+
 === Mark version as 'Next-release'
 
 Edit the related antora.yml file of the component version, make the content not searchable, and adding an information message.
@@ -165,3 +173,30 @@ See https://docs.antora.org/antora/2.3/component-prerelease/ to know how to
 * mark a prerelease version
 * display beta/rc additionnal information in the version
 * impact on default version and version ordering
+
+
+=== Propagate documentation upwards
+
+An action is available (and is triggered each night) to propagate documentation changes upwards to avoid you to update all branches.
+
+Example: _We want to merge branches 2021.1 into 2021.2, 2021.2 into 2022.1 ..._
+
+To do it, run `Propagate documentation content upwards` action.
+
+[NOTE]
+====
+* If an error occurs during the propagation, a Slack notification is sending to a channel
+* The most common root cause is some conflict to manage manually
+====
+
+
+[[update-merge-doc-upwards]]
+==== Update script when adding or removing a version
+
+In `scripts/propagate_doc_upwards.sh`, adapt the `main code` section according to your needs.
+
+```
+merge 2021.1 2022.2
+        means
+Propagate changes from 2021.1 branches to 2022.2
+```
