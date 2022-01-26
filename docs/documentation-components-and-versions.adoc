@@ -137,7 +137,7 @@ asciidoc:
 ====
 Don't forget to update `../src/propagate_doc_upwards.sh`.
 
-More details <<update-merge-doc-upwards, here>>]
+More details <<update-merge-doc-upwards, here>>
 ====
 
 
