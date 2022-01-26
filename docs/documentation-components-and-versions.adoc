@@ -179,7 +179,7 @@ See https://docs.antora.org/antora/2.3/component-prerelease/ to know how to
 
 An action is available (and is triggered each night) to propagate documentation changes upwards to avoid you to update all branches.
 
-[.underline]#Example#: We want to merge branches 2021.1 into 2021.2, 2021.2 into 2022.1 ...
+Example: _We want to merge branches 2021.1 into 2021.2, 2021.2 into 2022.1 ..._
 
 To do it, run `Propagate documentation content upwards` action.
 
