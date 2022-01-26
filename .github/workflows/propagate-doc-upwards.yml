@@ -1,4 +1,4 @@
-name: Propagate documentation content upwards
+name: Propagate documentation
 on:
   schedule:
     - cron: '0 4 * * *'
