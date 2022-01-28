@@ -68,7 +68,7 @@ This includes building the documentation using:
 * already checkout local documentation content repositories
 * single branch for all components
 * single branch of a single component
-* a set of branches of various components. This lets validate https://docs.antora.org/antora/2.3/page/version-and-component-xrefs/[references between pages that belong to different docs components and/or versions]
+* a set of branches of various components. It lets validate https://docs.antora.org/antora/2.3/page/version-and-component-xrefs/[references between pages that belong to different docs components and/or versions]
 * ....
 
 To know all available options, run
@@ -112,7 +112,7 @@ Then, this custom playbook is passed to the Antora CLI along with specific optio
 
 
 [[local-content]]
-==== Using local documentation content repositories
+===== Using local documentation content repositories
 
 This activates the https://docs.antora.org/antora/2.3/playbook/author-mode/[Antora author mode]. +
 Antora uses the locally cloned repositories as they are on your local machine instead of cloning them from their remote location.
@@ -147,6 +147,20 @@ This can be achieved by running
 [source,shell script]
 ----
 ./build-preview-dev.bash --local-sources ....
+----
+
+===== Using test documentation content
+
+To play with settings, validate the UI Bundle, experiment AsciiDoc syntax and much more, the `bonita-documentation-site` repository provides
+a test site structure with documentation content.
+
+The generation site generation is very fast, so using this content reduces the feedback loop.
+
+This can be achieved by running
+
+[source,shell script]
+----
+./build-preview-dev.bash --use-test-sources ....
 ----
 
 [[local-ui-bundle]]
@@ -189,6 +203,20 @@ For a faster loop, don't forget you can build the UI Bundle and the preview by c
 ----
 <ui_bundle_build_command> ; ./build-preview-dev.bash --local-ui-bundle ...
 ----
+
+===== Using the Default Antora UI
+
+Sometimes, you need to compare the site rendering with this bundle if you suspect a bug in the Bonita documentation theme.
+
+This can be achieved by running
+
+[source,shell script]
+----
+./build-preview-dev.bash --default-ui-bundle ...
+----
+
+If you want to ensure you use the latest version of the bundle pass `--default-ui-bundle snapshot`. Otherwise, a cache
+version is used. For more details, see the https://docs.antora.org/antora/2.3/playbook/ui-bundle-url/#snapshot[Antora Documentation]
 
 
 ==== http dev server

@@ -1,0 +1,4 @@
+= Page 01 in module 02
+:page-aliases: old-page01.adoc
+
+Content in {bonitaVersion}

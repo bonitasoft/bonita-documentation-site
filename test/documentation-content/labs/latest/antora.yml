@@ -1,0 +1,10 @@
+name: labs
+version: latest
+title: Labs
+display_version: labs
+asciidoc:
+  attributes:
+    page-editable: true
+nav:
+  - modules/ROOT/taxonomy.adoc
+

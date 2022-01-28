@@ -1,0 +1,4 @@
+= Page 02
+:page-pagination:
+
+Content

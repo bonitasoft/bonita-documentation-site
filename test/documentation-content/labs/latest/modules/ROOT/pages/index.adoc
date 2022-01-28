@@ -1,0 +1,5 @@
+= Home
+
+I am the home of {page-component-title}
+
+
