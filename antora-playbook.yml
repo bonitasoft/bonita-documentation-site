@@ -48,7 +48,6 @@ antora:
   extensions:
     - id: versions-sorter
       require: ./lib/antora/versions-sorter-extension.js
-      enabled: true
 
 asciidoc:
   # Only enable for preview, we don't care for production and it can have performance impacts
