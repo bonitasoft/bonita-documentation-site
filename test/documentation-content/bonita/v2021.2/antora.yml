@@ -1,0 +1,17 @@
+name: bonita
+title: Bonita
+version: 2021.2
+start_page: ROOT:index.adoc
+asciidoc:
+  attributes:
+    page-editable: true
+    page-out-of-support: false
+    page-hide-search-bar: false
+    page-navigation: true
+    # out of the box by the default UI and in bonita-theme
+    page-pagination: true
+    bonitaVersion: 2021.2
+nav:
+  - modules/ROOT/taxonomy.adoc
+  - modules/module-01/nav.adoc
+  - modules/module-02/nav.adoc

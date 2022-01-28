@@ -17,6 +17,7 @@ function usage() {
   echo "  - use-all-repositories"
   echo "  - single-branch-per-repo"
   echo "  - use-multi-repositories"
+  echo "  - use-test-sources"
   echo "If no specific options: single branch per component"
   echo ""
   echo "Globals"
@@ -27,6 +28,7 @@ function usage() {
   echo "      --component <component-name>            Name of the component when keeping a single branch per component"
   echo "      --component-with-branches <form>        Components and branches when using 'Multiple Repositories'."
   echo "                                              Pass one argument per component. For instance, --component-with-branches bcd:3.4 --component-with-branches bonita:7.11,2021.1"
+  echo "      --default-ui-bundle <parameter>         If set, use the Antora Default UI. If set to 'snapshot', fetch the bundle instead of retrieving it from the cache. Defaults to 'false'"
   echo "      --fetch-sources <boolean>               'true': fetch documentation content sources prior building the documentation. Defaults to 'false' (on CI, fetch is always done)"
   echo "      --force-production-navbar <boolean>     'true': use the regular navbar instead of the preview one. Defaults to 'false'"
   echo "      --hide-edit-page-links <boolean>        'true': hide all edit page links (useful when generating documentation archive). Defaults to 'false'"
@@ -41,6 +43,7 @@ function usage() {
   echo "                                              If set to 'netlify', use the configuration for the whole Netlify environment (for use with the dev server)."
   echo "      --use-all-repositories <boolean>        If set to 'true', use all sources repositories and branches defined in the production Antora playbook. Defaults to 'false'"
   echo "      --use-multi-repositories <boolean>      If set to 'true', use several repositories and branches passed with the --component-with-branches options. Defaults to 'false'"
+  echo "      --use-test-sources <boolean>            If set to 'true', use documentation stored in the bonita-documentation-site repository (for testing). Defaults to 'false'"
 
   echo "Environment configuration"
   echo "      --ci <boolean>                          'false': assume the script is running on local dev machine and don't run some setup commands. Defaults to 'true'"

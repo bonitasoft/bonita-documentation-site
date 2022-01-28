@@ -1,0 +1,9 @@
+name: cloud
+title: Bonita Cloud
+version: latest
+asciidoc:
+  attributes:
+    page-editable: true
+nav:
+  - modules/ROOT/taxonomy.adoc
+

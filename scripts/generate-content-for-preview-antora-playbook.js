@@ -53,6 +53,7 @@ function getArgumentAsArray(args, argName, isMandatory) {
 const useAllComponents = getArgument(argv, 'use-all-repositories', false);
 const useSingleBranchPerComponent = getArgument(argv, 'single-branch-per-repo', false);
 const useMultiComponents = getArgument(argv, 'use-multi-repositories', false);
+const useTestSources = getArgument(argv, 'use-test-sources', false);
 const siteUrl = getArgument(argv, 'site-url', false)
 const prNumber = getArgument(argv, 'pr', false)
 const siteTitle = getArgument(argv, 'site-title', false)
@@ -85,7 +86,7 @@ else if (useMultiComponents) {
     const componentsWithBranches = getArgumentAsArray(argv, 'component-with-branches', true);
     console.info('Components with branches:', componentsWithBranches);
 
-    const sources = []
+    const sources = [];
     for (let componentWithBranches of componentsWithBranches) {
         const split = componentWithBranches.split(":");
         const repoUrl = getRepoUrl(split[0]);
@@ -93,6 +94,25 @@ else if (useMultiComponents) {
         sources.push({url: repoUrl, branches: branchNames});
     }
     doc.content.sources = sources;
+}
+else if (useTestSources) {
+    console.info('Documentation content: use test sources');
+    doc.content.sources = [{
+        url: './',
+        branches: ['HEAD'],
+        start_paths: [
+            'test/documentation-content/bcd/3.4',
+            'test/documentation-content/bcd/3.5',
+            'test/documentation-content/bonita/v0',
+            'test/documentation-content/bonita/v1-for-2022.2-alpha',
+            'test/documentation-content/bonita/v7.11',
+            'test/documentation-content/bonita/v2021.1',
+            'test/documentation-content/bonita/v2021.2',
+            'test/documentation-content/bonita/v2022.1-beta',
+            'test/documentation-content/cloud/latest',
+            'test/documentation-content/labs/latest',
+        ],
+    }];
 }
 // single branch of a single component (pr preview)
 else {
@@ -128,6 +148,14 @@ const useLocalUIBundle = getArgument(argv, 'local-ui-bundle', false)
 console.info(`Use Local UI Bundle: ${useLocalUIBundle}`);
 if (useLocalUIBundle) {
     doc.ui.bundle.url = '../bonita-documentation-theme/build/ui-bundle.zip';
+}
+
+// use the Antora Default UI bundle
+const useDefaultUIBundle = getArgument(argv, 'default-ui-bundle', false)
+console.info(`Use Default Antora UI Bundle: ${useDefaultUIBundle}`);
+if (useDefaultUIBundle) {
+    doc.ui.bundle.url = 'https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable';
+    doc.ui.bundle.snapshot = useDefaultUIBundle === 'snapshot';
 }
 
 

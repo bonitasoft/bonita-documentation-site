@@ -1,0 +1,12 @@
+name: bonita
+title: Bonita
+version: 0 # Antora advises using string for versions (https://antora.zulipchat.com/#narrow/stream/282400-users/topic/.E2.9C.94.20Antora.203.20-.20component.20version.200.20set.20as.20number/near/263559638)
+display_version: Archives
+start_page: ROOT:archives.adoc
+asciidoc:
+  attributes:
+    page-editable: true
+    page-out-of-support: false
+    page-hide-search-bar: true
+nav:
+  - modules/ROOT/nav.adoc

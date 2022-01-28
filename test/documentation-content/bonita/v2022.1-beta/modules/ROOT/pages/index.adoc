@@ -1,0 +1,3 @@
+= Home
+
+I am the home of a pre-release of {page-component-title} {bonitaVersion}

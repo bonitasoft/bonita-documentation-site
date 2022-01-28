@@ -1,0 +1,5 @@
+= Page 01
+:page-pagination:
+:page-aliases: old-page-01.adoc
+
+Content
