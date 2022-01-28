@@ -1,8 +1,7 @@
 name: bonita
 title: Bonita
-version: 1
-display_version: 2022.2-alpha
-prerelease: alpha
+version: 2022.2
+prerelease: -alpha
 asciidoc:
   attributes:
     bonitaVersion: 2022.2
