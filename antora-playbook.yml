@@ -39,14 +39,6 @@ ui:
   bundle:
     url: ./resources/antora-ui-bundle.zip
 
-asciidoc:
-  extensions:
-    - ./lib/source-url-include-processor.js
-    - ./lib/json-config-ui-block-macro.js
-    - ./lib/inline-man-macro.js
-    - ./lib/multirow-table-head-tree-processor.js
-    - ./lib/swagger-ui-block-macro.js
-    - ./lib/tabs-block.js
 urls:
   html_extension_style: drop
   redirect_facility: netlify

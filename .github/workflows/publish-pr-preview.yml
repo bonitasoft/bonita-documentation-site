@@ -7,9 +7,9 @@ on:
     branches:
       - master
     paths:
-      - 'resources/*'
+      - 'resources/**/*'
       - 'antora-playbook.yml'
-      - '.github/actions/build-setup/*'
+      - '.github/actions/build-setup/**/*'
       - '.github/workflows/publish-pr-preview.yml'
 
 permissions:
