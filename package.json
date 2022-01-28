@@ -8,8 +8,7 @@
     "serve": "netlify dev -d build/site --debug --port 8080"
   },
   "devDependencies": {
-    "@antora/cli": "^2.3.4",
-    "@antora/site-generator-default": "^2.3.4",
+    "antora": "3.0.1",
     "fs-extra": "^9.0.1",
     "js-yaml": "^4.0.0",
     "minimist": "^1.2.5",

@@ -8,6 +8,11 @@ site:
 # see https://docs.antora.org/antora/2.3/playbook/configure-runtime/
 runtime:
   cache_dir: ./.cache/antora
+  log:
+    # use pretty even on CI
+    format: pretty
+    # set to info to get details from the Antora extensions
+    level: info
 
 content:
   # When adding a new url, add a new entry in generate-content-for-preview-antora-playbook.js to manage PR preview
@@ -38,6 +43,17 @@ content:
 ui:
   bundle:
     url: ./resources/antora-ui-bundle.zip
+
+antora:
+  extensions:
+    - id: versions-sorter
+      require: ./lib/antora/versions-sorter-extension.js
+      enabled: true
+
+asciidoc:
+  # Only enable for preview, we don't care for production and it can have performance impacts
+  # https://docs.antora.org/antora/3.0/playbook/asciidoc-sourcemap/
+  sourcemap: false
 
 urls:
   html_extension_style: drop
