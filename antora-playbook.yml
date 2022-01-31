@@ -13,7 +13,6 @@ runtime:
     format: pretty
     # set to info to get details from the Antora extensions
     level: info
-    failure_level: error
 
 content:
   # When adding a new url, add a new entry in generate-content-for-preview-antora-playbook.js to manage PR preview
