@@ -1,6 +1,10 @@
 = Home
 
-I am the home of {page-component-title} {bonitaVersion}
+I am the home of {page-component-title} {bonitaVersion}.
+
+Download this xref:attachment$README.txt[top secret document] (attachment created using the Antora 3 syntax).
+
+== AsciiDoctor 2.x collapsible blocks
 
 .Summary *Spoiler Alert!*
 [%collapsible]
