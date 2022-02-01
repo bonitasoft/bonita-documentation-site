@@ -119,6 +119,9 @@ https://github.com/bonitasoft/bonita-documentation-site/pull/195[PR #195] or htt
 
 === Mark version as 'Out of Support'
 
+NOTE: Please perform all the changes in a dedicated Pull Request (or eventually a single commit in the related branch) for consistency.
+
+
 Edit the related antora.yml file of the component version, and make the pages non-editable
 
 [source,yml]
@@ -132,6 +135,13 @@ asciidoc:
     # display a dedicated banner to warn the reader about the out-of-support state
     page-out-of-support: true
 ----
+
+In the related branch, remove the whole `.github` folder. We don't accept contribution for this version. So remove workflows and the PR template.
+
+As an example, you can check what was done for
+
+* Bonita 7.9: https://github.com/bonitasoft/bonita-doc/commit/7788fcdbc1faff52aa7973a0514c0b707399b963[commit 7788fcd]
+* Bonita 7.10: https://github.com/bonitasoft/bonita-doc/pull/1909[PR #1909]
 
 [WARNING]
 ====
