@@ -80,10 +80,12 @@ nav:
 - modules/ROOT/taxonomy.adoc
 ----
 
+IMPORTANT: Choose the `component name` carefully as it will be an element of the url that is visible to readers. It will identify the component everywhere in the documentation (for instance, to create cross component xrefs)
+
 Then, you need to add a new source in the https://github.com/bonitasoft/bonita-documentation-site/blob/master/antora-playbook.yml[Antora playbook].
 A source references the URL of the repository and all the branches to retrieve.
 +
-Also update the https://github.com/bonitasoft/bonita-documentation-site/blob/master/scripts/generate-content-for-preview-antora-playbook.js[preview script] to reference the component by short name: it will be used to
+Also update the https://github.com/bonitasoft/bonita-documentation-site/blob/master/scripts/generate-content-for-preview-antora-playbook.js[preview script] to reference the component by its name: it will be used to
 
 * generate the previews of documentation content PR in the new repository
 * identify push to production related to content change in the component
