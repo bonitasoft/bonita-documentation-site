@@ -3,39 +3,45 @@ on:
   schedule:
     - cron: '0 3 * * *'
   workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'If true, run the merge locally but do not push to remote'
+        required: false
+        default: 'false'
 
 jobs:
   propagate-doc-upwards:
     runs-on: ubuntu-20.04
     steps:
-      - name: Setup checkout
+      - name: Checkout bonita-documentation-site
         uses: actions/checkout@v2
         with:
           path: ./bonita-documentation-site
-      - name: Setup checkout
+      - name: Checkout bonita-doc
         uses: actions/checkout@v2
         with:
           repository: bonitasoft/bonita-doc
-          token: ${{ secrets.GH_PAT_TOKEN }}
+          token: ${{ secrets.GH_PAT_TOKEN }} # Dedicated token to have 'write permission' (we later push to this repository)
           path: ./bonita-doc
+          # Number of commits to fetch. 0 indicates all history for all branches and tags.
+          fetch-depth: '0'
 
       - name: Run propagate doc updward
+        env:
+          NO_PUSH: ${{ github.event.inputs.dry-run }}
         run: |
           cd ./bonita-doc
           
           # allow to keep our changes when merge=ours specified in .gitattributes
           git config merge.ours.driver true
-          
+          # configure commiter information
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
                    
           echo "########################################"
           echo "Performing the doc propagation"
           echo "########################################"
-          
-          chmod +x ./../bonita-documentation-site/scripts/propagate_doc_upwards.sh
-          ./.././bonita-documentation-site/scripts/propagate_doc_upwards.sh
-                    
+          ./.././bonita-documentation-site/scripts/propagate_doc_upwards.bash
 
       - name: Send message to Slack channel
         if: failure()
