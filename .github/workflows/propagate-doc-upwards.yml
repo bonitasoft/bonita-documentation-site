@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: '0 3 * * *'
   workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'If true, run the merge locally but do not push to remote'
+        required: false
+        default: 'false'
 
 jobs:
   propagate-doc-upwards:
@@ -22,6 +27,8 @@ jobs:
           fetch-depth: '0'
 
       - name: Run propagate doc updward
+        env:
+          NO_PUSH: ${{ github.event.inputs.dry-run }}
         run: |
           cd ./bonita-doc
           
