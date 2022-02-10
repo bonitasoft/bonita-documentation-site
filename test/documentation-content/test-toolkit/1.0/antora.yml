@@ -1,5 +1,5 @@
 name: test-toolkit
-title: Bonita test toolkit
+title: Bonita Test Toolkit
 version: '1.0'
 prerelease: -beta
 start_page: ROOT:process-testing-overview.adoc
