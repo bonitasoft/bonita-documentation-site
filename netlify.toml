@@ -55,6 +55,12 @@
   from = "/bonita/*/_getting-started-tutorial"
   to = "/bonita/latest/getting-started/getting-started-index"
 
+# Bonita next release redirect in Antora 2 legacy syntax
+[[redirects]]
+from = "/bonita/1/*"
+to = "/bonita/next/:splat"
+status = 301
+
 ########################################
 # Bonita Old Documentation redirects to Archives
 ########################################
