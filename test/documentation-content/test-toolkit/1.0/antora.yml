@@ -1,0 +1,14 @@
+name: test-toolkit
+title: Bonita test toolkit
+version: 1.0
+prerelease: beta
+start_page: ROOT:process-testing-overview.adoc
+asciidoc:
+  attributes:
+    # page attributes
+    page-editable: true
+    page-out-of-support: false
+    page-pagination: true # display links to previous/next pages at the bottom of the page
+
+nav:
+  - modules/ROOT/nav.adoc

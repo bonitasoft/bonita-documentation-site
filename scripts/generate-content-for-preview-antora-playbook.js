@@ -14,6 +14,7 @@ const repoUrls = new Map([
     ['bonita', 'https://github.com/bonitasoft/bonita-doc.git'],
     ['cloud', 'https://github.com/bonitasoft/bonita-cloud-doc.git'],
     ['labs', 'https://github.com/bonitasoft/bonita-labs-doc.git'],
+    ['test-toolkit', 'https://github.com/bonitasoft/bonita-test-toolkit-doc.git'],
 ]);
 function getRepoUrl(componentName) {
     const repoUrl = repoUrls.get(componentName);
@@ -70,7 +71,7 @@ if (useAllComponents) {
     doc.site.title = siteTitle || doc.site.title;
 }
 // single branch per component (site preview)
-else if(useSingleBranchPerComponent) {
+else if (useSingleBranchPerComponent) {
     console.info('Documentation content: single branch per component');
 
     doc.content.sources
@@ -91,7 +92,7 @@ else if (useMultiComponents) {
         const split = componentWithBranches.split(":");
         const repoUrl = getRepoUrl(split[0]);
         const branchNames = split[1].split(',');
-        sources.push({url: repoUrl, branches: branchNames});
+        sources.push({ url: repoUrl, branches: branchNames });
     }
     doc.content.sources = sources;
 }
@@ -110,6 +111,7 @@ else if (useTestSources) {
             'test/documentation-content/bonita/v2022.1-beta',
             'test/documentation-content/bonita/v2022.2-alpha',
             'test/documentation-content/cloud/latest',
+            'test/documentation-content/test-toolkit/1.0',
             'test/documentation-content/labs/latest',
         ],
     }];
@@ -124,7 +126,7 @@ else {
 
     // override the sources: only the single branch of the single component
     const repoUrl = getRepoUrl(componentName);
-    doc.content.sources = [{url: repoUrl, branches: [branchName]}];
+    doc.content.sources = [{ url: repoUrl, branches: [branchName] }];
 
     const titlePreviewPart = prNumber ? `PR #${prNumber}` : `branch '${branchName}'`;
     doc.site.title = siteTitle || `Preview ${componentName} ${titlePreviewPart}`;
@@ -160,7 +162,7 @@ if (useDefaultUIBundle) {
 
 
 if (siteUrl) {
-    doc.site.url = (siteUrl === 'DISABLED') ? undefined: siteUrl;
+    doc.site.url = (siteUrl === 'DISABLED') ? undefined : siteUrl;
 }
 // We want to ensure that wherever a preview is published, Search Engines won't index it
 doc.site.robots = 'disallow';
@@ -231,7 +233,7 @@ console.info(`Antora Playbook generated in ${outputFile}`);
 
 function repositoryNameForUrl(url) {
     const urlParts = url.split('/');
-    const repositoryName = urlParts[urlParts.length-1];
+    const repositoryName = urlParts[urlParts.length - 1];
     return repositoryName.split('.git')[0];
 }
 

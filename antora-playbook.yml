@@ -40,6 +40,9 @@ content:
       branches:
         - "3.4"
         - "3.5"
+    - url: https://github.com/bonitasoft/bonita-test-toolkit-doc.git
+      branches:
+        - "1.0"
 ui:
   bundle:
     url: ./resources/antora-ui-bundle.zip
