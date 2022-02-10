@@ -63,8 +63,6 @@ See https://github.com/algolia/docsearch-configs/pulls?q=is%3Apr+sort%3Aupdated-
 
 === How to integrate a new component
 
-Add a new source in the Antora playbook and reference a new branch. In this branch, put a `antora.yml` file at root which contains:
-
 To add a new component, you first need to create a GitHub repository which will contain the asciidoc sources of this component
 (i.e. the documentation content). This repository must be organized according to the https://docs.antora.org/antora/2.3/organize-content-files/[Antora recommendations].
 You can check existing repositories for working examples.
@@ -82,8 +80,16 @@ nav:
 - modules/ROOT/taxonomy.adoc
 ----
 
-Then, you need to add a new source in the https://github.com/bonitasoft/bonitasoft.github.io/blob/master/antora-playbook.yml[Antora playbook].
-A source references the URL of the repository and all the branches to retrieve.
+IMPORTANT: Choose the `component name` carefully as it will be an element of the url that is visible to readers. It will identify the component everywhere in the documentation (for instance, to create cross component xrefs)
+
+You should also add the GitHub workflows (PR preview, push to production, ...). Check existing components for a source of inspiration.
+
+Then, you need to add a new source in the https://github.com/bonitasoft/bonita-documentation-site/blob/master/antora-playbook.yml[Antora playbook].
+A source references the URL of the repository and all the branches to retrieve. +
+Also update the https://github.com/bonitasoft/bonita-documentation-site/blob/master/scripts/generate-content-for-preview-antora-playbook.js[preview script] to reference the component by its name: it will be used to
+
+* generate the previews of documentation content PR in the new repository
+* identify push to production related to content change in the component
 
 Finally, you have to update the https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[search configuration]
 to make this component searchable.
@@ -93,12 +99,11 @@ to make this component searchable.
 
 When we need to add a new version of one component, we need to:
 
-. Create a new branch (in the repository related to the component)
-. To add a new component, you first need to create a GitHub repository which will contain the asciidoc sources of this component (i.e. the documentation content).
-This repository must be organized according to the https://docs.antora.org/antora/2.3/organize-content-files/[Antora recommendations].
-You can check existing repositories for working examples.
-. Then, you need to add a new source in the https://github.com/bonitasoft/bonitasoft.github.io/blob/master/antora-playbook.yml[Antora playbook].
-A source references the URL of the repository and all the branches to retrieve.
+. Create a new branch (in the repository related to the component). Generally, you can start from the branch of the previous version. This lets
+.. retrieving all automation workflow (don't forget to update/adapt the configuration as done for a new component)
+.. merging change from the previous version to the new version
+. Then, you need to add the new version in the https://github.com/bonitasoft/bonita-documentation-site/blob/master/antora-playbook.yml[Antora playbook].
+This means adding the new branch to the existing component.
 . Finally, you have to update the https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[search configuration]
 to make this component searchable.
 
@@ -119,6 +124,9 @@ https://github.com/bonitasoft/bonita-documentation-site/pull/195[PR #195] or htt
 
 === Mark version as 'Out of Support'
 
+NOTE: Please perform all the changes in a dedicated Pull Request (or eventually a single commit in the related branch) for consistency.
+
+
 Edit the related antora.yml file of the component version, and make the pages non-editable
 
 [source,yml]
@@ -132,6 +140,13 @@ asciidoc:
     # display a dedicated banner to warn the reader about the out-of-support state
     page-out-of-support: true
 ----
+
+In the related branch, remove the whole `.github` folder. We don't accept contribution for this version. So remove workflows and the PR template.
+
+As an example, you can check what was done for
+
+* Bonita 7.9: https://github.com/bonitasoft/bonita-doc/commit/7788fcdbc1faff52aa7973a0514c0b707399b963[commit 7788fcd]
+* Bonita 7.10: https://github.com/bonitasoft/bonita-doc/pull/1909[PR #1909]
 
 [WARNING]
 ====
