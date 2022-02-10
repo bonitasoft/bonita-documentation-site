@@ -164,11 +164,9 @@ Edit the related antora.yml file of the component version, make the content not 
 ----
 name: componentName
 # TODO: When we are in beta release, put version: theRealVersion
-version: 1
-# TODO: remove this line when we are in beta phase
-display_version: 2022.1-alpha
+version: 2022.2
 # TODO when integrating this version to the documentation, update push-content.yml and replace alpha by beta
-prerelease: alpha
+prerelease: -alpha
 ...
 asciidoc:
   attributes:
