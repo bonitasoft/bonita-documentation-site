@@ -163,21 +163,22 @@ Edit the related antora.yml file of the component version, make the content not 
 [source,yml]
 ----
 name: componentName
-# TODO: When we are in beta release, put version: theRealVersion
-version: 1
-# TODO: remove this line when we are in beta phase
-display_version: 2022.1-alpha
-# TODO when integrating this version to the documentation, update push-content.yml and replace alpha by beta
-prerelease: alpha
+version: 2022.2
+prerelease: -alpha
 ...
 asciidoc:
   attributes:
     # Adding an info message on the top of any pages
     page-next-release: true
-    # remove search bar for this version (Because the content of next-release is not indexing by Algolia)
+    # remove search bar for this version (Because the content of next-release is initially not indexed by Algolia)
     page-hide-search-bar: true
 ----
 
+Once the Algolia crawler has indexed the next version, you can display the search bar.
+
+Additional actions
+
+* update the `netlify.toml` file and update the redirect for the `next` version
 
 === Pre-release versions
 
@@ -186,7 +187,7 @@ apply to beta and RC versions
 See https://docs.antora.org/antora/2.3/component-prerelease/ to know how to
 
 * mark a prerelease version
-* display beta/rc additionnal information in the version
+* display beta/rc additional information in the version
 * impact on default version and version ordering
 
 
@@ -210,8 +211,9 @@ To do it, run `Propagate documentation content upwards` action.
 
 In `scripts/propagate_doc_upwards.sh`, adapt the `main code` section according to your needs.
 
-```
+[source]
+----
 merge 2021.1 2022.2
         means
 Propagate changes from 2021.1 branches to 2022.2
-```
+----

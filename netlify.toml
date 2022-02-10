@@ -16,6 +16,12 @@
 # use http 302 as the Antora 3 does with https://docs.antora.org/antora/3.0/playbook/urls-latest-version-segment-strategy/
 # Comparing to http 200, the user doesn't have the 'latest' url in the browser navigation bar
 # but this ensures that other redirects (especially those generated from aliases) are considered when using the 'latest' url
+# Redirect for next dev version
+[[redirects]]
+  from = "/bonita/next/*"
+  to = "/bonita/2022.2/:splat"
+  status = 302
+
 [[redirects]]
   from = "/bonita/latest/*"
   to = "/bonita/2021.2/:splat"
@@ -49,11 +55,11 @@
   from = "/bonita/*/_getting-started-tutorial"
   to = "/bonita/latest/getting-started/getting-started-index"
 
-# Redirect for next dev version
+# Bonita next release redirect in Antora 2 legacy syntax
 [[redirects]]
-  from = "/bonita/next/*"
-  to = "/bonita/1/:splat"
-  status = 200
+from = "/bonita/1/*"
+to = "/bonita/next/:splat"
+status = 301
 
 ########################################
 # Bonita Old Documentation redirects to Archives
