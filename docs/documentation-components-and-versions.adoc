@@ -176,6 +176,10 @@ asciidoc:
 
 Once the Algolia crawler has indexed the next version, you can display the search bar.
 
+Additional actions
+
+* update the `netlify.toml` file and update the redirect for the `next` version
+
 === Pre-release versions
 
 apply to beta and RC versions
