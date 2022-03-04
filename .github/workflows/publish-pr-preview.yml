@@ -21,6 +21,11 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       PR_NUMBER: ${{ github.event.pull_request.number }}
+      BONITA_BRANCH: '2021.2'
+      BCD_BRANCH: '3.5'
+      CLOUD_BRANCH: 'master'
+      LABS_BRANCH: 'master'
+      TOOLKIT_BRANCH: '1.0'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -44,5 +49,5 @@ jobs:
           failOnError: true
           teardown: 'true'
           build: |
-            ./build-preview.bash --single- --pr "${{ env.PR_NUMBER }}" --site-url "${{ env.PREVIEW_URL }}" --single-branch-per-repo true
+            ./build-preview.bash --use-multi-repositories --component-with-branches bonita:"${{ env.BONITA_BRANCH }}" --component-with-branches bcd:"${{ env.BCD_BRANCH }}" --component-with-branches cloud:"${{ env.CLOUD_BRANCH }}" --component-with-branches labs:"${{ env.LABS_BRANCH }}" --component-with-branches test-toolkit:"${{ env.TOOLKIT_BRANCH }}" --pr "${{ env.PR_NUMBER }}" --site-url "${{ env.PREVIEW_URL }}"
             ls -lh build/site
