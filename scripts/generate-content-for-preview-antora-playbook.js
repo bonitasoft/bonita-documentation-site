@@ -105,6 +105,7 @@ else if (useTestSources) {
             'test/documentation-content/bcd/3.4',
             'test/documentation-content/bcd/3.5',
             'test/documentation-content/bonita/v0',
+            'test/documentation-content/bonita/v7.4',
             'test/documentation-content/bonita/v7.11',
             'test/documentation-content/bonita/v2021.1',
             'test/documentation-content/bonita/v2021.2',

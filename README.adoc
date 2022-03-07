@@ -219,6 +219,14 @@ If you want to ensure you use the latest version of the bundle pass `--default-u
 version is used. For more details, see the https://docs.antora.org/antora/2.3/playbook/ui-bundle-url/#snapshot[Antora Documentation]
 
 
+===== Quick fix and experiment Antora UI changes directly in the documentation site
+
+If you need/want to experiment changes without rebuilding the theme, especially if the changes only involve the template,
+you can directly put the files in the documentation site.
+
+See the https://docs.antora.org/antora/3.0/playbook/ui-supplemental-files/[Antora supplemental UI] for a complete explanation.
+
+
 ==== http dev server
 
 [NOTE]
