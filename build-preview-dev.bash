@@ -4,6 +4,6 @@
 ########################################################################################################################
 set -euo pipefail
 
-devArgs="--type local --ci false"
+devArgs="--type local"
 echo "Running 'build-preview' with dev arguments (${devArgs})"
 ./build-preview.bash "${devArgs}" "$@"

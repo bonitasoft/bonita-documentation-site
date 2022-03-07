@@ -46,7 +46,6 @@ function usage() {
   echo "      --use-test-sources <boolean>            If set to 'true', use documentation stored in the bonita-documentation-site repository (for testing). Defaults to 'false'"
 
   echo "Environment configuration"
-  echo "      --ci <boolean>                          'false': assume the script is running on local dev machine and don't run some setup commands. Defaults to 'true'"
   echo "      --only-generate-playbook                If set, only generate the preview Antora playbook and skip the documentation generation"
 }
 
@@ -54,8 +53,9 @@ function usage() {
 ########################################################################################################################
 # Parse arguments
 ########################################################################################################################
-runOnCI=true
 extraAntoraOptions=
+# the environment variable is set to true by GitHub Actions
+CI=${CI:-false}
 
 scriptOptions="$@"
 echo "Script Options: ${scriptOptions}"
@@ -67,14 +67,12 @@ if [[ "$scriptOptions" == *"--help"* ]]; then
 fi
 
 
-# if arguments contain '--ci false', don't run 'npm ci'
-if [[ "$scriptOptions" != *"--ci false"* ]]; then
+if [[ $CI == "true" ]]; then
   echo "Assume script is running on CI environment"
   # force fetch, whatever the script options are
   extraAntoraOptions="--fetch"
 else
   echo "Assume script is NOT running on CI environment"
-  runOnCI=false
 fi
 
 echo "Extra Antora Options: ${extraAntoraOptions}"
@@ -83,7 +81,7 @@ echo "Extra Antora Options: ${extraAntoraOptions}"
 ########################################################################################################################
 # PROCESSING
 ########################################################################################################################
-if [[ $runOnCI == "true" ]]; then
+if [[ $CI == "true" ]]; then
   echo "Using node $(node --version) and npm $(npm --version)"
   npm ci
 fi
