@@ -1,0 +1,14 @@
+name: bonita
+title: Bonita
+version: 7.4
+start_page: ROOT:index.adoc
+asciidoc:
+  attributes:
+    page-editable: false
+    page-out-of-support: true
+    page-hide-search-bar: true
+    page-navigation: false
+    bonitaVersion: 7.4
+nav:
+  - modules/ROOT/taxonomy.adoc
+
