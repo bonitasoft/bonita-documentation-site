@@ -14,5 +14,4 @@ jobs:
         with:
           regex: '[1-9]+ month.? ago'
         env:
-          SURGE_LOGIN: "hudson.mailer@bonitasoft.com"
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN_DOC }}
