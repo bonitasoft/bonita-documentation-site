@@ -32,8 +32,6 @@ jobs:
         run: |
           cd ./bonita-doc
           
-          # allow to keep our changes when merge=ours specified in .gitattributes
-          git config merge.ours.driver true
           # configure commiter information
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
