@@ -60,7 +60,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "More details about the error <https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}?check_suite_focus=true| here>"
+                    "text": "More details about the error <https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}?check_suite_focus=true| here> \n More details on solving the conflicts locally <https://bonitasoft.atlassian.net/wiki/spaces/BS/pages/1181483014/Bonita+documentation+site+content+update#Bonita| there>"
                   }
                 },
                 {
