@@ -81,6 +81,10 @@ to = "/bonita/0/"
 from = "/bonita/7.5/*"
 to = "/bonita/0/"
 
+[[redirects]]
+from = "/bonita/7.6/*"
+to = "/bonita/0/"
+
 ########################################
 # Bonita Legacy Documentation redirects
 ########################################
