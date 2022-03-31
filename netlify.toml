@@ -24,12 +24,12 @@
 
 [[redirects]]
   from = "/bonita/latest/*"
-  to = "/bonita/2021.2/:splat"
+  to = "/bonita/2022.1/:splat"
   status = 302
 
 [[redirects]]
   from = "/bonita/"
-  to = "/bonita/2021.2/"
+  to = "/bonita/2022.1/"
 
 # Special redirect after introduction of Bonita branding version
 [[redirects]]
