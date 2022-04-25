@@ -247,30 +247,38 @@ Please prefer this syntax when Antora 3 will be used to build the site: it allow
 
 
 === Troubleshooting sections
-https://documentation.bonitasoft.com/bonita/2021.2/bonita-overview/ui-designer-overview#_troubleshooting[Here is a good example] of what *Troubleshooting sections* should look like:
 
-* Always add:
- ** Add the icon with a screen and a monkey wrench. https://github.com/bonitasoft/bonita-doc/blob/2021.2/modules/ROOT/assets/images/images/troubleshooting.png[Here is the link to its location]
- ** Add the title "Troubleshooting" and not "Troubleshoot"
-** Sub-sections to structure the chapters:
-  *** "Symptom": describes what the user experiences
-  *** "Cause": describes the diagnosis from Bonita perspective
-  *** "Possible solutions" (if there is still uncertainty about its efficiency depending on the user's context) or "Solutions" (if we know for sure it works): a step-by-step guidance to lead the user to success.
-
-* If there are several issues, or if there are several examples of a main issue, each one should be contained in a grey area (as you can see in https://documentation.bonitasoft.com/bonita/2021.2/identity/active-directory-or-ldap-authentication#_troubleshooting[this example]). +
-This is how to create such areas:
+This is how to create a troubleshooting:
 
 // here is what the writer should add as AsciiDoc markup
 [source,adoc]
 ----
 
-****
-*Symptom*
-*Cause*
-*Possible Solutions*
-****
+[.troubleshooting-title]
+=== Troubleshooting
 
+[.troubleshooting-section]
+--
+[.symptom]
+I can't wake up in the morning, 9AM is too early for me!!!
+
+[.symptom-description]
+Here enter a symptom description
+
+[.cause]#Potential cause#
+This is probably because I often go to bed at 3AM :'(
+
+[.solution]#Possible solution#
+I should just stop watching netflix for hours...
+--
 ----
+
+https://documentation.bonitasoft.com/bonita/2021.2/bonita-overview/ui-designer-overview#_troubleshooting[Here is a good example] of what *Troubleshooting sections* should look like:
+
+* The title should be "Troubleshooting" and not "Troubleshoot"
+* "Symptom": describes what the user experiences
+* "Cause": describes the diagnosis from Bonita perspective
+* "Possible solutions" (if there is still uncertainty about its efficiency depending on the user's context) or "Solutions" (if we know for sure it works): a step-by-step guidance to lead the user to success.
 
 * Depending on the position of the troubleshooting section in the page, you can:
   ** Add a separator above the "Troubleshooting" title of the section, if this section appears at the bottom of the page and addresses the whole content of the page
