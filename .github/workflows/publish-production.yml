@@ -70,7 +70,7 @@ jobs:
         timeout-minutes: 10
       - name: Send message to Slack channel
         if: failure()
-        uses: slackapi/slack-github-action@v1.17.0
+        uses: slackapi/slack-github-action@v1.18.0
         with:
           channel-id: 'CCQGMR4ES'
           payload: |
