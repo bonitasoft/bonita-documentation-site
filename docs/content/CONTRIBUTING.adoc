@@ -12,6 +12,10 @@ endif::[]
 
 We are pleased to receive any kind of contribution (issues, pull requests, suggestions ...).
 
+=== Theme online example
+
+A https://bonitasoft.github.io/bonita-documentation-theme/index.html[website] is available to show you what is possible with our Bonita theme.
+
 == Contribution check
 
 Before opening a pull request, please check our few recommendations:
@@ -45,7 +49,6 @@ xref:../README.adoc[development documentation].
 
 == Tips for writing the documentation content
 
-
 === Media
 
 ==== Prefer source code documentation to code screenshot images
@@ -59,68 +62,6 @@ This has the following issues
 in the infrastructure (increase bill)
 * the AsciiDoc code support is very easy to set up and powerful. See https://docs.asciidoctor.org/asciidoc/latest/verbatim/source-blocks/[Source Code documentation]
 * for an example of image to source example replacement, check https://github.com/bonitasoft/bonita-doc/pull/1492[Bonita 2021.1 product-versioning replacement]
-
-==== Embed videos
-
-It is possible to embed videos as it is done in Bonita 2021.1 index page: https://docs.asciidoctor.org/asciidoc/latest/macros/audio-and-video/
-
-* A default/max size is set for the mobile view
-* there is no default for the desktop view at the moment, so you should set the dimensions when declaring the `video` macro
-as in the following example
-[example]
-+video::038g85tvzo4[youtube, width=640,height=380]+
-
-==== Asciinema
-
-https://asciinema.org/[Asciinema] provides a great way for sharing shell sessions recording, making documentation more lively !
-
-Once you have created a `.cast` file, you can add it to your document with the following markup
-
-.sample asciinema adoc.
-[source, asciidoc]
-----
-== Asciinema embedded
-
-Example of embedded asciinema recording:
-
-++++
-<asciinema-player src="_images/images/<path_to_your_cast_file>.cast" speed="2" theme="monokai" title="Example of embedded asciinema recording" cols="240" rows="32"></asciinema-player>
-++++
-----
-
-The generated AsciiDoc (before transformation by Antora) document should render like something like this:
-[.thumb]
-image::images/asciinema_sample_rendering.png[]
-
-
-
-=== Cards
-
-You can use card style in your page. Please don't abuse it, and try to only use it on index pages.
-
-.Card display in after HTML generation
-You can update *link*, *title* and description for each card.
-
-To do it, you need to use this following syntax:
-
-[source,adoc]
-----
-[.card-section]
-== Highlight
-
-[.card.card-index]
---
-yourInternalOrExternalLink[[.card-title]#Card Title# [.card-body.card-content-overflow]#pass:q[You can write a short description here to display it in the card body.]#]
---
-
-----
-
-You can use many cards in same card section. +
-Please keep this technical syntax to avoid error.
-
-NOTE: If you want to see a real example, please consult the index.adoc file in https://github.com/bonitasoft/bonita-doc/blob/2021.1/modules/ROOT/pages/index.adoc[bonita documentation GitHub repository].
-
-WARNING: If description in card body is too long (more than 3 lines), we will hide the excess.
 
 === Variables and attributes
 
@@ -167,20 +108,6 @@ This configuration then let parts like `<version>${bonita.version}</version>` no
 
 It is also possible to configure substitution globally for the block (see the documentation).
 
-=== Admonitions
-
-What are Admonitions: https://docs.asciidoctor.org/asciidoc/latest/blocks/admonitions
-
-==== GitHub may not render admonitions
-
-See this https://docs.asciidoctor.org/asciidoc/latest/blocks/admonitions/#using-emoji-for-admonition-icons[asciidoc documentation] for more details.
-
-==== Custom admonition for Cloud
-
-see https://github.com/bonitasoft/bonita-documentation-theme/pull/53
-
-
-
 === Antora modules
 
 You can use Antora modules to clarify content (for instance, getting-started guides, how-to articles). +
@@ -224,7 +151,6 @@ To be able to see them during documentation content writing, you need to build t
 target component versions. See https://github.com/bonitasoft/bonita-documentation-site/pull/222[PR #222] for more details.
 ====
 
-
 === Make assets available as downloadable files
 
 ==== Examples
@@ -244,45 +170,3 @@ The syntax is described in https://docs.antora.org/antora/2.3/navigation/referen
 Antora 3 provides a new syntax for referencing attachments. See https://docs.antora.org/antora/3.0/navigation/reference-resources/ +
 Please prefer this syntax when Antora 3 will be used to build the site: it allows detecting broken references because it uses the `xref` macro.
 ====
-
-
-=== Troubleshooting sections
-
-This is how to create a troubleshooting:
-
-// here is what the writer should add as AsciiDoc markup
-[source,adoc]
-----
-
-[.troubleshooting-title]
-=== Troubleshooting
-
-[.troubleshooting-section]
---
-[.symptom]
-I can't wake up in the morning, 9AM is too early for me!!!
-
-[.symptom-description]
-Here enter a symptom description
-
-[.cause]#Potential cause#
-This is probably because I often go to bed at 3AM :'(
-
-[.solution]#Possible solution#
-I should just stop watching netflix for hours...
---
-----
-
-https://documentation.bonitasoft.com/bonita/2021.2/bonita-overview/ui-designer-overview#_troubleshooting[Here is a good example] of what *Troubleshooting sections* should look like:
-
-* The title should be "Troubleshooting" and not "Troubleshoot"
-* "Symptom": describes what the user experiences
-* "Cause": describes the diagnosis from Bonita perspective
-* "Possible solutions" (if there is still uncertainty about its efficiency depending on the user's context) or "Solutions" (if we know for sure it works): a step-by-step guidance to lead the user to success.
-
-* Depending on the position of the troubleshooting section in the page, you can:
-  ** Add a separator above the "Troubleshooting" title of the section, if this section appears at the bottom of the page and addresses the whole content of the page
-  ** Adapt the level of the header; it should be the same than the content it is related to
-
-* Do not add:
-  ** Additional lines above and below the content of the section. The title already provides a separator between the title and the content.
