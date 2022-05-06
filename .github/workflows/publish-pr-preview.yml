@@ -7,11 +7,13 @@ on:
     branches:
       - master
     paths:
+      - '.github/actions/build-setup/**/*'
+      - '.github/workflows/publish-pr-preview.yml'
       - 'resources/**/*'
       - 'antora-playbook.yml'
       - 'build-preview.bash'
-      - '.github/actions/build-setup/**/*'
-      - '.github/workflows/publish-pr-preview.yml'
+      - 'package.json'
+      - 'package-lock.json'
 
 permissions:
   # surge-preview creates or updates PR comments about the deployment status
