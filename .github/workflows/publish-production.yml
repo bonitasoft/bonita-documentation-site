@@ -56,13 +56,14 @@ jobs:
         run:
           echo "deploy_message=Deploy ${{ github.sha }}" >> $GITHUB_ENV
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.1
+        uses: nwtgck/actions-netlify@v1.2
         with:
           publish-dir: './build/site'
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: ${{ env.deploy_message }}
           netlify-config-path: ./netlify.toml
+          github-deployment-description: ${{ env.deploy_message }}
           # no comment, we only publish to production, github commit status and environment are set correctly
           enable-pull-request-comment: false
           enable-commit-comment: false
