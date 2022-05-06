@@ -14,11 +14,11 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout bonita-documentation-site
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: ./bonita-documentation-site
       - name: Checkout bonita-doc
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: bonitasoft/bonita-doc
           token: ${{ secrets.GH_PAT_TOKEN }} # Dedicated token to have 'write permission' (we later push to this repository)
