@@ -54,7 +54,7 @@ jobs:
         run:
           echo "deploy_message=Deploy ${{ github.sha }}" >> $GITHUB_ENV
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.1
+        uses: nwtgck/actions-netlify@v1.2
         with:
           publish-dir: './build/site'
           production-deploy: true
