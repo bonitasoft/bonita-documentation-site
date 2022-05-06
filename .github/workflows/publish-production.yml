@@ -34,7 +34,7 @@ jobs:
       BRANCH: ${{ github.event.client_payload.branch || github.event.inputs.branch }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Build Setup
         uses: ./.github/actions/build-setup
       - name: Install dependencies
@@ -70,7 +70,7 @@ jobs:
         timeout-minutes: 10
       - name: Send message to Slack channel
         if: failure()
-        uses: slackapi/slack-github-action@v1.17.0
+        uses: slackapi/slack-github-action@v1.19.0
         with:
           channel-id: 'CCQGMR4ES'
           payload: |

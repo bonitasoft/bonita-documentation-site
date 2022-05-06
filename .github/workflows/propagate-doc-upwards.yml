@@ -14,11 +14,11 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout bonita-documentation-site
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: ./bonita-documentation-site
       - name: Checkout bonita-doc
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: bonitasoft/bonita-doc
           token: ${{ secrets.GH_PAT_TOKEN }} # Dedicated token to have 'write permission' (we later push to this repository)
@@ -43,7 +43,7 @@ jobs:
 
       - name: Send message to Slack channel
         if: failure()
-        uses: slackapi/slack-github-action@v1.17.0
+        uses: slackapi/slack-github-action@v1.19.0
         with:
           channel-id: 'CCQGMR4ES'
           payload: |
