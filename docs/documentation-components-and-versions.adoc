@@ -17,14 +17,14 @@ NOTE: the following mainly applies to the Bonita Platform documentation part
 For Bonita, the rule is the following one: +
 We document the 4 currently supported Bonita versions, and **the 4 versions before**. +
 
-=== Impact on Algolia DocSearch
+=== Impact on DocSearch
 
-Each time a new version of a documented Bonitasoft project is released, this DocSearch configuration file has to be updated:
+Each time a new version of a documented Bonitasoft project is released, the DocSearch configuration has to be updated:
 
 - The latest version has to be added to the projects to index
 - The oldest version should be removed from the projects to index
 
--> It means that the DocSearch conf file should reflect this behavior.
+-> It means that the DocSearch configuration should reflect this behavior.
 
 
 == Versions lifecycle
@@ -51,12 +51,10 @@ components, there is no version token in the url, so this defeats the mechanism 
 
 See https://github.com/bonitasoft/bonita-labs-doc/pull/127#discussion_r585309113 for extra information.
 
-
+[[docsearch-configuration]]
 === DocSearch configuration
 
-The DocSearch configuration is public and can be updated by submitting Pull Request: https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json
-
-See https://github.com/algolia/docsearch-configs/pulls?q=is%3Apr+sort%3Aupdated-desc+bonitasoft[past Pull Requests] for inspiration.
+The configuration is available in the https://crawler.algolia.com/admin/crawlers[DocSearch crawler admin page (restricted access)].
 
 
 == General how-to for components and versions management
@@ -91,8 +89,7 @@ Also update the https://github.com/bonitasoft/bonita-documentation-site/blob/mas
 * generate the previews of documentation content PR in the new repository
 * identify push to production related to content change in the component
 
-Finally, you have to update the https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[search configuration]
-to make this component searchable.
+Finally, update the <<docsearch-configuration, DocSearch configuration>> to make this component searchable.
 
 
 === How to integrate a new version of an existing component
@@ -104,8 +101,8 @@ When we need to add a new version of one component, we need to:
 .. merging change from the previous version to the new version
 . Then, you need to add the new version in the https://github.com/bonitasoft/bonita-documentation-site/blob/master/antora-playbook.yml[Antora playbook].
 This means adding the new branch to the existing component.
-. Finally, you have to update the https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[search configuration]
-to make this component searchable.
+. Finally, update the <<docsearch-configuration, DocSearch configuration>> to make this component searchable.
+
 
 === How to remove a component version and make an archive available
 
@@ -115,7 +112,7 @@ On new Bonita Platform GA release, an old version must be archived.
 . Run the archive GitHub Actions: this creates a new tag on the related component version
 . Create a PR targeting the bonita-doc archives branch and add the new archive version to the list
 . Remove the version from the Antora Playbook
-. Remove the version from the Algolia DocSearch configuration
+. Remove the version from the DocSearch configuration
 . Add a redirect to manage urls of the old version. See https://github.com/bonitasoft/bonita-documentation-site/pull/182[PR #182],
 https://github.com/bonitasoft/bonita-documentation-site/pull/195[PR #195] or https://github.com/bonitasoft/bonita-documentation-site/pull/201[PR #201]
 . in the documentation content repository, remove the GH workflow that triggers the push to production
@@ -170,11 +167,11 @@ asciidoc:
   attributes:
     # Adding an info message on the top of any pages
     page-next-release: true
-    # remove search bar for this version (Because the content of next-release is initially not indexed by Algolia)
+    # remove search bar for this version (Because the content of next-release is initially not indexed by DocSearch)
     page-hide-search-bar: true
 ----
 
-Once the Algolia crawler has indexed the next version, you can display the search bar.
+Once the DocSearch crawler has indexed the next version, you can display the search bar.
 
 Additional actions
 
