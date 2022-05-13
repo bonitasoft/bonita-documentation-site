@@ -70,7 +70,7 @@ This includes building the documentation using:
 * already checkout local documentation content repositories
 * single branch for all components
 * single branch of a single component
-* a set of branches of various components. It lets validate {url-antora-docs}/page/version-and-component-xrefs/[references between pages that belong to different docs components and/or versions]
+* a set of branches of various components. It lets validate {url-antora-docs}/page/page-links/[references between pages that belong to different docs components and/or versions]
 * ....
 
 To know all available options, run
