@@ -24,11 +24,10 @@ The UI bundle source repository can be found here: https://github.com/bonitasoft
 
 The UI Bundle architecture is detailed on the UI bundle Readme.
 
-== Search solution: Algolia
+== Search solution: DocSearch
 
-Because of our open source status, https://docsearch.algolia.com/[DocSearch by Algolia] offers us freely a search solution (Thanks a lot to them! ❤️). +
-The configuration file can be found https://github.com/algolia/docsearch-configs/blob/master/configs/bonitasoft.json[here].
-This file indicates to the DocSearch crawler the pages to crawl, and the elements to index.
+https://docsearch.algolia.com/[DocSearch by Algolia] offers us freely a search solution (Thanks a lot to them! ❤️). +
+The configuration is available in the https://crawler.algolia.com/admin/crawlers[DocSearch crawler admin page (restricted access)].
 
 
 == Host solution: Netlify
