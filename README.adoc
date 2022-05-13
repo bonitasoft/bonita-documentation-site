@@ -7,10 +7,9 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
-:antora-version: 3.0
 // External URIs:
 :url-antora: https://antora.org
-:url-antora-docs: https://docs.antora.org/antora/{antora-version}
+:url-antora-docs: https://docs.antora.org/antora/3.0
 :url-asciidoc: https://docs.asciidoctor.org/asciidoc/latest/
 :url-node: https://nodejs.org
 :url-nvm: https://github.com/creationix/nvm
