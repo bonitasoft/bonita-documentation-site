@@ -7,8 +7,10 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
+:antora-version: 3.0
 // External URIs:
 :url-antora: https://antora.org
+:url-antora-docs: https://docs.antora.org/antora/{antora-version}
 :url-asciidoc: https://docs.asciidoctor.org/asciidoc/latest/
 :url-node: https://nodejs.org
 :url-nvm: https://github.com/creationix/nvm
@@ -68,7 +70,7 @@ This includes building the documentation using:
 * already checkout local documentation content repositories
 * single branch for all components
 * single branch of a single component
-* a set of branches of various components. It lets validate https://docs.antora.org/antora/2.3/page/version-and-component-xrefs/[references between pages that belong to different docs components and/or versions]
+* a set of branches of various components. It lets validate {url-antora-docs}/page/version-and-component-xrefs/[references between pages that belong to different docs components and/or versions]
 * ....
 
 To know all available options, run
@@ -104,7 +106,7 @@ In the following, we use both scripts indifferently.
 ==== Preview support overview
 
 The documentation is built by passing a playbook file to the Antora CLI. For more details, see
-https://docs.antora.org/antora/2.3/cli/options/[Antora CLI documentation].
+{url-antora-docs}/cli/options/[Antora CLI documentation].
 
 For the preview support, we generate a dedicated Antora playbook based on the production playbook store in the repository
 and options passed to the `build-preview.bash`. +
@@ -114,7 +116,7 @@ Then, this custom playbook is passed to the Antora CLI along with specific optio
 [[local-content]]
 ===== Using local documentation content repositories
 
-This activates the https://docs.antora.org/antora/2.3/playbook/author-mode/[Antora author mode]. +
+This activates the {url-antora-docs}/playbook/author-mode/[Antora author mode]. +
 Antora uses the locally cloned repositories as they are on your local machine instead of cloning them from their remote location.
 
 This provides a fast feedback loop as you don't need to push nor commit sources content. This also makes developments easier when working offline.
@@ -174,7 +176,7 @@ This provides a fast feedback loop as you don't need to build copy the UI bundle
 a build command: everything can be done by running a single command once the push nor commit content as the current work.
 
 Remember that the theme repository provides a preview with mock content that make development easier. But sometimes, integration
-tests are required to ensure everything is ok, especially when dealing with https://docs.antora.org/antora/2.3/playbook/site-keys/[site keys].
+tests are required to ensure everything is ok, especially when dealing with {url-antora-docs}/playbook/site-keys/[site keys].
 
 [NOTE]
 .Repositories location
@@ -216,7 +218,7 @@ This can be achieved by running
 ----
 
 If you want to ensure you use the latest version of the bundle pass `--default-ui-bundle snapshot`. Otherwise, a cache
-version is used. For more details, see the https://docs.antora.org/antora/2.3/playbook/ui-bundle-url/#snapshot[Antora Documentation]
+version is used. For more details, see the {url-antora-docs}/playbook/ui-bundle-url/#snapshot[Antora Documentation]
 
 
 ===== Quick fix and experiment Antora UI changes directly in the documentation site
@@ -224,7 +226,7 @@ version is used. For more details, see the https://docs.antora.org/antora/2.3/pl
 If you need/want to experiment changes without rebuilding the theme, especially if the changes only involve the template,
 you can directly put the files in the documentation site.
 
-See the https://docs.antora.org/antora/3.0/playbook/ui-supplemental-files/[Antora supplemental UI] for a complete explanation.
+See the {url-antora-docs}/playbook/ui-supplemental-files/[Antora supplemental UI] for a complete explanation.
 
 
 ==== http dev server
@@ -265,7 +267,7 @@ WARNING: This is probably something you won't often do as the site is not fully 
 
 [CAUTION]
 ====
-The following command https://docs.antora.org/antora/2.3/playbook/runtime-fetch/[fetch the documentation content repositories] each time it runs. +
+The following command {url-antora-docs}/playbook/runtime-fetch/[fetch the documentation content repositories] each time it runs. +
 See <<non-production-build>> for alternatives.
 ====
 
