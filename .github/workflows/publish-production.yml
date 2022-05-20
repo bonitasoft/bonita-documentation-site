@@ -1,4 +1,7 @@
 name: Publish production
+# Allow only one running and one pending instance of this workflow. See https://github.com/bonitasoft/bonita-documentation-site/issues/192
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-only-cancel-in-progress-jobs-or-runs-for-the-current-workflow
+concurrency: ${{ github.workflow }}
 
 on:
   repository_dispatch:
