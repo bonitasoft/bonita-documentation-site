@@ -7,6 +7,7 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
+:url-antora-docs: https://docs.antora.org/antora/3.0
 
 CAUTION: this is a work in progress
 
@@ -44,7 +45,7 @@ GA release (actions to be performed detailed later in this document):
 
 === Don't use Antora component without version
 
-No version Antora component: https://docs.antora.org/antora/2.3/component-with-no-version/
+No version Antora component: {url-antora-docs}/component-with-no-version/
 
 The documentation site search crawling and widget we have setup, require a component and a version. In case of version less
 components, there is no version token in the url, so this defeats the mechanism in place.
@@ -62,7 +63,7 @@ The configuration is available in the https://crawler.algolia.com/admin/crawlers
 === How to integrate a new component
 
 To add a new component, you first need to create a GitHub repository which will contain the asciidoc sources of this component
-(i.e. the documentation content). This repository must be organized according to the https://docs.antora.org/antora/2.3/organize-content-files/[Antora recommendations].
+(i.e. the documentation content). This repository must be organized according to the {url-antora-docs}/organize-content-files/[Antora recommendations].
 You can check existing repositories for working examples.
 At minimum, it will contain an `antora.yml` file at its root
 
@@ -181,7 +182,7 @@ Additional actions
 
 apply to beta and RC versions
 
-See https://docs.antora.org/antora/2.3/component-prerelease/ to know how to
+See {url-antora-docs}/component-prerelease/ to know how to
 
 * mark a prerelease version
 * display beta/rc additional information in the version

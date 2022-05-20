@@ -7,6 +7,7 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
+:url-antora-docs: https://docs.antora.org/antora/3.0
 
 == Configuration files
 
@@ -16,7 +17,7 @@ See the https://docs.netlify.com/routing/redirects/#syntax-for-the-netlify-confi
 for more details about the how to configure the redirects.
 
 Antora is configured to generate a Netlify `_redirects` file to manage aliases. The file is generated in `build/site`.
-See https://docs.antora.org/antora/2.3/playbook/urls-redirect-facility/#generated-redirect-configuration-for-netlify[Antora] and
+See {url-antora-docs}/playbook/urls-redirect-facility/#generated-redirect-configuration-for-netlify[Antora] and
 https://docs.netlify.com/routing/redirects/[Netlify] documentation for more details.
 
 Be aware of the https://docs.netlify.com/routing/redirects/#rule-processing-order[Netlify rule processing order] for rules
