@@ -9,10 +9,11 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
+:url-antora-docs: https://docs.antora.org/antora/3.0
 
 We are pleased to receive any kind of contribution (issues, pull requests, suggestions ...).
 
-=== Theme online example
+== Theme online example
 
 A https://bonitasoft.github.io/bonita-documentation-theme/index.html[website] is available to show you what is possible with our Bonita theme.
 
@@ -111,7 +112,7 @@ It is also possible to configure substitution globally for the block (see the do
 === Antora modules
 
 You can use Antora modules to clarify content (for instance, getting-started guides, how-to articles). +
-See https://docs.antora.org/antora/2.3/module-directories/#module.
+See {url-antora-docs}/module-directories/#module.
 
 [quote]
 ____
@@ -128,7 +129,7 @@ IMPORTANT: Impact on SEO
 
 See
 
-* https://docs.antora.org/antora/2.3/page/page-aliases
+* {url-antora-docs}/page/page-aliases
 * https://github.com/bonitasoft/bonita-labs-doc/pull/123 for an example applied to our documentation
 
 === Adding link between two components or between versions of the same component
@@ -140,8 +141,8 @@ For instance
 
 To avoid introducing hard coded url, follow the Antora documentation (see https://opendevise.com/blog/referencing-pages/ for rationale)
 
-* https://docs.antora.org/antora/2.3/page/page-id/
-* https://docs.antora.org/antora/2.3/page/version-and-component-xrefs/
+* {url-antora-docs}/page/page-id/
+* {url-antora-docs}/page/version-and-component-xrefs/
 
 [WARNING]
 ====
@@ -156,17 +157,17 @@ target component versions. See https://github.com/bonitasoft/bonita-documentatio
 ==== Examples
 
 The `examples` directory can be used to store source code which can then easily be integrated in the documentation. +
-See https://docs.antora.org/antora/2.3/examples-directory/
+See {url-antora-docs}/examples-directory/
 
 This allows user to download the source as attachments by providing a link directly for the code (no duplication between the actual examples and the documentation)
 
 ==== Attachments
 
-Attachments are also possible: https://docs.antora.org/antora/2.3/attachments-directory/
-The syntax is described in https://docs.antora.org/antora/2.3/navigation/reference-resources/ (it uses the `link` macro)
+Attachments are also possible: {url-antora-docs}/attachments-directory/
+The syntax is described in {url-antora-docs}/navigation/reference-resources/ (it uses the `link` macro)
 
 [TIP]
 ====
-Antora 3 provides a new syntax for referencing attachments. See https://docs.antora.org/antora/3.0/navigation/reference-resources/ +
+Antora 3 provides a new syntax for referencing attachments. See {url-antora-docs}/navigation/reference-resources/ +
 Please prefer this syntax when Antora 3 will be used to build the site: it allows detecting broken references because it uses the `xref` macro.
 ====
