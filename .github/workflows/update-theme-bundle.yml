@@ -1,4 +1,4 @@
-name: New theme bundle
+name: Update theme bundle
 
 on:
   repository_dispatch:
@@ -35,5 +35,5 @@ jobs:
           commit-message: "feat(theme_bundle): update theme bundle in Antora playbook"
           branch: "feat/update_theme_${{ env.release_name }}"
           delete-branch: true
-          title: "feat(theme_bundle): new theme bundle ${{ env.bundle_file }}"
+          title: "feat(theme): update theme bundle to ${{ env.release_name }}"
           body: "- Update bundle theme with ${{ env.bundle_file }}\n Release notes: ${{ env.release_notes_url }}"
