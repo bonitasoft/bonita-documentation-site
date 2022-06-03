@@ -48,7 +48,7 @@ content:
         - "1.0"
 ui:
   bundle:
-    url: ./resources/antora-ui-bundle.zip
+    url: 
 
 antora:
   extensions:
