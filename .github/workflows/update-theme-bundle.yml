@@ -32,7 +32,7 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.GH_TOKEN_DOC_TRIGGER_WF }}
-          commit-message: "feat(theme_bundle): update theme bundle in Antora playbook"
+          commit-message: "feat(theme): update theme bundle to ${{ env.release_name }}"
           branch: "feat/update_theme_${{ env.release_name }}"
           delete-branch: true
           title: "feat(theme): update theme bundle to ${{ env.release_name }}"
