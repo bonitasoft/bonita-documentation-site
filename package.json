@@ -1,6 +1,7 @@
 {
   "name": "bonita-documentation-site",
-  "version": "0.0.1",
+  "version": "0.0.0",
+  "private": true,
   "license": "GPL-2.0-or-later",
   "scripts": {
     "clean": "rimraf build .cache",
