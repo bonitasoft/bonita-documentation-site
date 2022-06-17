@@ -42,7 +42,6 @@ log "Configuration: NO_PUSH=${NO_PUSH}"
 # allow to keep our changes when merge=ours specified in .gitattributes
 git config merge.ours.driver true
 
-merge "7.11" "2021.1"
 merge "2021.1" "2021.2"
 merge "2021.2" "2022.1"
 merge "2022.1" "2022.2"
