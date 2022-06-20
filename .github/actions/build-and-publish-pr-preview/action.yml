@@ -1,8 +1,9 @@
 name: 'Build and publish PR preview on surge.sh'
 description: 'Based on the surge-preview, hides the processing logic'
 
+# TODO document inputs description
 inputs:
-  gh-token:
+  github-token:
     description: ''
     required: true
   surge-token:
