@@ -23,7 +23,6 @@ jobs:
   build_preview:
     runs-on: ubuntu-20.04
     env:
-      #PR_NUMBER: ${{ github.event.pull_request.number }}
       BONITA_BRANCH: "2021.2"
       BCD_BRANCH: "3.5"
       CLOUD_BRANCH: "master"
@@ -42,8 +41,6 @@ jobs:
         if: github.event.action != 'closed'
       - name: Build Preview
         if: github.event.action != 'closed'
-        # env:
-        # PR_NUMBER: ${{ github.event.pull_request.number }}
         run: >
           ./build-preview.bash --use-multi-repositories
           --component-with-branches bonita:"${{ env.BONITA_BRANCH }}"
@@ -53,14 +50,6 @@ jobs:
           --component-with-branches test-toolkit:"${{ env.TOOLKIT_BRANCH }}"
           --pr "${{ github.event.pull_request.number }}"
           --site-url "https://${{ steps.surge-preview-tools.outputs.preview-url }}"
-
-      # - name: Compute environment variables
-      #   if: github.event.action != 'closed'
-      #   run: |
-      #     echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF#refs/heads/})" >> $GITHUB_ENV
-      #     # the surge-preview action generates https://{{repository.owner}}-{{repository.name}}-{{job.name}}-pr-{{pr.number}}.surge.sh
-      #     repo_owner_and_name=$(echo "${{github.repository}}" | sed 's/\//-/g')
-      #     echo PREVIEW_URL=https://$repo_owner_and_name-"${{github.job}}"-pr-$PR_NUMBER.surge.sh >> $GITHUB_ENV
       - name: Publish preview
         uses: afc163/surge-preview@v1
         if: steps.surge-preview-tools.outputs.can-run-surge-command == 'true'
