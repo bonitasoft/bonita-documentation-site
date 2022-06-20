@@ -52,7 +52,7 @@ jobs:
           --component-with-branches labs:"${{ env.LABS_BRANCH }}"
           --component-with-branches test-toolkit:"${{ env.TOOLKIT_BRANCH }}"
           --pr "${{ github.event.pull_request.number }}"
-          --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
+          --site-url "https://${{ steps.surge-preview-tools.outputs.preview-url }}"
 
       # - name: Compute environment variables
       #   if: github.event.action != 'closed'
