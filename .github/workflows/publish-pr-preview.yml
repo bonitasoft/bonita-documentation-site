@@ -49,7 +49,7 @@ jobs:
           --component-with-branches labs:"${{ env.LABS_BRANCH }}"
           --component-with-branches test-toolkit:"${{ env.TOOLKIT_BRANCH }}"
           --pr "${{ github.event.pull_request.number }}"
-          --site-url "https://${{ steps.surge-preview-tools.outputs.preview-url }}"
+          --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
       - name: Publish preview
         uses: afc163/surge-preview@v1
         if: steps.surge-preview-tools.outputs.can-run-surge-command == 'true'
