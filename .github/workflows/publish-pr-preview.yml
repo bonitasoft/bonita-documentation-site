@@ -32,8 +32,11 @@ jobs:
       - name: Compute environment variables
         run: |
           echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF#refs/heads/})" >> $GITHUB_ENV
+      # access to the local action
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Build and publish PR preview
-        uses: process-analytics/github-actions-playground/.github/actions/surge-preview-tools/@${{ env.BRANCH_NAME }}
+        uses: ./.github/actions/build-and-publish-pr-preview
         with:
           surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
