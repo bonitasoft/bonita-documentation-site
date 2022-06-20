@@ -1,0 +1,48 @@
+name: 'Build and publish PR preview on surge.sh'
+description: 'Based on the surge-preview, hides the processing logic'
+
+inputs:
+  gh-token:
+    description: ''
+    required: true
+  surge-token:
+    description: ''
+    required: true
+  build-preview-command:
+    description: ''
+    required: true
+  # TODO branch of doc-site
+  #needed by content repository (default master) and here (computed automagically)
+
+runs:
+  using: "composite"
+  steps:
+    - uses: process-analytics/github-actions-playground/.github/actions/surge-preview-tools/@master
+      id: surge-preview-tools
+      with:
+        surge-token: ${{ inputs.surge-token }}
+    # todo repository name
+    - name: Checkout
+      uses: actions/checkout@v3
+      if: github.event.action != 'closed'
+    - name: Build Setup
+      uses: ./.github/actions/build-setup
+      if: github.event.action != 'closed'
+    - name: Build Preview
+      if: github.event.action != 'closed'
+      shell: bash
+      run: >
+        ${{ inputs.build-preview-command }}
+        --pr "${{ github.event.pull_request.number }}"
+        --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
+    - name: Publish preview
+      uses: afc163/surge-preview@v1
+      if: steps.surge-preview-tools.outputs.can-run-surge-command == 'true'
+      with:
+        surge_token: ${{ inputs.surge-token }}
+        github_token: ${{ inputs.github-token }}
+        dist: build/site
+        failOnError: true
+        teardown: true
+        build: |
+          ls -lh build/site
