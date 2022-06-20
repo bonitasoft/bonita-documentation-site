@@ -32,7 +32,7 @@ jobs:
       - uses: process-analytics/github-actions-playground/.github/actions/surge-preview-tools/@master
         id: surge-preview-tools
         with:
-          surge-token: ${{ secrets.SURGE_TOKEN }}
+          surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
       - name: Checkout
         uses: actions/checkout@v3
         if: github.event.action != 'closed'
