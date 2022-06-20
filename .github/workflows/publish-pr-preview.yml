@@ -30,7 +30,7 @@ jobs:
       LABS_BRANCH: "master"
       TOOLKIT_BRANCH: "1.0"
     steps:
-      - uses: process-analytics/github-actions-playground/.github/actions/surge-preview-tools/@main
+      - uses: process-analytics/github-actions-playground/.github/actions/surge-preview-tools/@master
         id: surge-preview-tools
         with:
           surge-token: ${{ secrets.SURGE_TOKEN }}
