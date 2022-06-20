@@ -11,8 +11,11 @@ inputs:
   build-preview-command:
     description: ''
     required: true
-  # TODO branch of doc-site
-  #needed by content repository (default master) and here (computed automagically)
+  # needed by content repository (default master) and here (computed automagically)
+  doc-site-branch:
+    description: ''
+    required: false
+    default: 'master'
 
 runs:
   using: "composite"
@@ -21,11 +24,14 @@ runs:
       id: surge-preview-tools
       with:
         surge-token: ${{ inputs.surge-token }}
-    # todo repository name
     - name: Checkout
       uses: actions/checkout@v3
       if: github.event.action != 'closed'
+      with:
+        repository: 'bonitasoft/bonita-documentation-site'
+        ref: ${{ inputs.doc-site-branch }}
     - name: Build Setup
+      # TODO review path
       uses: ./.github/actions/build-setup
       if: github.event.action != 'closed'
     - name: Build Preview

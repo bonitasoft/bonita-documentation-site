@@ -29,35 +29,19 @@ jobs:
       LABS_BRANCH: 'master'
       TOOLKIT_BRANCH: '1.0'
     steps:
-      - uses: process-analytics/github-actions-playground/.github/actions/surge-preview-tools/@master
-        id: surge-preview-tools
+      - name: Compute environment variables
+        run: |
+          echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF#refs/heads/})" >> $GITHUB_ENV
+      - name: Build and publish PR preview
+        uses: process-analytics/github-actions-playground/.github/actions/surge-preview-tools/@${{ env.BRANCH_NAME }}
         with:
           surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
-      - name: Checkout
-        uses: actions/checkout@v3
-        if: github.event.action != 'closed'
-      - name: Build Setup
-        uses: ./.github/actions/build-setup
-        if: github.event.action != 'closed'
-      - name: Build Preview
-        if: github.event.action != 'closed'
-        run: >
-          ./build-preview.bash --use-multi-repositories
-          --component-with-branches bonita:"${{ env.BONITA_BRANCH }}"
-          --component-with-branches bcd:"${{ env.BCD_BRANCH }}"
-          --component-with-branches cloud:"${{ env.CLOUD_BRANCH }}"
-          --component-with-branches labs:"${{ env.LABS_BRANCH }}"
-          --component-with-branches test-toolkit:"${{ env.TOOLKIT_BRANCH }}"
-          --pr "${{ github.event.pull_request.number }}"
-          --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
-      - name: Publish preview
-        uses: afc163/surge-preview@v1
-        if: steps.surge-preview-tools.outputs.can-run-surge-command == 'true'
-        with:
-          surge_token: ${{ secrets.SURGE_TOKEN_DOC }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          dist: build/site
-          failOnError: true
-          teardown: true
-          build: |
-            ls -lh build/site
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          doc-site-branch: ${{ env.BRANCH_NAME }}
+          build-preview-command: >
+            ./build-preview.bash --use-multi-repositories
+              --component-with-branches bonita:"${{ env.BONITA_BRANCH }}"
+              --component-with-branches bcd:"${{ env.BCD_BRANCH }}"
+              --component-with-branches cloud:"${{ env.CLOUD_BRANCH }}"
+              --component-with-branches labs:"${{ env.LABS_BRANCH }}"
+              --component-with-branches test-toolkit:"${{ env.TOOLKIT_BRANCH }}"
