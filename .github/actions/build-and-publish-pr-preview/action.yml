@@ -37,10 +37,7 @@ runs:
     - name: Build Preview
       if: github.event.action != 'closed'
       shell: bash
-      run: >
-        ${{ inputs.build-preview-command }}
-        --pr "${{ github.event.pull_request.number }}"
-        --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
+      run: ${{ inputs.build-preview-command }} --pr "${{ github.event.pull_request.number }}" --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
     - name: Publish preview
       uses: afc163/surge-preview@v1
       if: steps.surge-preview-tools.outputs.can-run-surge-command == 'true'
