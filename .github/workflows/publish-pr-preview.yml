@@ -43,7 +43,6 @@ jobs:
           doc-site-branch: ${{ env.BRANCH_NAME }}
           # '>' Replace newlines with spaces (folded)
           # '-' No newline at end (strip)
-          # TODO restore indentation
           build-preview-command: >-
             ./build-preview.bash --use-multi-repositories
             --component-with-branches bonita:"${{ env.BONITA_BRANCH }}"
