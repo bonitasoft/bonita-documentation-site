@@ -58,9 +58,11 @@ const useTestSources = getArgument(argv, 'use-test-sources', false);
 const siteUrl = getArgument(argv, 'site-url', false)
 const prNumber = getArgument(argv, 'pr', false)
 const siteTitle = getArgument(argv, 'site-title', false)
+const startPage = getArgument(argv, 'start-page', false);
 console.info(`PR: ${prNumber}`);
 console.info(`Site Url: ${siteUrl}`);
 console.info(`Site Title: ${siteTitle}`);
+console.info(`Start Page: ${startPage}`);
 
 const doc = yaml.load(fs.readFileSync('antora-playbook.yml', 'utf8'));
 console.info('Antora Playbook source file loaded');
@@ -135,6 +137,10 @@ else {
     doc.site.start_page = `${componentName}::index.adoc`;
 }
 
+// override the start page if startPage is given as parameter
+if (startPage) {
+    doc.site.start_page = startPage;
+}
 
 // use local sources for the documentation content repositories
 const useLocalSources = getArgument(argv, 'local-sources', false)
