@@ -32,7 +32,6 @@ runs:
         repository: 'bonitasoft/bonita-documentation-site'
         ref: ${{ inputs.doc-site-branch }}
     - name: Build Setup
-      # TODO review path
       uses: ./.github/actions/build-setup
       if: github.event.action != 'closed'
     - name: Build Preview
