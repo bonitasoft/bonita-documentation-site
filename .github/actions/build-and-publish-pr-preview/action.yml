@@ -9,7 +9,7 @@ inputs:
     description: 'A surge token to manage the deployment'
     required: true
   build-preview-command:
-    description: 'The documentation 'build-preview' command to build the preview'
+    description: 'The documentation `build-preview` command to build the preview'
     required: true
   # needed by content repository (default master) and here (computed automagically)
   doc-site-branch:
