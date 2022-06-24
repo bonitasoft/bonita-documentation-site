@@ -1,20 +1,19 @@
 name: 'Build and publish PR preview on surge.sh'
 description: 'Based on the surge-preview, hides the processing logic'
 
-# TODO document inputs description
 inputs:
   github-token:
-    description: ''
+    description: 'A token with `pull-requests: write` to let the surge-preview action create comments on pull requests'
     required: true
   surge-token:
-    description: ''
+    description: 'A surge token to manage the deployment'
     required: true
   build-preview-command:
-    description: ''
+    description: 'The documentation 'build-preview' command to build the preview'
     required: true
   # needed by content repository (default master) and here (computed automagically)
   doc-site-branch:
-    description: ''
+    description: 'The branch of the `bonita-documentation-site` used to build the site preview'
     required: false
     default: 'master'
 
