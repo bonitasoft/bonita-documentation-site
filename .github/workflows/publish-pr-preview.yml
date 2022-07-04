@@ -15,15 +15,11 @@ on:
       - 'package.json'
       - 'package-lock.json'
 
-permissions:
-  # surge-preview creates or updates PR comments about the deployment status
-  pull-requests: write
-
 jobs:
   build_preview:
     runs-on: ubuntu-20.04
     permissions:
-      pull-requests: write # surge-preview write PR comments
+      pull-requests: write # surge-preview creates or updates PR comments about the deployment status
     env:
       BONITA_BRANCH: '2021.2'
       BCD_BRANCH: '3.5'
