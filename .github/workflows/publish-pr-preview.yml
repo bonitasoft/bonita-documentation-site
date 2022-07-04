@@ -22,6 +22,8 @@ permissions:
 jobs:
   build_preview:
     runs-on: ubuntu-20.04
+    permissions:
+      pull-requests: write # surge-preview write PR comments
     env:
       BONITA_BRANCH: '2021.2'
       BCD_BRANCH: '3.5'
