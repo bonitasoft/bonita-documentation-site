@@ -9,11 +9,11 @@
     "serve": "netlify dev -d build/site --debug --port 8080"
   },
   "devDependencies": {
-    "antora": "3.0.1",
+    "antora": "3.0.2",
     "fs-extra": "~10.1.0",
     "js-yaml": "~4.1.0",
     "minimist": "~1.2.6",
-    "netlify-cli": "~10.5.1",
+    "netlify-cli": "~10.7.1",
     "rimraf": "~3.0.2"
   }
 }
