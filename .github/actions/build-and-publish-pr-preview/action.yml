@@ -1,0 +1,50 @@
+name: 'Build and publish PR preview on surge.sh'
+description: 'Based on the surge-preview, hides the processing logic'
+
+inputs:
+  github-token:
+    description: 'A token with `pull-requests: write` to let the surge-preview action create comments on pull requests'
+    required: true
+  surge-token:
+    description: 'A surge token to manage the deployment'
+    required: true
+  build-preview-command:
+    description: 'The documentation `build-preview` command to build the preview'
+    required: true
+  # needed by content repository (default master) and here (computed automagically)
+  doc-site-branch:
+    description: 'The branch of the `bonita-documentation-site` used to build the site preview'
+    required: false
+    default: 'master'
+
+runs:
+  using: "composite"
+  steps:
+    - uses: bonitasoft/actions/packages/surge-preview-tools@v1.2.0
+      id: surge-preview-tools
+      with:
+        surge-token: ${{ inputs.surge-token }}
+    - name: Checkout
+      uses: actions/checkout@v3
+      if: github.event.action != 'closed'
+      with:
+        repository: 'bonitasoft/bonita-documentation-site'
+        ref: ${{ inputs.doc-site-branch }}
+    - name: Build Setup
+      uses: ./.github/actions/build-setup
+      if: github.event.action != 'closed'
+    - name: Build Preview
+      if: github.event.action != 'closed'
+      shell: bash
+      run: ${{ inputs.build-preview-command }} --pr "${{ github.event.pull_request.number }}" --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
+    - name: Publish preview
+      uses: afc163/surge-preview@v1
+      if: steps.surge-preview-tools.outputs.can-run-surge-command == 'true'
+      with:
+        surge_token: ${{ inputs.surge-token }}
+        github_token: ${{ inputs.github-token }}
+        dist: build/site
+        failOnError: true
+        teardown: true
+        build: |
+          ls -lh build/site
