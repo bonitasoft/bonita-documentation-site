@@ -40,7 +40,7 @@ function usage() {
   echo "      --site-url <url>                        Custom Url of the site preview. If set to 'DISABLED', remove the site.url from the Antora playbook. Defaults to the original url defined in the Antora playbook."
   echo "      --site-title <string>                   Title of the site preview. Use generated title if not set."
   echo "      --start-page <string>                   Start page to be used for the site preview. Syntax is: 'version@component:module:file-coordinate-of-page.adoc', for instance '3.4@bcd::release_notes.adoc' or 'cloud::index.adoc'."
-  echo "                                              Use default (latest version of the bonita index page) if not set."
+  echo "                                              If not set, use '<component-name>::index.adoc' if the option is set, otherwise use default (latest version of the bonita index page)."
   echo "      --type <string>                         If set to 'local', use html extension in urls to allow local file browsing."
   echo "                                              If set to 'netlify', use the configuration for the whole Netlify environment (for use with the dev server)."
   echo "      --use-all-repositories <boolean>        If set to 'true', use all sources repositories and branches defined in the production Antora playbook. Defaults to 'false'"
