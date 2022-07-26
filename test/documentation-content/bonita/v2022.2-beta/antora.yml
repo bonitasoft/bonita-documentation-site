@@ -1,0 +1,16 @@
+name: bonita
+title: Bonita
+version: 2022.2
+prerelease: -beta
+asciidoc:
+  attributes:
+    bonitaVersion: 2022.2
+    bonitaTechnicalVersion: '7.15.0' # latest public community version
+    javadocVersion: 7.15
+    crowdinBonitaVersion: 7.15
+    # page attributes
+    page-editable: true
+    page-next-release: false
+    page-hide-search-bar: false
+nav:
+  - modules/ROOT/taxonomy.adoc
