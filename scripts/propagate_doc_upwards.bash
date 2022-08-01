@@ -45,3 +45,4 @@ git config merge.ours.driver true
 merge "2021.1" "2021.2"
 merge "2021.2" "2022.1"
 merge "2022.1" "2022.2"
+merge "2022.2" "2023.1"
