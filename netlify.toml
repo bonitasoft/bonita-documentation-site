@@ -1,87 +1,63 @@
-########################################
+########################################################################################################################
 # General redirects
-########################################
+########################################################################################################################
 # Ensure old preview urls are redirected to the primary domain
 # https://docs.netlify.com/routing/redirects/redirect-options/#domain-level-redirects
 [[redirects]]
-  from = "https://preview.documentation.bonitasoft.com/*"
-  to = "https://documentation.bonitasoft.com/:splat"
-  force = true
+from = "https://preview.documentation.bonitasoft.com/*"
+to = "https://documentation.bonitasoft.com/:splat"
+force = true
 
 
-########################################
+########################################################################################################################
 # Bonita redirects
-########################################
+########################################################################################################################
+# latest and next: ONLY CHANGE WHEN THE BONITA GA IS OUT.
 # use http 302 as the Antora 3 does with https://docs.antora.org/antora/3.0/playbook/urls-latest-version-segment-strategy/
 # Comparing to http 200, the user doesn't have the 'latest' url in the browser navigation bar
 # but this ensures that other redirects (especially those generated from aliases) are considered when using the 'latest' url
 # Redirect for next dev version
 [[redirects]]
-  from = "/bonita/next/*"
-  to = "/bonita/2023.1/:splat"
-  status = 302
+from = "/bonita/next/*"
+to = "/bonita/2023.1/:splat"
+status = 302
 
 [[redirects]]
-  from = "/bonita/latest/*"
-  to = "/bonita/2022.2/:splat"
-  status = 302
+from = "/bonita/latest/*"
+to = "/bonita/2022.2/:splat"
+status = 302
 
-# Special redirect for root component
-[[redirects]]
-  from = "/bonita/"
-  to = "/bonita/latest/"
 
 # Special redirect after introduction of Bonita branding version
+# Add a new entry when adding a new version/branch. This is generally done when the developments of a new version start
 [[redirects]]
-  from = "/bonita/7.16/*"
-  to = "/bonita/2023.1/:splat"
+from = "/bonita/7.16/*"
+to = "/bonita/2023.1/:splat"
 
 [[redirects]]
-  from = "/bonita/7.15/*"
-  to = "/bonita/2022.2/:splat"
+from = "/bonita/7.15/*"
+to = "/bonita/2022.2/:splat"
 
 [[redirects]]
-  from = "/bonita/7.14/*"
-  to = "/bonita/2022.1/:splat"
+from = "/bonita/7.14/*"
+to = "/bonita/2022.1/:splat"
 
 [[redirects]]
-  from = "/bonita/7.13/*"
-  to = "/bonita/2021.2/:splat"
+from = "/bonita/7.13/*"
+to = "/bonita/2021.2/:splat"
 
 [[redirects]]
-  from = "/bonita/7.12/*"
-  to = "/bonita/2021.1/:splat"
+from = "/bonita/7.12/*"
+to = "/bonita/2021.1/:splat"
 
-# Bonita Javadoc redirect
-[[redirects]]
-  from = "/javadoc/api/*"
-  to = "https://javadoc.bonitasoft.com/api/:splat"
-
-# Bonita 'asciidoc-templating' redirect
-[[redirects]]
-  from = "/asciidoc-templating/*"
-  to = "https://javadoc.bonitasoft.com/asciidoc-templating/:splat"
-
-# Bonita Community redirect to getting Started
-[[redirects]]
-  from = "/bonita/*/_getting-started-tutorial"
-  to = "/bonita/latest/getting-started/getting-started-index"
-
-# Bonita next release redirect in Antora 2 legacy syntax
-[[redirects]]
-from = "/bonita/1/*"
-to = "/bonita/next/:splat"
 
 ########################################
 # Bonita Old Documentation redirects to Archives
 ########################################
+# Add a new entry when archiving a version
 
 [[redirects]]
-from = "/bonita/7.3/*"
-to = "/bonita/0/"
-
-[[redirects]]
-from = "/bonita/7.4/*"
+from = "/bonita/7.6/*"
 to = "/bonita/0/"
 
 [[redirects]]
@@ -89,11 +65,47 @@ from = "/bonita/7.5/*"
 to = "/bonita/0/"
 
 [[redirects]]
-from = "/bonita/7.6/*"
+from = "/bonita/7.4/*"
 to = "/bonita/0/"
+
+[[redirects]]
+from = "/bonita/7.3/*"
+to = "/bonita/0/"
+
+
+########################################
+# Permanent redirects
+########################################
+
+# Bonita Javadoc redirect
+[[redirects]]
+from = "/javadoc/api/*"
+to = "https://javadoc.bonitasoft.com/api/:splat"
+
+# Bonita 'asciidoc-templating' redirect
+[[redirects]]
+from = "/asciidoc-templating/*"
+to = "https://javadoc.bonitasoft.com/asciidoc-templating/:splat"
+
+# Bonita Community redirect to getting Started
+[[redirects]]
+from = "/bonita/*/_getting-started-tutorial"
+to = "/bonita/latest/getting-started/getting-started-index"
+
+# from root component
+[[redirects]]
+from = "/bonita/"
+to = "/bonita/latest/"
+
+# old url for bonita next (used with Antora 2)
+[[redirects]]
+from = "/bonita/1/*"
+to = "/bonita/next/:splat"
+
 
 ########################################
 # Bonita Legacy Documentation redirects
+# 5.x, 6.x-7.2. versions before the documentation site rewrite in 2016 (https://community.bonitasoft.com/blog/did-you-read-friendly-manual-story-bonita-documentation)
 ########################################
 
 # specific redirects for 6.x-7.2
@@ -117,9 +129,9 @@ from = "/5x/*"
 to = "/bonita/0/"
 
 
-########################################
+########################################################################################################################
 # BCD redirects
-########################################
+########################################################################################################################
 [[redirects]]
 from = "/bcd/latest/*"
 to = "/bcd/3.6/:splat"
@@ -129,24 +141,9 @@ status = 302
 from = "/bcd/"
 to = "/bcd/latest/"
 
+# Archives
 [[redirects]]
-from = "/bcd/1.0/*"
-to = "/bcd/latest/:splat"
-
-[[redirects]]
-from = "/bcd/2.0/*"
-to = "/bcd/latest/:splat"
-
-[[redirects]]
-from = "/bcd/2.1/*"
-to = "/bcd/latest/:splat"
-
-[[redirects]]
-from = "/bcd/3.0/*"
-to = "/bcd/latest/:splat"
-
-[[redirects]]
-from = "/bcd/3.1/*"
+from = "/bcd/3.3/*"
 to = "/bcd/latest/:splat"
 
 [[redirects]]
@@ -154,13 +151,29 @@ from = "/bcd/3.2/*"
 to = "/bcd/latest/:splat"
 
 [[redirects]]
-from = "/bcd/3.3/*"
+from = "/bcd/3.1/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/3.0/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/2.1/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/2.0/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/1.0/*"
 to = "/bcd/latest/:splat"
 
 
-########################################
+########################################################################################################################
 # LABS redirects
-########################################
+########################################################################################################################
 [[redirects]]
 from = "/labs/"
 to = "/labs/latest/"
@@ -170,15 +183,7 @@ from = "/bici/"
 to = "/labs/latest/bici/"
 
 [[redirects]]
-from = "/bici/1.0/*"
-to = "/labs/latest/bici/:splat"
-
-[[redirects]]
-from = "/bici/1.1/*"
-to = "/labs/latest/bici/:splat"
-
-[[redirects]]
-from = "/bici/1.2/*"
+from = "/bici/latest/*"
 to = "/labs/latest/bici/:splat"
 
 [[redirects]]
@@ -186,7 +191,15 @@ from = "/bici/1.3/*"
 to = "/labs/latest/bici/:splat"
 
 [[redirects]]
-from = "/bici/latest/*"
+from = "/bici/1.2/*"
+to = "/labs/latest/bici/:splat"
+
+[[redirects]]
+from = "/bici/1.1/*"
+to = "/labs/latest/bici/:splat"
+
+[[redirects]]
+from = "/bici/1.0/*"
 to = "/labs/latest/bici/:splat"
 
 [[redirects]]
@@ -194,9 +207,22 @@ from = "/ici/:version/*"
 to = "/labs/latest/bici/:splat"
 
 
-########################################
+########################################################################################################################
 # Bonita Cloud redirects
-########################################
+########################################################################################################################
 [[redirects]]
 from = "/cloud/"
 to = "/cloud/latest/"
+
+
+########################################################################################################################
+# Bonita test-toolkit redirects
+########################################################################################################################
+[[redirects]]
+from = "/test-toolkit/latest/*"
+to = "/test-toolkit/1.0/:splat"
+status = 302
+
+[[redirects]]
+from = "/test-toolkit/"
+to = "/test-toolkit/latest/"
