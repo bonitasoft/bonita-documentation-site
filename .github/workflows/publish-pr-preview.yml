@@ -21,7 +21,7 @@ jobs:
     permissions:
       pull-requests: write # surge-preview creates or updates PR comments about the deployment status
     env:
-      BONITA_BRANCH: '2021.2'
+      BONITA_BRANCH: '2022.2'
       BCD_BRANCH: '3.5'
       CLOUD_BRANCH: 'master'
       LABS_BRANCH: 'master'
