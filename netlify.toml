@@ -58,19 +58,19 @@ to = "/bonita/2021.1/:splat"
 
 [[redirects]]
 from = "/bonita/7.6/*"
-to = "/bonita/0/"
+to = "/bonita/latest/:splat"
 
 [[redirects]]
 from = "/bonita/7.5/*"
-to = "/bonita/0/"
+to = "/bonita/latest/:splat"
 
 [[redirects]]
 from = "/bonita/7.4/*"
-to = "/bonita/0/"
+to = "/bonita/latest/:splat"
 
 [[redirects]]
 from = "/bonita/7.3/*"
-to = "/bonita/0/"
+to = "/bonita/latest/:splat"
 
 
 ########################################
