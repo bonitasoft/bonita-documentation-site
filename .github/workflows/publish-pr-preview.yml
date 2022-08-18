@@ -7,6 +7,7 @@ on:
     branches:
       - master
     paths:
+      - '.github/actions/build-and-publish-pr-preview/**/*'
       - '.github/actions/build-setup/**/*'
       - '.github/workflows/publish-pr-preview.yml'
       - 'resources/**/*'
