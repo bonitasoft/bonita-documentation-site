@@ -204,7 +204,13 @@ const ignoreError = getArgument(argv, 'ignore-error', false);
 console.info(`Fetch Sources: ${fetchSources}`);
 doc.runtime.fetch = fetchSources === 'true';
 //Set log level to info to not break build for preview
-doc.runtime.log.failure_level = ignoreError === 'true' ? 'warn' : 'error';
+if(ignoreError === 'true'){
+    delete doc.runtime.log.failure_level;
+    console.log('## ignoreError', doc.runtime.log);
+} else {
+    doc.runtime.log.failure_level = 'error';
+}
+
 
 // Set the non-production mode (custom navbar for preview)
 const forceProductionNavbar = getArgument(argv, 'force-production-navbar', false)
