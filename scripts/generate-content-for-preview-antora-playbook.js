@@ -206,9 +206,6 @@ doc.runtime.fetch = fetchSources === 'true';
 //Set log level to info to not break build for preview
 if(ignoreError === 'true'){
     delete doc.runtime.log.failure_level;
-    console.log('## ignoreError', doc.runtime.log);
-} else {
-    doc.runtime.log.failure_level = 'error';
 }
 
 

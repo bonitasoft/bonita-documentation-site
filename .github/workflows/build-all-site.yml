@@ -1,5 +1,4 @@
-name: Publish PR preview
-
+name: Build documentation site without publish preview
 on:
   pull_request:
     # To manage 'surge-preview' action teardown, add default event types + closed event type
@@ -18,7 +17,7 @@ on:
       - 'package-lock.json'
 
 jobs:
-  build_preview:
+  build_site:
     runs-on: ubuntu-20.04
     permissions:
       pull-requests: write # surge-preview creates or updates PR comments about the deployment status
@@ -34,19 +33,15 @@ jobs:
           echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF#refs/heads/})" >> $GITHUB_ENV
       - uses: actions/checkout@v3 # access to the local action
       - name: Build and publish PR preview
-        uses: ./.github/actions/build-and-publish-pr-preview
+        uses: ./.github/actions/build-pr-site
         with:
-          surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           doc-site-branch: ${{ env.BRANCH_NAME }}
-          publish-preview: 'false'
           # '>' Replace newlines with spaces (folded)
           # '-' No newline at end (strip)
           build-preview-command: >-
             ./build-preview.bash --use-multi-repositories
             --component-with-branches bonita:"${{ env.BONITA_BRANCH }}"            
-            --component-with-branches bonita:"${{ env.BCD_BRANCH }}"
             --component-with-branches cloud:"${{ env.CLOUD_BRANCH }}"
             --component-with-branches labs:"${{ env.LABS_BRANCH }}"
-            --component-with-branches test-toolkit:"${{ env.TOOLKIT_BRANCH }}"
-            --ignore-error true
+            --component-with-branches test-toolkit:"${{ env.TOOLKIT_BRANCH }}"           
