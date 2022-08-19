@@ -114,10 +114,8 @@ On new Bonita Platform GA release, an old version must be archived.
 . Create a PR targeting the bonita-doc archives branch and add the new archive version to the list
 . Remove the version from the Antora Playbook
 . Remove the version from the DocSearch configuration
-. Add a redirect to manage urls of the old version. See https://github.com/bonitasoft/bonita-documentation-site/pull/182[PR #182],
-https://github.com/bonitasoft/bonita-documentation-site/pull/195[PR #195] or https://github.com/bonitasoft/bonita-documentation-site/pull/201[PR #201]
+. Add a redirect to manage urls of the old version. See how it is done for the versions that are https://github.com/bonitasoft/bonita-documentation-site/blob/master/netlify.toml[already archived].
 . in the documentation content repository, remove the GH workflow that triggers the push to production
-. .... *TODO* more info here, and link with lifecycle
 
 
 === Mark version as 'Out of Support'
