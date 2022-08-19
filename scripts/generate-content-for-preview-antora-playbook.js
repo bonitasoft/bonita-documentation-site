@@ -200,8 +200,11 @@ switch (previewType) {
 
 // Fetch sources
 const fetchSources = getArgument(argv, 'fetch-sources', false)
+const ignoreError = getArgument(argv, 'ignore-error', false);
 console.info(`Fetch Sources: ${fetchSources}`);
 doc.runtime.fetch = fetchSources === 'true';
+//Set log level to info to not break build for preview
+doc.runtime.log.failure_level = ignoreError === 'true' ? 'warn' : 'error';
 
 // Set the non-production mode (custom navbar for preview)
 const forceProductionNavbar = getArgument(argv, 'force-production-navbar', false)
