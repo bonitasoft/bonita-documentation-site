@@ -19,8 +19,6 @@ on:
 jobs:
   build_site:
     runs-on: ubuntu-20.04
-    permissions:
-      pull-requests: write # surge-preview creates or updates PR comments about the deployment status
     env:
       BONITA_BRANCH: '2021.2,2022.2'
       BCD_BRANCH: '3.5'
@@ -28,15 +26,12 @@ jobs:
       LABS_BRANCH: 'master'
       TOOLKIT_BRANCH: '1.0'
     steps:
-      - name: Compute environment variables
-        run: |
-          echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF#refs/heads/})" >> $GITHUB_ENV
       - uses: actions/checkout@v3 # access to the local action
-      - name: Build and publish PR preview
+      - name: Build PR site
         uses: ./.github/actions/build-pr-site
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          doc-site-branch: ${{ env.BRANCH_NAME }}
+          doc-site-branch: ${{ github.head_ref }}
           # '>' Replace newlines with spaces (folded)
           # '-' No newline at end (strip)
           build-preview-command: >-

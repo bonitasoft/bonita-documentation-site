@@ -2,9 +2,6 @@ name: 'Build site from PR'
 description: 'Based on the surge-preview, hides the processing logic'
 
 inputs:
-  github-token:
-    description: 'A token with `pull-requests: write` to let the surge-preview action create comments on pull requests'
-    required: true
   build-preview-command:
     description: 'The documentation `build-preview` command to build the preview'
     required: true
