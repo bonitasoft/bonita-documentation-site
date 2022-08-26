@@ -1,4 +1,4 @@
-name: Build documentation site without publish preview
+name: PR Build documentation site
 on:
   pull_request:
     # To manage 'surge-preview' action teardown, add default event types + closed event type
@@ -36,7 +36,8 @@ jobs:
           # '-' No newline at end (strip)
           build-preview-command: >-
             ./build-preview.bash --use-multi-repositories
-            --component-with-branches bonita:"${{ env.BONITA_BRANCH }}"            
+            --component-with-branches bonita:"${{ env.BONITA_BRANCH }}"
+            --component-with-branches bcd:"${{ env.BCD_BRANCH }}"
             --component-with-branches cloud:"${{ env.CLOUD_BRANCH }}"
             --component-with-branches labs:"${{ env.LABS_BRANCH }}"
             --component-with-branches test-toolkit:"${{ env.TOOLKIT_BRANCH }}"           
