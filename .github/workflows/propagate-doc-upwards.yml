@@ -20,7 +20,7 @@ jobs:
       # we want to run the full build on all os: don't cancel running jobs even if one fails
       fail-fast: false
       matrix:
-        repo: [bonita-doc]
+        repo: [bonita-doc,bonita-continuous-delivery-doc]
     steps:
       - name: Checkout bonita-documentation-site
         uses: actions/checkout@v3
