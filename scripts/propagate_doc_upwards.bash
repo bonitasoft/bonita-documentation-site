@@ -47,12 +47,12 @@ log "Configuration: REPO_NAME=${REPO_NAME}"
 # allow to keep our changes when merge=ours specified in .gitattributes
 git config merge.ours.driver true
 
-if [ "${REPO_NAME}" == "bonita"]; then
+if [ "${REPO_NAME}" == "bonita-doc"]; then
   merge "2021.1" "2021.2"
   merge "2021.2" "2022.1"
   merge "2022.1" "2022.2"
   merge "2022.2" "2023.1"
-elif [ "${REPO_NAME}" == "bcd" ]; then
+elif [ "${REPO_NAME}" == "bonita-continuous-delivery-doc" ]; then
   merge "3.4" "3.5"
   merge "3.5" "3.6"
 else
