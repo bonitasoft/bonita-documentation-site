@@ -17,7 +17,7 @@ inputs:
     required: false
     default: 'master'
   publish-preview:
-    description: 'The branch of the `bonita-documentation-site` used to build the site preview'
+    description: 'Allow to publish to surge only if this input is true'
     type: boolean
     required: false
     default: 'true'
