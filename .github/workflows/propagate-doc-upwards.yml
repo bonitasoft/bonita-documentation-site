@@ -26,13 +26,13 @@ jobs:
           # Number of commits to fetch. 0 indicates all history for all branches and tags.
           fetch-depth: '0'
 
-      - name: Run propagate doc updward
+      - name: Run propagate doc upwards
         env:
           NO_PUSH: ${{ github.event.inputs.dry-run }}
         run: |
           cd ./bonita-doc
           
-          # configure commiter information
+          # configure committer information
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
                    
