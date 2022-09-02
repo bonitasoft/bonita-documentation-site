@@ -54,3 +54,11 @@ runs:
         failOnError: true
         teardown: true
         build: echo "site already built"
+    - name: Archive site preview
+      # TODO add to the if close: && steps.surge-preview-tools.outputs.can-run-surge-command != 'true'
+      if: github.event.action != 'closed'
+      uses: actions/upload-artifact@v3
+      with:
+        # TODO repo name in name
+        name: site-preview-${{github.event.pull_request.number}}-${{github.sha}}
+        path: build/site
