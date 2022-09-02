@@ -44,8 +44,13 @@ jobs:
         uses: ./.github/actions/build-setup
       - name: Install dependencies
         run: npm ci
-      - name: Build docs
+      - name: Build site
         run: GOOGLE_ANALYTICS_KEY=${{env.GOOGLE_ANALYTICS_KEY}} npm run build
+      - name: List the content of the generated site
+        working-directory: build/site
+        run: |
+          ls -lh
+          du --max-depth=2 -h
       - name: Create deploy message if no component defined
         if: ( github.event_name == 'workflow_dispatch' ||  github.event_name == 'repository_dispatch' ) && env.COMPONENT == ''
         run:
