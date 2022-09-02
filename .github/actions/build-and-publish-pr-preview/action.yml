@@ -37,7 +37,7 @@ runs:
       if: github.event.action != 'closed'
       shell: bash
       run: ${{ inputs.build-preview-command }} --pr "${{ github.event.pull_request.number }}" --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
-    - name: List generated site
+    - name: List the content of the generated site
       if: github.event.action != 'closed'
       working-directory: build/site
       shell: bash
