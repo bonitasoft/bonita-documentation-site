@@ -52,8 +52,7 @@ jobs:
           ./.././bonita-documentation-site/scripts/propagate_doc_upwards.bash
 
       - name: Send message to Slack channel
-        # TODO do not skip if event is 'schedule'
-        if: failure() && github.event.inputs.slack-notifications == 'true'
+        if: failure() && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.slack-notifications == 'true') )
         uses: slackapi/slack-github-action@v1.21.0
         with:
           channel-id: 'CCQGMR4ES'
