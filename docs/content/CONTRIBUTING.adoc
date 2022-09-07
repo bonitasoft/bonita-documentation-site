@@ -134,23 +134,46 @@ See
 
 === Adding link between two components or between versions of the same component
 
+WARNING: **DO NOT** hard code urls with https://documentation.bonitasoft.com/xxxx or ../../my-page.adoc, use xref instead. An automatic check rejects your Pull Request if you hard code such links.
+
+Rationale
+
+* https://opendevise.com/blog/referencing-pages/
+* such hard coded links only target the production environments, links won't work in preview environments
+* not portable, such links cannot work if we want to generate the documentation in PDF format
+
+The general form a xref is `xref:<version>@<component_name>:<module>:<page>#anchor` and some elements are optional (version, module and anchor)
+
 For instance
 
-* the BCD documentation contains links to various versions of the Bonita documentation (see https://github.com/bonitasoft/bonita-continuous-delivery-doc/pull/164[PR #164]).
-* the Bonita release-notes 7.9 contain a link to the latest BCD version (see https://github.com/bonitasoft/bonita-doc/pull/1494[PR #1494])
+* abreviated: `xref:bonita::about.adoc`
+* a page of a given version in the ROOT module (explicit): `xref:2022.2@bonita:ROOT:what-is-bonita.adoc`
+* a page of a given version in the ROOT module (implicit): `xref:2023.1@bonita::release-notes.adoc`
+* a page of a given version in the version-update module targeting an anchor: `xref:2023.1@bonita:version-update:update-tool-overview.adoc#prerequisites`
 
-To avoid introducing hard coded url, follow the Antora documentation (see https://opendevise.com/blog/referencing-pages/ for rationale)
+
+For more details about the xref syntax, see the Antora documentation:
 
 * {url-antora-docs}/page/page-id/
 * {url-antora-docs}/page/version-and-component-xrefs/
 
-[WARNING]
+
+For an example in the bonita documentation:
+
+* the BCD documentation contains links to various versions of the Bonita documentation (see https://github.com/bonitasoft/bonita-continuous-delivery-doc/pull/164[PR #164]).
+* the Bonita release-notes 7.9 contain a link to the latest BCD version (see https://github.com/bonitasoft/bonita-doc/pull/1494[PR #1494])
+
+
+[NOTE]
 ====
-The generated site available in PR preview in the document content repository is not able to resolve such references, as
-that kind of preview only build a single component version.
-To be able to see them during documentation content writing, you need to build the documentation with both the source and
-target component versions. See https://github.com/bonitasoft/bonita-documentation-site/pull/222[PR #222] for more details.
+In the documentation content repository, when a PR is created, a preview site is generated and deployed to a preview environment.
+In the preview, the link may seem broken as that kind of preview may build a single component version so the targeted page are not available so not resolved.
+In any case, the xref is validated during the site preview build or by another build run that includes both the source and target component versions.
+
+There is currently a work in progress to improve the xref validation and make the xref resolution also work in the PR preview.
+See https://github.com/bonitasoft/bonita-documentation-site/issues/326[issue #326].
 ====
+
 
 === Make assets available as downloadable files
 
