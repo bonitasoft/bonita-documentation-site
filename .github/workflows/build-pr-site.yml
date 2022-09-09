@@ -1,8 +1,6 @@
 name: PR Build documentation site
 on:
   pull_request:
-    # To manage 'surge-preview' action teardown, add default event types + closed event type
-    types: [opened, synchronize, reopened, closed]
     branches:
       - master
     paths:
