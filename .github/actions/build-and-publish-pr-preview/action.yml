@@ -44,6 +44,13 @@ runs:
       if: github.event.action != 'closed' && inputs.component-name == ''
       shell: bash
       run: ${{ inputs.build-preview-command }} --pr "${{ github.event.pull_request.number }}" --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
+    - name: List the content of the generated site
+      if: github.event.action != 'closed'
+      working-directory: build/site
+      shell: bash
+      run: |
+        ls -lh
+        du --max-depth=2 -h
     - name: Publish preview
       uses: afc163/surge-preview@v1
       if: steps.surge-preview-tools.outputs.can-run-surge-command == 'true' && inputs.publish-preview == 'true'
@@ -53,5 +60,10 @@ runs:
         dist: build/site
         failOnError: true
         teardown: true
-        build: |
-          ls -lh build/site
+        build: echo "site already built"
+    - name: Archive site preview
+      if: github.event.action != 'closed' && steps.surge-preview-tools.outputs.can-run-surge-command != 'true'
+      uses: actions/upload-artifact@v3
+      with:
+        name: site-preview-pr-${{github.event.pull_request.number}}-${{github.sha}}
+        path: build/site
