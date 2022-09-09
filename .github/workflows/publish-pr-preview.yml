@@ -3,7 +3,7 @@ name: Publish PR preview
 on:
   pull_request:
     # To manage 'surge-preview' action teardown, add default event types + closed event type
-    types: [opened, synchronize, reopened, closed]
+    types: [ opened, synchronize, reopened, closed ]
     branches:
       - master
     paths:
@@ -27,7 +27,7 @@ jobs:
         run: |
           echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF#refs/heads/})" >> $GITHUB_ENV
       - uses: actions/checkout@v3 # access to the local action
-      - name: Build and publish PR preview
+      - name: Publish PR preview
         uses: ./.github/actions/build-and-publish-pr-preview
         with:
           surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
@@ -35,8 +35,7 @@ jobs:
           # '>' Replace newlines with spaces (folded)
           # '-' No newline at end (strip)
           build-preview-command: >-
-            ./build-preview.bash
-            --single-branch-per-repo true
+            ./build-preview.bash --single-branch-per-repo true
             --component bonita
             --component bcd
             --component cloud
