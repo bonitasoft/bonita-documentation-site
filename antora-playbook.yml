@@ -57,6 +57,8 @@ antora:
   extensions:
     - require: ./lib/antora/versions-sorter-extension.js
     # experimental site manifest
+    # TODO use a specific commit to not be impacted by breaking changes (we are currently getting the extension from a branch)
+    # otherwise, create a fork and control updates (we may also add our own git tags)
     - require: '@antora/site-generator-ms'
       enabled: true
 
