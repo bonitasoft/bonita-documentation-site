@@ -8,7 +8,7 @@ on:
     paths:
       - '.github/actions/build-setup/**/*'
       - '.github/actions/build-pr-site/**/*'
-      - '.github/workflows/build-all-site.yml'
+      - '.github/workflows/build-pr-site.yml'
       - 'resources/**/*'
       - 'antora-playbook.yml'
       - 'build-preview.bash'
