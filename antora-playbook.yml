@@ -79,6 +79,18 @@ asciidoc:
     # where we store locally the generated manifest file
     #site-manifest-path: ./build/site-manifest/
 
+    # TODO initiate the manifest file
+    # in .cache/antora create documentation.bonitasoft.com-manifest.json (hostname of the primary site url)
+    # this will prevent an download attempt
+    # TODO create the manifest file
+    # build preview for all elements (command line)
+    # create a new netlify site (manual deploy) and deploy the manifest on it
+    # update the configuration to use this new url
+    # TODO test with a workflow
+    # pr preview: build a bonita version that requires a lot of other component (2022.2 ???)
+    # disable extension: fail
+    # enable extension: should work
+
 urls:
   html_extension_style: drop
   redirect_facility: netlify
