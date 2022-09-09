@@ -32,5 +32,4 @@ jobs:
           doc-site-branch: ${{ github.head_ref }}
           # '>' Replace newlines with spaces (folded)
           # '-' No newline at end (strip)
-          build-preview-command: >-
-            ./build-preview.bash --single-branch-per-repo --ignore-error
+          build-preview-command: ./build-preview.bash --single-branch-per-repo --ignore-error true
