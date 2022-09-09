@@ -83,7 +83,7 @@ asciidoc:
 
     # TODO initiate the manifest file
     # in .cache/antora create documentation.bonitasoft.com-manifest.json (hostname of the primary site url)
-    # this will prevent an download attempt
+    # this will prevent an download attempt (see https://gitlab.com/opendevise/oss/antora-site-generator-ms/-/blob/as-extension/lib/read-site-manifest.js#L13)
     # TODO create the manifest file
     # build preview for all elements (command line)
     # create a new netlify site (manual deploy) and deploy the manifest on it
