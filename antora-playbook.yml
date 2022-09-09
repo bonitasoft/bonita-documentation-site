@@ -8,6 +8,8 @@ site:
 # see https://docs.antora.org/antora/2.3/playbook/configure-runtime/
 runtime:
   cache_dir: ./.cache/antora
+  # TODO temp for extension
+  #fetch: false
   log:
     # use pretty even on CI
     format: pretty
@@ -54,11 +56,28 @@ ui:
 antora:
   extensions:
     - require: ./lib/antora/versions-sorter-extension.js
+    # experimental site manifest
+    - require: '@antora/site-generator-ms'
+      enabled: true
 
 asciidoc:
   # Only enable for preview, we don't care for production and it can have performance impacts
   # https://docs.antora.org/antora/3.0/playbook/asciidoc-sourcemap/
   sourcemap: false
+  attributes:
+  # for the @antora/site-generator-ms extension
+  # https://gitlab.com/opendevise/oss/antora-site-generator-ms/-/blob/4cdfee2aa404eb95ad9138dd4cc1f186134e8504/lib/index.js#L9-10
+  # https://gitlab.com/opendevise/oss/antora-site-generator-ms/-/blob/4cdfee2aa404eb95ad9138dd4cc1f186134e8504/lib/index.js#L27
+  # see also https://github.com/couchbase/docs-site/pull/503/files
+
+  # https://gitlab:com/opendevise/oss/antora-site-generator-ms/-/blob/as-extension/lib/import-site-manifest.js
+  # no need for primarySiteManifestUrl, use the default file name
+  #primary-site-manifest-url
+    # assume that we store the manifest file on the production site
+    primary-site-url: https://documentation.bonitasoft.com/
+    # use default value for now
+    # where we store locally the generated manifest file
+    #site-manifest-path: ./build/site-manifest/
 
 urls:
   html_extension_style: drop
