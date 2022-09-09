@@ -1,5 +1,5 @@
 name: 'Build site from PR'
-description: 'Based on the surge-preview, hides the processing logic'
+description: 'Build site from a PR to check if all xref references are valid'
 
 inputs:
   build-preview-command:

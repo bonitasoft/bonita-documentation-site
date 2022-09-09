@@ -10,7 +10,6 @@ on:
       - '.github/actions/build-and-publish-pr-preview/**/*'
       - '.github/actions/build-setup/**/*'
       - '.github/actions/build-pr-site/**/*'
-      - '.github/workflows/build-all-site.yml'
       - '.github/workflows/publish-pr-preview.yml'
       - 'resources/**/*'
       - 'antora-playbook.yml'
@@ -23,12 +22,6 @@ jobs:
     runs-on: ubuntu-20.04
     permissions:
       pull-requests: write # surge-preview creates or updates PR comments about the deployment status
-    env:
-      BONITA_BRANCH: '2021.2,2022.2'
-      BCD_BRANCH: '3.5'
-      CLOUD_BRANCH: 'master'
-      LABS_BRANCH: 'master'
-      TOOLKIT_BRANCH: '1.0'
     steps:
       - name: Compute environment variables
         run: |
@@ -39,15 +32,14 @@ jobs:
         with:
           surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          doc-site-branch: ${{ github.head_ref }}
-          publish-preview: 'false'
           # '>' Replace newlines with spaces (folded)
           # '-' No newline at end (strip)
           build-preview-command: >-
-            ./build-preview.bash --use-multi-repositories
-            --component-with-branches bonita:"${{ env.BONITA_BRANCH }}"            
-            --component-with-branches bcd:"${{ env.BCD_BRANCH }}"
-            --component-with-branches cloud:"${{ env.CLOUD_BRANCH }}"
-            --component-with-branches labs:"${{ env.LABS_BRANCH }}"
-            --component-with-branches test-toolkit:"${{ env.TOOLKIT_BRANCH }}"
+            ./build-preview.bash
+            --single-branch-per-repo true
+            --component bonita
+            --component bcd
+            --component cloud
+            --component labs
+            --component test-toolkit
             --ignore-error true

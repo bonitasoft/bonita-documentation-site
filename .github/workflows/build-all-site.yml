@@ -6,10 +6,9 @@ on:
     branches:
       - master
     paths:
-      - '.github/actions/build-and-publish-pr-preview/**/*'
       - '.github/actions/build-setup/**/*'
       - '.github/actions/build-pr-site/**/*'
-      - '.github/workflows/publish-pr-preview.yml'
+      - '.github/workflows/build-all-site.yml'
       - 'resources/**/*'
       - 'antora-playbook.yml'
       - 'build-preview.bash'
@@ -31,7 +30,7 @@ jobs:
         uses: ./.github/actions/build-pr-site
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          doc-site-branch: ${{ github.head_ref }}
+          doc-site-branch:
           # '>' Replace newlines with spaces (folded)
           # '-' No newline at end (strip)
           build-preview-command: >-
@@ -40,4 +39,4 @@ jobs:
             --component-with-branches bcd:"${{ env.BCD_BRANCH }}"
             --component-with-branches cloud:"${{ env.CLOUD_BRANCH }}"
             --component-with-branches labs:"${{ env.LABS_BRANCH }}"
-            --component-with-branches test-toolkit:"${{ env.TOOLKIT_BRANCH }}"           
+            --component-with-branches test-toolkit:"${{ env.TOOLKIT_BRANCH }}"

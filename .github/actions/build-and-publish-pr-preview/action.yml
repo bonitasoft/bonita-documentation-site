@@ -10,17 +10,15 @@ inputs:
     required: true
   build-preview-command:
     description: 'The documentation `build-preview` command to build the preview'
-    required: true
+    required: false
   # needed by content repository (default master) and here (computed automagically)
   doc-site-branch:
     description: 'The branch of the `bonita-documentation-site` used to build the site preview'
     required: false
     default: 'master'
-  publish-preview:
-    description: 'Allow to publish to surge only if this input is true'
-    type: boolean
+  component-name:
     required: false
-    default: 'true'
+    default: ''
 
 runs:
   using: "composite"
@@ -38,8 +36,12 @@ runs:
     - name: Build Setup
       uses: ./.github/actions/build-setup
       if: github.event.action != 'closed'
+    - name: Build Site without error check
+      if: github.event.action != 'closed' && input.component-name != ''
+      shell: bash
+      run: ./build-preview.bash --component ${{input.component-name}} --branch ${{ github.head_ref }} --ignore-error true"
     - name: Build Site
-      if: github.event.action != 'closed'
+      if: github.event.action != 'closed' && input.component-name == ''
       shell: bash
       run: ${{ inputs.build-preview-command }} --pr "${{ github.event.pull_request.number }}" --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
     - name: Publish preview
