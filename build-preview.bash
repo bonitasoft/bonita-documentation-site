@@ -46,7 +46,7 @@ function usage() {
   echo "      --use-all-repositories <boolean>        If set to 'true', use all sources repositories and branches defined in the production Antora playbook. Defaults to 'false'"
   echo "      --use-multi-repositories <boolean>      If set to 'true', use several repositories and branches passed with the --component-with-branches options. Defaults to 'false'"
   echo "      --use-test-sources <boolean>            If set to 'true', use documentation stored in the bonita-documentation-site repository (for testing). Defaults to 'false'"
-
+  echo "      --ignore-error <boolean>                If set to 'true', set failure_level to info, if false, set failure_level to error"
   echo "Environment configuration"
   echo "      --only-generate-playbook                If set, only generate the preview Antora playbook and skip the documentation generation"
 }

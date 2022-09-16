@@ -1,0 +1,39 @@
+name: PR Build documentation site
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '.github/actions/build-setup/**/*'
+      - '.github/actions/build-pr-site/**/*'
+      - '.github/workflows/build-pr-site.yml'
+      - 'resources/**/*'
+      - 'antora-playbook.yml'
+      - 'build-preview.bash'
+      - 'package.json'
+      - 'package-lock.json'
+
+jobs:
+  build_site:
+    runs-on: ubuntu-20.04
+    env:
+      BONITA_BRANCH: '2021.2,2022.2'
+      BCD_BRANCH: '3.5'
+      CLOUD_BRANCH: 'master'
+      LABS_BRANCH: 'master'
+      TOOLKIT_BRANCH: '1.0'
+    steps:
+      - uses: actions/checkout@v3 # access to the local action
+      - name: Build PR site
+        uses: ./.github/actions/build-pr-site
+        with:
+          doc-site-branch: ${{ github.head_ref }}
+          # '>' Replace newlines with spaces (folded)
+          # '-' No newline at end (strip)
+          build-preview-command: >-
+            ./build-preview.bash --use-multi-repositories
+            --component-with-branches bonita:"${{ env.BONITA_BRANCH }}"
+            --component-with-branches bcd:"${{ env.BCD_BRANCH }}"
+            --component-with-branches cloud:"${{ env.CLOUD_BRANCH }}"
+            --component-with-branches labs:"${{ env.LABS_BRANCH }}"
+            --component-with-branches test-toolkit:"${{ env.TOOLKIT_BRANCH }}"
