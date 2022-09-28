@@ -57,20 +57,24 @@ to = "/bonita/2021.1/:splat"
 # Add a new entry when archiving a version
 
 [[redirects]]
+from = "/bonita/7.7/*"
+to = "/bonita/0/archives:splat"
+
+[[redirects]]
 from = "/bonita/7.6/*"
-to = "/bonita/latest/:splat"
+to = "/bonita/0/archives:splat"
 
 [[redirects]]
 from = "/bonita/7.5/*"
-to = "/bonita/latest/:splat"
+to = "/bonita/0/archives:splat"
 
 [[redirects]]
 from = "/bonita/7.4/*"
-to = "/bonita/latest/:splat"
+to = "/bonita/0/archives:splat"
 
 [[redirects]]
 from = "/bonita/7.3/*"
-to = "/bonita/latest/:splat"
+to = "/bonita/0/archives:splat"
 
 
 ########################################
