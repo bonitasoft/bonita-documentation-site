@@ -143,7 +143,7 @@ Rationale
 * not portable, such links cannot work if we want to generate the documentation in PDF format
 
 The general form of a xref is `xref:<version>@<component_name>:<module>:<page>#anchor` and some elements are optional (version, module and anchor).
-<version> is the name of the branch in which the PR will be merged and <component_name> can be found in the 'antora.xml' file of the required component under the parameter 'name'.
+<version> is the name of the target branch (if we let it empty, it will take the default branch) and <component_name> can be found in the 'antora.xml' file of the required component under the parameter 'name'.
 
 For instance
 
