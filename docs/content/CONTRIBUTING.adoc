@@ -143,21 +143,19 @@ Rationale
 * not portable, such links cannot work if we want to generate the documentation in PDF format
 
 The general form of a xref is `xref:<version>@<component_name>:<module>:<page>#anchor` and some elements are optional (version, module and anchor).
-<version> is the name of the target branch (if we let it empty, it will take the default branch) and <component_name> can be found in the 'antora.xml' file of the required component under the parameter 'name'.
 
-For instance
-
-* abreviated: `xref:bonita::about.adoc`
-* a page of a given version in the ROOT module (explicit): `xref:2022.2@bonita:ROOT:what-is-bonita.adoc`
-* a page of a given version in the ROOT module (implicit): `xref:2023.1@bonita::release-notes.adoc`
-* a page of a given version in the version-update module targeting an anchor: `xref:2023.1@bonita:version-update:update-tool-overview.adoc#prerequisites`
-
-
-For more details about the xref syntax, see the Antora documentation:
+For more details about the xref syntax, see the Antora documentation to have a better understanding about version, component, module and anchor keyword:
 
 * {url-antora-docs}/page/page-id/
 * {url-antora-docs}/page/version-and-component-xrefs/
 
+Example:
+
+* abreviated: `xref:bonita::about.adoc`
+* a page in same component and same version: `xref:ROOT:resource-management.adoc`
+* a page of a given version in the ROOT module (explicit): `xref:2022.2@bonita:ROOT:what-is-bonita.adoc`
+* a page of a given version in the ROOT module (implicit): `xref:2023.1@bonita::release-notes.adoc`
+* a page of a given version in the version-update module targeting an anchor: `xref:2023.1@bonita:version-update:update-tool-overview.adoc#prerequisites`
 
 For an example in the bonita documentation:
 
