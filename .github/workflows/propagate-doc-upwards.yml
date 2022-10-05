@@ -15,7 +15,7 @@ on:
 
 jobs:
   propagate-doc-upwards:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       # we want to run the full build on all os: don't cancel running jobs even if one fails
       fail-fast: false
