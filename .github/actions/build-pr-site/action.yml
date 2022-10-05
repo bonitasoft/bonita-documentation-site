@@ -26,4 +26,4 @@ runs:
     - name: Build Site
       if: github.event.action != 'closed'
       shell: bash
-      run: ${{ inputs.build-preview-command }} --pr "${{ github.event.pull_request.number }}"
+      run: ${{ inputs.build-preview-command }} --fetch-sources true --pr "${{ github.event.pull_request.number }}"

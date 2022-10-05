@@ -55,11 +55,9 @@ function usage() {
 ########################################################################################################################
 # Parse arguments
 ########################################################################################################################
-extraAntoraOptions=
-# the environment variable is set to true by GitHub Actions
-CI=${CI:-false}
 
 scriptOptions="$@"
+echo "Preparing the preview build"
 echo "Script Options: ${scriptOptions}"
 
 # Help
@@ -69,24 +67,10 @@ if [[ "$scriptOptions" == *"--help"* ]]; then
 fi
 
 
-if [[ $CI == "true" ]]; then
-  echo "Assume script is running on CI environment"
-  # force fetch, whatever the script options are
-  extraAntoraOptions="--fetch"
-else
-  echo "Assume script is NOT running on CI environment"
-fi
-
-echo "Extra Antora Options: ${extraAntoraOptions}"
-
-
 ########################################################################################################################
 # PROCESSING
 ########################################################################################################################
-if [[ $CI == "true" ]]; then
-  echo "Using node $(node --version) and npm $(npm --version)"
-  npm ci
-fi
+
 # See the node script for the list of arguments
 node scripts/generate-content-for-preview-antora-playbook.js ${scriptOptions}
 
@@ -94,7 +78,7 @@ if [[ "$scriptOptions" == *"--only-generate-playbook"* ]]; then
   echo "Skip documentation generation"
   exit 0
 fi
-echo "Building preview..."
+echo "Building the preview using Node $(node --version)..."
 rm -rf build/
-./node_modules/.bin/antora --stacktrace ${extraAntoraOptions} antora-playbook-content-for-preview.yml
+npx antora --stacktrace antora-playbook-content-for-preview.yml
 echo "Preview built"

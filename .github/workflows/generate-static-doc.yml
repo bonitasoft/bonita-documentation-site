@@ -26,10 +26,13 @@ jobs:
       - name: Build Setup
         uses: ./.github/actions/build-setup
       - name: Generate static documentation
-        run: |
-            ./build-preview.bash --branch "${{ github.event.inputs.branch }}" --component "${{ github.event.inputs.component }}" \
-                                 --site-title "${{ github.event.inputs.title }}" \
-                                 --type local --site-url DISABLED --hide-edit-page-links true --hide-navbar-components-list true
+        # '>' Replace newlines with spaces (folded)
+        run: >
+          ./build-preview.bash 
+            --branch "${{ github.event.inputs.branch }}" --component "${{ github.event.inputs.component }}"
+            --fetch-sources true
+            --site-title "${{ github.event.inputs.title }}"
+            --type local --site-url DISABLED --hide-edit-page-links true --hide-navbar-components-list true
       - name: Zip docs
         if: (github.event.inputs.newRelease == 'true')
         run: |
