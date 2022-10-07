@@ -32,7 +32,7 @@ permissions:
 
 jobs:
   deploy_to_netlify:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env:
       GOOGLE_ANALYTICS_KEY: GTM-TXHBK7
       COMPONENT: ${{ github.event.client_payload.component || github.event.inputs.component }}

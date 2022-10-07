@@ -15,7 +15,7 @@ on:
 
 jobs:
   build_site:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env:
       BONITA_BRANCH: '2021.2,2022.2'
       BCD_BRANCH: '3.5'
