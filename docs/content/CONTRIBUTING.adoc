@@ -153,8 +153,8 @@ For more details about alias, see
 * for examples applied to our documentation
 ** https://github.com/bonitasoft/bonita-labs-doc/pull/123: rename, delete
 ** module move
+*** https://github.com/bonitasoft/bonita-doc/pull/1774/files
 *** https://github.com/bonitasoft/bonita-doc/pull/2032/files
-*** https://github.com/bonitasoft/bonita-doc/pull/1816/files#diff-0b23328aa9b34039eadf65ee5e3567e2793352f38c32aa6c2d16fd0ddbd994aa
 
 ==== Example 1: rename page
 
