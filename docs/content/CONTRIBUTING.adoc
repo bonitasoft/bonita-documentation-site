@@ -200,6 +200,7 @@ For more details about the xref syntax, see the Antora documentation to have a b
 
 * {url-antora-docs}/page/page-id/
 * {url-antora-docs}/page/version-and-component-xrefs/
+* {url-antora-docs}/page/page-links/
 
 Example:
 
