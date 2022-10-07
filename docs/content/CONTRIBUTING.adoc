@@ -123,14 +123,32 @@ are related to "getting started", easier maintenance, ....
 ____
 
 
-=== Alias when renaming pages
+=== Use alias to create redirects
 
-IMPORTANT: Impact on SEO
+**IMPORTANT**: not creating redirects impacts the SEO and the reader experience
 
-See
+You **MUST** create an alias when you do the following actions on a existing page
+
+* rename
+* move
+* delete
+
+When doing such actions, the former url of the page is no more available, so its content is no more available for readers (http 404).
+The solution is to setup a redirect that will lead the reader to a new destination.
+
+Antora provides the 'Alias' feature to deal with redirects
+
+* documentation writer knows where to redirect, so it create an alias in the target page that references the old page
+* the documentation build process creates a redirect for each alias
+* the reader is happy and always find the information in the documentation
+
+
+For more details about alias, see
 
 * {url-antora-docs}/page/page-aliases
 * https://github.com/bonitasoft/bonita-labs-doc/pull/123 for an example applied to our documentation
+
+
 
 === Adding link between two components or between versions of the same component
 
