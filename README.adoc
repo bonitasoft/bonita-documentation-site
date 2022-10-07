@@ -52,7 +52,7 @@ Follow the {url-nvm-install}[nvm installation instructions] to set up nvm on you
 
 Don't forget to run `npm install` the first time you build the project or on `package.json` changes.
 
-Check that the `Antora` CLI is available by calling `./node_modules/.bin/antora --version`.
+Check that the `Antora` CLI is available by calling `npx antora --version`.
 
 
 [#non-production-build]
