@@ -133,7 +133,7 @@ You **MUST** create an alias when you do the following actions on a existing pag
 * move
 * delete
 
-When doing such actions, the former url of the page is no more available, so its content is no more available for readers (http 404).
+When doing such actions, the former url of the page is no more available, so its content is no more available for readers (HTTP error 404).
 The solution is to setup a redirect that will lead the reader to a new destination.
 
 Antora provides the 'Alias' feature to deal with redirects
