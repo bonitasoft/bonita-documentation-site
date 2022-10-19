@@ -9,7 +9,7 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
-:url-antora-docs: https://docs.antora.org/antora/3.0
+:url-antora-docs: https://docs.antora.org/antora/3.1
 
 We are pleased to receive any kind of contribution (issues, pull requests, suggestions ...).
 
@@ -143,7 +143,8 @@ Antora provides the 'Alias' feature to deal with redirects
 * the reader is happy and always find the information in the documentation
 
 Limitation of aliases (https://gitlab.com/antora/antora/-/issues/806)
-> Page aliases really were designed to address page renames/moves, particularly within a single component version. They aren't a general-purpose URL router. They can be used for more than what I described, but then you really do have to think about what you are doing and use with care...because it can quickly become confusing.
+[quote]
+Page aliases really were designed to address page renames/moves, particularly within a single component version. They aren't a general-purpose URL router. They can be used for more than what I described, but then you really do have to think about what you are doing and use with care...because it can quickly become confusing.
 
 
 For more details about alias, see
