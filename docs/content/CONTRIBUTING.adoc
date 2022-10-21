@@ -9,7 +9,7 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
-:url-antora-docs: https://docs.antora.org/antora/3.0
+:url-antora-docs: https://docs.antora.org/antora/3.1
 
 We are pleased to receive any kind of contribution (issues, pull requests, suggestions ...).
 
@@ -123,14 +123,67 @@ are related to "getting started", easier maintenance, ....
 ____
 
 
-=== Alias when renaming pages
+=== Use alias to create redirects
 
-IMPORTANT: Impact on SEO
+**IMPORTANT**: not creating redirects impacts the SEO and the reader experience
 
-See
+You **MUST** create an alias when you do the following actions on a existing page
+
+* rename
+* move
+* delete
+
+When doing such actions, the former url of the page is no more available, so its content is no more available for readers (HTTP error 404).
+The solution is to setup a redirect that will lead the reader to a new destination.
+
+Antora provides the 'Alias' feature to deal with redirects
+
+* documentation writer knows where to redirect, so it create an alias in the target page that references the old page
+* the documentation build process creates a redirect for each alias
+* the reader is happy and always find the information in the documentation
+
+Limitation of aliases (https://gitlab.com/antora/antora/-/issues/806)
+[quote]
+Page aliases really were designed to address page renames/moves, particularly within a single component version. They aren't a general-purpose URL router. They can be used for more than what I described, but then you really do have to think about what you are doing and use with care...because it can quickly become confusing.
+
+
+For more details about alias, see
 
 * {url-antora-docs}/page/page-aliases
-* https://github.com/bonitasoft/bonita-labs-doc/pull/123 for an example applied to our documentation
+* {url-antora-docs}/page/page-id
+* for examples applied to our documentation
+** https://github.com/bonitasoft/bonita-labs-doc/pull/123: rename, delete
+** module move
+*** https://github.com/bonitasoft/bonita-doc/pull/1774/files
+*** https://github.com/bonitasoft/bonita-doc/pull/2032/files
+
+==== Example 1: rename page
+
+Assume that the `my-page.adoc` is renamed into `very-interesting.adoc`.
+
+After rename and alias setting, the content of the `very-interesting.adoc` should look like:
+
+```asciidoc
+= Page title
+:page-aliases: ROOT:be-happy.adoc
+```
+
+==== Example 2: move the page to another Antora module
+
+Assume that the `be-happy.adoc` page was originally in the `ROOT` module and is moved to the `version-update` module.
+
+After move and alias setting, the content of the `be-happy.adoc` in the `version-update` module should look like:
+
+```asciidoc
+= Page title
+:page-aliases: ROOT:be-happy.adoc
+```
+
+==== Testing the aliases
+
+Changes in the documentation are done with Pull Requests and a live preview is available for each Pull Request to see the proposed changed.
+
+So use the preview to test the alias configuration: `<base_preview_url/bonita/2021.1/old-page-name` should redirect to `<base_preview_url/bonita/2021.1/new-page-name`
 
 === Adding link between two components or between versions of the same component
 
@@ -148,6 +201,7 @@ For more details about the xref syntax, see the Antora documentation to have a b
 
 * {url-antora-docs}/page/page-id/
 * {url-antora-docs}/page/version-and-component-xrefs/
+* {url-antora-docs}/page/page-links/
 
 Example:
 

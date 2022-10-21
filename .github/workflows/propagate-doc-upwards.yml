@@ -53,7 +53,7 @@ jobs:
 
       - name: Send message to Slack channel
         if: failure() && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.slack-notifications == 'true') )
-        uses: slackapi/slack-github-action@v1.22.0
+        uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: 'CCQGMR4ES'
           payload: |
