@@ -1,0 +1,12 @@
+name: 'Log built site details'
+description: 'Log directories list, size, ...'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Log details
+      working-directory: build/site
+      shell: bash
+      run: |
+        ls -lh
+        du --max-depth=2 -h

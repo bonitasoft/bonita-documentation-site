@@ -16,14 +16,18 @@ runs:
   steps:
     - name: Checkout
       uses: actions/checkout@v3
-      if: github.event.action != 'closed'
       with:
         repository: 'bonitasoft/bonita-documentation-site'
         ref: ${{ inputs.doc-site-branch }}
     - name: Build Setup
       uses: ./.github/actions/build-setup
-      if: github.event.action != 'closed'
     - name: Build Site
-      if: github.event.action != 'closed'
       shell: bash
       run: ${{ inputs.build-preview-command }} --fetch-sources true --pr "${{ github.event.pull_request.number }}"
+    - name: List the content of the generated site
+      uses: ./.github/actions/log-built-site-details
+    - name: Archive site
+      if: github.event.action != 'closed' && steps.surge-preview-tools.outputs.can-run-surge-command != 'true'
+      uses: ./.github/actions/upload-pr-built-site-artifact
+      with:
+        site-type: build

@@ -17,6 +17,7 @@ inputs:
     required: false
     default: 'master'
   component-name:
+    description: 'The name of the component to build. If set, the build-preview-command input is ignored'
     required: false
     default: ''
 
@@ -46,11 +47,7 @@ runs:
       run: ${{ inputs.build-preview-command }} --fetch-sources true --pr "${{ github.event.pull_request.number }}" --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
     - name: List the content of the generated site
       if: github.event.action != 'closed'
-      working-directory: build/site
-      shell: bash
-      run: |
-        ls -lh
-        du --max-depth=2 -h
+      uses: ./.github/actions/log-built-site-details
     - name: Publish preview
       uses: afc163/surge-preview@v1
       if: steps.surge-preview-tools.outputs.can-run-surge-command == 'true'
@@ -63,7 +60,6 @@ runs:
         build: echo "site already built"
     - name: Archive site preview
       if: github.event.action != 'closed' && steps.surge-preview-tools.outputs.can-run-surge-command != 'true'
-      uses: actions/upload-artifact@v3
+      uses: ./.github/actions/upload-pr-built-site-artifact
       with:
-        name: site-preview-pr-${{github.event.pull_request.number}}-${{github.sha}}
-        path: build/site
+        site-type: preview
