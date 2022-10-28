@@ -1,0 +1,16 @@
+name: 'Upload the built site'
+description: 'For PR only. Upload an artifact containing the built site.'
+
+inputs:
+  site-type:
+    description: 'Used in the name of the artifact, to identify the artifact from the others'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: site-${{inputs.site-type}}-pr-${{github.event.pull_request.number}}-${{github.sha}}
+        path: build/site
