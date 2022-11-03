@@ -70,6 +70,10 @@ runs:
       with:
         name: site-preview-pr-${{github.event.pull_request.number}}-${{github.sha}}
         path: build/site
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
     - name: Get changed files
       id: changed-files
       uses: tj-actions/changed-files@v34
