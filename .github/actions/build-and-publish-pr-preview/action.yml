@@ -73,13 +73,14 @@ runs:
     - name: Checkout repository
       uses: actions/checkout@v3
       with:
+        path: content
         fetch-depth: 0
     - name: Get changed files
       id: changed-files
       uses: tj-actions/changed-files@v34
       with:
         files: |
-          ${{inputs.source-file-folder}}
+          path/${{inputs.source-file-folder}}
     - name: Lint pull request useful links
       uses: ./actions/comments-pr-useful-links
       with:
