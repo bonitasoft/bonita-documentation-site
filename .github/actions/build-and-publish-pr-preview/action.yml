@@ -19,7 +19,10 @@ inputs:
   component-name:
     required: false
     default: ''
-
+  source-file-folder:
+    description: 'List of files to filter (Can use *, ** or !* character)'
+    required: false
+    default: 'modules/**'
 runs:
   using: "composite"
   steps:
@@ -67,3 +70,16 @@ runs:
       with:
         name: site-preview-pr-${{github.event.pull_request.number}}-${{github.sha}}
         path: build/site
+    - name: Get changed files
+      id: changed-files
+      uses: tj-actions/changed-files@v34
+      with:
+        files: |
+          ${{inputs.source-file-folder}}
+    - name: Lint pull request useful links
+      uses: ./actions/comments-pr-useful-links
+      with:
+        componentName: ${{ inputs.component-name}}
+        siteUrl: ${{ steps.surge-preview-tools.outputs.preview-url }}
+        files: ${{ steps.changed-files.outputs.all_changed_files }}
+        token: ${{ inputs.github-token }}

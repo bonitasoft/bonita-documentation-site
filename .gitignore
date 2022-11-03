@@ -9,3 +9,7 @@ antora-playbook-content-for-preview.yml
 
 # Local Netlify folder
 .netlify
+# Documentation site actions
+actions/*/build
+actions/*/coverage
+actions/*/node_modules

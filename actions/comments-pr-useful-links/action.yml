@@ -1,0 +1,22 @@
+name: URL for files updated on Pull Request
+description: Comments a pull request with url to check for updated files
+branding:
+  icon: align-left
+  color: blue
+inputs:
+  files:
+    required: true
+    description: All files add or update by the PR
+  componentName:
+    required: false
+    description: The component name
+    default: 'bonita'
+  siteUrl:
+    required: true
+    description: The site url
+  token:
+    required: true
+    description: Access token to the repository.
+runs:
+  using: node16
+  main: dist/index.js
