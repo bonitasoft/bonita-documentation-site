@@ -1,0 +1,102 @@
+name: 'Comments PR with useful links'
+description: 'Add a comment to help reviewer on a PR'
+
+inputs:
+  site-url:
+    description: 'The url of preview to check the PR update'
+    required: true
+  component-name:
+    description: 'The name of the component to build. If set, the build-preview-command input is ignored'
+    required: false
+    default: 'bonita'
+  pattern:
+    description: ''
+    required: false
+    default: 'modules/**'
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 2
+    - name: Get changed files in PR
+      id: changed-files
+      uses: tj-actions/changed-files@v34
+      with:
+        files: |
+          ${{inputs.pattern}}
+    - name: Compute links to display
+      uses: actions/github-script@v6
+      id: set-result
+      env:
+        FILES: ${{steps.changed-files.outputs.all_changed_files}}
+        SITE_URL: ${{ inputs.site-url }}
+        COMPONENT_NAME: ${{ inputs.component-name }}
+      with:
+        script: |
+          let {FILES,SITE_URL,COMPONENT_NAME}=process.env;            
+           const {data: pr} = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              pull_number: context.issue.number,
+              repo: context.repo.repo,
+          });
+          let updatedFiles = FILES.split(' ');                        
+          let urls=[];            
+          updatedFiles.forEach(file => {
+           const fileParts = file.split('/');
+           //remove first element ("modules")
+           fileParts.shift();
+           const pageName = fileParts.pop();
+           const moduleName = fileParts.shift();
+           urls.push(`- ${SITE_URL}/${COMPONENT_NAME}/${pr.base.ref}${moduleName === 'ROOT' ? '/' : `/${moduleName}/`}${pageName?.split('.').shift()}`);
+          });
+          return urls.join('\n');
+        result-encoding: string
+    - name: Create or update comments
+      uses: actions/github-script@v6
+      env:
+        LINKS: ${{steps.set-result.outputs.result}}
+        RENAMED_FILES: ${{steps.changed-files.outputs.renamed_files}}
+        HAS_DELETED_FILES: ${{steps.changed-files.outputs.any_deleted}}
+      with:
+        script: |
+          let {LINKS, RENAMED_FILES, HAS_DELETED_FILES} = process.env;
+                 
+          const HEADER=' ## :memo: Pull request files update\n\n';
+          const preface =
+          'In order to merge this pull request, you need to check your updates with the following url.\n\n';
+
+          const availableLinks = `### :mag: Url to check: \n ${LINKS}\n\n\n\n`;
+          
+          //Adding deleted or renamed check
+          let warningAliasMessage = '';
+          if(HAS_DELETED_FILES === 'true' || RENAMED_FILES != ''){            
+            warningAliasMessage='\n \n ### :warning: At least one file are deleted on this pull request, be sure to adding [alias](https://github.com/bonitasoft/bonita-documentation-site/blob/master/docs/content/CONTRIBUTING.adoc#use-alias-to-create-redirects)'
+          }
+
+          let body =  HEADER + preface + availableLinks + warningAliasMessage;
+          const {data: comments} = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              issue_number: context.issue.number,
+              repo: context.repo.repo,
+          });
+
+          for (const comment of comments) {
+            if (comment.body?.startsWith(HEADER)) {
+              await github.rest.issues.deleteComment({
+                owner: context.repo.owner,
+                issue_number: context.issue.number,
+                repo: context.repo.repo,
+                comment_id: comment.id,
+              });
+            };
+          }
+
+          await github.rest.issues.createComment({
+           issue_number: context.issue.number,
+           owner: context.repo.owner,
+           repo: context.repo.repo,
+           body: body
+          })
+        result-encoding: string
