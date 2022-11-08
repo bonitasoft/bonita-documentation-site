@@ -6,7 +6,7 @@ inputs:
     description: 'The url of preview to check the PR update'
     required: true
   component-name:
-    description: 'The name of the component to build. If set, the build-preview-command input is ignored'
+    description: 'The name of the component that is built. Used to create preview urls'
     required: false
     default: 'bonita'
   pattern:
@@ -81,7 +81,7 @@ runs:
           //Adding deleted or renamed check
           let warningAliasMessage = '';
           if(HAS_DELETED_FILES === 'true' || RENAMED_FILES != ''){            
-            warningAliasMessage='\n \n ### :warning: At least one file are deleted on this pull request, be sure to adding [alias](https://github.com/bonitasoft/bonita-documentation-site/blob/master/docs/content/CONTRIBUTING.adoc#use-alias-to-create-redirects)'
+            warningAliasMessage='\n \n ### :warning: At least one file is deleted in this Pull Request, be sure to add [aliases](https://github.com/bonitasoft/bonita-documentation-site/blob/master/docs/content/CONTRIBUTING.adoc#use-alias-to-create-redirects)'
           }
 
           let body =  HEADER + preface + availableLinks + warningAliasMessage;
