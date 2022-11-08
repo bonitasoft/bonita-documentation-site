@@ -20,6 +20,10 @@ inputs:
     description: 'The name of the component to build. If set, the build-preview-command input is ignored'
     required: false
     default: ''
+  ignore-error:
+    description: 'Only applies when the `component-name` input is set. If `true` ignore Antora error.'
+    required: false
+    default: 'true'
 
 runs:
   using: "composite"
@@ -40,7 +44,7 @@ runs:
     - name: Build Site without error check
       if: github.event.action != 'closed' && inputs.component-name != ''
       shell: bash
-      run: ./build-preview.bash --component ${{inputs.component-name}} --branch ${{ github.head_ref }} --ignore-error true --fetch-sources true --pr "${{ github.event.pull_request.number }}" --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
+      run: ./build-preview.bash --component ${{inputs.component-name}} --branch ${{ github.head_ref }} --ignore-error ${{inputs.ignore-error}} --fetch-sources true --pr "${{ github.event.pull_request.number }}" --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
     - name: Build Site
       if: github.event.action != 'closed' && inputs.component-name == ''
       shell: bash
