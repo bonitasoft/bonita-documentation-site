@@ -5,7 +5,7 @@ on:
     types: [opened, edited, reopened]
 
 jobs:
-  check-pr-title:
+  check-for-cc:
     runs-on: ubuntu-22.04
     steps:
       - name: check-for-cc
