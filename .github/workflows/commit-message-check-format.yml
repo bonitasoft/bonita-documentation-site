@@ -2,7 +2,7 @@ name: Commit Message format check
 
 on:
   pull_request:
-    types: [opened, edited, reopened]
+    types: [opened, edited, reopened, synchronize]
 
 jobs:
   check-for-cc:
