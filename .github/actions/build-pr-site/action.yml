@@ -27,7 +27,6 @@ runs:
     - name: List the content of the generated site
       uses: ./.github/actions/log-built-site-details
     - name: Archive site
-      if: github.event.action != 'closed' && steps.surge-preview-tools.outputs.can-run-surge-command != 'true'
       uses: ./.github/actions/upload-pr-built-site-artifact
       with:
         site-type: build
