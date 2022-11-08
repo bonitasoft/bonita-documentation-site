@@ -43,14 +43,14 @@ runs:
         COMPONENT_NAME: ${{ inputs.component-name }}
       with:
         script: |
-          let {FILES,SITE_URL,COMPONENT_NAME}=process.env;            
+          let {FILES,SITE_URL,COMPONENT_NAME}=process.env;
            const {data: pr} = await github.rest.pulls.get({
               owner: context.repo.owner,
               pull_number: context.issue.number,
               repo: context.repo.repo,
           });
-          let updatedFiles = FILES.split(' ');                        
-          let urls=[];            
+          let updatedFiles = FILES.split(' ');
+          let urls=[];
           updatedFiles.forEach(file => {
            const fileParts = file.split('/');
            //remove first element ("modules")
@@ -71,13 +71,11 @@ runs:
       with:
         script: |
           let {LINKS, RENAMED_FILES, HAS_DELETED_FILES} = process.env;
-          
           const HEADER=' ## :memo: Pull request files update\n\n';
           const preface =
           'In order to merge this pull request, you need to check your updates with the following url.\n\n';
 
           const availableLinks = `### :mag: Url to check: \n ${LINKS}\n\n\n\n`;
-          
           //Adding deleted or renamed check
           let warningAliasMessage = '';
           if(HAS_DELETED_FILES === 'true' || RENAMED_FILES != ''){            
