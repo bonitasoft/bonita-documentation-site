@@ -159,7 +159,7 @@ For more details about alias, see
 
 ==== Example 1: rename page
 
-Assume that the `my-page.adoc` is renamed into `very-interesting.adoc`.
+Assume that the `be-happy.adoc` is renamed into `very-interesting.adoc`.
 
 After rename and alias setting, the content of the `very-interesting.adoc` should look like:
 
