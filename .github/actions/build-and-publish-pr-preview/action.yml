@@ -21,7 +21,7 @@ inputs:
     required: false
     default: ''
   ignore-errors:
-    description: 'Only applies when the `component-name` input is set. If `true` ignore Antora error.'
+    description: 'Only applies when the `component-name` input is set. If `true`, ignores Antora error.'
     required: false
     default: 'true'
 
