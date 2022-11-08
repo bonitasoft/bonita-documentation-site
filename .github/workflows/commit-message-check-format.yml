@@ -2,11 +2,10 @@ name: Commit Message format check
 
 on:
   pull_request:
-    branches: [master]
-    types: [opened, edited, synchronize]
+    types: [opened, edited, reopened]
 
 jobs:
-  check-for-cc:
+  check-pr-title:
     runs-on: ubuntu-22.04
     steps:
       - name: check-for-cc
