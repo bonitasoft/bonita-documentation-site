@@ -6,13 +6,18 @@ inputs:
     description: 'The url of preview to check the PR update'
     required: true
   component-name:
-    description: 'The name of the component that is built. Used to create preview urls'
+    description: 'The name of the component to build. If set, the build-preview-command input is ignored'
     required: false
     default: 'bonita'
   pattern:
     description: ''
     required: false
     default: 'modules/**'
+  # needed by content repository (default master) and here (computed automagically)
+  doc-site-branch:
+    description: 'The branch of the `bonita-documentation-site` used to download js files'
+    required: false
+    default: 'master'
 
 runs:
   using: "composite"
@@ -33,6 +38,13 @@ runs:
       with:
         files: |
           ${{inputs.pattern}}
+    - name: Checkout
+      uses: actions/checkout@v3
+      if: github.event.action != 'closed'
+      with:
+        repository: 'bonitasoft/bonita-documentation-site'
+        ref: ${{ inputs.doc-site-branch }}
+        path: bds
     - name: Compute links to display
       uses: actions/github-script@v6
       if: ${{steps.changed-files.outputs.all_changed_files != ''}}
@@ -43,23 +55,8 @@ runs:
         COMPONENT_NAME: ${{ inputs.component-name }}
       with:
         script: |
-          let {FILES,SITE_URL,COMPONENT_NAME}=process.env;
-           const {data: pr} = await github.rest.pulls.get({
-              owner: context.repo.owner,
-              pull_number: context.issue.number,
-              repo: context.repo.repo,
-          });
-          let updatedFiles = FILES.split(' ');
-          let urls=[];
-          updatedFiles.forEach(file => {
-           const fileParts = file.split('/');
-           //remove first element ("modules")
-           fileParts.shift();
-           const pageName = fileParts.pop();
-           const moduleName = fileParts.shift();
-           urls.push(`- ${SITE_URL}/${COMPONENT_NAME}/${pr.base.ref}${moduleName === 'ROOT' ? '/' : `/${moduleName}/`}${pageName?.split('.').shift()}`);
-          });
-          return urls.join('\n');
+          const script = require('./bds/.github/actions/comment-pr-with-links/comments-with-url-links.js');
+          return await script.prepareUrlLinks({github, context});
         result-encoding: string
     - name: Create or update comments
       if: ${{steps.changed-files.outputs.all_changed_files != ''}}
@@ -70,40 +67,6 @@ runs:
         HAS_DELETED_FILES: ${{steps.changed-files.outputs.any_deleted}}
       with:
         script: |
-          let {LINKS, RENAMED_FILES, HAS_DELETED_FILES} = process.env;
-          const HEADER=' ## :memo: Pull request files update\n\n';
-          const preface =
-          'In order to merge this pull request, you need to check your updates with the following url.\n\n';
-
-          const availableLinks = `### :mag: Url to check: \n ${LINKS}\n\n\n\n`;
-          //Adding deleted or renamed check
-          let warningAliasMessage = '';
-          if(HAS_DELETED_FILES === 'true' || RENAMED_FILES != ''){            
-            warningAliasMessage='\n \n ### :warning: At least one file is deleted in this Pull Request, be sure to add [aliases](https://github.com/bonitasoft/bonita-documentation-site/blob/master/docs/content/CONTRIBUTING.adoc#use-alias-to-create-redirects)'
-          }
-
-          let body =  HEADER + preface + availableLinks + warningAliasMessage;
-          const {data: comments} = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              issue_number: context.issue.number,
-              repo: context.repo.repo,
-          });
-
-          for (const comment of comments) {
-            if (comment.body?.startsWith(HEADER)) {
-              await github.rest.issues.deleteComment({
-                owner: context.repo.owner,
-                issue_number: context.issue.number,
-                repo: context.repo.repo,
-                comment_id: comment.id,
-              });
-            };
-          }
-
-          await github.rest.issues.createComment({
-           issue_number: context.issue.number,
-           owner: context.repo.owner,
-           repo: context.repo.repo,
-           body: body
-          })
+          const script = require('./bds/.github/actions/comment-pr-with-links/comments-with-url-links.js');
+          await script.createOrUpdateComments({github, context})
         result-encoding: string
