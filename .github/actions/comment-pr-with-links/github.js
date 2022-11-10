@@ -1,12 +1,12 @@
 module.exports = {
-    isCommentExist: async function ({github, context, header}) {
+    isCommentExist: async function ({github, context, template}) {
         const {data: comments} = await github.rest.issues.listComments({
             owner: context.repo.owner,
             issue_number: context.issue.number,
             repo: context.repo.repo,
         });
         for (const comment of comments) {
-            if (comment.body?.startsWith(header)) {
+            if (comment.body?.startsWith(template)) {
                 return {
                     exists: true,
                     id: comment.id,
