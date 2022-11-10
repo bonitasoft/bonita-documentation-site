@@ -16,7 +16,7 @@ module.exports = {
                 const pageName = splitted.pop();
                 const moduleName = splitted.shift();
                 let url = `${SITE_URL}/${COMPONENT_NAME}/${pr.base.ref}${moduleName === 'ROOT' ? '/' : `/${moduleName}/`}${pageName?.split('.').shift()}`;
-                urls.push(`- [ ] ${moduleName}/${pageName}](${url})`);
+                urls.push(`- [ ] [${moduleName}/${pageName}](${url})`);
             });
             return urls.join('\n');
     },
@@ -24,7 +24,7 @@ module.exports = {
         let {LINKS, RENAMED_FILES, HAS_DELETED_FILES} = process.env;
         const header='## :memo: Check the pages that have been modified\n\n';
         let body = buildMessage(header,LINKS,HAS_DELETED_FILES === 'true' || RENAMED_FILES != '');
-        const {exists, id} = await githubUtils.isCommentExist({github,context,commentId});
+        const {exists, id} = await githubUtils.isCommentExist({github,context,template: commentId});
         // Delete oldest comment if another comments exist
         if (exists && id){
             await githubUtils.deleteComment({github,context,commentIdToDelete: id});
@@ -41,7 +41,7 @@ function buildMessage(header,links,hasWarningMessage){
     //Adding deleted or renamed check
     let warningAliasMessage = '';
     if(hasWarningMessage){
-        warningAliasMessage='\n \n ### :warning: At least one page has been deleted in the Pull Request. Make sure to add [aliases](https://github.com/bonitasoft/bonita-documentation-site/blob/master/docs/content/CONTRIBUTING.adoc#use-alias-to-create-redirects)'    }
+        warningAliasMessage='\n \n ### :warning: At least one page has been deleted in the Pull Request. Make sure to add [aliases](https://github.com/bonitasoft/bonita-documentation-site/blob/master/docs/content/CONTRIBUTING.adoc#use-alias-to-create-redirects)'}
 
     return commentId + header + preface + availableLinks + warningAliasMessage;
 }
