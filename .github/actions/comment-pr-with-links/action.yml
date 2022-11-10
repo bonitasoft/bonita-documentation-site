@@ -1,0 +1,72 @@
+name: 'Comments PR with useful links'
+description: 'Add a comment to help reviewer on a PR'
+
+inputs:
+  site-url:
+    description: 'The url of preview to check the PR update'
+    required: true
+  component-name:
+    description: 'The name of the component to build. If set, the build-preview-command input is ignored'
+    required: false
+    default: 'bonita'
+  pattern:
+    description: ''
+    required: false
+    default: 'modules/**'
+  # needed by content repository (default master) and here (computed automagically)
+  doc-site-branch:
+    description: 'The branch of the `bonita-documentation-site` used to download js files'
+    required: false
+    default: 'master'
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 2
+    - name: Check if files pattern are valid
+      uses: tj-actions/glob@v16
+      id: check-glob-pattern
+      with:
+        files: |
+          ${{inputs.pattern}}
+    - name: Get changed files in PR
+      if: ${{ steps.check-glob-pattern.outputs.paths != ''}}
+      id: changed-files
+      uses: tj-actions/changed-files@v34
+      with:
+        files: |
+          ${{inputs.pattern}}
+    - name: Checkout
+      uses: actions/checkout@v3
+      if: github.event.action != 'closed'
+      with:
+        repository: 'bonitasoft/bonita-documentation-site'
+        ref: ${{ inputs.doc-site-branch }}
+        path: bds
+    - name: Compute links to display
+      uses: actions/github-script@v6
+      if: ${{steps.changed-files.outputs.all_changed_files != ''}}
+      id: set-result
+      env:
+        FILES: ${{steps.changed-files.outputs.all_changed_files}}
+        SITE_URL: ${{ inputs.site-url }}
+        COMPONENT_NAME: ${{ inputs.component-name }}
+      with:
+        script: |
+          const script = require('./bds/.github/actions/comment-pr-with-links/comments-with-url-links.js');
+          return await script.prepareUrlLinks({github, context});
+        result-encoding: string
+    - name: Create or update comments
+      if: ${{steps.changed-files.outputs.all_changed_files != ''}}
+      uses: actions/github-script@v6
+      env:
+        LINKS: ${{steps.set-result.outputs.result}}
+        RENAMED_FILES: ${{steps.changed-files.outputs.renamed_files}}
+        HAS_DELETED_FILES: ${{steps.changed-files.outputs.any_deleted}}
+      with:
+        script: |
+          const script = require('./bds/.github/actions/comment-pr-with-links/comments-with-url-links.js');
+          await script.createOrUpdateComments({github, context})
+        result-encoding: string

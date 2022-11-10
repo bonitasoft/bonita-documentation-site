@@ -63,3 +63,11 @@ runs:
       uses: ./.github/actions/upload-pr-built-site-artifact
       with:
         site-type: preview
+    - name: Comments PR with useful links
+      uses: ./.github/actions/comment-pr-with-links
+      with:
+        doc-site-branch: ${{ inputs.doc-site-branch }}
+        component-name: ${{inputs.component-name}}
+        site-url: ${{ steps.surge-preview-tools.outputs.preview-url }}
+
+
