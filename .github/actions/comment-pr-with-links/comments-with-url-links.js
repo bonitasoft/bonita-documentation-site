@@ -1,5 +1,5 @@
 const githubUtils = require('./github');
-
+const commentId= '<!-- previewLinksCheck-->\n';
 module.exports = {
     prepareUrlLinks:  async function ({github, context}) {
             let {FILES, SITE_URL, COMPONENT_NAME} = process.env;
@@ -24,7 +24,7 @@ module.exports = {
         let {LINKS, RENAMED_FILES, HAS_DELETED_FILES} = process.env;
         const header='## :memo: Check the pages that have been modified\n\n';
         let body = buildMessage(header,LINKS,HAS_DELETED_FILES === 'true' || RENAMED_FILES != '');
-        const {exists, id} = await githubUtils.isCommentExist({github,context,header});
+        const {exists, id} = await githubUtils.isCommentExist({github,context,commentId});
         // Delete oldest comment if another comments exist
         if (exists && id){
             await githubUtils.deleteComment({github,context,commentIdToDelete: id});
@@ -43,5 +43,5 @@ function buildMessage(header,links,hasWarningMessage){
     if(hasWarningMessage){
         warningAliasMessage='\n \n ### :warning: At least one page has been deleted in the Pull Request. Make sure to add [aliases](https://github.com/bonitasoft/bonita-documentation-site/blob/master/docs/content/CONTRIBUTING.adoc#use-alias-to-create-redirects)'    }
 
-    return header + preface + availableLinks + warningAliasMessage;
+    return commentId + header + preface + availableLinks + warningAliasMessage;
 }
