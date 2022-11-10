@@ -15,7 +15,8 @@ module.exports = {
                 splitted.shift();
                 const pageName = splitted.pop();
                 const moduleName = splitted.shift();
-                urls.push(`- ${SITE_URL}/${COMPONENT_NAME}/${pr.base.ref}${moduleName === 'ROOT' ? '/' : `/${moduleName}/`}${pageName?.split('.').shift()}`);
+                let url = `${SITE_URL}/${COMPONENT_NAME}/${pr.base.ref}${moduleName === 'ROOT' ? '/' : `/${moduleName}/`}${pageName?.split('.').shift()}`;
+                urls.push(`[ ][${moduleName}/${pageName}](${url})`);
             });
             return urls.join('\n');
     },
