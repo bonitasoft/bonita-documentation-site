@@ -9,6 +9,7 @@ on:
     paths:
       - '.github/actions/build-and-publish-pr-preview/**/*'
       - '.github/actions/build-setup/**/*'
+      - '.github/actions/comment-pr-with-links/**/*'
       - '.github/workflows/publish-pr-preview.yml'
       - 'resources/**/*'
       - 'antora-playbook.yml'
