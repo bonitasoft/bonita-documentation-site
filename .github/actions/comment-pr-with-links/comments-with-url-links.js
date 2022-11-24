@@ -23,13 +23,15 @@ module.exports = {
     createOrUpdateComments: async function ({github,context}){
         let {LINKS, RENAMED_FILES, HAS_DELETED_FILES} = process.env;
         const header='## :memo: Check the pages that have been modified\n\n';
-        let body = buildMessage(header,LINKS,HAS_DELETED_FILES === 'true' || RENAMED_FILES != '');
-        const {exists, id} = await githubUtils.isCommentExist({github,context,template: commentId});
+        let newBody = buildMessage(header,LINKS,HAS_DELETED_FILES === 'true' || RENAMED_FILES != '');
+        const {exists, id, body} = await githubUtils.isCommentExist({github,context,template: commentId});
         // Delete oldest comment if another comments exist
-        if (exists && id){
-            await githubUtils.deleteComment({github,context,commentIdToDelete: id});
+        if (exists && id && body === newBody){
+            await githubUtils.updateComment({github,context,comment_id: id, body});
+            return id;
         }
-        await githubUtils.createComment({github,context,body});
+        const comment = await githubUtils.createComment({github,context,body});
+        return comment?.id;
     }
 };
 
@@ -41,7 +43,8 @@ function buildMessage(header,links,hasWarningMessage){
     //Adding deleted or renamed check
     let warningAliasMessage = '';
     if(hasWarningMessage){
-        warningAliasMessage='\n \n ### :warning: At least one page has been deleted in the Pull Request. Make sure to add [aliases](https://github.com/bonitasoft/bonita-documentation-site/blob/master/docs/content/CONTRIBUTING.adoc#use-alias-to-create-redirects)'}
+        warningAliasMessage='\n \n ### :warning: At least one page has been deleted in the Pull Request. Make sure to add [aliases](https://github.com/bonitasoft/bonita-documentation-site/blob/master/docs/content/CONTRIBUTING.adoc#use-alias-to-create-redirects)'
+    }
 
     return commentId + header + preface + availableLinks + warningAliasMessage;
 }

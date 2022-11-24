@@ -10,6 +10,7 @@ module.exports = {
                 return {
                     exists: true,
                     id: comment.id,
+                    body: comment.body
                 };
             }
         }
@@ -17,15 +18,26 @@ module.exports = {
         return {
             exists: false,
             id: null,
+            body: ''
         };
     },
     createComment: async function ({github, context, body}) {
-        await github.rest.issues.createComment({
+        const comment = await github.rest.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
             body: body
         })
+        return comment?.id;
+    },
+    updateComment: async function ({github, context, body, comment_id}) {
+        const comment = await github.rest.issues.updateComment({
+            comment_id: comment_id,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: body
+        })
+        return comment?.id;
     },
     deleteComment: async function ({github, context, commentIdToDelete}) {
         await github.rest.issues.deleteComment({

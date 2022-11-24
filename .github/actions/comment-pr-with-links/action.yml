@@ -60,6 +60,7 @@ runs:
         result-encoding: string
     - name: Create or update comments
       if: ${{steps.changed-files.outputs.all_changed_files != ''}}
+      id: createUpdateComment
       uses: actions/github-script@v6
       env:
         LINKS: ${{steps.set-result.outputs.result}}
@@ -68,5 +69,5 @@ runs:
       with:
         script: |
           const script = require('./bds/.github/actions/comment-pr-with-links/comments-with-url-links.js');
-          await script.createOrUpdateComments({github, context})
+          return await script.createOrUpdateComments({github, context})
         result-encoding: string
