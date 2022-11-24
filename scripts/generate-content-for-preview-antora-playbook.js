@@ -105,6 +105,7 @@ else if (useTestSources) {
         url: './',
         branches: ['HEAD'],
         start_paths: [
+            'test/documentation-content/apps-manager/1.0',
             'test/documentation-content/bcd/3.4',
             'test/documentation-content/bcd/3.5',
             'test/documentation-content/bonita/v0',
@@ -115,9 +116,8 @@ else if (useTestSources) {
             'test/documentation-content/bonita/v2022.1-beta',
             'test/documentation-content/bonita/v2022.2-alpha',
             'test/documentation-content/cloud/latest',
-            'test/documentation-content/test-toolkit/1.0',
             'test/documentation-content/labs/latest',
-            'test/documentation-content/apps-manager/1.0',
+            'test/documentation-content/test-toolkit/1.0',
         ],
     }];
 }
