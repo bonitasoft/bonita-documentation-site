@@ -1,5 +1,5 @@
 const githubUtils = require('./github');
-const commentId= '<!-- previewLinksCheck-->\n';
+const templateCommentId= '<!-- previewLinksCheck-->\n';
 module.exports = {
     prepareUrlLinks:  async function ({github, context}) {
             let {FILES, SITE_URL, COMPONENT_NAME} = process.env;
@@ -24,13 +24,16 @@ module.exports = {
         let {LINKS, RENAMED_FILES, HAS_DELETED_FILES} = process.env;
         const header='## :memo: Check the pages that have been modified\n\n';
         let body = buildMessage(header,LINKS,HAS_DELETED_FILES === 'true' || RENAMED_FILES != '');
-        const {exists, id} = await githubUtils.isCommentExist({github,context,template: commentId});
+        const {exists, id} = await githubUtils.isCommentExist({github,context,template: templateCommentId});
         // Delete oldest comment if another comments exist
         if (exists && id){
-            await githubUtils.deleteComment({github,context,commentIdToDelete: id});
+            await githubUtils.updateComment({github,context,comment_id: id, body});
+            return id;
         }
-        await githubUtils.createComment({github,context,body});
+        const comment = await githubUtils.createComment({github,context, body});
+        return comment?.id;
     }
+
 };
 
 function buildMessage(header,links,hasWarningMessage){
@@ -38,10 +41,11 @@ function buildMessage(header,links,hasWarningMessage){
         'In order to merge this pull request, you need to check your updates with the following url.\n\n';
 
     const availableLinks = `### :mag: Page list: \n ${links}\n\n\n\n`;
-    //Adding deleted or renamed check
+
     let warningAliasMessage = '';
     if(hasWarningMessage){
-        warningAliasMessage='\n \n ### :warning: At least one page has been deleted in the Pull Request. Make sure to add [aliases](https://github.com/bonitasoft/bonita-documentation-site/blob/master/docs/content/CONTRIBUTING.adoc#use-alias-to-create-redirects)'}
+        warningAliasMessage='\n \n ### :warning: At least one page has been deleted in the Pull Request. Make sure to add [aliases](https://github.com/bonitasoft/bonita-documentation-site/blob/master/docs/content/CONTRIBUTING.adoc#use-alias-to-create-redirects)'
+    }
 
-    return commentId + header + preface + availableLinks + warningAliasMessage;
+    return templateCommentId + header + preface + availableLinks + warningAliasMessage;
 }
