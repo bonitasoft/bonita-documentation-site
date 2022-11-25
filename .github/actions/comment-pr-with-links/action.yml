@@ -69,5 +69,7 @@ runs:
       with:
         script: |
           const script = require('./bds/.github/actions/comment-pr-with-links/comments-with-url-links.js');
-          return await script.createOrUpdateComments({github, context})
+          let commentId = await script.createOrUpdateComments({github, context});
+          console.log('commentId',commentId);
+          return commentId;
         result-encoding: string

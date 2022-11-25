@@ -9,8 +9,7 @@ module.exports = {
             if (comment.body?.startsWith(template)) {
                 return {
                     exists: true,
-                    id: comment.id,
-                    body: comment.body
+                    id: comment.id
                 };
             }
         }
