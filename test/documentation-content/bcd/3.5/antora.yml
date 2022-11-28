@@ -1,5 +1,5 @@
 name: bcd
-title: Bonita Continuous Delivery
+title: Continuous Delivery
 version: 3.5
 asciidoc:
   attributes:
