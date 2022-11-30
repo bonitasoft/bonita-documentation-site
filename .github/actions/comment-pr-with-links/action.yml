@@ -12,7 +12,7 @@ inputs:
   pattern:
     description: ''
     required: false
-    default: 'modules/**'
+    default: 'modules/**/*.adoc'
   # needed by content repository (default master) and here (computed automagically)
   doc-site-branch:
     description: 'The branch of the `bonita-documentation-site` used to download js files'
@@ -51,20 +51,18 @@ runs:
       id: set-result
       env:
         FILES: ${{steps.changed-files.outputs.all_changed_files}}
+        DELETED: ${{steps.changed-files.outputs.deleted_files}}
         SITE_URL: ${{ inputs.site-url }}
         COMPONENT_NAME: ${{ inputs.component-name }}
       with:
         script: |
           const script = require('./bds/.github/actions/comment-pr-with-links/comments-with-url-links.js');
           return await script.prepareUrlLinks({github, context});
-        result-encoding: string
     - name: Create or update comments
       if: ${{steps.changed-files.outputs.all_changed_files != ''}}
-      id: createUpdateComment
       uses: actions/github-script@v6
       env:
         LINKS: ${{steps.set-result.outputs.result}}
-        RENAMED_FILES: ${{steps.changed-files.outputs.renamed_files}}
         HAS_DELETED_FILES: ${{steps.changed-files.outputs.any_deleted}}
       with:
         script: |
