@@ -33,10 +33,14 @@ function buildMessage({header, links, hasWarningMessage}) {
     const preface =
         'In order to merge this pull request, you need to check your updates with the following url.\n\n';
 
-    const availableLinks = `### :mag: Page list: \n ${links.updated}\n\n\n`;
+    const availableLinks = `### :mag: Updated pages 
+    The following pages were updated, please ensure that the display is correct: 
+    ${links.updated}\n\n`;
     let warningAliasMessage = '';
     if (hasWarningMessage) {
-        warningAliasMessage = `### :warning: Alias \n At least one page has been renamed, moved or deleted in the Pull Request. Make sure to add [aliases](https://github.com/bonitasoft/bonita-documentation-site/blob/master/docs/content/CONTRIBUTING.adoc#use-alias-to-create-redirects) and verify if this following link redirect in the right place \n ${links?.deleted}`
+        warningAliasMessage = `### :warning: Check redirects
+         At least one page has been renamed, moved or deleted in the Pull Request. Make sure to add [aliases](https://github.com/bonitasoft/bonita-documentation-site/blob/master/docs/content/CONTRIBUTING.adoc#use-alias-to-create-redirects) and verify hat the following links redirect to the right location: 
+         ${links?.deleted}`
     }
 
     return template + header + preface + availableLinks + warningAliasMessage;
