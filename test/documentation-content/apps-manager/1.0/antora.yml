@@ -1,5 +1,5 @@
 name: apps-manager
-title: Bonita Apps Manager
+title: Apps Manager
 version: '1.0'
 prerelease: .alpha-01
 start_page: ROOT:index.adoc
