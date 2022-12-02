@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "antora": "3.1.2",
-    "fs-extra": "~10.1.0",
+    "fs-extra": "~11.1.0",
     "js-yaml": "~4.1.0",
     "minimist": "~1.2.7",
     "netlify-cli": "~12.2.7",
