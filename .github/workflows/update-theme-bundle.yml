@@ -20,7 +20,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Perl environment
-        uses: shogo82148/actions-setup-perl@v1.18.4
+        uses: shogo82148/actions-setup-perl@v1.20.1
 
       - name: Update theme bundle in Antora playbook
         run: |
