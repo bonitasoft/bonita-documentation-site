@@ -48,7 +48,7 @@ content:
         - "1.0"
 ui:
   bundle:
-    url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.8.0/bonita-documentation-theme-v1.8.0.zip
+    url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.9.0/bonita-documentation-theme-v1.9.0.zip
 
 antora:
   extensions:
