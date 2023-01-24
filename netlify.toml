@@ -34,6 +34,8 @@ status = 302
 from = "/bonita/8.0/*"
 to = "/bonita/2023.1/:splat"
 
+# 7.16 is the initial technical version for 2023.1, prior it was renamed into 8.0.
+# keep it to avoid redirection failures
 [[redirects]]
 from = "/bonita/7.16/*"
 to = "/bonita/2023.1/:splat"
