@@ -15,7 +15,7 @@ const repoUrls = new Map([
     ['cloud', 'https://github.com/bonitasoft/bonita-cloud-doc.git'],
     ['labs', 'https://github.com/bonitasoft/bonita-labs-doc.git'],
     ['test-toolkit', 'https://github.com/bonitasoft/bonita-test-toolkit-doc.git'],
-    ['apps-manager', 'https://github.com/bonitasoft/bonita-apps-manager-doc.git'],
+    ['bonita-central', 'https://github.com/bonitasoft/bonita-central-doc.git'],
 ]);
 function getRepoUrl(componentName) {
     const repoUrl = repoUrls.get(componentName);
