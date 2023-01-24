@@ -1,5 +1,5 @@
-name: bonita-central
-title: Bonita Central
+name: central
+title: Central
 version: '1.0'
 prerelease: .alpha-01
 start_page: ROOT:index.adoc
