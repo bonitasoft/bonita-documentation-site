@@ -1,5 +1,5 @@
-name: apps-manager
-title: Apps Manager
+name: bonita-central
+title: Bonita Central
 version: '1.0'
 prerelease: .alpha-01
 start_page: ROOT:index.adoc
