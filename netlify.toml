@@ -31,6 +31,12 @@ status = 302
 # Special redirect after introduction of Bonita branding version
 # Add a new entry when adding a new version/branch. This is generally done when the developments of a new version start
 [[redirects]]
+from = "/bonita/8.0/*"
+to = "/bonita/2023.1/:splat"
+
+# 7.16 is the initial technical version for 2023.1, prior it was renamed into 8.0.
+# keep it to avoid redirection failures
+[[redirects]]
 from = "/bonita/7.16/*"
 to = "/bonita/2023.1/:splat"
 
