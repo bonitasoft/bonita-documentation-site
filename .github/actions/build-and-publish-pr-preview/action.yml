@@ -35,7 +35,7 @@ runs:
       with:
         script: |
           // inspired from https://github.com/goshencollege/validate-branch-name/blob/v1.0.1/index.js
-          const branchName = github.context.payload.ref.replace("refs/heads/", "");
+          const branchName = context.ref.replace("refs/heads/", "");
           // only allow backslash, alphanumeric, dot, underscore and dash
           const pattern = '^[\/a-zA-Z0-9._-]+$';
           if (!nameMatchesPattern(branchName, pattern)) {
