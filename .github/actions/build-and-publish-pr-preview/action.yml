@@ -28,6 +28,24 @@ inputs:
 runs:
   using: "composite"
   steps:
+    # TODO extract in a dedicated action and use it in the build-pr-site action as well
+    - name: Validate branch name
+      if: github.event.action != 'closed'
+      uses: actions/github-script@v6
+      with:
+        script: |
+        // inspired from https://github.com/goshencollege/validate-branch-name/blob/v1.0.1/index.js
+        const branchName = github.context.payload.ref.replace("refs/heads/", "");
+        // only allow backslash, alphanumeric, dot, underscore and dash
+        const pattern = '^[\/a-zA-Z0-9._-]+$';
+        if (!nameMatchesPattern(branchName, pattern)) {
+          core.setFailed(
+            `The branch name ${branchName} does not match the predefined regex pattern - ${pattern}. This branch wouldn't be used by Antora to build the preview
+So there would be missing content and side effects.
+For more details, see https://github.com/bonitasoft/bonita-documentation-site/issues/512.`
+          );
+        }
+
     - uses: bonitasoft/actions/packages/surge-preview-tools@v2
       id: surge-preview-tools
       with:
