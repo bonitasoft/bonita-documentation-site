@@ -40,9 +40,9 @@ runs:
         const pattern = '^[\/a-zA-Z0-9._-]+$';
         if (!nameMatchesPattern(branchName, pattern)) {
           core.setFailed(
-            `The branch name ${branchName} does not match the predefined regex pattern - ${pattern}. This branch wouldn't be used by Antora to build the preview
-So there would be missing content and side effects.
-For more details, see https://github.com/bonitasoft/bonita-documentation-site/issues/512.`
+            `The branch name ${branchName} does not match the predefined regex pattern - ${pattern}. This branch wouldn't be used by Antora to build the preview.g
+            So there would be missing content and side effects.
+            For more details, see https://github.com/bonitasoft/bonita-documentation-site/issues/512.`
           );
         }
 
