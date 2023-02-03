@@ -27,14 +27,13 @@ inputs:
 
 runs:
   using: "composite"
-  env:
-    # TODO use everywhere
-    BRANCH_NAME: ${{ github.head_ref }}
   steps:
     # TODO extract in a dedicated action and use it in the build-pr-site action as well
     - name: Validate branch name
       if: github.event.action != 'closed'
       uses: actions/github-script@v6
+      env:
+        BRANCH_NAME: ${{ github.head_ref }}
       with:
         script: |
           const { BRANCH_NAME } = process.env
