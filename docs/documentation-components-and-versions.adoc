@@ -41,22 +41,6 @@ GA release (actions to be performed detailed later in this document):
 * archive the oldest version
 * mark the 5th version as out of support: On new Bonita Platform GA release, an old version is considered as out of support.
 
-== DocSearch and component versions
-
-=== Don't use Antora component without version
-
-No version Antora component: {url-antora-docs}/component-with-no-version/
-
-The documentation site search crawling and widget we have setup, require a component and a version. In case of version less
-components, there is no version token in the url, so this defeats the mechanism in place.
-
-See https://github.com/bonitasoft/bonita-labs-doc/pull/127#discussion_r585309113 for extra information.
-
-[[docsearch-configuration]]
-=== DocSearch configuration
-
-The configuration is available in the https://crawler.algolia.com/admin/crawlers[DocSearch crawler admin page (restricted access)].
-
 
 == General how-to for components and versions management
 
