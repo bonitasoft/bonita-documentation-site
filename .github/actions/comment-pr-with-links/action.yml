@@ -30,24 +30,28 @@ runs:
       id: check-glob-pattern
       with:
         files: |
-          ${{inputs.pattern}}
+          *
+        excluded-files: |
+          !${{inputs.pattern}}
     - name: Get changed files in PR
       if: ${{ steps.check-glob-pattern.outputs.paths != ''}}
       id: changed-files
-      uses: tj-actions/changed-files@v34
+      uses: tj-actions/changed-files@v35
       with:
         files: |
-          ${{inputs.pattern}}
+          *
+        files_ignore: |
+          !${{inputs.pattern}}
     - name: Checkout
       uses: actions/checkout@v3
-      if: github.event.action != 'closed'
+      if: ${{ github.event.action != 'closed' || steps.check-glob-pattern.outputs.paths != '' }}
       with:
         repository: 'bonitasoft/bonita-documentation-site'
         ref: ${{ inputs.doc-site-branch }}
         path: bds
     - name: Compute links to display
       uses: actions/github-script@v6
-      if: ${{steps.changed-files.outputs.all_changed_files != ''}}
+      if: ${{steps.changed-files.outputs.all_changed_files != '' || steps.check-glob-pattern.outputs.paths != ''}}
       id: set-result
       env:
         FILES: ${{steps.changed-files.outputs.all_changed_files}}
@@ -59,7 +63,7 @@ runs:
           const script = require('./bds/.github/actions/comment-pr-with-links/comments-with-url-links.js');
           return await script.prepareUrlLinks({github, context});
     - name: Create or update comments
-      if: ${{steps.changed-files.outputs.all_changed_files != ''}}
+      if: ${{steps.changed-files.outputs.all_changed_files != ''  || steps.check-glob-pattern.outputs.paths != ''}}
       uses: actions/github-script@v6
       env:
         LINKS: ${{steps.set-result.outputs.result}}
