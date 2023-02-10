@@ -19,6 +19,8 @@ runs:
       with:
         repository: 'bonitasoft/bonita-documentation-site'
         ref: ${{ inputs.doc-site-branch }}
+    - name: Validate PR branch name
+      uses: ./.github/actions/validate-pr-branch-name
     - name: Build Setup
       uses: ./.github/actions/build-setup
     - name: Build Site
