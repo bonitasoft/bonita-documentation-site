@@ -46,7 +46,7 @@ GA release (actions to be performed detailed later in this document):
 
 === How to integrate a new component
 
-NOTE
+[NOTE]
 ====
 This is a brief overview of all required actions. +
 For a complete list of required tasks, see the https://bonitasoft.atlassian.net/wiki/spaces/BS/pages/22503227439/How-to+configure+a+new+documentation+content+component[complete guide] (restricted access).
