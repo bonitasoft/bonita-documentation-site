@@ -53,37 +53,15 @@ jobs:
 
       - name: Send message to Slack channel
         if: failure() && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.slack-notifications == 'true') )
-        uses: slackapi/slack-github-action@v1.23.0
+        uses: bonitasoft/actions/packages/notify-slack@v2.2
         with:
-          channel-id: 'CCQGMR4ES'
-          payload: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": ":fire:  Propagating documentation upwards failed for repository *${{matrix.repo}}*. \n \n  @channel *We need someone* ! \n  - Add a :fire_extinguisher:if you take the action to resolve the conflicts (only one person is required) \n - Add a :sweat_drops: when it’s done (and eventually a :party_parrot: )"
-                  }
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "More details about the error <https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}?check_suite_focus=true| here> \n More details on solving the conflicts locally <https://bonitasoft.atlassian.net/wiki/spaces/BS/pages/1181483014/Bonita+documentation+site+content+update#Bonita| there>"
-                  }
-                },
-                {
-                  "type": "divider"
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "_Cela semble toujours impossible jusqu’à ce qu’on le fasse._\n _Mandela_"
-                  }
-                }
-              ]
-            }
+          CHANNEL_ID: 'CCQGMR4ES'
+          MESSAGE: |
+              :fire:  Propagating documentation upwards failed for repository *${{matrix.repo}}*. \n \n  
+              @channel *We need someone* ! \n  
+            - Add a :fire_extinguisher:if you take the action to resolve the conflicts (only one person is required) \n 
+            - Add a :sweat_drops: when it’s done (and eventually a :party_parrot: ) \n \n
+            
+            More details on solving the conflicts locally <https://bonitasoft.atlassian.net/wiki/spaces/BS/pages/1181483014/Bonita+documentation+site+content+update#Bonita| there>
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
