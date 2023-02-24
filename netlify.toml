@@ -12,21 +12,6 @@ force = true
 ########################################################################################################################
 # Bonita redirects
 ########################################################################################################################
-# latest and next: ONLY CHANGE WHEN THE BONITA GA IS OUT.
-# use http 302 as the Antora 3 does with https://docs.antora.org/antora/3.0/playbook/urls-latest-version-segment-strategy/
-# Comparing to http 200, the user doesn't have the 'latest' url in the browser navigation bar
-# but this ensures that other redirects (especially those generated from aliases) are considered when using the 'latest' url
-# Redirect for next dev version
-[[redirects]]
-from = "/bonita/next/*"
-to = "/bonita/2023.1/:splat"
-status = 302
-
-[[redirects]]
-from = "/bonita/latest/*"
-to = "/bonita/2022.2/:splat"
-status = 302
-
 
 # Special redirect after introduction of Bonita branding version
 # Add a new entry when adding a new version/branch. This is generally done when the developments of a new version start
@@ -143,11 +128,6 @@ to = "/bonita/0/"
 # BCD redirects
 ########################################################################################################################
 [[redirects]]
-from = "/bcd/latest/*"
-to = "/bcd/3.6/:splat"
-status = 302
-
-[[redirects]]
 from = "/bcd/"
 to = "/bcd/latest/"
 
@@ -229,10 +209,12 @@ to = "/cloud/latest/"
 # Bonita test-toolkit redirects
 ########################################################################################################################
 [[redirects]]
-from = "/test-toolkit/latest/*"
-to = "/test-toolkit/1.0/:splat"
-status = 302
-
-[[redirects]]
 from = "/test-toolkit/"
 to = "/test-toolkit/latest/"
+
+########################################################################################################################
+# Bonita Central
+########################################################################################################################
+[[redirects]]
+from = "/central/"
+to = "/central/latest/"
