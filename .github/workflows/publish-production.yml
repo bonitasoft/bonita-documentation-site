@@ -78,7 +78,7 @@ jobs:
         if: failure()
         uses: bonitasoft/actions/packages/notify-slack@v2.2
         with:
-          CHANNEL_ID: 'CCQGMR4ES'
+          CHANNEL_ID: ${{ vars.SLACK_CHANNEL_ID }}
           MESSAGE: |
             :red_circle:  Publish documentation in production failed. \n \n  @channel *We need someone* !
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
