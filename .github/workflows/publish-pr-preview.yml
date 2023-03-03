@@ -31,3 +31,5 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           doc-site-branch: ${{ github.head_ref }}
           build-preview-command: ./build-preview.bash --single-branch-per-repo --ignore-error true
+          pattern: 'tests/**/*.adoc'
+
