@@ -40,6 +40,15 @@ runs:
       with:
         files: |
           ${{inputs.pattern}}
+    - name: Log files update
+      shell: bash
+      run: |
+        echo "-------------------------------------------------------"        
+        echo "glob-pattern {{ steps.check-glob-pattern.outputs.paths != '' }}"
+        echo "if {{steps.changed-files.outputs.any_changed == 'true' || steps.check-glob-pattern.outputs.paths != ''}}"
+        echo "all_changed_files ### ${{ steps.changed-files.outputs.all_changed_files }}"
+        echo "Boolean ### ${{steps.changed-files.outputs.all_changed_files != ''}}"
+        echo "Boolean ### ${{steps.changed-files.outputs.any_changed == 'true'}}"
     - name: Checkout
       uses: actions/checkout@v3
       if: ${{ github.event.action != 'closed' || steps.check-glob-pattern.outputs.paths != '' }}
