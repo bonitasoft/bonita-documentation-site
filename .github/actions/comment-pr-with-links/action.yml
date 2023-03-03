@@ -30,7 +30,9 @@ runs:
       id: check-glob-pattern
       with:
         files: |
-          ${{inputs.pattern}}
+          *
+        excluded-files: |
+          !${{inputs.pattern}}
     - name: Get changed files in PR
       if: ${{ steps.check-glob-pattern.outputs.paths != ''}}
       id: changed-files
