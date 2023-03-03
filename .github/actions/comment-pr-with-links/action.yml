@@ -30,9 +30,7 @@ runs:
       id: check-glob-pattern
       with:
         files: |
-          *
-        excluded-files: |
-          !${{inputs.pattern}}
+          ${{inputs.pattern}}
     - name: Get changed files in PR
       if: ${{ steps.check-glob-pattern.outputs.paths != ''}}
       id: changed-files
@@ -40,25 +38,20 @@ runs:
       with:
         files: |
           ${{inputs.pattern}}
-    - name: Log files update
+    - name: Log files changed
       shell: bash
       run: |
-        echo "-------------------------------------------------------"        
-        echo "glob-pattern {{ steps.check-glob-pattern.outputs.paths != '' }}"
-        echo "if {{steps.changed-files.outputs.any_changed == 'true' || steps.check-glob-pattern.outputs.paths != ''}}"
-        echo "all_changed_files ### ${{ steps.changed-files.outputs.all_changed_files }}"
-        echo "Boolean ### ${{steps.changed-files.outputs.all_changed_files != ''}}"
-        echo "Boolean ### ${{steps.changed-files.outputs.any_changed == 'true'}}"
+        echo "${{ steps.changed-files.outputs.all_changed_files }}"
     - name: Checkout
       uses: actions/checkout@v3
-      if: ${{ github.event.action != 'closed' || steps.check-glob-pattern.outputs.paths != '' }}
+      if: ${{ github.event.action != 'closed' }}
       with:
         repository: 'bonitasoft/bonita-documentation-site'
         ref: ${{ inputs.doc-site-branch }}
         path: bds
     - name: Compute links to display
       uses: actions/github-script@v6
-      if: ${{steps.changed-files.outputs.any_changed == 'true' || steps.check-glob-pattern.outputs.paths != ''}}
+      if: ${{steps.changed-files.outputs.any_changed == 'true' }}
       id: set-result
       env:
         FILES: ${{steps.changed-files.outputs.all_changed_files}}
@@ -70,7 +63,7 @@ runs:
           const script = require('./bds/.github/actions/comment-pr-with-links/comments-with-url-links.js');
           return await script.prepareUrlLinks({github, context});
     - name: Create or update comments
-      if: ${{steps.changed-files.outputs.any_changed == 'true' || steps.check-glob-pattern.outputs.paths != ''}}
+      if: ${{steps.changed-files.outputs.any_changed == 'true' }}
       uses: actions/github-script@v6
       env:
         LINKS: ${{steps.set-result.outputs.result}}
