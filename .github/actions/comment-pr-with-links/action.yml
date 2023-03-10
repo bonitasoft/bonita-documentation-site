@@ -34,11 +34,26 @@ runs:
     - name: Get changed files in PR
       if: ${{ steps.check-glob-pattern.outputs.paths != ''}}
       id: changed-files
+      continue-on-error: true # we will verify the error in a later step
       uses: tj-actions/changed-files@v35
       with:
         files: |
           ${{inputs.pattern}}
+    - name: Check result
+      id: get-changed-files
+      uses: actions/github-script@v6
+      env:
+        DETECTION_STATUS: ${{steps.changed-files.outcome}}
+      with:
+        script: |
+          const {DETECTION_STATUS} = process.env;
+          core.info(`Outcome of the 'get-changed-files' step is: ${DETECTION_STATUS}`);
+          if(DETECTION_STATUS === 'failure') {
+            return 'false';
+          }
+          return 'true';
     - name: Log files changed
+      if: ${{steps.get-changed-files.outputs.result == 'true' }}
       shell: bash
       run: |
         echo "${{ steps.changed-files.outputs.all_changed_files }}"
@@ -51,7 +66,7 @@ runs:
         path: bds
     - name: Compute links to display
       uses: actions/github-script@v6
-      if: ${{steps.changed-files.outputs.any_changed == 'true' }}
+      if: ${{steps.get-changed-files.outputs.result == 'true' }}
       id: set-result
       env:
         FILES: ${{steps.changed-files.outputs.all_changed_files}}
@@ -63,7 +78,7 @@ runs:
           const script = require('./bds/.github/actions/comment-pr-with-links/comments-with-url-links.js');
           return await script.prepareUrlLinks({github, context});
     - name: Create or update comments
-      if: ${{steps.changed-files.outputs.any_changed == 'true' }}
+      if: ${{steps.get-changed-files.outputs.result == 'true' }}
       uses: actions/github-script@v6
       env:
         LINKS: ${{steps.set-result.outputs.result}}
