@@ -25,14 +25,7 @@ runs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 2
-    - name: Check if files pattern are valid
-      uses: tj-actions/glob@v16
-      id: check-glob-pattern
-      with:
-        files: |
-          ${{inputs.pattern}}
     - name: Get changed files in PR
-      if: ${{ steps.check-glob-pattern.outputs.paths != ''}}
       id: changed-files
       continue-on-error: true # we will verify the error in a later step
       uses: tj-actions/changed-files@v35
