@@ -139,7 +139,9 @@ Do
 Don't
 
 * bc-app-declaration.adoc (component prefix and abbreviation): application-declaration.adoc 
-* BC_archi_single.png (both component prefix and underscore): archi-single.png 
+* BC_archi_single.png (both component prefix and underscore): archi-single.png
+* livingapp_manage_configuration.adoc (module and underscore): manage-configuration.adoc in the living-app or living-application module (from the https://github.com/bonitasoft/bonita-continuous-delivery-doc/blob/c6ff1bba6449857aff4898ea52af7678653ceee7/modules/ROOT/pages/livingapp_manage_configuration.adoc[bcd component])
+* Service_Level_Agreement_Data_Management.adoc (module and underscore and uppercase): data-management.adoc in a service-level-agreement or sla module (from the https://github.com/bonitasoft/bonita-cloud-doc/blob/338e54e9dd60b1ef62fcffe60134a2db01d0923b/modules/ROOT/pages/Service_Level_Agreement_Data_Management.adoc[cloud component])
 
 NOTE: examples involving `bc` are taken from https://github.com/bonitasoft/bonita-central-doc/pull/9/files[bonita-central-doc PR #9]
 
