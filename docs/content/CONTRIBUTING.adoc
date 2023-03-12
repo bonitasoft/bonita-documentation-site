@@ -36,10 +36,10 @@ NOTE: This metadata information is useful to improve our visibility for search e
 
 == Short presentation of the documentation environment
 
-https://docs.asciidoctor.org/asciidoc/latest/[Asciidoc] is the markup language chosen to write our documentation content.
-You can check the official documentation site to learn more on Asciidoc syntax.
+https://docs.asciidoctor.org/asciidoc/latest/[AsciiDoc] is the markup language chosen to write our documentation content.
+You can check the official documentation site to learn more on AsciiDoc syntax.
 
-If you know the Markdown syntax, please check the https://docs.asciidoctor.org/asciidoc/latest/asciidoc-vs-markdown[Asciidoc vs Markdown]
+If you know the Markdown syntax, please check the https://docs.asciidoctor.org/asciidoc/latest/asciidoc-vs-markdown[AsciiDoc vs Markdown]
 documentation comparison to speedup the learning.
 
 We are using https://docs.antora.org/[Antora] to generate the Bonita documentation.
@@ -66,8 +66,8 @@ in the infrastructure (increase bill)
 
 === Variables and attributes
 
-You can define asciidoc attributes in the `antora.yml` file at repository root and reference it in content page.
-For a detailed documentation about attributes, see the https://docs.asciidoctor.org/asciidoc/latest/attributes/attribute-entry-substitutions/[asciidoc attribute documentation].
+You can define AsciiDoc attributes in the `antora.yml` file at repository root and reference it in content page.
+For a detailed documentation about attributes, see the https://docs.asciidoctor.org/asciidoc/latest/attributes/attribute-entry-substitutions/[AsciiDoc attribute documentation].
 
 [source,yml]
 ----
