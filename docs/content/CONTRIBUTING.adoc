@@ -109,6 +109,21 @@ This configuration then let parts like `<version>${bonita.version}</version>` no
 
 It is also possible to configure substitution globally for the block (see the documentation).
 
+
+=== Bonita editions admonitions
+
+When Bonita editions are referenced, to avoid different wording, the following rules should apply:
+
+* Use an admonition Note (see https://bonitasoft.github.io/bonita-documentation-theme/admonitions.html)
+* Nothing if the feature is Community
+* "For Subscription editions only" if available in Teamwork, Efficiency, Performance, and Enterprise editions
+* "For Efficiency, Performance, and Enterprise editions only" if Subscription but not Teamwork
+* "For Performance and Enterprise editions only" if any
+* "For Enterprise edition only" if any
+
+
+== Tips about the files organization
+
 === Antora modules
 
 You can use Antora modules to clarify content (for instance, getting-started guides, how-to articles). +
@@ -247,15 +262,3 @@ The syntax is described in {url-antora-docs}/navigation/reference-resources/ (it
 Antora 3 provides a new syntax for referencing attachments. See {url-antora-docs}/navigation/reference-resources/ +
 Please prefer this syntax when Antora 3 will be used to build the site: it allows detecting broken references because it uses the `xref` macro.
 ====
-
-=== Bonita editions admonitions
-
-When Bonita editions are referenced, to avoid different wording, the following rules should apply:
-
-* Use an admonition Note (see https://bonitasoft.github.io/bonita-documentation-theme/admonitions.html)
-* Nothing if the feature is Community
-* "For Subscription editions only" if available in Teamwork, Efficiency, Performance, and Enterprise editions
-* "For Efficiency, Performance, and Enterprise editions only" if Subscription but not Teamwork
-* "For Performance and Enterprise editions only" if any
-* "For Enterprise edition only" if any
-
