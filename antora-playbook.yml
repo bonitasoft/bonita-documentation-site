@@ -53,6 +53,7 @@ ui:
 antora:
   extensions:
     - require: ./lib/antora/versions-sorter-extension.js
+    - require: ./lib/antora/prerelease-version-extension.js
 
 asciidoc:
   # Only enable for preview, we don't care for production and it can have performance impacts
