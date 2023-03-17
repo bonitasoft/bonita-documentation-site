@@ -239,3 +239,15 @@ status = 302
 [[redirects]]
 from = "/test-toolkit/"
 to = "/test-toolkit/latest/"
+
+########################################################################################################################
+# Bonita Central redirects
+########################################################################################################################
+[[redirects]]
+from = "/central/latest/*"
+to = "/central/1.0/:splat"
+status = 302
+
+[[redirects]]
+from = "/central/"
+to = "/central/latest/"
