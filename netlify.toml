@@ -64,6 +64,9 @@ to = "/bonita/2021.1/:splat"
 # Bonita Old Documentation redirects to Archives
 ########################################
 # Add a new entry when archiving a version
+[[redirects]]
+from = "/bonita/7.8/*"
+to = "/bonita/latest/:splat"
 
 [[redirects]]
 from = "/bonita/7.7/*"
