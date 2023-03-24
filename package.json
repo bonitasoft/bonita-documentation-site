@@ -12,7 +12,7 @@
     "antora": "3.1.2",
     "fs-extra": "~11.1.0",
     "js-yaml": "~4.1.0",
-    "minimist": "~1.2.7",
+    "minimist": "~1.2.8",
     "netlify-cli": "~13.1.6",
     "rimraf": "~4.4.1"
   }
