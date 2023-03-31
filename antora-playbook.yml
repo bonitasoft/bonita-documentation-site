@@ -26,7 +26,6 @@ content:
     - url: https://github.com/bonitasoft/bonita-doc.git
       branches:
         - "archives"
-        - "7.8"
         - "7.9"
         - "7.10"
         - "7.11"
@@ -35,6 +34,7 @@ content:
         - "2022.1"
         - "2022.2"
         - "2023.1"
+        - "2023.2"
     - url: https://github.com/bonitasoft/bonita-labs-doc.git
       branches:
         - "master"
@@ -44,6 +44,9 @@ content:
         - "3.5"
         - "3.6"
     - url: https://github.com/bonitasoft/bonita-test-toolkit-doc.git
+      branches:
+        - "1.0"
+    - url: https://github.com/bonitasoft/bonita-central-doc.git
       branches:
         - "1.0"
 ui:

@@ -21,6 +21,7 @@ image::https://github.com/bonitasoft/bonita-documentation-site/actions/workflows
 This repository lets you generate the Bonita documentation site. It uses {url-antora}[Antora] which processes {url-asciidoc}:[AsciiDoc]
 documentation content stored in various Git repositories.
 
+NOTE: This is an artificial changes to test the changes
 
 == Documentation
 
