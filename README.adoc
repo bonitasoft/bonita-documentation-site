@@ -110,7 +110,17 @@ The documentation is built by passing a playbook file to the Antora CLI. For mor
 
 For the preview support, we generate a dedicated Antora playbook based on the production playbook store in the repository
 and options passed to the `build-preview.bash`. +
-Then, this custom playbook is passed to the Antora CLI along with specific options when needed. +
+Then, this custom playbook is passed to the Antora CLI along with specific options when needed.
+
+===== Documentation content cache
+
+By default, without passing any specific options to the CLI relating to the documentation content, the sources are fetched
+from the remote Git repositories (GitHub) and cached (`.cache` directory).
+
+WARNING: This cache is not updated except if you specify it to the CLI by passing the `--fetch-sources` option.
+
+You may need to update the cache if you want to retrieve a fresher version of the content (for instance, to get new branches related to new versions).
+
 
 [[local-content]]
 ===== Using local documentation content repositories
@@ -149,11 +159,6 @@ This can be achieved by running
 ----
 ./build-preview-dev.bash --local-sources ....
 ----
-
-
-===== Documentation content cache
-WARNING: The documentation content is downloaded and cached into the `.cache` directory. To get up-to-date version, remove this directory.
-
 
 ===== Using test documentation content
 
