@@ -36,10 +36,10 @@ NOTE: This metadata information is useful to improve our visibility for search e
 
 == Short presentation of the documentation environment
 
-https://docs.asciidoctor.org/asciidoc/latest/[Asciidoc] is the markup language chosen to write our documentation content.
-You can check the official documentation site to learn more on Asciidoc syntax.
+https://docs.asciidoctor.org/asciidoc/latest/[AsciiDoc] is the markup language chosen to write our documentation content.
+You can check the official documentation site to learn more on AsciiDoc syntax.
 
-If you know the Markdown syntax, please check the https://docs.asciidoctor.org/asciidoc/latest/asciidoc-vs-markdown[Asciidoc vs Markdown]
+If you know the Markdown syntax, please check the https://docs.asciidoctor.org/asciidoc/latest/asciidoc-vs-markdown[AsciiDoc vs Markdown]
 documentation comparison to speedup the learning.
 
 We are using https://docs.antora.org/[Antora] to generate the Bonita documentation.
@@ -66,8 +66,8 @@ in the infrastructure (increase bill)
 
 === Variables and attributes
 
-You can define asciidoc attributes in the `antora.yml` file at repository root and reference it in content page.
-For a detailed documentation about attributes, see the https://docs.asciidoctor.org/asciidoc/latest/attributes/attribute-entry-substitutions/[asciidoc attribute documentation].
+You can define AsciiDoc attributes in the `antora.yml` file at repository root and reference it in content page.
+For a detailed documentation about attributes, see the https://docs.asciidoctor.org/asciidoc/latest/attributes/attribute-entry-substitutions/[AsciiDoc attribute documentation].
 
 [source,yml]
 ----
@@ -108,6 +108,43 @@ the attribute you want to substitute. For instance, `<bonita.version>pass:a[{bon
 This configuration then let parts like `<version>${bonita.version}</version>` not substituted.
 
 It is also possible to configure substitution globally for the block (see the documentation).
+
+
+=== Bonita editions admonitions
+
+When Bonita editions are referenced, to avoid different wording, the following rules should apply:
+
+* Use an admonition Note (see https://bonitasoft.github.io/bonita-documentation-theme/admonitions.html)
+* Nothing if the feature is Community
+* "For Subscription editions only" if available in Teamwork, Efficiency, Performance, and Enterprise editions
+* "For Efficiency, Performance, and Enterprise editions only" if Subscription but not Teamwork
+* "For Performance and Enterprise editions only" if any
+* "For Enterprise edition only" if any
+
+
+== Tips about the files organization
+
+=== File names
+
+Always follow the https://en.wikipedia.org/wiki/Letter_case#Kebab_case[kebab case] convention. This is something we are going to progressively enforce in all repositories, for consistency and to improve the SEO.
+
+Do not prefix the file name with the name of the component (file are already stored in a dedicated component repository, the url already contains the component key) or a category (use Antora module instead to organize the content - see the next paragraph). 
+
+Do
+
+* my-super-page.adoc
+* explicit-architecture.png
+* nav-bonita-installation.adoc
+
+Don't
+
+* bc-app-declaration.adoc (component prefix and abbreviation): application-declaration.adoc 
+* BC_archi_single.png (both component prefix and underscore): archi-single.png
+* livingapp_manage_configuration.adoc (module and underscore): manage-configuration.adoc in the living-app or living-application module (from the https://github.com/bonitasoft/bonita-continuous-delivery-doc/blob/c6ff1bba6449857aff4898ea52af7678653ceee7/modules/ROOT/pages/livingapp_manage_configuration.adoc[bcd component])
+* Service_Level_Agreement_Data_Management.adoc (module and underscore and uppercase): data-management.adoc in a service-level-agreement or sla module (from the https://github.com/bonitasoft/bonita-cloud-doc/blob/338e54e9dd60b1ef62fcffe60134a2db01d0923b/modules/ROOT/pages/Service_Level_Agreement_Data_Management.adoc[cloud component])
+
+NOTE: examples involving `bc` are taken from https://github.com/bonitasoft/bonita-central-doc/pull/9/files[bonita-central-doc PR #9]
+
 
 === Antora modules
 
@@ -247,15 +284,3 @@ The syntax is described in {url-antora-docs}/navigation/reference-resources/ (it
 Antora 3 provides a new syntax for referencing attachments. See {url-antora-docs}/navigation/reference-resources/ +
 Please prefer this syntax when Antora 3 will be used to build the site: it allows detecting broken references because it uses the `xref` macro.
 ====
-
-=== Bonita editions admonitions
-
-When Bonita editions are referenced, to avoid different wording, the following rules should apply:
-
-* Use an admonition Note (see https://bonitasoft.github.io/bonita-documentation-theme/admonitions.html)
-* Nothing if the feature is Community
-* "For Subscription editions only" if available in Teamwork, Efficiency, Performance, and Enterprise editions
-* "For Efficiency, Performance, and Enterprise editions only" if Subscription but not Teamwork
-* "For Performance and Enterprise editions only" if any
-* "For Enterprise edition only" if any
-
