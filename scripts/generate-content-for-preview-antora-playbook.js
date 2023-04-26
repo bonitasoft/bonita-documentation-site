@@ -12,10 +12,10 @@ fse.removeSync(outputFile);
 const repoUrls = new Map([
     ['bcd', 'https://github.com/bonitasoft/bonita-continuous-delivery-doc.git'],
     ['bonita', 'https://github.com/bonitasoft/bonita-doc.git'],
+    ['central', 'https://github.com/bonitasoft/bonita-central-doc.git'],
     ['cloud', 'https://github.com/bonitasoft/bonita-cloud-doc.git'],
     ['labs', 'https://github.com/bonitasoft/bonita-labs-doc.git'],
     ['test-toolkit', 'https://github.com/bonitasoft/bonita-test-toolkit-doc.git'],
-    ['central', 'https://github.com/bonitasoft/bonita-central-doc.git'],
 ]);
 function getRepoUrl(componentName) {
     const repoUrl = repoUrls.get(componentName);
