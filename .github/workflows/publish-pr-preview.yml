@@ -44,4 +44,4 @@ jobs:
           surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           doc-site-branch: ${{ github.head_ref }}
-          build-preview-command: ./build-preview.bash --use-test-sources
+          build-preview-command: ./build-preview.bash --use-test-sources --log-level debug

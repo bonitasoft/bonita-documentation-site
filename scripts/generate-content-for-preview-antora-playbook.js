@@ -207,6 +207,13 @@ const fetchSources = getArgument(argv, 'fetch-sources', false)
 console.info(`Fetch Sources: ${fetchSources}`);
 doc.runtime.fetch = fetchSources === 'true';
 
+// Log level
+const logLevel = getArgument(argv, 'log-level', false)
+console.info(`Log level: ${logLevel}`);
+if (logLevel) {
+    doc.runtime.log.level = logLevel;
+}
+
 // Manage 'failure_level': if requested, set log level to info (default) to not break build for preview
 const ignoreError = getArgument(argv, 'ignore-error', false);
 if (ignoreError === 'true'){
