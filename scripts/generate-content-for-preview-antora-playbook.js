@@ -120,6 +120,8 @@ else if (useTestSources) {
             'test/documentation-content/test-toolkit/1.0',
         ],
     }];
+    const titlePreviewPart = prNumber ? `PR #${prNumber}` : `branch 'local'`;
+    doc.site.title = siteTitle || `[test-content] ${titlePreviewPart}`;
 }
 // single branch of a single component (pr preview)
 else {
