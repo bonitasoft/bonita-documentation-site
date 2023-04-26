@@ -12,13 +12,14 @@ on:
       - '.github/actions/comment-pr-with-links/**/*'
       - '.github/workflows/publish-pr-preview.yml'
       - 'resources/**/*'
+      - 'test/documentation-content/**/*'
       - 'antora-playbook.yml'
       - 'build-preview.bash'
       - 'package.json'
       - 'package-lock.json'
 
 jobs:
-  build_preview:
+  site:
     runs-on: ubuntu-22.04
     permissions:
       pull-requests: write # surge-preview creates or updates PR comments about the deployment status
@@ -31,3 +32,16 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           doc-site-branch: ${{ github.head_ref }}
           build-preview-command: ./build-preview.bash --single-branch-per-repo --ignore-error true
+  test:
+    runs-on: ubuntu-22.04
+    permissions:
+      pull-requests: write # surge-preview creates or updates PR comments about the deployment status
+    steps:
+      - uses: actions/checkout@v3 # access to the local action
+      - name: Publish PR preview
+        uses: ./.github/actions/build-and-publish-pr-preview
+        with:
+          surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          doc-site-branch: ${{ github.head_ref }}
+          build-preview-command: ./build-preview.bash --use-test-sources
