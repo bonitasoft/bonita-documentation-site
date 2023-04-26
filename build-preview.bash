@@ -33,8 +33,10 @@ function usage() {
   echo "      --force-production-navbar <boolean>     'true': use the regular navbar instead of the preview one. Defaults to 'false'"
   echo "      --hide-edit-page-links <boolean>        'true': hide all edit page links (useful when generating documentation archive). Defaults to 'false'"
   echo "      --hide-navbar-components-list <boolean> 'true': hide components list in navbar. Defaults to 'false'"
+  echo "      --ignore-error <boolean>                If set to 'true', set 'failure_level' to 'info'. Otherwise, use the original value defined in the Antora playbook."
   echo "      --local-sources <boolean>               'true': use locally checkout sources in a working directory along the one of this project (useful to test local changes without push) , otherwise, use antora cache. Defaults to 'false'"
   echo "      --local-ui-bundle <boolean>             'true': use locally build ui bundle whose sources are in a working directory along the one of this project, otherwise, use antora cache. Defaults to 'false'"
+  echo "      --log-level <level>                     Set the Antora log level. Defaults to the original value defined in the Antora playbook."
   echo "      --pr <PR_NUMBER>                        Number of the Pull Request related to the preview (when apply). Used to display context information within the preview."
   echo "      --single-branch-per-repo <boolean>      'true': only keep the latest declared branch for each component, 'false': use all branches. Defaults to 'false'"
   echo "      --site-url <url>                        Custom Url of the site preview. If set to 'DISABLED', remove the site.url from the Antora playbook. Defaults to the original url defined in the Antora playbook."
@@ -46,7 +48,6 @@ function usage() {
   echo "      --use-all-repositories <boolean>        If set to 'true', use all sources repositories and branches defined in the production Antora playbook. Defaults to 'false'"
   echo "      --use-multi-repositories <boolean>      If set to 'true', use several repositories and branches passed with the --component-with-branches options. Defaults to 'false'"
   echo "      --use-test-sources <boolean>            If set to 'true', use documentation stored in the bonita-documentation-site repository (for testing). Defaults to 'false'"
-  echo "      --ignore-error <boolean>                If set to 'true', set failure_level to info, if false, set failure_level to error"
   echo "Environment configuration"
   echo "      --only-generate-playbook                If set, only generate the preview Antora playbook and skip the documentation generation"
 }
