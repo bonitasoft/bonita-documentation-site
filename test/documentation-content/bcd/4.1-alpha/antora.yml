@@ -1,0 +1,13 @@
+name: bcd
+title: Continuous Delivery
+# prerelease version and alpha
+version: 4.1-alpha
+prerelease: true
+asciidoc:
+  attributes:
+    bcdVersion: '3.5.0' # latest available maintenance version
+    bonitaDocVersion: '2021.2'
+    # General site configuration
+    page-editable: true
+nav:
+  - modules/ROOT/taxonomy.adoc

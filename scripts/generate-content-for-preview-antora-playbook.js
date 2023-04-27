@@ -107,6 +107,9 @@ else if (useTestSources) {
         start_paths: [
             'test/documentation-content/bcd/3.4',
             'test/documentation-content/bcd/3.5',
+            'test/documentation-content/bcd/4.0',
+            'test/documentation-content/bcd/4.1-alpha',
+            'test/documentation-content/bcd/4.2-alpha',
             'test/documentation-content/bonita/v0',
             'test/documentation-content/bonita/v7.4',
             'test/documentation-content/bonita/v7.11',
