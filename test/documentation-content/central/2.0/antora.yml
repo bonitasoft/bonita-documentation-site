@@ -1,0 +1,13 @@
+name: central
+title: Central
+version: '2.0'
+prerelease: Alpha
+start_page: ROOT:index.adoc
+asciidoc:
+  attributes:
+    # General site configuration
+    page-editable: false
+    page-next-release: true
+    page-hide-search-bar: true
+nav:
+  - modules/ROOT/taxonomy.adoc
