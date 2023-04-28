@@ -1,11 +1,11 @@
 name: bcd
 title: Continuous Delivery
+version: '4.0'
 # prerelease version but non alpha
-version: 4.0
 prerelease: true
 asciidoc:
   attributes:
-    bcdVersion: '3.5.0' # latest available maintenance version
+    bcdVersion: '4.0.0' # latest available maintenance version
     bonitaDocVersion: '2021.2'
     # General site configuration
     page-editable: true
