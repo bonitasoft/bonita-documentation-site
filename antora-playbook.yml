@@ -59,7 +59,7 @@ antora:
     - require: ./lib/antora/versions-alias-extension.js
 
 asciidoc:
-  # Only enable for preview, we don't care for production and it can have performance impacts
+  # Only enable for preview, we don't care for production, and it can have performance impacts
   # https://docs.antora.org/antora/3.0/playbook/asciidoc-sourcemap/
   sourcemap: false
 

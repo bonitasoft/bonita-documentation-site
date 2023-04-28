@@ -1,0 +1,6 @@
+= Home version
+
+I am the home of {page-component-title} {page-component-version}
+
+* BCD version: {bcdVersion}
+* Bonita Doc version: {bonitaDocVersion}

@@ -12,10 +12,10 @@ fse.removeSync(outputFile);
 const repoUrls = new Map([
     ['bcd', 'https://github.com/bonitasoft/bonita-continuous-delivery-doc.git'],
     ['bonita', 'https://github.com/bonitasoft/bonita-doc.git'],
+    ['central', 'https://github.com/bonitasoft/bonita-central-doc.git'],
     ['cloud', 'https://github.com/bonitasoft/bonita-cloud-doc.git'],
     ['labs', 'https://github.com/bonitasoft/bonita-labs-doc.git'],
     ['test-toolkit', 'https://github.com/bonitasoft/bonita-test-toolkit-doc.git'],
-    ['central', 'https://github.com/bonitasoft/bonita-central-doc.git'],
 ]);
 function getRepoUrl(componentName) {
     const repoUrl = repoUrls.get(componentName);
@@ -107,6 +107,9 @@ else if (useTestSources) {
         start_paths: [
             'test/documentation-content/bcd/3.4',
             'test/documentation-content/bcd/3.5',
+            'test/documentation-content/bcd/4.0',
+            'test/documentation-content/bcd/4.1-alpha',
+            'test/documentation-content/bcd/4.2-alpha',
             'test/documentation-content/bonita/v0',
             'test/documentation-content/bonita/v7.4',
             'test/documentation-content/bonita/v7.11',
@@ -115,11 +118,14 @@ else if (useTestSources) {
             'test/documentation-content/bonita/v2022.1-beta',
             'test/documentation-content/bonita/v2022.2-alpha',
             'test/documentation-content/central/1.0',
+            'test/documentation-content/central/2.0',
             'test/documentation-content/cloud/latest',
             'test/documentation-content/labs/latest',
             'test/documentation-content/test-toolkit/1.0',
         ],
     }];
+    const titlePreviewPart = prNumber ? `PR #${prNumber}` : `branch 'local'`;
+    doc.site.title = siteTitle || `[test-content] ${titlePreviewPart}`;
 }
 // single branch of a single component (pr preview)
 else {
@@ -202,11 +208,19 @@ switch (previewType) {
 
 // Fetch sources
 const fetchSources = getArgument(argv, 'fetch-sources', false)
-const ignoreError = getArgument(argv, 'ignore-error', false);
 console.info(`Fetch Sources: ${fetchSources}`);
 doc.runtime.fetch = fetchSources === 'true';
-//Set log level to info to not break build for preview
-if(ignoreError === 'true'){
+
+// Log level
+const logLevel = getArgument(argv, 'log-level', false)
+console.info(`Log level: ${logLevel}`);
+if (logLevel) {
+    doc.runtime.log.level = logLevel;
+}
+
+// Manage 'failure_level': if requested, set log level to info (default) to not break build for preview
+const ignoreError = getArgument(argv, 'ignore-error', false);
+if (ignoreError === 'true'){
     delete doc.runtime.log.failure_level;
 }
 
