@@ -9,8 +9,11 @@ module.exports = {
             repo: context.repo.repo,
         });
         let result = {};
-        result.updated = prepareLinks({files: FILES.split(' '), siteUrl: SITE_URL, component: COMPONENT_NAME, branch: pr.base.ref});
-        result.deleted = prepareLinks({files: DELETED.split(' '), siteUrl: SITE_URL, component: COMPONENT_NAME, branch: pr.base.ref});
+        // We only have a single version for preview (latest)
+        // TODO: Handle "pre-release" (next)
+        let version = 'latest';
+        result.updated = prepareLinks({files: FILES.split(' '), siteUrl: SITE_URL, component: COMPONENT_NAME, version: version});
+        result.deleted = prepareLinks({files: DELETED.split(' '), siteUrl: SITE_URL, component: COMPONENT_NAME, version: version});
         return result;
     },
     createOrUpdateComments: async function ({github, context}) {
@@ -47,14 +50,14 @@ ${links?.deleted}`
     return template + header + preface + availableLinks + warningAliasMessage;
 }
 
-function prepareLinks({files, siteUrl, component, branch}) {
+function prepareLinks({files, siteUrl, component, version}) {
     let preparedLinks = [];
     files.forEach(file => {
         const splitPath = file.split('/');
         splitPath.shift();
         const pageName = splitPath.pop();
         const moduleName = splitPath.shift();
-        let url = `${siteUrl}/${component}/${branch}${moduleName === 'ROOT' ? '/' : `/${moduleName}/`}${pageName?.split('.').shift()}`;
+        let url = `${siteUrl}/${component}/${version}${moduleName === 'ROOT' ? '/' : `/${moduleName}/`}${pageName?.split('.').shift()}`;
         preparedLinks.push(`- [ ] [${moduleName}/${pageName}](${url})`);
     });
     return preparedLinks.join('\n');
