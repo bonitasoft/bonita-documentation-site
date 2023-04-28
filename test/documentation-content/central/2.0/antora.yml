@@ -1,6 +1,7 @@
 name: central
 title: Central
 version: '2.0'
+# to check that the "alpha version detection" ignores case
 prerelease: Alpha
 start_page: ROOT:index.adoc
 asciidoc:
