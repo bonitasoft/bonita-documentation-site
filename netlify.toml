@@ -159,6 +159,14 @@ to = "/bcd/latest/"
 
 # Archives
 [[redirects]]
+from = "/bcd/3.5/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
+from = "/bcd/3.4/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
 from = "/bcd/3.3/*"
 to = "/bcd/latest/:splat"
 
