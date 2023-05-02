@@ -61,6 +61,8 @@ asciidoc:
   # Only enable for preview, we don't care for production, and it can have performance impacts
   # https://docs.antora.org/antora/3.0/playbook/asciidoc-sourcemap/
   sourcemap: false
+  attributes:
+    icons: font
 
 urls:
   html_extension_style: drop
