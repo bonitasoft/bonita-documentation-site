@@ -9,9 +9,8 @@ ifdef::env-github[]
 endif::[]
 :url-antora-docs: https://docs.antora.org/antora/3.0
 
-CAUTION: this is a work in progress
+NOTE: The following applies mainly to the documentation part of the Bonita Platform, but can be used for any component of the Bonita documentation site with multi-supported versions
 
-NOTE: the following mainly applies to the Bonita Platform documentation part
 
 == Bonita versions that are documented
 
@@ -30,9 +29,6 @@ Each time a new version of a documented Bonitasoft project is released, the DocS
 
 == Versions lifecycle
 
-NOTE: *this is a work in progress*. TODO link lifecycle actions to the how-to later described in this page
-
-NOTE: this mainly applies to Bonita Platform but all components with multi-supported versions should follow the same rules
 
 GA release (actions to be performed detailed later in this document):
 
@@ -141,13 +137,10 @@ asciidoc:
 
 Once the DocSearch crawler has indexed the next version, you can display the search bar.
 
-Additional actions
-
-* update the `netlify.toml` file and update the redirect for the `next` version
 
 === Pre-release versions
 
-apply to beta and RC versions
+NOTE: this applies to Alpha, Beta and RC versions
 
 See {url-antora-docs}/component-prerelease/ to know how to
 
@@ -166,8 +159,8 @@ To do it, run `Propagate documentation content upwards` action.
 
 [NOTE]
 ====
-* If an error occurs during the propagation, a Slack notification is sending to a channel
-* The most common root cause is some conflict to manage manually
+* If an error occurs during the propagation, a Slack notification is sent
+* The most frequent cause of error is a merge conflict to be managed manually
 ====
 
 
