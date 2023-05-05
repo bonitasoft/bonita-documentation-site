@@ -50,11 +50,12 @@ content:
         - "1.0"
 ui:
   bundle:
-    url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.13.0/bonita-documentation-theme-v1.13.0.zip
+    url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.15.0/bonita-documentation-theme-v1.15.0.zip
 
 antora:
   extensions:
     - require: ./lib/antora/versions-sorter-extension.js
+    - require: ./lib/antora/versions-alias-extension.js
 
 asciidoc:
   # Only enable for preview, we don't care for production, and it can have performance impacts
@@ -66,3 +67,6 @@ asciidoc:
 urls:
   html_extension_style: drop
   redirect_facility: netlify
+  latest_version_segment: latest
+  latest_prerelease_version_segment: next
+  latest_version_segment_strategy: redirect:to

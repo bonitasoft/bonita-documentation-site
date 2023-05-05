@@ -13,5 +13,5 @@ asciidoc:
     crowdinBonitaVersion: 7.14
     # page attributes
     page-editable: true
-    page-next-release: true # TODO: When releasing beta version, set this field to false
-    page-hide-search-bar: true # TODO: When releasing beta version, set this field to false
+    page-next-release: true
+    page-hide-search-bar: false
