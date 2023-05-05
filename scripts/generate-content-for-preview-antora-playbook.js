@@ -234,6 +234,13 @@ if (!forceProductionNavbar) {
     console.info('--> Force usage of production navbar');
 }
 
+// Let display the search bar even in the non-production mode
+const forceDisplaySearchBar = getArgument(argv, 'force-display-search-bar', false)
+console.info(`Force Display Search Bar: ${forceDisplaySearchBar}`);
+if (!forceDisplaySearchBar) {
+    getSiteKeys(doc)['force-display-search-bar'] = true;
+}
+
 // Hide 'Edit this Page' links
 const hideEditPageLinks = getArgument(argv, 'hide-edit-page-links', false)
 console.info(`Hide Edit Page Links: ${hideEditPageLinks}`);

@@ -30,6 +30,7 @@ function usage() {
   echo "                                              Pass one argument per component. For instance, --component-with-branches bcd:3.4 --component-with-branches bonita:7.11,2021.1"
   echo "      --default-ui-bundle <parameter>         If set, use the Antora Default UI. If set to 'snapshot', fetch the bundle instead of retrieving it from the cache. Defaults to 'false'"
   echo "      --fetch-sources <boolean>               'true': fetch documentation content sources prior building the documentation. Defaults to 'false' (on CI, fetch is always done)"
+  echo "      --force-display-search-bar <boolean>    'true': display the search bar as in the production navbar. Defaults to 'false'"
   echo "      --force-production-navbar <boolean>     'true': use the regular navbar instead of the preview one. Defaults to 'false'"
   echo "      --hide-edit-page-links <boolean>        'true': hide all edit page links (useful when generating documentation archive). Defaults to 'false'"
   echo "      --hide-navbar-components-list <boolean> 'true': hide components list in navbar. Defaults to 'false'"
