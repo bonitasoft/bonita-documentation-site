@@ -6,7 +6,7 @@ asciidoc:
   attributes:
     page-editable: true
     page-out-of-support: false
-    page-hide-search-bar: false
+    page-hide-search-bar: false # keep the `false` value to test the search on the 'latest' version
     page-navigation: true
     # out of the box by the default UI and in bonita-theme
     page-pagination: true
