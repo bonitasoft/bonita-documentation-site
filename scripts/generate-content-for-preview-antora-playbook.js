@@ -237,7 +237,7 @@ if (!forceProductionNavbar) {
 // Let display the search bar even in the non-production mode
 const forceDisplaySearchBar = getArgument(argv, 'force-display-search-bar', false)
 console.info(`Force Display Search Bar: ${forceDisplaySearchBar}`);
-if (!forceDisplaySearchBar) {
+if (forceDisplaySearchBar) {
     getSiteKeys(doc)['force-display-search-bar'] = true;
 }
 
