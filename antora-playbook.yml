@@ -40,9 +40,8 @@ content:
         - "master"
     - url: https://github.com/bonitasoft/bonita-continuous-delivery-doc.git
       branches:
-        - "3.4"
-        - "3.5"
         - "3.6"
+        - "4.0"
     - url: https://github.com/bonitasoft/bonita-test-toolkit-doc.git
       branches:
         - "1.0"
@@ -51,7 +50,7 @@ content:
         - "1.0"
 ui:
   bundle:
-    url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.11.0/bonita-documentation-theme-v1.11.0.zip
+    url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.13.0/bonita-documentation-theme-v1.13.0.zip
 
 antora:
   extensions:
@@ -62,6 +61,8 @@ asciidoc:
   # Only enable for preview, we don't care for production, and it can have performance impacts
   # https://docs.antora.org/antora/3.0/playbook/asciidoc-sourcemap/
   sourcemap: false
+  attributes:
+    icons: font
 
 urls:
   html_extension_style: drop
