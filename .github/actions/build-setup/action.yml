@@ -6,8 +6,8 @@ runs:
     - name: Setup node
       uses: actions/setup-node@v3
       with:
-        node-version: '16'
         cache: 'npm'
+        node-version-file: '.nvmrc'
     - name: Install dependencies
       uses: bahmutov/npm-install@v1
       with:
