@@ -1,12 +1,11 @@
 name: central
 title: Central
 version: '1.0'
-prerelease: .alpha-01
+prerelease: Beta
 start_page: ROOT:index.adoc
 asciidoc:
   attributes:
-    # page attributes
+    # General site configuration
     page-editable: true
-
 nav:
   - modules/ROOT/taxonomy.adoc
