@@ -22,6 +22,7 @@ jobs:
       CLOUD_BRANCH: 'master'
       LABS_BRANCH: 'master'
       TOOLKIT_BRANCH: '1.0'
+      CENTRAL_BRANCH: '1.0'
     steps:
       - uses: actions/checkout@v3 # access to the local action
       - name: Build PR site
@@ -37,3 +38,4 @@ jobs:
             --component-with-branches cloud:"${{ env.CLOUD_BRANCH }}"
             --component-with-branches labs:"${{ env.LABS_BRANCH }}"
             --component-with-branches test-toolkit:"${{ env.TOOLKIT_BRANCH }}"
+            --component-with-branches central:"${{ env.CENTRAL_BRANCH }}"
