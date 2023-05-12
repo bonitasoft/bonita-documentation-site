@@ -112,6 +112,15 @@ For the preview support, we generate a dedicated Antora playbook based on the pr
 and options passed to the `build-preview.bash`. +
 Then, this custom playbook is passed to the Antora CLI along with specific options when needed.
 
+[[content-cache]]
+===== Documentation content cache
+
+By default, without passing any specific options to the CLI relating to the documentation content, the sources are fetched
+from the remote Git repositories (GitHub) and cached (`.cache` directory).
+
+WARNING: This cache is not updated except if you specify it to the CLI by passing the `--fetch-sources` option.
+
+You may need to update the cache if you want to retrieve a fresher version of the content (for instance, to get new branches related to new versions).
 
 [[local-content]]
 ===== Using local documentation content repositories
@@ -217,7 +226,7 @@ This can be achieved by running
 ./build-preview-dev.bash --default-ui-bundle ...
 ----
 
-If you want to ensure you use the latest version of the bundle pass `--default-ui-bundle snapshot`. Otherwise, a cache
+If you want to ensure you use the latest version of the bundle pass `--default-ui-bundle snapshot`. Otherwise, a <<content-cache, cache>>
 version is used. For more details, see the {url-antora-docs}/playbook/ui-bundle-url/#snapshot[Antora Documentation]
 
 

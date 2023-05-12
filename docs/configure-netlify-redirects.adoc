@@ -35,7 +35,8 @@ More details about redirects handling in the https://cli.netlify.com/netlify-dev
 
 === Step-by-step procedure
 
-- Build a preview with the components and versions needed for the test. See xref:../README.adoc#preview-support[README]
+- Build a preview with the components and versions needed for the test. See xref:../README.adoc#preview-support[README]. +
+Add the `--type netlify` parameter to use the configuration for the whole Netlify environment.
 - Start the http dev server (see xref:../README.adoc#http-dev-server[README])
 - In the console, you can see the redirect configuration currently used.
 - Any changes in the Netlify redirects configuration is taken into account right away by the server, so the feedback loop is intended to be very short
