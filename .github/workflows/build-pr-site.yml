@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-22.04
     env:
       BONITA_BRANCHES: '2021.1,2021.2,2022.1,2022.2'
-      BCD_BRANCHES: '3.5,3.6'
+      BCD_BRANCHES: '3.5,3.6,4.0'
       CLOUD_BRANCH: 'master'
       LABS_BRANCH: 'master'
       TOOLKIT_BRANCH: '1.0'
