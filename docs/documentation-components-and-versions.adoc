@@ -9,50 +9,29 @@ ifdef::env-github[]
 endif::[]
 :url-antora-docs: https://docs.antora.org/antora/3.0
 
-CAUTION: this is a work in progress
+[IMPORTANT]
+====
+This is a brief overview of all required actions. +
+For a complete list of required tasks, see the complete guides (restricted access):
 
-NOTE: the following mainly applies to the Bonita Platform documentation part
+* https://bonitasoft.atlassian.net/wiki/spaces/BS/pages/22504964104/Bonita+Platform+documentation+lifecycle[Bonita Platform documentation lifecycle]
+* https://bonitasoft.atlassian.net/wiki/spaces/BS/pages/22503227439/How-to+configure+a+new+documentation+content+component[How-to configure a new documentation content component].
+====
+
+NOTE: The following applies mainly to the documentation part of the Bonita Platform, but can be used for any component of the Bonita documentation site with multi-supported versions
 
 == Bonita versions that are documented
 
-For Bonita, the rule is the following one: +
-We document the 4 currently supported Bonita versions, and **the 4 versions before**. +
-
-=== Impact on DocSearch
-
-Each time a new version of a documented Bonitasoft project is released, the DocSearch configuration has to be updated:
-
-- The latest version has to be added to the projects to index
-- The oldest version should be removed from the projects to index
-
--> It means that the DocSearch configuration should reflect this behavior.
-
-
-== Versions lifecycle
-
-NOTE: *this is a work in progress*. TODO link lifecycle actions to the how-to later described in this page
-
-NOTE: this mainly applies to Bonita Platform but all components with multi-supported versions should follow the same rules
-
-GA release (actions to be performed detailed later in this document):
-
-* remove the prerelease configuration (see below)
-* update the redirect to make the latest token url go to the new GA version
-* archive the oldest version
-* mark the 5th version as out of support: On new Bonita Platform GA release, an old version is considered as out of support.
+For Bonita, the rule is the following one:
+[quote]
+We document the 4 currently supported Bonita versions, and **the 4 versions before**.
 
 
 == General how-to for components and versions management
 
 === How to integrate a new component
 
-[NOTE]
-====
-This is a brief overview of all required actions. +
-For a complete list of required tasks, see the https://bonitasoft.atlassian.net/wiki/spaces/BS/pages/22503227439/How-to+configure+a+new+documentation+content+component[complete guide] (restricted access).
-====
-
-To add a new component, you first need to create a GitHub repository which will contain the asciidoc sources of this component
+To add a new component, you first need to create a GitHub repository which will contain the AsciiDoc sources of this component
 (i.e. the documentation content). This repository must be organized according to the {url-antora-docs}/organize-content-files/[Antora recommendations].
 You can check existing repositories for working examples.
 At minimum, it will contain an `antora.yml` file at its root
@@ -71,7 +50,7 @@ When we need to add a new version of one component, we need to:
 .. merging change from the previous version to the new version
 . Then, you need to add the new version in the https://github.com/bonitasoft/bonita-documentation-site/blob/master/antora-playbook.yml[Antora playbook].
 This means adding the new branch to the existing component.
-. Finally, update the <<docsearch-configuration, DocSearch configuration>> to make this component searchable.
+. Finally, update the DocSearch configuration to make this component searchable.
 
 
 === How to remove a component version and make an archive available
@@ -79,8 +58,8 @@ This means adding the new branch to the existing component.
 On new Bonita Platform GA release, an old version must be archived.
 
 . Take the oldest one
-. Run the archive GitHub Actions: this creates a new tag on the related component version
-. Create a PR targeting the bonita-doc archives branch and add the new archive version to the list
+. Run the https://github.com/bonitasoft/bonita-documentation-site/actions/workflows/generate-static-doc.yml[archive GitHub Actions]: this creates a new tag on the related component version
+. Create a PR targeting the `bonita-doc` archives branch and add the new archive version to the list
 . Remove the version from the Antora Playbook
 . Remove the version from the DocSearch configuration
 . Add a redirect to manage urls of the old version. See how it is done for the versions that are https://github.com/bonitasoft/bonita-documentation-site/blob/master/netlify.toml[already archived].
@@ -141,19 +120,24 @@ asciidoc:
 
 Once the DocSearch crawler has indexed the next version, you can display the search bar.
 
-Additional actions
-
-* update the `netlify.toml` file and update the redirect for the `next` version
 
 === Pre-release versions
 
-apply to beta and RC versions
+NOTE: this applies to Alpha, Beta and RC versions
 
 See {url-antora-docs}/component-prerelease/ to know how to
 
 * mark a prerelease version
 * display beta/rc additional information in the version
-* impact on default version and version ordering
+* impact the default version and version ordering
+
+
+=== GA versions
+
+See {url-antora-docs}/component-prerelease/ to know how to
+
+* remove the prerelease configuration (see above)
+
 
 
 === Propagate documentation upwards
@@ -166,8 +150,8 @@ To do it, run `Propagate documentation content upwards` action.
 
 [NOTE]
 ====
-* If an error occurs during the propagation, a Slack notification is sending to a channel
-* The most common root cause is some conflict to manage manually
+* If an error occurs during the propagation, a Slack notification is sent
+* The most frequent cause of error is a merge conflict to be managed manually
 ====
 
 
