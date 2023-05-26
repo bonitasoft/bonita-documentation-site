@@ -50,7 +50,7 @@ When we need to add a new version of one component, we need to:
 .. merging change from the previous version to the new version
 . Then, you need to add the new version in the https://github.com/bonitasoft/bonita-documentation-site/blob/master/antora-playbook.yml[Antora playbook].
 This means adding the new branch to the existing component.
-. Finally, update the <<docsearch-configuration, DocSearch configuration>> to make this component searchable.
+. Finally, update the DocSearch configuration to make this component searchable.
 
 
 === How to remove a component version and make an archive available
@@ -58,8 +58,8 @@ This means adding the new branch to the existing component.
 On new Bonita Platform GA release, an old version must be archived.
 
 . Take the oldest one
-. Run the archive GitHub Actions: this creates a new tag on the related component version
-. Create a PR targeting the bonita-doc archives branch and add the new archive version to the list
+. Run the https://github.com/bonitasoft/bonita-documentation-site/actions/workflows/generate-static-doc.yml[archive GitHub Actions]: this creates a new tag on the related component version
+. Create a PR targeting the `bonita-doc` archives branch and add the new archive version to the list
 . Remove the version from the Antora Playbook
 . Remove the version from the DocSearch configuration
 . Add a redirect to manage urls of the old version. See how it is done for the versions that are https://github.com/bonitasoft/bonita-documentation-site/blob/master/netlify.toml[already archived].
