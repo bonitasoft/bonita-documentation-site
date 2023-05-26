@@ -42,9 +42,9 @@ runs:
           const {DETECTION_STATUS} = process.env;
           core.info(`Outcome of the 'get-changed-files' step is: ${DETECTION_STATUS}`);
           if(DETECTION_STATUS === 'failure') {
-            return 'false';
+            return false;
           }
-          return 'true';
+          return true;
     - name: Log files changed
       if: ${{steps.get-changed-files.outputs.result == 'true' }}
       shell: bash

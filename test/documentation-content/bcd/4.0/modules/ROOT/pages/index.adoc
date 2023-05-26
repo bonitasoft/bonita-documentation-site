@@ -4,3 +4,5 @@ I am the home of {page-component-title} {page-component-version}
 
 * BCD version: {bcdVersion}
 * Bonita Doc version: {bonitaDocVersion}
+
+icon:id-card[] icon:snowflake[] icon:circle-user[]
