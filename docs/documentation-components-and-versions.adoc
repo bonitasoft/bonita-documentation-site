@@ -14,8 +14,10 @@ NOTE: The following applies mainly to the documentation part of the Bonita Platf
 
 == Bonita versions that are documented
 
-For Bonita, the rule is the following one: +
-We document the 4 currently supported Bonita versions, and **the 4 versions before**. +
+For Bonita, the rule is the following one:
+[quote]
+We document the 4 currently supported Bonita versions, and **the 4 versions before**.
+
 
 === Impact on DocSearch
 
@@ -25,18 +27,6 @@ Each time a new version of a documented Bonitasoft project is released, the DocS
 - The oldest version should be removed from the projects to index
 
 -> It means that the DocSearch configuration should reflect this behavior.
-
-
-== Versions lifecycle
-
-
-GA release (actions to be performed detailed later in this document):
-
-* remove the prerelease configuration (see below)
-* update the redirect to make the latest token url go to the new GA version
-* archive the oldest version
-* mark the 5th version as out of support: On new Bonita Platform GA release, an old version is considered as out of support.
-
 
 == General how-to for components and versions management
 
@@ -146,7 +136,15 @@ See {url-antora-docs}/component-prerelease/ to know how to
 
 * mark a prerelease version
 * display beta/rc additional information in the version
-* impact on default version and version ordering
+* impact the default version and version ordering
+
+
+=== GA versions
+
+See {url-antora-docs}/component-prerelease/ to know how to
+
+* remove the prerelease configuration (see above)
+
 
 
 === Propagate documentation upwards
