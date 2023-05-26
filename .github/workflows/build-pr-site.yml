@@ -18,11 +18,11 @@ jobs:
     runs-on: ubuntu-22.04
     env:
       BONITA_BRANCHES: '2021.1,2021.2,2022.1,2022.2,2023.1'
-      BCD_BRANCHES: '3.5,3.6,4.0'
+      BCD_BRANCHES: '3.6,4.0'
+      CENTRAL_BRANCH: '1.0'
       CLOUD_BRANCH: 'master'
       LABS_BRANCH: 'master'
       TOOLKIT_BRANCH: '1.0'
-      CENTRAL_BRANCH: '1.0'
     steps:
       - uses: actions/checkout@v3 # access to the local action
       - name: Build PR site
@@ -35,7 +35,7 @@ jobs:
             ./build-preview.bash --use-multi-repositories
             --component-with-branches bonita:"${{ env.BONITA_BRANCHES }}"
             --component-with-branches bcd:"${{ env.BCD_BRANCHES }}"
+            --component-with-branches central:"${{ env.CENTRAL_BRANCH }}"
             --component-with-branches cloud:"${{ env.CLOUD_BRANCH }}"
             --component-with-branches labs:"${{ env.LABS_BRANCH }}"
             --component-with-branches test-toolkit:"${{ env.TOOLKIT_BRANCH }}"
-            --component-with-branches central:"${{ env.CENTRAL_BRANCH }}"
