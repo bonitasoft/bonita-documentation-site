@@ -9,8 +9,16 @@ ifdef::env-github[]
 endif::[]
 :url-antora-docs: https://docs.antora.org/antora/3.0
 
-NOTE: The following applies mainly to the documentation part of the Bonita Platform, but can be used for any component of the Bonita documentation site with multi-supported versions
+[IMPORTANT]
+====
+This is a brief overview of all required actions. +
+For a complete list of required tasks, see the complete guides (restricted access):
 
+* https://bonitasoft.atlassian.net/wiki/spaces/BS/pages/22504964104/Bonita+Platform+documentation+lifecycle[Bonita Platform documentation lifecycle]
+* https://bonitasoft.atlassian.net/wiki/spaces/BS/pages/22503227439/How-to+configure+a+new+documentation+content+component[How-to configure a new documentation content component].
+====
+
+NOTE: The following applies mainly to the documentation part of the Bonita Platform, but can be used for any component of the Bonita documentation site with multi-supported versions
 
 == Bonita versions that are documented
 
@@ -19,26 +27,11 @@ For Bonita, the rule is the following one:
 We document the 4 currently supported Bonita versions, and **the 4 versions before**.
 
 
-=== Impact on DocSearch
-
-Each time a new version of a documented Bonitasoft project is released, the DocSearch configuration has to be updated:
-
-- The latest version has to be added to the projects to index
-- The oldest version should be removed from the projects to index
-
--> It means that the DocSearch configuration should reflect this behavior.
-
 == General how-to for components and versions management
 
 === How to integrate a new component
 
-[NOTE]
-====
-This is a brief overview of all required actions. +
-For a complete list of required tasks, see the https://bonitasoft.atlassian.net/wiki/spaces/BS/pages/22503227439/How-to+configure+a+new+documentation+content+component[complete guide] (restricted access).
-====
-
-To add a new component, you first need to create a GitHub repository which will contain the asciidoc sources of this component
+To add a new component, you first need to create a GitHub repository which will contain the AsciiDoc sources of this component
 (i.e. the documentation content). This repository must be organized according to the {url-antora-docs}/organize-content-files/[Antora recommendations].
 You can check existing repositories for working examples.
 At minimum, it will contain an `antora.yml` file at its root
