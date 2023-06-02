@@ -115,12 +115,20 @@ Then, this custom playbook is passed to the Antora CLI along with specific optio
 [[content-cache]]
 ===== Documentation content cache
 
-By default, without passing any specific options to the CLI relating to the documentation content, the sources are fetched
-from the remote Git repositories (GitHub) and cached (`.cache` directory).
+By default, without passing any specific options to the CLI relating to the documentation content, the resources are only fetched
+once from the remote locations and then cached in the `.cache` directory.
 
 WARNING: This cache is not updated except if you specify it to the CLI by passing the `--fetch-sources` option.
 
-You may need to update the cache if you want to retrieve a fresher version of the content (for instance, to get new branches related to new versions).
+You may need to update the cache if you want to retrieve a fresher version of the content. For instance, to get new branches related to new documentation versions,
+or newer content of existing versions.
+
+Resources put in the cache:
+
+* documentation content git repository
+* ui-bundles (Bonita and default themes)
+* Antora Atlas site manifest
+
 
 [[local-content]]
 ===== Using local documentation content repositories
