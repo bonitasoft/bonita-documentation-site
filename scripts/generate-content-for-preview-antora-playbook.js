@@ -151,7 +151,7 @@ if (startPage) {
 }
 
 // use local sources for the documentation content repositories
-const useLocalSources = getArgument(argv, 'local-sources', false)
+const useLocalSources = getArgument(argv, 'local-sources', false);
 console.info(`Use Local Sources: ${useLocalSources}`);
 if (useLocalSources) {
     doc.content.sources
@@ -261,14 +261,13 @@ doc.asciidoc.sourcemap = true;
 
 // Antora Atlas: site-manifest configuration
 // Ensure that xref validation is done in partial builds. In this case, missing component version pages are resolved using the production resources stored in the site manifest
-//
-const isSiteManifestDownloadEnabled = !useAllComponents;
+const isSiteManifestDownloadEnabled = !useAllComponents && !useTestSources;
 if (isSiteManifestDownloadEnabled) {
     console.info(`Enable Antora Atlas site-manifest download`);
     // primary-site-url or primary-site-manifest-url to specify the full path, in particular if it is gzipped
     doc.asciidoc.attributes['primary-site-url'] = 'META';
 } else {
-    console.info('Keep Antora Atlas site-manifest download disabled, as all components are built!')
+    console.info('Keep Antora Atlas site-manifest download disabled (building all components or using test ources)')
 }
 
 
