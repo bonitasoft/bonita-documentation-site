@@ -265,7 +265,7 @@ const isSiteManifestDownloadEnabled = !useAllComponents && !useTestSources;
 if (isSiteManifestDownloadEnabled) {
     console.info(`Enable Antora Atlas site-manifest download`);
     // primary-site-url or primary-site-manifest-url to specify the full path, in particular if it is gzipped
-    doc.asciidoc.attributes['primary-site-url'] = 'META';
+    doc.asciidoc.attributes['primary-site-url'] = 'https://meta-example.com';
 } else {
     console.info('Keep Antora Atlas site-manifest download disabled (building all components or using test ources)')
 }
