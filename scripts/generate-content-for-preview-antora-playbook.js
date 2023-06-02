@@ -259,6 +259,19 @@ if (hideNavbarComponentsList) {
 // https://docs.antora.org/antora/3.0/playbook/asciidoc-sourcemap/
 doc.asciidoc.sourcemap = true;
 
+// Antora Atlas: site-manifest configuration
+// Ensure that xref validation is done in partial builds. In this case, missing component version pages are resolved using the production resources stored in the site manifest
+//
+const isSiteManifestDownloadEnabled = !useAllComponents;
+if (isSiteManifestDownloadEnabled) {
+    console.info(`Enable Antora Atlas site-manifest download`);
+    // primary-site-url or primary-site-manifest-url to specify the full path, in particular if it is gzipped
+    doc.asciidoc.attributes['primary-site-url'] = 'META';
+} else {
+    console.info('Keep Antora Atlas site-manifest download disabled, as all components are built!')
+}
+
+
 // Generate the preview Antora playbook
 console.info('Dumping yaml....');
 const generatedYaml = `# Generated from 'antora-playbook.yml'
