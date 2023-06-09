@@ -129,6 +129,10 @@ Resources put in the cache:
 * ui-bundles (Bonita and default themes)
 * Antora Atlas site manifest
 
+For more details, see:
+
+* {url-antora-docs}/page/cache/[Configure Antora’s Cache]
+* https://gitlab.com/antora/antora-atlas-extension#user-content-configure[Antora Atlas configuration]
 
 [[local-content]]
 ===== Using local documentation content repositories
