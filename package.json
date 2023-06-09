@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@antora/atlas-extension": "1.0.0-alpha.1",
-    "antora": "3.1.4",
+    "antora": "3.2.0-alpha.2",
     "fs-extra": "~11.1.1",
     "js-yaml": "~4.1.0",
     "minimist": "~1.2.8",
