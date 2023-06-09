@@ -9,7 +9,7 @@ ifdef::env-github[]
 endif::[]
 // External URIs:
 :url-antora: https://antora.org
-:url-antora-docs: https://docs.antora.org/antora/3.0
+:url-antora-docs: https://docs.antora.org/antora/3.1
 :url-asciidoc: https://docs.asciidoctor.org/asciidoc/latest/
 :url-node: https://nodejs.org
 :url-nvm: https://github.com/creationix/nvm
@@ -152,6 +152,8 @@ used by the Bonita documentation.
 For instance:
 ----
 root
+  |
+  -- bonita-central-doc
   |
   -- bonita-cloud-doc
   |
