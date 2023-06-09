@@ -47,4 +47,4 @@ jobs:
           # here we check the
           #   - detailed logs of the Antora extensions
           #   - DocSearch integration
-          build-preview-command: ./build-preview.bash --use-test-sources --log-level debug --force-display-search-bar
+          build-preview-command: ./build-preview.bash --use-test-sources --log-level debug --force-display-search-bar --ignore-error false
