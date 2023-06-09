@@ -1,8 +1,8 @@
 diff --git a/node_modules/@antora/atlas-extension/lib/index.js b/node_modules/@antora/atlas-extension/lib/index.js
-index 5f8d240..9b70c2d 100644
+index 5f8d240..033239f 100644
 --- a/node_modules/@antora/atlas-extension/lib/index.js
 +++ b/node_modules/@antora/atlas-extension/lib/index.js
-@@ -5,8 +5,14 @@ const importSiteManifest = require('./import-site-manifest')
+@@ -5,10 +5,16 @@ const importSiteManifest = require('./import-site-manifest')
  const proxyContentCatalog = require('./proxy-content-catalog')
  const proxyMapSite = require('./proxy-map-site')
 
@@ -13,15 +13,64 @@ index 5f8d240..9b70c2d 100644
 +
  module.exports.register = function () {
    this.once('componentsRegistered', ({ playbook, siteAsciiDocConfig, contentCatalog }) => {
-+    log('start componentsRegistered')
      const asciidocAttrs = siteAsciiDocConfig.attributes
      if (!asciidocAttrs['primary-site-manifest-url'] && !asciidocAttrs['primary-site-url']) return
++    log('Importing site-manifest')
      const parseResourceRef = this.require('@antora/content-classifier/util/parse-resource-id')
+     return importSiteManifest(playbook, siteAsciiDocConfig, contentCatalog, parseResourceRef).then((imported) => {
+       if (!imported) return
 @@ -20,6 +26,7 @@ module.exports.register = function () {
 
    this.once('beforePublish', ({ playbook, siteAsciiDocConfig, contentCatalog, siteCatalog }) => {
      const siteManifestPath = siteAsciiDocConfig.attributes['site-manifest-path']
-+    log('start beforePublish')
++    log('Exporting site-manifest')
      siteCatalog.addFile(exportSiteManifest(contentCatalog, playbook.site.url, siteManifestPath))
    })
  }
+diff --git a/node_modules/@antora/atlas-extension/lib/read-site-manifest.js b/node_modules/@antora/atlas-extension/lib/read-site-manifest.js
+index f24334d..7056fb7 100644
+--- a/node_modules/@antora/atlas-extension/lib/read-site-manifest.js
++++ b/node_modules/@antora/atlas-extension/lib/read-site-manifest.js
+@@ -9,7 +9,13 @@ const ospath = require('path')
+
+ const URI_SCHEME_RX = /^https?:\/\//
+
++function log(msg, ...optionalParams) {
++  console.info('[Antora Atlas extension] ' + msg, ...optionalParams);
++}
++
++
+ async function readSiteManifest (playbook, manifestUrl) {
++  log('Reading site-manifest')
+   const manifestPath = await (isUrl(manifestUrl)
+     ? downloadSiteManifest(playbook, manifestUrl)
+     : expandPath(manifestUrl, { dot: playbook.dir }))
+@@ -27,6 +33,7 @@ function isUrl (string) {
+ }
+
+ function downloadSiteManifest (playbook, url) {
++  log('Downloading site-manifest')
+   const { cacheDir, fetch } = playbook.runtime || {}
+   const resolvedCacheDir = resolveCacheDir(cacheDir, playbook.dir || '.')
+   const gzipped = url.endsWith('.gz')
+@@ -45,11 +52,19 @@ function downloadSiteManifest (playbook, url) {
+         () =>
+           new Promise((resolve, reject) =>
+             get({ url }, (err, response, contents) => {
+-              if (err) reject(err)
++              // START fix atlas 1.0.0-alpha.1
++              if (err) return reject(err)
++              // original code
++              // if (err) reject(err)
++              // END OF fix atlas 1.0.0-alpha.1
++              log('Reponse', response)
++              if(!response)
+               if (response.statusCode !== 200) {
+                 const message = `Response code ${response.statusCode} (${response.statusMessage})`
+                 return reject(Object.assign(new Error(message), { name: 'HTTPError' }))
+               }
++              log('Retrieved from URL', url)
++              log('Caching file in', cacheFile)
+               return fsp.writeFile(cacheFile, contents).then(() => resolve(cacheFile))
+             })
+           )

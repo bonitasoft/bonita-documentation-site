@@ -270,19 +270,20 @@ if (isSiteManifestDownloadEnabled) {
     //     type: "Error"
     // doc.asciidoc.attributes['primary-site-url'] = 'https://github.com/';
 
-    // Unmanaged error
+    // Unmanaged error (better handle in this branch by patching the extension)
     // /bonita-documentation-site/node_modules/@antora/atlas-extension/lib/read-site-manifest.js:49
     //               if (response.statusCode !== 200) {
     //                            ^
     //
     // TypeError: Cannot read properties of undefined (reading 'statusCode')
     //     at /bonita-documentation-site/node_modules/@antora/atlas-extension/lib/read-site-manifest.js:49:28
-    // doc.asciidoc.attributes['primary-site-url'] = 'https://docs.example.org';
+    doc.asciidoc.attributes['primary-site-url'] = 'https://docs.example.org';
 
     // Silently not using it
     // doc.asciidoc.attributes['primary-site-manifest-url'] = './hello.json';
 
-    doc.asciidoc.attributes['primary-site-manifest-url'] = './site-manifest.json';
+    // Working site-manifest generated locally and stored in the repository
+    // doc.asciidoc.attributes['primary-site-manifest-url'] = './site-manifest.json';
 } else {
     console.info('Keep Antora Atlas site-manifest download disabled (building all components or using test sources)')
 }
