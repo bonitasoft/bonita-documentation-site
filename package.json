@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rimraf build .cache",
     "build": "antora --stacktrace --fetch --clean antora-playbook.yml",
-    "serve": "netlify dev -d build/site --debug --port 8080"
+    "serve": "netlify dev -d build/site --debug --port 8080",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "@antora/atlas-extension": "1.0.0-alpha.1",
@@ -15,6 +16,7 @@
     "js-yaml": "~4.1.0",
     "minimist": "~1.2.8",
     "netlify-cli": "~15.2.0",
+    "patch-package": "~7.0.0",
     "rimraf": "~5.0.1"
   }
 }
