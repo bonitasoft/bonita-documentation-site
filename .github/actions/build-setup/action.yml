@@ -11,4 +11,6 @@ runs:
     - name: Install dependencies
       uses: bahmutov/npm-install@v1
       with:
-        install-command: npm ci --ignore-scripts --prefer-offline --audit false
+        # TMP don't ignore scripts to patch the Antora Atlas extension
+        # to restore: add ` --ignore-scripts`
+        install-command: npm ci --prefer-offline --audit false
