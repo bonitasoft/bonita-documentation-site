@@ -151,7 +151,7 @@ if (startPage) {
 }
 
 // use local sources for the documentation content repositories
-const useLocalSources = getArgument(argv, 'local-sources', false)
+const useLocalSources = getArgument(argv, 'local-sources', false);
 console.info(`Use Local Sources: ${useLocalSources}`);
 if (useLocalSources) {
     doc.content.sources
@@ -258,6 +258,17 @@ if (hideNavbarComponentsList) {
 // Ensure we get details where xref resolution fails
 // https://docs.antora.org/antora/3.0/playbook/asciidoc-sourcemap/
 doc.asciidoc.sourcemap = true;
+
+// Antora Atlas: site-manifest configuration
+// Ensure that xref validation is done in partial builds. In this case, missing component version pages are resolved using the production resources stored in the site manifest
+const isSiteManifestDownloadEnabled = !useAllComponents && !useTestSources;
+if (isSiteManifestDownloadEnabled) {
+    console.info(`Enable Antora Atlas site-manifest download`);
+    // Working site-manifest generated locally and stored in the documentation site
+    doc.asciidoc.attributes['primary-site-url'] = 'https://documentation.bonitasoft.com/site-manifest.json.gz';
+} else {
+    console.info('Keep Antora Atlas site-manifest download disabled (building all components or using test sources)')
+}
 
 // Generate the preview Antora playbook
 console.info('Dumping yaml....');
