@@ -127,7 +127,7 @@ Resources put in the cache:
 
 * documentation content git repository
 * ui-bundles (Bonita and default themes)
-* Antora Atlas site manifest
+* Antora Atlas site manifest (use to validate xrefs)
 
 For more details, see:
 
