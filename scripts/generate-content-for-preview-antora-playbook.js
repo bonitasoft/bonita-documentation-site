@@ -265,7 +265,7 @@ const isSiteManifestDownloadEnabled = !useAllComponents && !useTestSources;
 if (isSiteManifestDownloadEnabled) {
     console.info(`Enable Antora Atlas site-manifest download`);
     // Working site-manifest generated locally and stored in the documentation site
-    doc.asciidoc.attributes['primary-site-url'] = 'https://documentation.bonitasoft.com/site-manifest.json.gz';
+    doc.asciidoc.attributes['primary-site-manifest-url'] = 'https://documentation.bonitasoft.com/site-manifest.json.gz';
 } else {
     console.info('Keep Antora Atlas site-manifest download disabled (building all components or using test sources)')
 }
