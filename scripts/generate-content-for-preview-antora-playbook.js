@@ -285,8 +285,9 @@ if (isSiteManifestDownloadEnabled) {
     //     syscall: "getaddrinfo"
     //     type: "Error"
     // doc.asciidoc.attributes['primary-site-url'] = 'https://docs.example.org';
-    //
-    // Silently not using it
+
+    // Not existing local file.
+    // Atlas silently do not use it
     // doc.asciidoc.attributes['primary-site-manifest-url'] = './hello.json';
 
     // Working site-manifest generated locally and stored in the repository
