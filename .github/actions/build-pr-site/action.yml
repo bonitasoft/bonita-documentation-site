@@ -25,9 +25,7 @@ runs:
       uses: ./.github/actions/build-setup
     - name: Install antora dependencies for xref validation
       shell: bash
-      run: |
-        npm install --save-dev antora@3.2.0-alpha.2
-        npm install --save-dev @antora/atlas-extension@1.0.0-alpha.1
+      run: npm install --save-dev antora@3.2.0-alpha.2
     - name: Build Site
       shell: bash
       run: ${{ inputs.build-preview-command }} --fetch-sources true --pr "${{ github.event.pull_request.number }}"
