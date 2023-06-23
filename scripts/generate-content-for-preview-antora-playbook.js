@@ -268,17 +268,24 @@ if (isSiteManifestDownloadEnabled) {
 
     // [16:14:23.220] FATAL (antora): Response code 404 (Not Found)
     //     type: "Error"
-    // doc.asciidoc.attributes['primary-site-url'] = 'https://github.com/';
+    // doc.asciidoc.attributes['primary-site-url'] = 'https://github.com/xtc/xfc';
 
-    // Unmanaged error (better handle in this branch by patching the extension)
+    // Unmanaged error with the original code
     // /bonita-documentation-site/node_modules/@antora/atlas-extension/lib/read-site-manifest.js:49
     //               if (response.statusCode !== 200) {
     //                            ^
     //
     // TypeError: Cannot read properties of undefined (reading 'statusCode')
     //     at /bonita-documentation-site/node_modules/@antora/atlas-extension/lib/read-site-manifest.js:49:28
+    //
+    // Better handled in this branch by patching the extension
+    // [13:43:32.965] FATAL (antora on docs.example.org): getaddrinfo ENOTFOUND docs.example.org
+    //     errno: -3008
+    //     code: "ENOTFOUND"
+    //     syscall: "getaddrinfo"
+    //     type: "Error"
     // doc.asciidoc.attributes['primary-site-url'] = 'https://docs.example.org';
-
+    //
     // Silently not using it
     // doc.asciidoc.attributes['primary-site-manifest-url'] = './hello.json';
 
