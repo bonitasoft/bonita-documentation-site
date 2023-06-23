@@ -44,6 +44,8 @@ jobs:
         uses: ./.github/actions/build-setup
       - name: Build site
         run: GOOGLE_ANALYTICS_KEY=${{env.GOOGLE_ANALYTICS_KEY}} npm run build
+      - name: Prepare site manifest
+        run: gzip build/site/site-manifest.json
       - name: List the content of the generated site
         uses: ./.github/actions/log-built-site-details
       - name: Create deploy message if no component defined

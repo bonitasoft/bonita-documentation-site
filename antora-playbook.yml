@@ -53,9 +53,11 @@ ui:
     url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.15.0/bonita-documentation-theme-v1.15.0.zip
 
 antora:
+  # IMPORTANT: use the 'require' syntax to ensure that the preview script is able to always update the configuration
   extensions:
     - require: ./lib/antora/versions-sorter-extension.js
     - require: ./lib/antora/versions-alias-extension.js
+    - require: '@antora/atlas-extension'
 
 asciidoc:
   # Only enable for preview, we don't care for production, and it can have performance impacts
