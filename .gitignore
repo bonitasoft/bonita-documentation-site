@@ -6,6 +6,7 @@ node_modules/
 
 # generated files
 antora-playbook-content-for-preview.yml
+site-manifest.json
 
 # Local Netlify folder
 .netlify
