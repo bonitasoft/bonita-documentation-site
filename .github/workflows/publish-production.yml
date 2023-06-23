@@ -66,10 +66,13 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: ${{ env.deploy_message }}
           netlify-config-path: ./netlify.toml
+          # let us detect when secrets are not available when attempting to push to production
+          fails-without-credentials: true
           github-deployment-description: ${{ env.deploy_message }}
-          # no comment, we only publish to production, github commit status and environment are set correctly
+          # no comment nor commit status, we only publish to production, the publishing information is available with the github environment
           enable-pull-request-comment: false
           enable-commit-comment: false
+          enable-commit-status: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
