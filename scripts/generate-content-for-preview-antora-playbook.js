@@ -220,11 +220,13 @@ if (logLevel) {
 
 // Manage 'failure_level'
 const ignoreErrors = getArgument(argv, 'ignore-errors', false);
+console.info(`Ignore errors: ${ignoreErrors}`);
 if (ignoreErrors === 'true') {
     doc.runtime.log.failure_level = 'fatal';
 }
 const failOnWarnings = getArgument(argv, 'fail-on-warnings', false);
-if (ignoreErrors === 'true') {
+console.info(`Fail on warnings: ${failOnWarnings}`);
+if (failOnWarnings === 'true') {
     doc.runtime.log.failure_level = 'warn';
 }
 
