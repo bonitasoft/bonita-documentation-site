@@ -256,12 +256,14 @@ For articles explaining use cases using supplemental files, see
 
 
 === xref validation and partial build
+TODO
 
-explain what is xref validation + links to contrib guide
+* explain what is xref validation + links to contrib guide
+* link to this paragraph in the cache paragraph
 
 When doing a partial build (i.e. not building the whole site), some cross references between component versions may fail as the target resources are not available.
 
-The Antora Altas extension provides a way to workaround this issue by making the references available while validating the xref. It works in two steps
+The https://gitlab.com/antora/antora-atlas-extension/[Antora Altas extension] provides a way to workaround this issue by making the references available while validating the xref. It works in two steps
 
 * export the site manifest. The export is always enabled and the file is published in production at the same place as the rest of the site content
 * import the site manifest. It is enabled (TODO link to script) when partially building the site
