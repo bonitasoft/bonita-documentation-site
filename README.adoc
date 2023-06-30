@@ -125,7 +125,7 @@ Resources put in the cache:
 
 * documentation content git repository
 * ui-bundles (Bonita and default themes)
-* Antora Atlas site manifest (use to <<validate-xref, validate xref>>)
+* Antora Atlas site manifest (use to <<validate-reference, validate references>>)
 
 For more details, see:
 
@@ -255,16 +255,34 @@ For articles explaining use cases using supplemental files, see
 * https://lightbend.github.io/antora-supplemental-ui-lightbend-theme/build/site/index.html
 
 
-[[validate-xref]]
-=== xref validation and partial build
+[[validate-reference]]
+=== Reference validation and partial build
 
-What is a xref? For more details, see the {url-antora-docs}/page/xref/[Antora xref documentation]:
+Reference validation, which covers xrefs, includes, and images, is performed automatically when Antora runs.
+
+The validation errors are shown in the log output, and the build of the Bonita documentation site is configured to enforce reference validation.
+
+Each message shows the repository source, the refname, and the path from the root of that repository.
+
+....
+[14:29:22.246] ERROR (asciidoctor): target of xref not found: :do-not-exist_for_sure.adoc
+file: modules/ROOT/pages/index.adoc:7
+source: https://github.com/bonitasoft/bonita-doc.git (branch: ci/simplify_xref_validation)
+[14:29:22.247] ERROR (asciidoctor): target of xref not found: 3.6@bcd::do-not-exist_for_sure-in-bcd.adoc
+file: modules/ROOT/pages/index.adoc:9
+source: https://github.com/bonitasoft/bonita-doc.git (branch: ci/simplify_xref_validation)
+....
+
+==== Reminder: What is a xref?
+
+For more details, see the {url-antora-docs}/page/xref/[Antora xref documentation]:
+
 [quote]
 An AsciiDoc xref macro is used to create a source-to-source cross reference from a resource to a publishable resource. The term cross reference, which is often abbreviated to xref, means to use the AsciiDoc xref macro to reference the source file of a publishable resource
 
 For more details about using xref in the documentation content, see the xref:docs/content/CONTRIBUTING.adoc[contributing guide].
 
-`xref validation` is done automatically while building an Antora site. The build of the Bonita documentation site is configured to break when a xref validation error occurs.
+==== Partial build and reference validation
 
 When doing a partial build (i.e. not building the whole site), some cross-references between component versions may fail as the target resources are not available.
 
