@@ -229,6 +229,7 @@ console.info(`Fail on warnings: ${failOnWarnings}`);
 if (failOnWarnings === 'true') {
     doc.runtime.log.failure_level = 'warn';
 }
+console.info(`--> Antora log.failure_level: ${doc.runtime.log.failure_level}`);
 
 
 // Set the non-production mode (custom navbar for preview)
