@@ -249,6 +249,11 @@ you can directly put the files in the documentation site.
 
 See the {url-antora-docs}/playbook/ui-supplemental-files/[Antora supplemental UI] for a complete explanation.
 
+For articles explaining use cases using supplemental files, see
+
+* http://www.northwestopendata.org.uk/nwod/blog/convert_blog.html
+* https://lightbend.github.io/antora-supplemental-ui-lightbend-theme/build/site/index.html
+
 
 ==== http dev server
 
