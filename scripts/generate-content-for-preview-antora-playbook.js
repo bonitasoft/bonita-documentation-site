@@ -223,6 +223,10 @@ const ignoreErrors = getArgument(argv, 'ignore-errors', false);
 if (ignoreErrors === 'true') {
     doc.runtime.log.failure_level = 'fatal';
 }
+const failOnWarnings = getArgument(argv, 'fail-on-warnings', false);
+if (ignoreErrors === 'true') {
+    doc.runtime.log.failure_level = 'warn';
+}
 
 
 // Set the non-production mode (custom navbar for preview)
