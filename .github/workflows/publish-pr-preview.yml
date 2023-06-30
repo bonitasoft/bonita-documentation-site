@@ -31,7 +31,7 @@ jobs:
           surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           doc-site-branch: ${{ github.head_ref }}
-          build-preview-command: ./build-preview.bash --single-branch-per-repo --ignore-error true
+          build-preview-command: ./build-preview.bash --single-branch-per-repo --ignore-errors true
   test:
     runs-on: ubuntu-22.04
     permissions:

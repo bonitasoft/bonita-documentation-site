@@ -34,7 +34,7 @@ function usage() {
   echo "      --force-production-navbar               if the option is set, use the regular navbar instead of the preview one."
   echo "      --hide-edit-page-links <boolean>        'true': hide all edit page links (useful when generating documentation archive). Defaults to 'false'"
   echo "      --hide-navbar-components-list <boolean> 'true': hide components list in navbar. Defaults to 'false'"
-  echo "      --ignore-error <boolean>                If set to 'true', set 'failure_level' to 'info'. Otherwise, use the original value defined in the Antora playbook."
+  echo "      --ignore-errors <boolean>                If set to 'true', set 'failure_level' to 'info'. Otherwise, use the original value defined in the Antora playbook."
   echo "      --local-sources <boolean>               'true': use locally checkout sources in a working directory along the one of this project (useful to test local changes without push) , otherwise, use antora cache. Defaults to 'false'"
   echo "      --local-ui-bundle <boolean>             'true': use locally build ui bundle whose sources are in a working directory along the one of this project, otherwise, use antora cache. Defaults to 'false'"
   echo "      --log-level <level>                     Set the Antora log level. Defaults to the original value defined in the Antora playbook."
