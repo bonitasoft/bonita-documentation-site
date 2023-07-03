@@ -21,8 +21,6 @@ image::https://github.com/bonitasoft/bonita-documentation-site/actions/workflows
 This repository lets you generate the Bonita documentation site. It uses {url-antora}[Antora] which processes {url-asciidoc}:[AsciiDoc]
 documentation content stored in various Git repositories.
 
-NOTE: This is an artificial changes to test the changes
-
 == Documentation
 
 See the xref:docs/README.adoc[dedicated folder] for
@@ -127,7 +125,7 @@ Resources put in the cache:
 
 * documentation content git repository
 * ui-bundles (Bonita and default themes)
-* Antora Atlas site manifest (use to validate xrefs)
+* Antora Atlas site manifest (use to <<validate-reference, validate references>>)
 
 For more details, see:
 
@@ -251,6 +249,62 @@ you can directly put the files in the documentation site.
 
 See the {url-antora-docs}/playbook/ui-supplemental-files/[Antora supplemental UI] for a complete explanation.
 
+For articles explaining use cases using supplemental files, see
+
+* http://www.northwestopendata.org.uk/nwod/blog/convert_blog.html
+* https://lightbend.github.io/antora-supplemental-ui-lightbend-theme/build/site/index.html
+
+
+[[validate-reference]]
+=== Reference validation and partial build
+
+Reference validation, which covers xrefs, includes, and images, is performed automatically when Antora runs.
+
+The validation errors are shown in the log output, and the build of the Bonita documentation site is configured to enforce reference validation.
+
+Each message shows the repository source, the refname, and the path from the root of that repository.
+
+....
+[14:29:22.246] ERROR (asciidoctor): target of xref not found: :do-not-exist_for_sure.adoc
+file: modules/ROOT/pages/index.adoc:7
+source: https://github.com/bonitasoft/bonita-doc.git (branch: ci/simplify_xref_validation)
+[14:29:22.247] ERROR (asciidoctor): target of xref not found: 3.6@bcd::do-not-exist_for_sure-in-bcd.adoc
+file: modules/ROOT/pages/index.adoc:9
+source: https://github.com/bonitasoft/bonita-doc.git (branch: ci/simplify_xref_validation)
+....
+
+==== Reminder: What is a xref?
+
+For more details, see the {url-antora-docs}/page/xref/[Antora xref documentation]:
+
+[quote]
+An AsciiDoc xref macro is used to create a source-to-source cross reference from a resource to a publishable resource. The term cross reference, which is often abbreviated to xref, means to use the AsciiDoc xref macro to reference the source file of a publishable resource
+
+For more details about using xref in the documentation content, see the xref:docs/content/CONTRIBUTING.adoc[contributing guide].
+
+==== Partial build and reference validation
+
+When doing a partial build (i.e. not building the whole site), some cross-references between component versions may fail as the target resources are not available.
+
+The https://gitlab.com/antora/antora-atlas-extension/[Antora Atlas extension] provides a way to work around this issue by making the references available while validating.
+
+This is done using a site manifest, in two steps:
+
+* export the site manifest. The export is always enabled and the file is published in production at the same place as the rest of the site content
+* import the site manifest. It is enabled xref:scripts/generate-content-for-preview-antora-playbook.js[automatically] when partially building the site with the `./build-preview.bash` script. The site manifest file is downloaded from the production site
+
+==== Special local configuration to use the "import" feature
+
+The Antora Atlas extension is currently in alpha, and it requires an alpha version of Antora (3.2 line) to work.
+
+However, we use a stable 3.1 Antora version to build the site. We don't want to rely on an alpha version that is more rarely updated and not always includes all bug fixes. +
+So, a special configuration must be put in place to make the Atlas extension work to manage the xref validation.
+
+Reference validation is done in a specific GitHub workflow when validating PR in documentation content repositories. It calls a dedicated action that handles the special configuration.
+
+To locally use the Atlas extension for reference validation, do the same as in xref:.github/actions/build-pr-site/action.yml[] to install the latest alpha Antora version.
+
+WARNING: be aware of the <<content-cache, cache>>. Once in cache, the site manifest file is put in cache and is never downloaded again.
 
 ==== http dev server
 
