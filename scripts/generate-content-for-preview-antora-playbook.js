@@ -218,10 +218,10 @@ if (logLevel) {
     doc.runtime.log.level = logLevel;
 }
 
-// Manage 'failure_level': if requested, set log level to info (default) to not break build for preview
-const ignoreError = getArgument(argv, 'ignore-error', false);
-if (ignoreError === 'true'){
-    delete doc.runtime.log.failure_level;
+// Manage 'failure_level'
+const ignoreErrors = getArgument(argv, 'ignore-errors', false);
+if (ignoreErrors === 'true') {
+    doc.runtime.log.failure_level = 'fatal';
 }
 
 
