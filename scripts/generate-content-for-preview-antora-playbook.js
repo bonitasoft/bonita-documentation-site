@@ -224,9 +224,9 @@ console.info(`Ignore errors: ${ignoreErrors}`);
 if (ignoreErrors === 'true') {
     doc.runtime.log.failure_level = 'fatal';
 }
-const failOnWarnings = getArgument(argv, 'fail-on-warnings', false);
-console.info(`Fail on warnings: ${failOnWarnings}`);
-if (failOnWarnings === 'true') {
+const failOnWarning = getArgument(argv, 'fail-on-warning', false);
+console.info(`Fail on warning: ${failOnWarning}`);
+if (failOnWarning === 'true') {
     doc.runtime.log.failure_level = 'warn';
 }
 console.info(`--> Antora log.failure_level: ${doc.runtime.log.failure_level}`);

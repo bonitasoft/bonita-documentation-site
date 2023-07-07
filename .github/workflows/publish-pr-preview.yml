@@ -56,7 +56,7 @@ jobs:
           # '-' No newline at end (strip)
           build-preview-command: >-
             ./build-preview.bash
-            --fail-on-warnings true
+            --fail-on-warning true
             --force-display-search-bar
             --log-level debug
             --use-test-sources
