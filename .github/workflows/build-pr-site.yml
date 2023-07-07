@@ -22,6 +22,8 @@ jobs:
         uses: ./.github/actions/build-pr-site
         with:
           doc-site-branch: ${{ github.head_ref }}
+          # TMP test the new option
+          fail-on-warning: true
           # '>' Replace newlines with spaces (folded)
           # '-' No newline at end (strip)
           build-preview-command: >-
