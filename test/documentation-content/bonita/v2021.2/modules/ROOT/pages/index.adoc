@@ -1,8 +1,5 @@
 = Home
 
-This is an {invalid-because-unknown} AsciiDoc attribute.
-
-
 I am the home of {page-component-title} {bonitaVersion}.
 
 Download this xref:attachment$README.txt[top secret document] (attachment created using the Antora 3 syntax).
