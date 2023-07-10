@@ -77,20 +77,20 @@ asciidoc:
 ----
 
 [example]
-Use `{bonitaVersion}` syntax to reference this attribute in content. It will be replaced by `2021.1` for each occurrence.
+Use `+{bonitaVersion}+` syntax to reference this attribute in content. It will be replaced by `2021.1` for each occurrence.
 
 
 ==== Disabling attribute substitution
 
-Any elements around braces are interpreted as attribute and so, they will be substitued in the generated output. If the value around braces is not related to
+Any elements around braces are interpreted as attribute and so, they will be substituted in the generated output. If the value around braces is not related to
 a declared attributes, warnings are emitted when generating the html files. +
 For instance, in `+${CATALINA_HOME}/conf/jaas.cfg+`, `CATALINA_HOME` is substituted by default which is not something we want
 as we want to document an example with bash substitution.
 
 To disable attribute substitution in inline text, add a `+` character around the text that contains the braces
 
-* globally around an inline code extract like `\+${CATALINA_HOME}/conf/jaas.cfg+`
-* just around the braces: `$+{CATALINA_HOME}+/conf/jaas.cfg`
+* globally around an inline code extract like `\++${CATALINA_HOME}/conf/jaas.cfg++`
+* just around the braces: `$\++{CATALINA_HOME}++/conf/jaas.cfg`
 
 See https://docs.asciidoctor.org/asciidoc/latest/pass/pass-macro/#inline-passthrough-macros for more details.
 
@@ -128,7 +128,7 @@ When Bonita editions are referenced, to avoid different wording, the following r
 
 Always follow the https://en.wikipedia.org/wiki/Letter_case#Kebab_case[kebab case] convention. This is something we are going to progressively enforce in all repositories, for consistency and to improve the SEO.
 
-Do not prefix the file name with the name of the component (file are already stored in a dedicated component repository, the url already contains the component key) or a category (use Antora module instead to organize the content - see the next paragraph). 
+Do not prefix the file name with the name of the component (file are already stored in a dedicated component repository, the url already contains the component key) or a category (use Antora module instead to organize the content - see the next paragraph).
 
 Do
 
@@ -138,7 +138,7 @@ Do
 
 Don't
 
-* bc-app-declaration.adoc (component prefix and abbreviation): application-declaration.adoc 
+* bc-app-declaration.adoc (component prefix and abbreviation): application-declaration.adoc
 * BC_archi_single.png (both component prefix and underscore): archi-single.png
 * livingapp_manage_configuration.adoc (module and underscore): manage-configuration.adoc in the living-app or living-application module (from the https://github.com/bonitasoft/bonita-continuous-delivery-doc/blob/c6ff1bba6449857aff4898ea52af7678653ceee7/modules/ROOT/pages/livingapp_manage_configuration.adoc[bcd component])
 * Service_Level_Agreement_Data_Management.adoc (module and underscore and uppercase): data-management.adoc in a service-level-agreement or sla module (from the https://github.com/bonitasoft/bonita-cloud-doc/blob/338e54e9dd60b1ef62fcffe60134a2db01d0923b/modules/ROOT/pages/Service_Level_Agreement_Data_Management.adoc[cloud component])
