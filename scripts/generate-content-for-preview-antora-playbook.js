@@ -220,9 +220,16 @@ if (logLevel) {
 
 // Manage 'failure_level'
 const ignoreErrors = getArgument(argv, 'ignore-errors', false);
+console.info(`Ignore errors: ${ignoreErrors}`);
 if (ignoreErrors === 'true') {
     doc.runtime.log.failure_level = 'fatal';
 }
+const failOnWarning = getArgument(argv, 'fail-on-warning', false);
+console.info(`Fail on warning: ${failOnWarning}`);
+if (failOnWarning === 'true') {
+    doc.runtime.log.failure_level = 'warn';
+}
+console.info(`--> Antora log.failure_level: ${doc.runtime.log.failure_level}`);
 
 
 // Set the non-production mode (custom navbar for preview)

@@ -9,7 +9,7 @@ inputs:
     description: 'A surge token to manage the deployment'
     required: true
   build-preview-command:
-    description: 'The documentation `build-preview` command to build the preview'
+    description: 'The documentation `build-preview` command to build the preview. Mandatory when `component-name` is not set. Otherwise, ignored.'
     required: false
   # needed by content repository (default master) and here (computed automagically)
   doc-site-branch:
@@ -20,8 +20,12 @@ inputs:
     description: 'The name of the component to build. If set, the build-preview-command input is ignored'
     required: false
     default: ''
+  fail-on-warning:
+    description: 'If true, fail the Antora build on warning. Only applies when the `component-name` input is set.'
+    required: false
+    default: 'false'
   ignore-errors:
-    description: 'Only applies when the `component-name` input is set. If `true`, ignores Antora error.'
+    description: 'If `true`, ignores Antora error. Only applies when the `component-name` input is set.'
     required: false
     default: 'true'
 
@@ -53,6 +57,7 @@ runs:
         ./build-preview.bash
         --branch "${{ github.head_ref }}"
         --component "${{inputs.component-name}}"
+        --fail-on-warning "${{inputs.fail-on-warning}}"
         --fetch-sources true
         --ignore-errors "${{inputs.ignore-errors}}"
         --pr "${{ github.event.pull_request.number }}"

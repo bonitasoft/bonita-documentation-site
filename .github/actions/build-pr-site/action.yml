@@ -10,6 +10,10 @@ inputs:
     description: 'The branch of the `bonita-documentation-site` used to build the site preview'
     required: false
     default: 'master'
+  fail-on-warning:
+    description: 'If true, fail the Antora build on warning.'
+    required: false
+    default: 'false'
 
 runs:
   using: "composite"
@@ -32,6 +36,7 @@ runs:
       # '-' No newline at end (strip)
       run: >-
         ${{ inputs.build-preview-command }}
+        --fail-on-warning "${{inputs.fail-on-warning}}"
         --fetch-sources true
         --pr "${{ github.event.pull_request.number }}"
     - name: List the content of the generated site
