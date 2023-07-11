@@ -267,6 +267,30 @@ See https://github.com/bonitasoft/bonita-documentation-site/issues/326[issue #32
 ====
 
 
+=== Adding "Internal cross-references" i.e. reference to an anchor in the page
+
+Define an explicit anchor. *Do not use Automatic anchors* that are generated from the text of heading and that are subject
+to change when the text changes (so, references would be broken when the text changes).
+
+[source,asciidoc]
+----
+[#my-anchor]
+== A paragraph
+the content of the paragraph
+----
+
+Then, use the anchor as reference anywhere in the page
+[source,asciidoc]
+----
+The content and the reference to <<my-anchor, My Anchor>>.
+----
+
+Resources
+
+* https://docs.asciidoctor.org/asciidoc/latest/attributes/id/#anchor
+* https://docs.asciidoctor.org/asciidoc/latest/macros/xref/#internal-cross-references
+
+
 === Make assets available as downloadable files
 
 ==== Examples
