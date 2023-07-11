@@ -28,7 +28,12 @@ runs:
       run: npm install --save-dev antora@3.2.0-alpha.2
     - name: Build Site
       shell: bash
-      run: ${{ inputs.build-preview-command }} --fetch-sources true --pr "${{ github.event.pull_request.number }}"
+      # '>' Replace newlines with spaces (folded)
+      # '-' No newline at end (strip)
+      run: >-
+        ${{ inputs.build-preview-command }}
+        --fetch-sources true
+        --pr "${{ github.event.pull_request.number }}"
     - name: List the content of the generated site
       uses: ./.github/actions/log-built-site-details
     - name: Archive site

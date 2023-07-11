@@ -126,7 +126,7 @@ When Bonita editions are referenced, to avoid different wording, the following r
 
 === File names
 
-Always follow the https://en.wikipedia.org/wiki/Letter_case#Kebab_case[kebab case] convention. This is something we are going to progressively enforce in all repositories, for consistency and to improve the SEO.
+Always follow the https://en.wikipedia.org/wiki/Letter_case#Kebab_case[kebab case] convention. This is something we are going to progressively enforce in all repositories (see [#589](https://github.com/bonitasoft/bonita-documentation-site/issues/589)), for consistency and to improve the SEO.
 
 Do not prefix the file name with the name of the component (file are already stored in a dedicated component repository, the url already contains the component key) or a category (use Antora module instead to organize the content - see the next paragraph).
 

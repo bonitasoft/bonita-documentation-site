@@ -31,7 +31,12 @@ jobs:
           surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           doc-site-branch: ${{ github.head_ref }}
-          build-preview-command: ./build-preview.bash --single-branch-per-repo --ignore-error true
+          # '>' Replace newlines with spaces (folded)
+          # '-' No newline at end (strip)
+          build-preview-command: >-
+            ./build-preview.bash
+            --ignore-errors true
+            --single-branch-per-repo
   test:
     runs-on: ubuntu-22.04
     permissions:
@@ -47,4 +52,10 @@ jobs:
           # here we check the
           #   - detailed logs of the Antora extensions
           #   - DocSearch integration
-          build-preview-command: ./build-preview.bash --use-test-sources --log-level debug --force-display-search-bar
+          # '>' Replace newlines with spaces (folded)
+          # '-' No newline at end (strip)
+          build-preview-command: >-
+            ./build-preview.bash
+            --force-display-search-bar
+            --log-level debug
+            --use-test-sources
