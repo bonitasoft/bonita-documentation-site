@@ -224,7 +224,7 @@ Changes in the documentation are done with Pull Requests and a live preview is a
 
 So use the preview to test the alias configuration: `<base_preview_url/bonita/2021.1/old-page-name` should redirect to `<base_preview_url/bonita/2021.1/new-page-name`
 
-=== Adding link between two components or between versions of the same component
+=== Adding reference between pages of two components or between pages of 2 versions of the same component
 
 WARNING: **DO NOT** hard code urls with https://documentation.bonitasoft.com/xxxx or ../../my-page.adoc, use xref instead. An automatic check rejects your Pull Request if you hard code such links.
 
@@ -244,7 +244,7 @@ For more details about the xref syntax, see the Antora documentation to have a b
 
 Example:
 
-* abreviated: `xref:bonita::about.adoc`
+* abbreviated form: `xref:bonita::about.adoc`
 * a page in same component and same version: `xref:ROOT:resource-management.adoc`
 * a page of a given version in the ROOT module (explicit): `xref:2022.2@bonita:ROOT:what-is-bonita.adoc`
 * a page of a given version in the ROOT module (implicit): `xref:2023.1@bonita::release-notes.adoc`
