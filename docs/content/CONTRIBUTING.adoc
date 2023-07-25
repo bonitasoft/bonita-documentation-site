@@ -87,10 +87,11 @@ a declared attributes, warnings are emitted when generating the html files. +
 For instance, in `+${CATALINA_HOME}/conf/jaas.cfg+`, `CATALINA_HOME` is substituted by default which is not something we want
 as we want to document an example with bash substitution.
 
-To disable attribute substitution in inline text, add a `+` character around the text that contains the braces
+To disable attribute substitution in inline text, use one of the following:
 
-* globally around an inline code extract like `\++${CATALINA_HOME}/conf/jaas.cfg++`
-* just around the braces: `$\++{CATALINA_HOME}++/conf/jaas.cfg`
+* add a `+` character around an inline code extract like `\++${CATALINA_HOME}/conf/jaas.cfg++`
+* add a `\` character before the first brace: `$\\{CATALINA_HOME}/conf/jaas.cfg`. This is the sole way to do it in a block where the `subs="attributes"` macro is enabled. See https://docs.asciidoctor.org/asciidoc/latest/blocks/[Blocks] and https://docs.asciidoctor.org/asciidoc/latest/subs/apply-subs-to-blocks/[Substitutions in Blocks]
+
 
 See https://docs.asciidoctor.org/asciidoc/latest/pass/pass-macro/#inline-passthrough-macros for more details.
 
