@@ -1,0 +1,15 @@
+name: test-toolkit
+title: Test Toolkit
+version: '2.0'
+prerelease: -alpha
+start_page: ROOT:process-testing-overview.adoc
+asciidoc:
+  attributes:
+    # page attributes
+    page-editable: true
+    page-out-of-support: false
+    page-pagination: true # display links to previous/next pages at the bottom of the page
+    page-custom-message: "This is a custom message which is displayed in all pages."
+
+nav:
+  - modules/ROOT/nav.adoc
