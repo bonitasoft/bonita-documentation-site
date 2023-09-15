@@ -21,8 +21,9 @@ jobs:
         shell: bash
         run: |
           echo "Installing htmltest"
-          curl https://htmltest.wjdp.uk | bash -s -- v0.17.0
+          curl https://htmltest.wjdp.uk | bash -s -b scripts/htmltest -- v0.17.0
           echo "Installation done"
-          ./bin/htmltest --version
+          ./scripts/htmltest/htmltest --version
           pwd
           ls -lh
+          ls -lh ./scripts/htmltest
