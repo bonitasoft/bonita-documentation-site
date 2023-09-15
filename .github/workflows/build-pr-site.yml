@@ -16,6 +16,8 @@ on:
 jobs:
   build_site:
     runs-on: ubuntu-22.04
+    # TODO temp disable the workflow
+    if: github.repository == 'octo-org/octo-repo-prod'
     steps:
       - uses: actions/checkout@v4 # access to the local action
       - name: Validate xref
