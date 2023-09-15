@@ -24,3 +24,5 @@ jobs:
           curl https://htmltest.wjdp.uk | bash -s -- v0.17.0
           echo "Installation done"
           ./bin/htmltest --version
+          pwd
+          ls -lh
