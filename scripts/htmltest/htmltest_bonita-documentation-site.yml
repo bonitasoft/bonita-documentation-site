@@ -1,0 +1,27 @@
+# For configuration details, see https://github.com/wjdp/htmltest#wrench-configuration
+
+LogLevel: 1 # info
+OutputDir: config
+
+IgnoreURLs:
+  # Links used to demonstrate the target url
+  - "^http://localhost"
+  # - "^localhost" # not working
+  # - "localhost" # work but not specific enough
+  ### TODO require authentication, currently fail. See if we can use an option to prevent this
+  # Twitter requires authentication
+  # - "twitter.com" # work but not specific enough
+  # - "^twitter.com/bonitasoft$" # not working
+  - "twitter.com/bonitasoft"
+  # Require authentication. Http code 999: https://stackoverflow.com/questions/46214017/public-linkedin-profile-url-returns-server-status-code-999
+  # - "linkedin.com" # work but not specific enough
+  #  https://www.linkedin.com/company/bonitasoft/
+  - "linkedin.com/company/bonitasoft"
+
+#### TODO to be tested
+# EnforceHTTPS: true
+# IgnoreHTTPS   Array of regexs of URLs to ignore for EnforceHTTPS. These URLs are still tested, unless also present in IgnoreURLs.
+# IgnoreCanonicalBrokenLinks  When true produces a warning, rather than an error, for broken canonical links. When testing a site which isn't live yet or before publishing a new page canonical links will fail.   true
+
+# LogSort   How to sort/present issues. Can be seq for sequential output or document to group by document.  document
+
