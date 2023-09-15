@@ -1,0 +1,26 @@
+name: Check links of the site
+on:
+  # TODO schedule and workflow_dispatch in the final implementation
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  check_links:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4 # access to the local action
+      - name: Build Setup
+        uses: ./.github/actions/build-setup
+        ## TODO duplicated with the build-pr-site action
+        # only require if we build o part of the documentation
+#      - name: Install antora dependencies for xref validation
+#        shell: bash
+#        run: npm install --save-dev antora@3.2.0-alpha.2
+      - name: Install htmltest
+        shell: bash
+        run: |
+          echo "Installing htmltest"
+          curl https://htmltest.wjdp.uk | bash
+          echo "installation done"
+          ./bin/htmltest --version
