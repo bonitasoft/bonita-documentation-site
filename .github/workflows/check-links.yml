@@ -25,9 +25,6 @@ jobs:
           curl https://htmltest.wjdp.uk | bash -s -- -b scripts/htmltest v0.17.0
           echo "Installation done"
           ./scripts/htmltest/htmltest --version
-          pwd
-          ls -lh
-          ls -lh ./scripts/htmltest
       - name: Check links
         working-directory: scripts/htmltest
         run: |
