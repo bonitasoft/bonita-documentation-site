@@ -7,6 +7,7 @@ node_modules/
 # generated or manualy retrieved files
 antora-playbook-content-for-preview.yml
 /scripts/htmltest/htmltest
+/scripts/htmltest/config/htmltest.log
 
 # Local Netlify folder
 .netlify
