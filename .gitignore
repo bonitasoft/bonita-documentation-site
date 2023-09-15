@@ -4,8 +4,9 @@ node_modules/
 .cache/
 *.DS_Store
 
-# generated files
+# generated or manualy retrieved files
 antora-playbook-content-for-preview.yml
+/scripts/htmltest/htmltest
 
 # Local Netlify folder
 .netlify
