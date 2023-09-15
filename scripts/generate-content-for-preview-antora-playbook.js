@@ -193,6 +193,11 @@ const previewTypeArgs = getArgumentAsArray(argv, 'type', false);
 const previewType = previewTypeArgs.slice(-1)[0];
 console.info(`Preview Type: ${previewType}`);
 switch (previewType) {
+    // htmltest links check: allow local file browsing, don't produce static HTML files for redirect
+    case 'links-check':
+        doc.urls.html_extension_style = 'default';
+        doc.urls.redirect_facility = 'netlify';
+        break;
     // Allow local file browsing
     case 'local':
         doc.urls.html_extension_style = 'default';
