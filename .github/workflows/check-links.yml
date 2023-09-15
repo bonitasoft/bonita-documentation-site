@@ -14,11 +14,12 @@ jobs:
         uses: ./.github/actions/build-setup
         ## TODO duplicated with the build-pr-site action
         # only require if we build o part of the documentation
-#      - name: Install antora dependencies for xref validation
-#        shell: bash
-#        run: npm install --save-dev antora@3.2.0-alpha.2
+      - name: Install antora dependencies for xref validation
+        run: npm install --save-dev antora@3.2.0-alpha.2
+      - name: Build site
+        run: |
+          ./build-preview-dev.bash --hide-edit-page-links true --force-production-navbar true --type links-check --component bonita --branch 2023.1
       - name: Install htmltest
-        shell: bash
         run: |
           echo "Installing htmltest"
           curl https://htmltest.wjdp.uk | bash -s -b scripts/htmltest -- v0.17.0
@@ -27,3 +28,10 @@ jobs:
           pwd
           ls -lh
           ls -lh ./scripts/htmltest
+      - name: Check links
+        working-directory: scripts/htmltest
+        run: |
+          ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
+          ls -lh config/
+# TODO upload log artifact
+
