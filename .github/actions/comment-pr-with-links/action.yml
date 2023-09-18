@@ -22,7 +22,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 2
     - name: Get changed files in PR
@@ -51,7 +51,7 @@ runs:
       run: |
         echo "${{ steps.changed-files.outputs.all_changed_files }}"
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       if: ${{ github.event.action != 'closed' }}
       with:
         repository: 'bonitasoft/bonita-documentation-site'
