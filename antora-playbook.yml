@@ -26,7 +26,6 @@ content:
     - url: https://github.com/bonitasoft/bonita-doc.git
       branches:
         - "archives"
-        - "7.9"
         - "7.10"
         - "7.11"
         - "2021.1"
