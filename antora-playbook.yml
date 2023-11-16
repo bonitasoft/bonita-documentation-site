@@ -66,6 +66,8 @@ asciidoc:
   sourcemap: false
   attributes:
     icons: font
+  extensions:
+    - '@asciidoctor/tabs'
 
 urls:
   html_extension_style: drop
