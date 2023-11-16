@@ -1,0 +1,11 @@
+= Bonita test toolkit
+
+:description: this is a description
+
+I am the home of {page-component-title} for {page-component-display-version}
+
+
+[NOTE]
+====
+This is a NOTE
+====
