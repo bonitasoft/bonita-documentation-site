@@ -34,7 +34,7 @@ runs:
           ${{inputs.pattern}}
     - name: Check result
       id: get-changed-files
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       env:
         DETECTION_STATUS: ${{steps.changed-files.outcome}}
       with:
@@ -58,7 +58,7 @@ runs:
         ref: ${{ inputs.doc-site-branch }}
         path: bds
     - name: Compute links to display
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       if: ${{steps.get-changed-files.outputs.result == 'true' }}
       id: set-result
       env:
@@ -72,7 +72,7 @@ runs:
           return await script.prepareUrlLinks({github, context});
     - name: Create or update comments
       if: ${{steps.get-changed-files.outputs.result == 'true' }}
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       env:
         LINKS: ${{steps.set-result.outputs.result}}
         HAS_DELETED_FILES: ${{steps.changed-files.outputs.any_deleted}}
