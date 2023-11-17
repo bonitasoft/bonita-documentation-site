@@ -28,7 +28,7 @@ runs:
     - name: Get changed files in PR
       id: changed-files
       continue-on-error: true # we will verify the error in a later step
-      uses: tj-actions/changed-files@v35
+      uses: tj-actions/changed-files@v40
       with:
         files: |
           ${{inputs.pattern}}
