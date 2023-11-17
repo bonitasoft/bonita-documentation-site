@@ -26,7 +26,6 @@ content:
     - url: https://github.com/bonitasoft/bonita-doc.git
       branches:
         - "archives"
-        - "7.9"
         - "7.10"
         - "7.11"
         - "2021.1"
@@ -52,7 +51,7 @@ content:
         - "1.0"
 ui:
   bundle:
-    url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.15.0/bonita-documentation-theme-v1.15.0.zip
+    url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.17.0/bonita-documentation-theme-v1.17.0.zip
 
 antora:
   # IMPORTANT: use the 'require' syntax to ensure that the preview script is able to always update the configuration
@@ -67,6 +66,8 @@ asciidoc:
   sourcemap: false
   attributes:
     icons: font
+  extensions:
+    - '@asciidoctor/tabs'
 
 urls:
   html_extension_style: drop

@@ -122,6 +122,7 @@ else if (useTestSources) {
             'test/documentation-content/cloud/latest',
             'test/documentation-content/labs/latest',
             'test/documentation-content/test-toolkit/1.0',
+            'test/documentation-content/test-toolkit/2.0',
         ],
     }];
     const titlePreviewPart = prNumber ? `PR #${prNumber}` : `branch 'local'`;
