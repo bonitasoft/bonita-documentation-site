@@ -7,6 +7,7 @@ on:
       - '.github/actions/build-setup/**/*'
       - '.github/actions/build-pr-site/**/*'
       - '.github/workflows/build-pr-site.yml'
+      - '.nvmrc'
       - 'resources/**/*'
       - 'antora-playbook.yml'
       - 'build-preview.bash'

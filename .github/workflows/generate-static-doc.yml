@@ -3,19 +3,20 @@ on:
   workflow_dispatch:
     inputs:
       newRelease:
-        description: True to create a new github Release
+        description: If true, create a new GitHub Release and attach the archive as a release asset (only work for bonita-doc)
         default: true
         required: true
       component:
-        description: Component name to generate documentation
+        description: Name of the component name to generate documentation
+        # Here we let choose the component name but, currently, the repository where the GH release is created is hard-coded to bonita-doc
         default: bonita
         required: true
       branch:
-        description: Branch version to generate
+        description: Branch of the documentation used to generate the archive. For versioned component, the name of the branch matches the version of the documentation.
         required: true
       title:
-        description: Title to put in the header and tab
-        default: Bonita BPM - Archived
+        description: It is used in the header and tabs of all generated pages. It also used to fill the body of the GitHub release.
+        default: Bonita <version> - Archive
         required: true
 jobs:
   generate_static_doc:

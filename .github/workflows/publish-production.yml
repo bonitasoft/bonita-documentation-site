@@ -20,6 +20,7 @@ on:
     paths:
       - '.github/actions/build-setup/**/*'
       - '.github/workflows/publish-production.yml'
+      - '.nvmrc'
       - 'resources/**/*'
       - 'antora-playbook.yml'
       - 'netlify.toml'
