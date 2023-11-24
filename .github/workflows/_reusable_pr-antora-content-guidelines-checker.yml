@@ -1,0 +1,18 @@
+# Permissions required by this workflow that MUST be set in the calling workflow as this workflow can only downgrade permissions (https://docs.github.com/en/actions/using-workflows/reusing-workflows#supported-keywords-for-jobs-that-call-a-reusable-workflow)
+# pull-requests: write / "pr-antora-content-guidelines-checker" write PR comments when the PR doesn't match the "Guidelines"
+name: Check Antora content guidelines in Pull Request
+
+on:
+  workflow_call: # this allows the workflow to be reused
+
+jobs:
+  checks:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check
+        uses: bonitasoft/actions/packages/pr-antora-content-guidelines-checker@v2
+        with:
+          attributes-to-check: ':description:'
+          files-to-check: 'adoc'
+          # WARN: Be aware that spaces after/before the coma are not trimmed by the action. This means that the spaces are part of the pattern.
+          forbidden-pattern-to-check: 'https://documentation.bonitasoft.com,link:https,link:http,link:,xref:https,xref:http,xref:_,xref:#,Bonita BPM'
