@@ -6,7 +6,7 @@ on:
   workflow_call: # this allows the workflow to be reused
 
 jobs:
-  check_contribution:
+  checks:
     runs-on: ubuntu-22.04
     steps:
       - name: Check
