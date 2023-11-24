@@ -16,7 +16,7 @@ endif::[]
 :url-nvm-install: {url-nvm}#installation
 
 image::https://api.netlify.com/api/v1/badges/df65c069-bb52-46d2-8bf0-8e16b6b21482/deploy-status[alt=Netlify Status,link=https://app.netlify.com/sites/documentation-bonita/deploys]
-image::https://github.com/bonitasoft/bonita-documentation-site/actions/workflows/propagate-doc-upwards.yml/badge.svg[alt=Propagate documentation,link=https://github.com/bonitasoft/bonita-documentation-site/actions/workflows/propagate-doc-upwards.yml/badge.svg]
+image::https://github.com/bonitasoft/bonita-documentation-site/actions/workflows/propagate-doc-upwards.yml/badge.svg[alt=Propagate documentation,link=https://github.com/bonitasoft/bonita-documentation-site/actions/workflows/propagate-doc-upwards.yml]
 
 This repository lets you generate the Bonita documentation site. It uses {url-antora}[Antora] which processes {url-asciidoc}:[AsciiDoc]
 documentation content stored in various Git repositories.
