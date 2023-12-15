@@ -58,7 +58,7 @@ jobs:
           token: ${{ secrets.GH_PAT_TOKEN }}
       - name: archives-artefact
         if: (github.event.inputs.newRelease != 'true')
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: documentation-${{ github.event.inputs.component }}-${{ github.event.inputs.branch }}
           path: build/site
