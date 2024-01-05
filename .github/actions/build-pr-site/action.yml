@@ -29,7 +29,7 @@ runs:
       uses: ./.github/actions/build-setup
     - name: Install antora dependencies for xref validation
       shell: bash
-      run: npm install --save-dev antora@3.2.0-alpha.2
+      run: npm install --save-dev antora@3.2.0-alpha.3
     - name: Build Site
       shell: bash
       # '>' Replace newlines with spaces (folded)
