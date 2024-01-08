@@ -117,11 +117,29 @@ When Bonita editions are referenced, to avoid different wording, the following r
 
 * Use an admonition Note (see https://bonitasoft.github.io/bonita-documentation-theme/admonitions.html)
 * Nothing if the feature is Community
-* If feature is available in Subscription editions, use "For Subscription editions only"
+* Pick the right admonition depending on version
+
+[cols="1,1"]
+|===
+| Before 2023.2 | Since 2023.2 
+
+| For Enterprise, Performance and Efficiency editions only.
+| For Subscription editions only
+
+| For Efficiency, Performance, and Enterprise editions only
+| For Subscription editions only
+
+| For Performance and Enterprise editions only
+| For Subscription editions only
+
+| For Enterprise edition only
+| For Subscription editions only
+|===
+
 
 [WARNING]
 ====
-Use *Subscription editions* instead of *Enterprise, Performance, and Efficiency editions* in the documentation content.
+Since *2023.2* version, use *Subscription editions* instead of *Enterprise, Performance, and Efficiency editions* in the documentation content too.
 ====
 
 == Tips about the files organization
