@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: bonitasoft/${{ matrix.repo }}
-          token: ${{ secrets.GH_PAT_TOKEN }} # Dedicated token to have 'write permission' (we later push to this repository)
+          token: ${{ secrets.GH_TOKEN_DOC_TRIGGER_WF }} # Dedicated token to have 'write' and 'workflow' (needed to update workflows content) permissions (we later push to this repository)
           path: ./${{ matrix.repo }}
           # Number of commits to fetch. 0 indicates all history for all branches and tags.
           fetch-depth: '0'
