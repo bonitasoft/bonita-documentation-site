@@ -55,7 +55,7 @@ jobs:
           tag: ${{ github.event.inputs.branch }}-${{ env.timeStamp}}
           artifacts: "build/documentation-*"
           body: ${{ github.event.inputs.title }}
-          token: ${{ secrets.GH_PAT_TOKEN }}
+          token: ${{ secrets.GH_TOKEN_DOC_TRIGGER_WF }}
       - name: archives-artefact
         if: (github.event.inputs.newRelease != 'true')
         uses: actions/upload-artifact@v4
