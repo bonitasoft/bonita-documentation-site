@@ -71,7 +71,7 @@ runs:
           const script = require('./bds/.github/actions/comment-pr-with-links/comments-with-url-links.js');
           return await script.prepareUrlLinks({github, context});
     - name: Create or update comments
-      if: ${{steps.get-changed-files.outputs.result == 'true' && (steps.changed-files.outputs.all_changed_files != "" || steps.changed-files.outputs.any_deleted`)}}
+      if: ${{steps.get-changed-files.outputs.result == 'true' && (steps.changed-files.outputs.all_changed_files != '' || steps.changed-files.outputs.any_deleted`)}}
       uses: actions/github-script@v7
       env:
         LINKS: ${{steps.set-result.outputs.result}}
