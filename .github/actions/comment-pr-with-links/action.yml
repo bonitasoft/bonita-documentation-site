@@ -1,23 +1,23 @@
-name: 'Comments PR with useful links'
-description: 'Add a comment to help reviewer on a PR'
+name: "Comments PR with useful links"
+description: "Add a comment to help reviewer on a PR"
 
 inputs:
   site-url:
-    description: 'The url of preview to check the PR update'
+    description: "The url of preview to check the PR update"
     required: true
   component-name:
-    description: 'The name of the component to build. If set, the build-preview-command input is ignored'
+    description: "The name of the component to build. If set, the build-preview-command input is ignored"
     required: false
-    default: 'bonita'
+    default: "bonita"
   pattern:
-    description: ''
+    description: ""
     required: false
-    default: 'modules/**/*.adoc'
+    default: "modules/**/*.adoc"
   # needed by content repository (default master) and here (computed automagically)
   doc-site-branch:
-    description: 'The branch of the `bonita-documentation-site` used to download js files'
+    description: "The branch of the `bonita-documentation-site` used to download js files"
     required: false
-    default: 'master'
+    default: "master"
 
 runs:
   using: "composite"
@@ -54,7 +54,7 @@ runs:
       uses: actions/checkout@v4
       if: ${{ github.event.action != 'closed' }}
       with:
-        repository: 'bonitasoft/bonita-documentation-site'
+        repository: "bonitasoft/bonita-documentation-site"
         ref: ${{ inputs.doc-site-branch }}
         path: bds
     - name: Compute links to display
@@ -71,7 +71,7 @@ runs:
           const script = require('./bds/.github/actions/comment-pr-with-links/comments-with-url-links.js');
           return await script.prepareUrlLinks({github, context});
     - name: Create or update comments
-      if: ${{steps.get-changed-files.outputs.result == 'true' }}
+      if: ${{steps.get-changed-files.outputs.result == 'true' && (steps.changed-files.outputs.all_changed_files != "" || steps.changed-files.outputs.any_deleted`)}}
       uses: actions/github-script@v7
       env:
         LINKS: ${{steps.set-result.outputs.result}}
