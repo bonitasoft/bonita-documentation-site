@@ -12,7 +12,7 @@ inputs:
   pattern:
     description: ""
     required: false
-    default: "modules/**/*.adoc"
+    default: "modules/**/pages/**/*.adoc"
   # needed by content repository (default master) and here (computed automagically)
   doc-site-branch:
     description: "The branch of the `bonita-documentation-site` used to download js files"
