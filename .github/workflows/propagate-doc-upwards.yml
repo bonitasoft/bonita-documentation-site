@@ -5,13 +5,13 @@ on:
   workflow_dispatch:
     inputs:
       dry-run:
-        description: "If true, run the merge locally but do not push to remote"
-        required: false
-        default: "false"
+        type: boolean
+        description: "Dry run: if checked, run the merge locally but do not push to remote"
+        default: false
       slack-notifications:
-        description: "If true, send slack notifications when errors occur"
-        required: false
-        default: "false"
+        type: boolean
+        description: "If checked, send slack notifications when errors occur"
+        default: false
 
 jobs:
   propagate-doc-upwards:
