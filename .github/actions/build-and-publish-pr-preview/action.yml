@@ -28,11 +28,6 @@ inputs:
     description: 'If `true`, ignores Antora error. Only applies when the `component-name` input is set.'
     required: false
     default: 'true'
-  upload-artifact:
-    description: 'Only use for the documentation-site developments. Do not use externally, there is no guarantee of stability.'
-    required: false
-    type: boolean
-    default: true
 
 runs:
   using: "composite"
@@ -91,7 +86,7 @@ runs:
         teardown: true
         build: echo "site already built"
     - name: Archive site preview
-      if: github.event.action != 'closed' && inputs.upload-artifact == true
+      if: github.event.action != 'closed'
       uses: ./.github/actions/upload-pr-built-site-artifact
       with:
         site-type: preview
