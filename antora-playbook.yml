@@ -59,6 +59,7 @@ antora:
   extensions:
     - require: ./lib/antora/versions-sorter-extension.js
     - require: ./lib/antora/versions-alias-extension.js
+    - require: ./lib/antora/log-aggregated-component-versions-extension.js
     - require: '@antora/atlas-extension'
 
 asciidoc:
