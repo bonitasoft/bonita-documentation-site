@@ -11,7 +11,7 @@ on:
       slack-notifications:
         type: boolean
         description: 'If checked, send slack notifications when errors occur'
-        default: true
+        default: false
 
 jobs:
   propagate-doc-upwards:
@@ -55,7 +55,7 @@ jobs:
           ./.././bonita-documentation-site/scripts/propagate_doc_upwards.bash
 
       - name: Send message to Slack channel
-        if: failure() && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.slack-notifications) )
+        if: failure() && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.slack-notifications == 'true') )
         uses: bonitasoft/actions/packages/notify-slack@v2
         with:
           CHANNEL_ID: ${{ vars.SLACK_CHANNEL_ID }}
