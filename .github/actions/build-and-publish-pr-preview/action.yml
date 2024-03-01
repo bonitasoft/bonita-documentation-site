@@ -86,7 +86,7 @@ runs:
         teardown: true
         build: echo "site already built"
     - name: Archive site preview
-      if: github.event.action != 'closed' && steps.surge-preview-tools.outputs.can-run-surge-command != 'true'
+      if: github.event.action != 'closed'
       uses: ./.github/actions/upload-pr-built-site-artifact
       with:
         site-type: preview
