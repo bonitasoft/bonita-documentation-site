@@ -5,27 +5,27 @@ concurrency: ${{ github.workflow }}
 
 on:
   repository_dispatch:
-    types: [ source_documentation_change ]
+    types: [source_documentation_change]
   workflow_dispatch:
-   inputs:
+    inputs:
       branch:
         required: false
-        description: 'Branch of component'
+        description: "Branch of component"
       component:
         required: false
-        description: 'Name of component which triggers the build'
+        description: "Name of component which triggers the build"
   push:
     branches:
       - master
     paths:
-      - '.github/actions/build-setup/**/*'
-      - '.github/workflows/publish-production.yml'
-      - '.nvmrc'
-      - 'resources/**/*'
-      - 'antora-playbook.yml'
-      - 'netlify.toml'
-      - 'package.json'
-      - 'package-lock.json'
+      - ".github/actions/build-setup/**/*"
+      - ".github/workflows/publish-production.yml"
+      - ".nvmrc"
+      - "resources/**/*"
+      - "antora-playbook.yml"
+      - "netlify.toml"
+      - "package.json"
+      - "package-lock.json"
 
 permissions:
   # netlify: notify deployments
@@ -51,20 +51,17 @@ jobs:
         uses: ./.github/actions/log-built-site-details
       - name: Create deploy message if no component defined
         if: ( github.event_name == 'workflow_dispatch' ||  github.event_name == 'repository_dispatch' ) && env.COMPONENT == ''
-        run:
-          echo "deploy_message=Deploy ${{github.sha}} from manual request" >> $GITHUB_ENV
+        run: echo "deploy_message=Deploy ${{github.sha}} from manual request" >> $GITHUB_ENV
       - name: Create deploy message if component defined
         if: ( github.event_name == 'workflow_dispatch' ||  github.event_name == 'repository_dispatch' ) && env.COMPONENT != ''
-        run:
-          echo "deploy_message=Deploy ${{ env.COMPONENT }} ${{ env.BRANCH }} update" >> $GITHUB_ENV
+        run: echo "deploy_message=Deploy ${{ env.COMPONENT }} ${{ env.BRANCH }} update" >> $GITHUB_ENV
       - name: Create deploy message if push or pull request
         if: github.event_name == 'push'
-        run:
-          echo "deploy_message=Deploy ${{ github.sha }}" >> $GITHUB_ENV
+        run: echo "deploy_message=Deploy ${{ github.sha }}" >> $GITHUB_ENV
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.1
         with:
-          publish-dir: './build/site'
+          publish-dir: "./build/site"
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: ${{ env.deploy_message }}
@@ -82,11 +79,11 @@ jobs:
         timeout-minutes: 10
       - name: Send message to Slack channel
         if: failure()
-        uses: bonitasoft/actions/packages/notify-slack@v2.2
+        uses: bonitasoft/notify-slack-action@v1
         with:
-          CHANNEL_ID: ${{ vars.SLACK_CHANNEL_ID }}
-          MESSAGE: |
+          keeper-secret-config: ${{ secrets.KSM_CONFIG }}
+          channel-id: ${{ vars.RD_PLATFORM_SLACK_CHANNEL_ID }}
+          message: |
             :red_circle:  Publish documentation in production failed.
-            
+
             @channel *We need someone* !
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

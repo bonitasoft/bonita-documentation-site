@@ -324,17 +324,30 @@ when building the preview.
 
 [TIP]
 ====
-A http server is needed to correctly see the Asciinema resources (loading fail when using a local file browsing). +
+A http server is needed to correctly see the `Asciinema` resources (loading fail when using a local file browsing). +
 For instance, have a look at http://localhost:8080/bonita/2021.1/migrate-from-an-earlier-version-of-bonita-bpm#update-case-overview-pages
 ====
 
 [TIP]
 ====
 The http dev server is provided by the https://docs.netlify.com/cli/get-started/[Netlify CLI], so it is able to replicate a lot of the Netlify Edge features. +
-In particular it is able to apply the same redirects as those used in production.
+In particular, it is able to apply the same redirects as those used in production.
 
 See for xref:docs/configure-netlify-redirects.adoc[configure Netlify redirects how-to] more details.
 ====
+
+
+=== Shared CI resources
+
+This repository contains shared resources used by the GitHub Actions workflows of the "documentation content" repositories.
+
+Be aware that they are used by referencing the `master` branch of this repository, so any changes pushed to the `master`
+branch impact all "documentation content" repositories. So double check prior changing the reusable workflows and shared actions!
+
+Shared resources are:
+
+* xref:.github/actions/[shared actions]
+* xref:.github/workflows/[reusable workflows]: by convention, the reusable workflows are prefixed with `_reusable_`
 
 
 
