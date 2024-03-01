@@ -50,6 +50,8 @@ jobs:
           surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           doc-site-branch: ${{ github.head_ref }}
+          # we can only upload a single artifact with
+          upload-artifact: false
           # here we check the
           #   - detailed logs of the Antora extensions
           #   - DocSearch integration
