@@ -59,7 +59,7 @@ jobs:
         if: github.event_name == 'push'
         run: echo "deploy_message=Deploy ${{ github.sha }}" >> $GITHUB_ENV
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2.1
+        uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: "./build/site"
           production-deploy: true
