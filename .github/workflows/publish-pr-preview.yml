@@ -11,6 +11,7 @@ on:
       - '.github/actions/build-setup/**/*'
       - '.github/actions/comment-pr-with-links/**/*'
       - '.github/workflows/publish-pr-preview.yml'
+      - '.nvmrc'
       - 'resources/**/*'
       - 'test/documentation-content/**/*'
       - 'antora-playbook.yml'

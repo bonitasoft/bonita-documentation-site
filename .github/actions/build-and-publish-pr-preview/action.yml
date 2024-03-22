@@ -33,7 +33,7 @@ runs:
   using: "composite"
   steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       if: github.event.action != 'closed'
       with:
         repository: 'bonitasoft/bonita-documentation-site'
@@ -86,7 +86,7 @@ runs:
         teardown: true
         build: echo "site already built"
     - name: Archive site preview
-      if: github.event.action != 'closed' && steps.surge-preview-tools.outputs.can-run-surge-command != 'true'
+      if: github.event.action != 'closed'
       uses: ./.github/actions/upload-pr-built-site-artifact
       with:
         site-type: preview

@@ -1,17 +1,17 @@
 name: Propagate documentation
 on:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: "0 3 * * *"
   workflow_dispatch:
     inputs:
       dry-run:
-        description: 'If true, run the merge locally but do not push to remote'
-        required: false
-        default: 'false'
+        type: boolean
+        description: "Dry run: if checked, run the merge locally but do not push to remote"
+        default: false
       slack-notifications:
-        description: 'If true, send slack notifications when errors occur'
-        required: false
-        default: 'false'
+        type: boolean
+        description: "If checked, send slack notifications when errors occur"
+        default: false
 
 jobs:
   propagate-doc-upwards:
@@ -33,10 +33,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: bonitasoft/${{ matrix.repo }}
-          token: ${{ secrets.GH_PAT_TOKEN }} # Dedicated token to have 'write permission' (we later push to this repository)
+          token: ${{ secrets.GH_TOKEN_DOC_TRIGGER_WF }} # Dedicated token to have 'write' and 'workflow' (needed to update workflows content) permissions (we later push to this repository)
           path: ./${{ matrix.repo }}
           # Number of commits to fetch. 0 indicates all history for all branches and tags.
-          fetch-depth: '0'
+          fetch-depth: "0"
 
       - name: Run propagate doc upwards
         env:
@@ -44,7 +44,7 @@ jobs:
           REPO_NAME: ${{ matrix.repo }}
         run: |
           cd ./${{ matrix.repo }}
-          
+
           # configure committer information
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
@@ -56,13 +56,13 @@ jobs:
 
       - name: Send message to Slack channel
         if: failure() && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.slack-notifications == 'true') )
-        uses: bonitasoft/actions/packages/notify-slack@v2
+        uses: bonitasoft/notify-slack-action@v1
         with:
-          CHANNEL_ID: ${{ vars.SLACK_CHANNEL_ID }}
-          MESSAGE: |
+          keeper-secret-config: ${{ secrets.KSM_CONFIG }}
+          channel-id: ${{ vars.RD_PLATFORM_SLACK_CHANNEL_ID }}
+          message: |
             :fire:  Propagating documentation upwards failed for repository *${{matrix.repo}}*.
             @channel *We need someone*!
             - Add a :fire_extinguisher:if you take the action to resolve the conflicts (only one person is required)
             - Add a :sweat_drops: when it’s done (and eventually a :party_parrot:)
             More details on solving the conflicts locally <https://bonitasoft.atlassian.net/wiki/spaces/BS/pages/1181483014/Bonita+documentation+site+content+update#Bonita| there>
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

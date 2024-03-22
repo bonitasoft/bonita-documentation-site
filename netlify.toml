@@ -16,6 +16,14 @@ force = true
 # Special redirect after introduction of Bonita branding version
 # Add a new entry when adding a new version/branch. This is generally done when the developments of a new version start
 [[redirects]]
+from = "/bonita/10.1/*"
+to = "/bonita/2024.2/:splat"
+
+[[redirects]]
+from = "/bonita/10.0/*"
+to = "/bonita/2024.1/:splat"
+
+[[redirects]]
 from = "/bonita/9.0/*"
 to = "/bonita/2023.2/:splat"
 
@@ -50,6 +58,11 @@ to = "/bonita/2021.1/:splat"
 # Bonita Old Documentation redirects to Archives
 ########################################
 # Add a new entry when archiving a version
+# Starting from version 7.12, when adding a redirect here, remove the redirect defined above in "Special redirect after introduction of Bonita branding version"
+[[redirects]]
+from = "/bonita/7.9/*"
+to = "/bonita/latest/:splat"
+
 [[redirects]]
 from = "/bonita/7.8/*"
 to = "/bonita/latest/:splat"

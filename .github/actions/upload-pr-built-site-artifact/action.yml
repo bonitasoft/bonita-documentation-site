@@ -10,7 +10,9 @@ runs:
   using: "composite"
   steps:
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: site-${{inputs.site-type}}-pr-${{github.event.pull_request.number}}-${{github.sha}}
+        # Include the job id to have a unique name if several jobs are run within the same workflow
+        # upload-artifact@v4 doesn't allow to upload several artifacts with the same name
+        name: site-${{inputs.site-type}}-pr-${{github.event.pull_request.number}}-${{github.sha}}-${{github.job}}
         path: build/site
