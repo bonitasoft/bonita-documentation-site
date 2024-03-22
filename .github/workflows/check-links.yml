@@ -12,13 +12,19 @@ jobs:
       - uses: actions/checkout@v4 # access to the local action
       - name: Build Setup
         uses: ./.github/actions/build-setup
-        ## TODO duplicated with the build-pr-site action
-        # only require if we build o part of the documentation
+        ## TODO duplicated with the build-pr-site action --> create a shared action
+        # only require if we build a part of the documentation
       - name: Install antora dependencies for xref validation
         run: npm install --save-dev antora@3.2.0-alpha.2
       - name: Build site
         run: |
           ./build-preview-dev.bash --hide-edit-page-links true --force-production-navbar true --type links-check --component bonita --branch 2023.1
+      - name: List the content of the generated site
+        uses: ./.github/actions/log-built-site-details
+      - name: Archive site preview
+        uses: ./.github/actions/upload-pr-built-site-artifact
+        with:
+          site-type: preview
       - name: Install htmltest
         run: |
           echo "Installing htmltest"
