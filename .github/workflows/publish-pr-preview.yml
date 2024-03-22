@@ -22,6 +22,8 @@ on:
 jobs:
   site:
     runs-on: ubuntu-22.04
+    # TODO temp disable the job
+    if: github.repository == 'octo-org/octo-repo-prod'
     permissions:
       pull-requests: write # surge-preview creates or updates PR comments about the deployment status
     steps:
@@ -40,6 +42,8 @@ jobs:
             --single-branch-per-repo
   test:
     runs-on: ubuntu-22.04
+    # TODO temp disable the job
+    if: github.repository == 'octo-org/octo-repo-prod'
     permissions:
       pull-requests: write # surge-preview creates or updates PR comments about the deployment status
     steps:
