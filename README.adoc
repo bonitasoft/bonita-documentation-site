@@ -350,6 +350,62 @@ Shared resources are:
 * xref:.github/workflows/[reusable workflows]: by convention, the reusable workflows are prefixed with `_reusable_`
 
 
+=== Checking external links
+
+The xref:.github/workflows/check-links.yml[check links workflow] that check the external links on periodically.
+
+The workflow relies on https://github.com/wjdp/htmltest[htmltest] to check the links.
+
+It runs the check on a subset of the site built locally as explained in the following paragraph.
+
+==== Checking external links locally
+
+First, activate Atlas reference resolution by installing Antora 3.2 alpha as described in the <<validate-reference, validate references>> section.
+
+This ensures that internal references will be resolved even if the checked site doesn't contain all the documentation content.
+
+Then build a subset of the site locally using the preview script:
+
+* only build the supported version: out-of-support content is not updated
+* no "edit this page": generate a lot of links to GitHub, this is an Antora feature, we don't want to test that
+* force usage of the production navbar to have the content as close as possible of the production site
+    use a dedicated "type" option to produce convenient HTML files for URL checks (HTML extension for local file browsing, no redirect pages)
+
+Here is an example of the command to build the partial site for links checking:
+[source,shell]
+----
+./build-preview-dev.bash \
+  --hide-edit-page-links true \
+  --force-production-navbar \
+  --type links-check \
+  --use-multi-repositories \
+  --component-with-branches bcd:3.6,4.0 \
+  --component-with-branches bonita:archives,2021.2,2022.1,2022.2,2023.1,2023.2 \
+  --component-with-branches central:1.0 \
+  --component-with-branches cloud:master \
+  --component-with-branches labs:master \
+  --component-with-branches test-toolkit:1.0,2.0 \
+  --local-sources
+----
+
+The following commands explain how to build a site with a single component and a single version:
+
+[source,shell]
+----
+$./build-preview-dev.bash --hide-edit-page-links true --force-production-navbar true --type links-check --local-sources --component bonita --branch 2021.2
+$./build-preview-dev.bash --hide-edit-page-links true --force-production-navbar true --type links-check --local-sources --component cloud --branch master
+----
+
+
+Install the `htmltest` tool in the xref:scripts/htmltest/[htmltest] folder by following the documentation in https://github.com/wjdp/htmltest.
+The configuration is already set up in the `htmltest` folder.
+
+Finally, run the `htmltest` tool on the generated HTML files from the `scripts/htmltest` folder
+[source,shell]
+----
+./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
+----
+
 
 === Production build
 
