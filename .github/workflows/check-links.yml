@@ -35,6 +35,15 @@ jobs:
         working-directory: scripts/htmltest
         run: |
           ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
-          ls -lh config/
-# TODO upload log artifact
+      # TODO remove this is only to validate that files have been generated
+      - name: list htmltest outputs
+        if: always()
+        run: |
+          ls -lh scripts/htmltest/config/
+      - name: Upload links analysis
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: check-links-${{github.sha}}
+          path: scripts/htmltest/config
 
