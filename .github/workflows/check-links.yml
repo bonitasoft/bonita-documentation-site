@@ -18,7 +18,7 @@ jobs:
         run: npm install --save-dev antora@3.2.0-alpha.2
       - name: Build site
         run: |
-          ./build-preview-dev.bash --hide-edit-page-links true --force-production-navbar true --type links-check --component bonita --branch 2023.1
+          ./build-preview-dev.bash --hide-edit-page-links true --force-production-navbar true --type links-check --component bonita --branch 2022.1
       - name: List the content of the generated site
         uses: ./.github/actions/log-built-site-details
       - name: Archive site preview
