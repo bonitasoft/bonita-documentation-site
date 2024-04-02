@@ -1,7 +1,7 @@
 site:
   title: Bonita Documentation
-  # features that depend on the site URL: https://docs.antora.org/antora/2.3/playbook/site-url/#when-should-the-site-url-be-set
-  url: https://documentation.bonitasoft.com/
+  # features that depend on the site URL: https://docs.antora.org/antora/latest/playbook/site-url/#when-should-the-site-url-be-set
+  url: https://documentation.bonitasoft.com
   start_page: bonita::index.adoc
   robots: allow
 
