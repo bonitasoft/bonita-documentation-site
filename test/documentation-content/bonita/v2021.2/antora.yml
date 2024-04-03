@@ -4,13 +4,15 @@ version: 2021.2
 start_page: ROOT:index.adoc
 asciidoc:
   attributes:
+    bonitaVersion: 2021.2
     page-editable: true
     page-out-of-support: false
     page-hide-search-bar: false # keep the `false` value to test the search on the 'latest' version
     page-navigation: true
     # out of the box by the default UI and in bonita-theme
     page-pagination: true
-    bonitaVersion: 2021.2
+    # hide some components in navbar and component/version selector
+    page-hide-components: bcd, labs
 nav:
   - modules/ROOT/taxonomy.adoc
   - modules/module-01/nav.adoc
