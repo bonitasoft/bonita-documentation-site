@@ -12,7 +12,7 @@ asciidoc:
     # out of the box by the default UI and in bonita-theme
     page-pagination: true
     # hide some components in navbar and component/version selector
-    page-hide-components: bcd, labs
+    page-hide-components: bcd, labs, unknown-component
 nav:
   - modules/ROOT/taxonomy.adoc
   - modules/module-01/nav.adoc
