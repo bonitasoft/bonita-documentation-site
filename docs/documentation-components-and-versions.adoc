@@ -31,6 +31,8 @@ We document the 4 currently supported Bonita versions, and **the 4 versions befo
 
 === How to integrate a new component
 
+IMPORTANT: This is only a brief overview of all required actions. See the detailed documentation (restricted access) for a complete list of actions
+
 To add a new component, you first need to create a GitHub repository which will contain the AsciiDoc sources of this component
 (i.e. the documentation content). This repository must be organized according to the {url-antora-docs}/organize-content-files/[Antora recommendations].
 You can check existing repositories for working examples.
@@ -42,6 +44,8 @@ Also update the https://github.com/bonitasoft/bonita-documentation-site/blob/mas
 
 
 === How to integrate a new version of an existing component
+
+IMPORTANT: This is only a brief overview of all required actions. See the detailed documentation (restricted access) for a complete list of actions
 
 When we need to add a new version of one component, we need to:
 
@@ -55,6 +59,8 @@ This means adding the new branch to the existing component.
 
 === How to remove a component version and make an archive available
 
+IMPORTANT: This is only a brief overview of all required actions. See the detailed documentation (restricted access) for a complete list of actions
+
 On new Bonita Platform GA release, an old version must be archived.
 
 . Take the oldest one
@@ -67,6 +73,8 @@ On new Bonita Platform GA release, an old version must be archived.
 
 
 === Mark version as 'Out of Support'
+
+IMPORTANT: This is only a brief overview of all required actions. See the detailed documentation (restricted access) for a complete list of actions
 
 NOTE: Please perform all the changes in a dedicated Pull Request (or eventually a single commit in the related branch) for consistency.
 
@@ -85,12 +93,7 @@ asciidoc:
     page-out-of-support: true
 ----
 
-In the related branch, remove the whole `.github` folder. We don't accept contribution for this version. So remove workflows and the PR template.
-
-As an example, you can check what was done for
-
-* Bonita 7.9: https://github.com/bonitasoft/bonita-doc/commit/7788fcdbc1faff52aa7973a0514c0b707399b963[commit 7788fcd]
-* Bonita 7.10: https://github.com/bonitasoft/bonita-doc/pull/1909[PR #1909]
+In the related branch, remove all workflows. We don't accept contribution for this version. So remove workflows and the PR template.
 
 [WARNING]
 ====
@@ -101,6 +104,8 @@ More details <<update-merge-doc-upwards, here>>
 
 
 === Mark version as 'Next-release'
+
+IMPORTANT: This is only a brief overview of all required actions. See the detailed documentation (restricted access) for a complete list of actions
 
 Edit the related antora.yml file of the component version, make the content not searchable, and adding an information message.
 
@@ -134,6 +139,8 @@ See {url-antora-docs}/component-prerelease/ to know how to
 
 === GA versions
 
+IMPORTANT: This is only a brief overview of all required actions. See the detailed documentation (restricted access) for a complete list of actions
+
 See {url-antora-docs}/component-prerelease/ to know how to
 
 * remove the prerelease configuration (see above)
@@ -141,6 +148,8 @@ See {url-antora-docs}/component-prerelease/ to know how to
 
 
 === Propagate documentation upwards
+
+IMPORTANT: This is only a brief overview of all required actions. See the detailed documentation (restricted access) for a complete list of actions
 
 An action is available (and is triggered each night) to propagate documentation changes upwards to avoid you to update all branches.
 
