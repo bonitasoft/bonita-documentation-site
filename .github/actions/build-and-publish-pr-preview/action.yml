@@ -41,7 +41,7 @@ runs:
     - name: Validate PR branch name
       uses: ./.github/actions/validate-pr-branch-name
       if: github.event.action != 'closed'
-    - uses: bonitasoft/actions/packages/surge-preview-tools@v2
+    - uses: bonitasoft/actions/packages/surge-preview-tools@v3
       id: surge-preview-tools
       with:
         surge-token: ${{ inputs.surge-token }}
