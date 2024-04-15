@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Check
-        uses: bonitasoft/actions/packages/pr-antora-content-guidelines-checker@v2
+        uses: bonitasoft/actions/packages/pr-antora-content-guidelines-checker@v3
         with:
           attributes-to-check: ':description:'
           files-to-check: 'adoc'
