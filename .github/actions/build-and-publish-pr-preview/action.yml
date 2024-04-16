@@ -57,6 +57,7 @@ runs:
         ./build-preview.bash
         --branch "${{ github.head_ref }}"
         --component "${{inputs.component-name}}"
+        --component-repo-url "${{github.repositoryUrl}}"
         --fail-on-warning "${{inputs.fail-on-warning}}"
         --fetch-sources true
         --ignore-errors "${{inputs.ignore-errors}}"
