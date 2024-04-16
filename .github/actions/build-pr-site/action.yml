@@ -3,8 +3,12 @@ description: 'Build site from a PR to check if all xref references are valid'
 
 inputs:
   build-preview-command:
-    description: 'The documentation `build-preview` command to build the preview'
+    description: 'The documentation `build-preview` command to build the preview and validate references. Mandatory when `component-name` is not set. Otherwise, ignored.'
     required: true
+  component-name:
+    description: 'The name of the component to build. If set, the build-preview-command input is ignored'
+    required: false
+    default: ''
   # needed by content repository (default master) and here (computed automagically)
   doc-site-branch:
     description: 'The branch of the `bonita-documentation-site` used to build the site preview'
@@ -30,7 +34,21 @@ runs:
     - name: Install antora dependencies for xref validation
       shell: bash
       run: npm install --save-dev antora@3.2.0-alpha.4
-    - name: Build Site
+    - name: Build Site for a single component
+      if: inputs.component-name != ''
+      shell: bash
+      # '>' Replace newlines with spaces (folded)
+      # '-' No newline at end (strip)
+      run: >-
+        ./build-preview.bash
+        --branch "${{ github.head_ref }}"
+        --component "${{inputs.component-name}}"
+        --component-repo-url "${{github.event.pull_request.head.repo.clone_url}}"
+        --fail-on-warning "${{inputs.fail-on-warning}}"
+        --fetch-sources true
+        --pr "${{ github.event.pull_request.number }}"
+    - name: Build Site with custom build-preview command
+      if: inputs.component-name == ''
       shell: bash
       # '>' Replace newlines with spaces (folded)
       # '-' No newline at end (strip)
