@@ -4,7 +4,7 @@ description: 'Build site from a PR to check if all xref references are valid'
 inputs:
   build-preview-command:
     description: 'The documentation `build-preview` command to build the preview and validate references. Mandatory when `component-name` is not set. Otherwise, ignored.'
-    required: true
+    required: false
   component-name:
     description: 'The name of the component to build. If set, the build-preview-command input is ignored'
     required: false
