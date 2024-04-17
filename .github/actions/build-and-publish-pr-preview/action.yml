@@ -48,7 +48,7 @@ runs:
     - name: Build Setup
       uses: ./.github/actions/build-setup
       if: github.event.action != 'closed'
-    - name: Build Site without error check
+    - name: Build Site for a single component
       if: github.event.action != 'closed' && inputs.component-name != ''
       shell: bash
       # '>' Replace newlines with spaces (folded)
@@ -57,12 +57,13 @@ runs:
         ./build-preview.bash
         --branch "${{ github.head_ref }}"
         --component "${{inputs.component-name}}"
+        --component-repo-url "${{github.event.pull_request.head.repo.clone_url}}"
         --fail-on-warning "${{inputs.fail-on-warning}}"
         --fetch-sources true
         --ignore-errors "${{inputs.ignore-errors}}"
         --pr "${{ github.event.pull_request.number }}"
         --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
-    - name: Build Site
+    - name: Build Site with custom build-preview command
       if: github.event.action != 'closed' && inputs.component-name == ''
       shell: bash
       # '>' Replace newlines with spaces (folded)

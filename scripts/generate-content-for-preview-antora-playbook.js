@@ -138,7 +138,15 @@ else {
 
     // override the sources: only the single branch of the single component
     const repoUrl = getRepoUrl(componentName);
-    doc.content.sources = [{ url: repoUrl, branches: [branchName] }];
+    console.info(`Configured repo URL for the component: ${repoUrl}`);
+    // if provided a specific repository, use it. Calling getRepoUrl validates that the component is known
+    const repoUrlArg = getArgument(argv, 'component-repo-url', false);
+    if (repoUrlArg) {
+        console.info(`--> Overriding repo URL with the provided argument: ${repoUrlArg}`);
+        doc.content.sources = [{ url: repoUrlArg, branches: [branchName] }];
+    } else {
+        doc.content.sources = [{ url: repoUrl, branches: [branchName] }];
+    }
 
     const titlePreviewPart = prNumber ? `PR #${prNumber}` : `branch '${branchName}'`;
     doc.site.title = siteTitle || `Preview ${componentName} ${titlePreviewPart}`;
