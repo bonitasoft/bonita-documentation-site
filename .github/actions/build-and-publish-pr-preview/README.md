@@ -1,6 +1,8 @@
 # build and publish pr preview
 
-**WARN**: Only work on Ubuntu runners
+**WARN**: Only work
+- with Pull Requests
+- on Ubuntu runners
 
 Manage the surge preview deployment. In particular, teardown the surge deployment when closing the Pull Request.
 
