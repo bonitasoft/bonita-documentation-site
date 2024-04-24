@@ -1,0 +1,15 @@
+name: Surge build - preview site
+
+on:
+  pull_request:
+
+jobs:
+  build-preview-site:
+    uses: ./.github/workflows/_reusable_surge-build-preview.yml
+    secrets: inherit
+    with:
+      doc-site-branch: ${{ github.head_ref }}
+      build-preview-command: >-
+        ./build-preview.bash
+        --ignore-errors true
+        --single-branch-per-repo

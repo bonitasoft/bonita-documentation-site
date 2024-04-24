@@ -1,0 +1,49 @@
+# WARN: this workflow may be reused in other workflows triggered by a pull_request_target.
+# So, do not add steps that can be used as attack vectors.
+# See https://securitylab.github.com/research/github-actions-preventing-pwn-requests/ for more information.
+
+# Permissions required by this workflow that MUST be set in the calling workflow as this workflow can only downgrade permissions (https://docs.github.com/en/actions/using-workflows/reusing-workflows#supported-keywords-for-jobs-that-call-a-reusable-workflow)
+# pull-requests: write / "afc163/surge-preview@v1" write PR comments when the Surge deployement is done
+name: Surge deploy preview
+
+on:
+  workflow_call:
+    inputs:
+      component-name:
+        description: 'The name of the component to build. If set, the build-preview-command input is ignored'
+        type: string
+        required: false
+        default: ''
+      doc-site-branch:
+        description: 'The branch of the `bonita-documentation-site` used to build the site preview'
+        type: string
+        required: false
+        default: 'master'
+
+jobs:
+  deploy-pr-preview:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          workflow: ${{ github.event.workflow_run.workflow_id }}
+          name: site  # must be kept in sync with the artifact name downloaded in the build stage
+          path: build/site
+      - uses: bonitasoft/actions/packages/surge-preview-tools@v3
+        id: surge-preview-tools
+        with:
+          surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
+      - name: Publish preview
+        uses: afc163/surge-preview@v1
+        if: steps.surge-preview-tools.outputs.can-run-surge-command == 'true'
+        with:
+          surge_token: ${{ secrets.SURGE_TOKEN_DOC }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          dist: build/site
+          failOnError: true
+          teardown: true
+          build: echo "site already built"
+      # Desactivate until the rest of workflow work
+      - name: 🚧 Comments PR with useful links
+        run: echo 'Work in progress'

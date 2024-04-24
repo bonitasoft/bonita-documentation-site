@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       newRelease:
+        type: boolean
         description: If true, create a new GitHub Release and attach the archive as a release asset (only work for bonita-doc)
         default: true
         required: true
