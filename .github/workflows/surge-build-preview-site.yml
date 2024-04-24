@@ -2,6 +2,19 @@ name: Surge build - preview site
 
 on:
   pull_request:
+    branches:
+      - master
+    paths:
+      - '.github/actions/build-setup/**/*'
+      - '.github/actions/comment-pr-with-links/**/*'
+      - '.github/workflows/_reusable_surge-build-preview.yml'
+      - '.github/workflows/surge-build-preview-site.yml'
+      - '.nvmrc'
+      - 'resources/**/*'
+      - 'antora-playbook.yml'
+      - 'build-preview.bash'
+      - 'package.json'
+      - 'package-lock.json'
 
 jobs:
   build-preview-site:
