@@ -1,6 +1,4 @@
-# WARN: this workflow may be reused in other workflows triggered by a pull_request_target.
-# So, do not add steps that can be used as attack vectors.
-# See https://securitylab.github.com/research/github-actions-preventing-pwn-requests/ for more information.
+# WARN: this workflow may be reused in other workflows triggered by a workflow_runs.
 
 # Permissions required by this workflow that MUST be set in the calling workflow as this workflow can only downgrade permissions (https://docs.github.com/en/actions/using-workflows/reusing-workflows#supported-keywords-for-jobs-that-call-a-reusable-workflow)
 # pull-requests: write / "afc163/surge-preview@v1" write PR comments when the Surge deployement is done
