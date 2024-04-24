@@ -9,6 +9,8 @@ on:
       - completed
 
 jobs:
+  # TODO we cannot have a single workflow here
+  # the surge url is based on the job id, so if we want 2 deployments, we need 2 jobs, so in this case, one workflow per build workflow
   deploy_surge_preview:
     permissions:
       pull-requests: write # "afc163/surge-preview@v1" write PR comments when the PR is deployed
