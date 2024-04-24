@@ -1,0 +1,36 @@
+name: Surge build - preview test
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '.github/actions/build-setup/**/*'
+      - '.github/actions/comment-pr-with-links/**/*'
+      - '.github/workflows/_reusable_surge-build-preview.yml'
+      - '.github/workflows/surge-build-preview-test.yml'
+      - '.nvmrc'
+      - 'resources/**/*'
+      - 'test/documentation-content/**/*'
+      - 'antora-playbook.yml'
+      - 'build-preview.bash'
+      - 'package.json'
+      - 'package-lock.json'
+
+jobs:
+  build-preview-test:
+    uses: ./.github/workflows/_reusable_surge-build-preview.yml
+    secrets: inherit
+    with:
+      doc-site-branch: ${{ github.head_ref }}
+      # here we check the
+      #   - detailed logs of the Antora extensions
+      #   - DocSearch integration
+      build-preview-command: >-
+        ./build-preview.bash
+        --fail-on-warning true
+        --force-display-search-bar
+        --log-level debug
+        --use-test-sources
+      
+      
