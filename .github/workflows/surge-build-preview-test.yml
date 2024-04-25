@@ -32,5 +32,3 @@ jobs:
         --force-display-search-bar
         --log-level debug
         --use-test-sources
-      
-      
