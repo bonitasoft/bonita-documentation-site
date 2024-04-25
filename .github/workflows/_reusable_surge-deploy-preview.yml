@@ -19,6 +19,7 @@ on:
         default: 'master'
 
 jobs:
+  # TODO replace with "deploy" to reduce the size of the url sub-path
   deploy-pr-preview:
     runs-on: ubuntu-22.04
     steps:
