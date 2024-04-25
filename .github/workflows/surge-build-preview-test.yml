@@ -17,6 +17,7 @@ on:
       - 'package.json'
       - 'package-lock.json'
 
+# TMP updated to trigger the workflow
 jobs:
   build-preview-test:
     uses: ./.github/workflows/_reusable_surge-build-preview.yml
