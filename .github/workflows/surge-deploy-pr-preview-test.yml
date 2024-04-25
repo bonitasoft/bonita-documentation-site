@@ -1,0 +1,16 @@
+name: Surge deploy - preview test
+
+on:
+  workflow_run:
+    workflows:
+      - "Surge build - preview test"
+    types:
+      - completed
+
+jobs:
+  # MUST be unique across all surge preview deployments for a repository as the job id is used in the deployment URL
+  test:
+    permissions:
+      pull-requests: write # "afc163/surge-preview@v1" write PR comments when the PR is deployed
+    uses: ./.github/workflows/_reusable_surge-deploy-preview.yml
+    secrets: inherit

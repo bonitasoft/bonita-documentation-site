@@ -1,17 +1,15 @@
-name: Deploy Surge preview
+name: Surge deploy - preview site
 
 on:
   workflow_run:
     workflows:
       - "Surge build - preview site"
-      - "Surge build - preview test"
     types:
       - completed
 
 jobs:
-  # TODO we cannot have a single workflow here
-  # the surge url is based on the job id, so if we want 2 deployments, we need 2 jobs, so in this case, one workflow per build workflow
-  deploy_surge_preview:
+  # MUST be unique across all surge preview deployments for a repository as the job id is used in the deployment URL
+  site:
     permissions:
       pull-requests: write # "afc163/surge-preview@v1" write PR comments when the PR is deployed
     uses: ./.github/workflows/_reusable_surge-deploy-preview.yml
