@@ -16,6 +16,10 @@ force = true
 # Special redirect after introduction of Bonita branding version
 # Add a new entry when adding a new version/branch. This is generally done when the developments of a new version start
 [[redirects]]
+from = "/bonita/10.2/*"
+to = "/bonita/2024.3/:splat"
+
+[[redirects]]
 from = "/bonita/10.1/*"
 to = "/bonita/2024.2/:splat"
 
