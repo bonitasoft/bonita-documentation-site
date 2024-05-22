@@ -1,0 +1,14 @@
+name: Comments PR with useful links
+
+on:
+  pull_request_target:
+    # trigger when the PR title changes
+    types: [opened, edited, reopened]
+    
+
+jobs:
+  site:
+    permissions:
+      pull-requests: write # write PR comments
+    uses: ./.github/workflows/_reusable_pr-comments.yml
+    secrets: inherit

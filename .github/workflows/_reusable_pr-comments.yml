@@ -1,0 +1,43 @@
+# WARN: this workflow may be reused in other workflows
+# * triggered by a pull_request.
+# * called with secret: inherit
+# * with:
+#    permissions:
+#     pull-requests: write
+name: Comments PR with useful links
+
+on:
+  workflow_call: # this allows the workflow to be reused
+    inputs:
+      component-name:
+        type: string
+        description: "The name of the component to build."
+        required: false
+        default: "bonita"
+      pattern:
+        type: string
+        description: ""
+        required: false
+        default: "modules/**/pages/**/*.adoc"
+      # needed by content repository (default master) and here (computed automagically)
+      doc-site-branch:
+        type: string
+        description: "The branch of the `bonita-documentation-site` used to download js files"
+        required: false
+        default: "master"
+
+jobs:
+  checks:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: bonitasoft/actions/packages/surge-preview-tools@v3
+        id: surge-preview-tools
+        with:
+          surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
+      - name: Publish comments
+        uses: ./.github/actions/comment-pr-with-links
+        with:
+          site-url: ${steps.surge-preview-tools.outputs.preview-url}
+          pattern: ${inputs.pattern}
+          component-name: ${inputs.component-name}
+          doc-site-branch : ${inputs.doc-site-branch}
