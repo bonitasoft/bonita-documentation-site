@@ -1,7 +1,11 @@
 name: Comments PR with useful links
 
 on:
-  pull_request:
+  pull_request_target:
+    paths:
+      - '.github/actions/comment-pr-with-links/**/*'
+      - '.github/workflows/_reusable_pr-comment-list-changes'
+      - '.github/workflows/comment-pr-with-useful-links'
 
 jobs:
   site:
