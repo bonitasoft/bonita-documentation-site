@@ -1,7 +1,7 @@
 # WARN: this workflow may be reused in other workflows triggered by a workflow_runs.
 
 # Permissions required by this workflow that MUST be set in the calling workflow as this workflow can only downgrade permissions (https://docs.github.com/en/actions/using-workflows/reusing-workflows#supported-keywords-for-jobs-that-call-a-reusable-workflow)
-# pull-requests: write / "afc163/surge-preview@v1" write PR comments when the Surge deployement is done
+# pull-requests: write / "afc163/surge-preview@v1" write PR comments when the Surge deployment is done
 name: Surge deploy preview
 
 on:
@@ -19,7 +19,9 @@ on:
         default: 'master'
 
 jobs:
-  deploy-pr-preview:
+  # MUST be unique across all surge preview deployments for a repository as the job id is used in the deployment URL
+  # IMPORTANT: the logic is duplicated in the `surge-deploy-pr-preview-test.yml` workflow. Keep both definitions in sync.
+  deploy:
     runs-on: ubuntu-22.04
     steps:
       - name: Download artifact
@@ -42,6 +44,3 @@ jobs:
           failOnError: true
           teardown: true
           build: echo "site already built"
-      # Desactivate until the rest of workflow work
-      - name: 🚧 Comments PR with useful links
-        run: echo 'Work in progress'
