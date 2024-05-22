@@ -1,5 +1,5 @@
 # WARN: this workflow may be reused in other workflows
-# * triggered by a pull_request.
+# * triggered by a pull_request_target (to work with fork repository). This workflow doesn't do any unsecure action regarding the pull_request_target context.
 # * called with secret: inherit
 # * with:
 #    permissions:
@@ -38,7 +38,7 @@ jobs:
       - name: Publish comments
         uses: ./.github/actions/comment-pr-with-links
         with:
-          site-url: ${steps.surge-preview-tools.outputs.preview-url}
-          pattern: ${inputs.pattern}
-          component-name: ${inputs.component-name}
-          doc-site-branch : ${inputs.doc-site-branch}
+          site-url: ${{ steps.surge-preview-tools.outputs.preview-url }}
+          pattern: ${{ inputs.pattern }}
+          component-name: ${{ inputs.component-name }}
+          doc-site-branch : ${{ inputs.doc-site-branch }}
