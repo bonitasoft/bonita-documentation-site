@@ -8,7 +8,6 @@ on:
       - completed
 
 jobs:
-  # MUST be unique across all surge preview deployments for a repository as the job id is used in the deployment URL
   site:
     permissions:
       pull-requests: write # "afc163/surge-preview@v1" write PR comments when the PR is deployed
