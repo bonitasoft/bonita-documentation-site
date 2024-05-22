@@ -1,0 +1,41 @@
+# Required until we can use Antora 3.2. When GA will be available, this will be directly done with the build of the preview
+name: 'Validate references of PR preview'
+
+on:
+  workflow_call: # this allows the workflow to be reused
+    inputs:
+      build-preview-command:
+        description: 'The documentation `build-preview` command to build the preview and validate references. Mandatory when `component-name` is not set. Otherwise, ignored.'
+        required: false
+        type: string
+      component-name:
+        description: 'The name of the component to build. If set, the build-preview-command input is ignored'
+        required: false
+        default: ''
+        type: string
+      # needed by content repositories (default master) and by the doc-site repository (computed)
+      doc-site-branch:
+        description: 'The branch of the `bonita-documentation-site` used to build the site preview'
+        required: false
+        default: 'master'
+        type: string
+      fail-on-warning:
+        description: 'If true, fail the Antora build on warning.'
+        required: false
+        default: true
+        type: boolean
+
+jobs:
+  validate_references:
+    runs-on: ubuntu-22.04
+    steps:
+      # This is a temporary implementation to switch from the composite action to the reusable action
+      # Once all repository will use it, the composite action will be removed and its content will be moved here
+      - uses: actions/checkout@v4 # access to the local action
+      - name: Validate references
+        uses: ./.github/actions/build-pr-site
+        with:
+          build-preview-command: ${{ inputs.build-preview-command }}
+          component-name: ${{ inputs.component-name }}
+          doc-site-branch: ${{ inputs.doc-site-branch }}
+          fail-on-warning: ${{ inputs.fail-on-warning }}

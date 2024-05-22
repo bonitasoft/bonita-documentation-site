@@ -1,3 +1,4 @@
+# Validate references of PR preview, until we can use Antora 3.2. When GA will be available, this will be directly done with the build of the preview
 name: PR Build documentation site
 on:
   pull_request:
@@ -6,6 +7,7 @@ on:
     paths:
       - '.github/actions/build-setup/**/*'
       - '.github/actions/build-pr-site/**/*'
+      - '.github/workflows/_reusable_pr-validate-references.yml'
       - '.github/workflows/build-pr-site.yml'
       - '.nvmrc'
       - 'resources/**/*'
@@ -16,16 +18,11 @@ on:
 
 jobs:
   build_site:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v4 # access to the local action
-      - name: Validate xref
-        uses: ./.github/actions/build-pr-site
-        with:
-          doc-site-branch: ${{ github.head_ref }}
-          fail-on-warning: true
-          # '>' Replace newlines with spaces (folded)
-          # '-' No newline at end (strip)
-          build-preview-command: >-
-            ./build-preview.bash
-            --single-branch-per-repo
+    uses: ./.github/workflows/_reusable_pr-validate-references.yml
+    with:
+      doc-site-branch: ${{ github.head_ref }}
+      # '>' Replace newlines with spaces (folded)
+      # '-' No newline at end (strip)
+      build-preview-command: >-
+        ./build-preview.bash
+        --single-branch-per-repo
