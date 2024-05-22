@@ -52,10 +52,12 @@ if [ "${REPO_NAME}" == "bonita-doc" ]; then
   merge "2023.1" "2023.2"
   merge "2023.2" "2024.1"
   merge "2024.1" "2024.2"
+  merge "2024.2" "2024.3"
 elif [ "${REPO_NAME}" == "bonita-continuous-delivery-doc" ]; then
   merge "3.6" "4.0"
 elif [ "${REPO_NAME}" == "bonita-test-toolkit-doc" ]; then
   merge "1.0" "2.0"
+  merge "2.0" "3.0"
 else
   echo "ERROR: Unsupported repository ${REPO_NAME}"
   exit -1
