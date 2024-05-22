@@ -1,10 +1,7 @@
 name: Comments PR with useful links
 
 on:
-  pull_request_target:
-    # trigger when the PR title changes
-    types: [opened, edited, reopened]
-    
+  pull_request:   
 
 jobs:
   site:
