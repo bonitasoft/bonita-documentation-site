@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/actions/build-setup/**/*'
       - '.github/actions/build-pr-site/**/*'
+      - '.github/workflows/_reusable_pr-validate-references.yml'
       - '.github/workflows/build-pr-site.yml'
       - '.nvmrc'
       - 'resources/**/*'
@@ -17,7 +18,7 @@ on:
 
 jobs:
   build_site:
-    uses: ./.github/workflows/_reusable_surge-build-preview.yml
+    uses: ./.github/workflows/_reusable_pr-validate-references.yml.yml
     with:
       doc-site-branch: ${{ github.head_ref }}
       # '>' Replace newlines with spaces (folded)
