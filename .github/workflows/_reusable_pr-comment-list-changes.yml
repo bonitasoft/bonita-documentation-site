@@ -36,6 +36,9 @@ jobs:
         with:
           surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
       - uses: actions/checkout@v4 # access to the local action
+        with:
+          repository: 'bonitasoft/bonita-documentation-site'
+          ref: ${{ inputs.doc-site-branch }}
       - name: Publish comments
         uses: ./.github/actions/comment-pr-with-links
         with:
