@@ -6,7 +6,7 @@ inputs:
     description: "The url of preview to check the PR update"
     required: true
   component-name:
-    description: "The name of the component to build. If set, the build-preview-command input is ignored"
+    description: "The name of the component to build."
     required: false
     default: "bonita"
   pattern:
