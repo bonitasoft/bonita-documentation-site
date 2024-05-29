@@ -7,10 +7,6 @@ jobs:
   list_deployments:
     runs-on: ubuntu-22.04
     steps:
-      - name: Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
       - name: List deployments
         run: |
           npx surge --token ${{ secrets.SURGE_TOKEN }} list
