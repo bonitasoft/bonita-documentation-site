@@ -39,11 +39,14 @@ jobs:
         with:
           repository: 'bonitasoft/bonita-documentation-site'
           ref: ${{ inputs.doc-site-branch }}
-          path: ./.github/actions/bds-action
       - name: Publish comments
-        uses: ./.github/actions/bds-action/comment-pr-with-links
+        uses: ./.github/actions/comment-pr-with-links
         with:
           site-url: ${{ steps.surge-preview-tools.outputs.preview-url }}
           pattern: ${{ inputs.pattern }}
           component-name: ${{ inputs.component-name }}
           doc-site-branch : ${{ inputs.doc-site-branch }}
+      - uses: actions/checkout@v4 # Try to fix "action.yml" not found in post action step
+        with:
+          repository: 'bonitasoft/bonita-documentation-site'
+          ref: ${{ inputs.doc-site-branch }}
