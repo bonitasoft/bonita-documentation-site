@@ -1,7 +1,6 @@
 name: List surge.sh domains
 on:
-# TODO change to workflow_dispatch once it is tested
-  pull_request:
+  workflow_dispatch:
 
 jobs:
   list_deployments:
