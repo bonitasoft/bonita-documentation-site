@@ -5,7 +5,7 @@ on:
     paths:
       - '.github/actions/comment-pr-with-links/**/*'
       - '.github/workflows/_reusable_pr-comment-list-changes'
-      - '.github/workflows/comment-pr-with-useful-links'
+      - '.github/workflows/pr-comment-list-changes.yml'
 
 jobs:
   site:
