@@ -1,4 +1,4 @@
-# WARN: this workflow may be reused in other workflows triggered by a workflow_runs.
+# WARN: this workflow may be reused in other workflows triggered by a "workflow_run" event.
 
 # Permissions required by this workflow that MUST be set in the calling workflow as this workflow can only downgrade permissions (https://docs.github.com/en/actions/using-workflows/reusing-workflows#supported-keywords-for-jobs-that-call-a-reusable-workflow)
 # pull-requests: write / "afc163/surge-preview@v1" write PR comments when the Surge deployment is done
@@ -6,17 +6,6 @@ name: Surge deploy preview
 
 on:
   workflow_call:
-    inputs:
-      component-name:
-        description: 'The name of the component to build. If set, the build-preview-command input is ignored'
-        type: string
-        required: false
-        default: ''
-      doc-site-branch:
-        description: 'The branch of the `bonita-documentation-site` used to build the site preview'
-        type: string
-        required: false
-        default: 'master'
 
 jobs:
   # MUST be unique across all surge preview deployments for a repository as the job id is used in the deployment URL
