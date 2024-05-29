@@ -41,7 +41,7 @@ jobs:
           ref: ${{ inputs.doc-site-branch }}
           path: bds-action
       - name: Publish comments
-        uses: bds-action/.github/actions/comment-pr-with-links
+        uses: ./bds-action/.github/actions/comment-pr-with-links
         with:
           site-url: ${{ steps.surge-preview-tools.outputs.preview-url }}
           pattern: ${{ inputs.pattern }}
