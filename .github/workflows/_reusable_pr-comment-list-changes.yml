@@ -39,9 +39,9 @@ jobs:
         with:
           repository: 'bonitasoft/bonita-documentation-site'
           ref: ${{ inputs.doc-site-branch }}
-          path: bds-action
+          path: ./.github/actions/bds-action
       - name: Publish comments
-        uses: ./bds-action/.github/actions/comment-pr-with-links
+        uses: ./.github/actions/bds-action/comment-pr-with-links
         with:
           site-url: ${{ steps.surge-preview-tools.outputs.preview-url }}
           pattern: ${{ inputs.pattern }}
