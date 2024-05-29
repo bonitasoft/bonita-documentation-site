@@ -4,7 +4,7 @@
 # * with:
 #    permissions:
 #     pull-requests: write
-name: Comments PR with useful links
+name: Comments PR with changes list
 
 on:
   workflow_call: # this allows the workflow to be reused

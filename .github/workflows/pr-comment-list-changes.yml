@@ -1,4 +1,4 @@
-name: Comments PR with useful links
+name: Comments PR with changes list
 
 on:
   pull_request_target:
