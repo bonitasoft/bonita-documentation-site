@@ -1,0 +1,11 @@
+name: List surge.sh domains
+on:
+  workflow_dispatch:
+
+jobs:
+  list_deployments:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: List deployments
+        run: |
+          npx surge --token ${{ secrets.SURGE_TOKEN_DOC }} list
