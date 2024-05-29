@@ -1,0 +1,16 @@
+name: List surge.sh domains
+on:
+# TODO change to workflow_dispatch once it is tested
+  pull_request:
+
+jobs:
+  list_deployments:
+    runs-on: ubuntu-22
+    steps:
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: List deployments
+        run: |
+          npx surge --token ${{ secrets.SURGE_TOKEN }} list
