@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: List deployments
         run: |
-          npx surge --token ${{ secrets.SURGE_TOKEN }} list
+          npx surge --token ${{ secrets.SURGE_TOKEN_DOC }} list
