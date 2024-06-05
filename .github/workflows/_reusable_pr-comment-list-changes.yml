@@ -46,7 +46,7 @@ jobs:
           pattern: ${{ inputs.pattern }}
           component-name: ${{ inputs.component-name }}
           doc-site-branch : ${{ inputs.doc-site-branch }}
-      - uses: actions/checkout@v4 # Try to fix "action.yml" not found in post action step
+      - uses: actions/checkout@v4 # Ugly hack founds on https://github.com/actions/checkout/issues/692#issuecomment-1502203573
         with:
           repository: 'bonitasoft/bonita-documentation-site'
           ref: ${{ inputs.doc-site-branch }}
