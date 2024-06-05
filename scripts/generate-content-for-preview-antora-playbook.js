@@ -12,6 +12,7 @@ fse.removeSync(outputFile);
 const repoUrls = new Map([
     ['bcd', 'https://github.com/bonitasoft/bonita-continuous-delivery-doc.git'],
     ['bonita', 'https://github.com/bonitasoft/bonita-doc.git'],
+    ['bpi', 'https://github.com/bonitasoft/bonita-process-insights-doc.git'],
     ['central', 'https://github.com/bonitasoft/bonita-central-doc.git'],
     ['cloud', 'https://github.com/bonitasoft/bonita-cloud-doc.git'],
     ['labs', 'https://github.com/bonitasoft/bonita-labs-doc.git'],
@@ -117,6 +118,7 @@ else if (useTestSources) {
             'test/documentation-content/bonita/v2021.2',
             'test/documentation-content/bonita/v2022.1-beta',
             'test/documentation-content/bonita/v2022.2-alpha',
+            'test/documentation-content/bpi/latest',
             'test/documentation-content/central/1.0',
             'test/documentation-content/central/2.0',
             'test/documentation-content/cloud/latest',
