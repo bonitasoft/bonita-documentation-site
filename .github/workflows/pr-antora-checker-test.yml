@@ -3,7 +3,7 @@ name: Contribution checks on test data
 on:
   pull_request_target:
     paths:
-      - '.github/workflows/_reusable_pr-antora-content-guidelines-checker'
+      - '.github/workflows/_reusable_pr-antora-content-guidelines-checker.yml'
       - '.github/workflows/pr-antora-checker-test.yml'
       - 'test/documentation-content/**/*'
 
