@@ -32,6 +32,9 @@ jobs:
       # This is a temporary implementation to switch from the composite action to the reusable action
       # Once all repository will use it, the composite action will be removed and its content will be moved here
       - uses: actions/checkout@v4 # access to the local action
+        with:
+          repository: 'bonitasoft/bonita-documentation-site'
+          ref: ${{ inputs.doc-site-branch }}
       - name: Validate references
         uses: ./.github/actions/build-pr-site
         with:
@@ -39,3 +42,7 @@ jobs:
           component-name: ${{ inputs.component-name }}
           doc-site-branch: ${{ inputs.doc-site-branch }}
           fail-on-warning: ${{ inputs.fail-on-warning }}
+      - uses: actions/checkout@v4 # Ugly hack founds on https://github.com/actions/checkout/issues/692#issuecomment-1502203573
+        with:
+          repository: 'bonitasoft/bonita-documentation-site'
+          ref: ${{ inputs.doc-site-branch }}
