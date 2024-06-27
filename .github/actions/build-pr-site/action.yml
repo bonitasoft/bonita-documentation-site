@@ -33,7 +33,7 @@ runs:
       uses: ./.github/actions/build-setup
     - name: Install antora dependencies for xref validation
       shell: bash
-      run: npm install --save-dev antora@3.2.0-alpha.4
+      run: npm install --save-dev antora@3.2.0-alpha.5
     - name: Build Site for a single component
       if: inputs.component-name != ''
       shell: bash
