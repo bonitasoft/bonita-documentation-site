@@ -20,9 +20,9 @@ jobs:
           workflow: ${{ github.event.workflow_run.workflow_id }}
           name: site  # must be kept in sync with the artifact name downloaded in the build stage
           path: build/site
-      # Give a way to investigate what we try to deploy to surge
+      # Provide a way to investigate what we try to deploy to surge
       # See https://github.com/bonitasoft/bonita-documentation-site/issues/741
-      - name: archives preview
+      - name: Archive preview
         uses: actions/upload-artifact@v4
         with:
           name: preview
