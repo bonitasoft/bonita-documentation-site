@@ -76,13 +76,18 @@ fi
 ########################################################################################################################
 
 # See the node script for the list of arguments
+echo "Use Nodejs $(node --version)"
 node scripts/generate-content-for-preview-antora-playbook.js ${scriptOptions}
 
 if [[ "$scriptOptions" == *"--only-generate-playbook"* ]]; then
   echo "Skip documentation generation"
   exit 0
 fi
-echo "Building the preview using Node $(node --version)..."
 rm -rf build/
+
+echo "Use Antora version:"
+npx antora --version
+
+echo "Building the preview..."
 npx antora --stacktrace antora-playbook-content-for-preview.yml
 echo "Preview built"
