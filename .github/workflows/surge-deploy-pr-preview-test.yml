@@ -25,12 +25,13 @@ jobs:
         id: surge-preview-tools
         with:
           surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
+          github-token: ${{ secrets.BONITA_CI_PAT }} # Avoid rate limiting produced with default GITHUB_TOKEN
       - name: Publish preview
         uses: afc163/surge-preview@v1
         if: steps.surge-preview-tools.outputs.can-run-surge-command == 'true'
         with:
           surge_token: ${{ secrets.SURGE_TOKEN_DOC }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.BONITA_CI_PAT }} # Avoid rate limiting produced with default GITHUB_TOKEN
           dist: build/site
           failOnError: true
           teardown: true
