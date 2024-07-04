@@ -12,6 +12,7 @@ jobs:
   # IMPORTANT: the logic is duplicated in the `_reusable_surge-deploy-preview.yml` workflow. Keep both definitions in sync.
   test:
     runs-on: ubuntu-22.04
+    if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
     permissions:
       pull-requests: write # "afc163/surge-preview@v1" write PR comments when the PR is deployed
     steps:
@@ -21,6 +22,13 @@ jobs:
           workflow: ${{ github.event.workflow_run.workflow_id }}
           run_id: ${{ github.event.workflow_run.id }}
           name: site  # must be kept in sync with the artifact name uploaded in the build stage
+          path: build/site
+      # Provide a way to investigate what we try to deploy to surge
+      # See https://github.com/bonitasoft/bonita-documentation-site/issues/741
+      - name: Archive preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview
           path: build/site
       - uses: bonitasoft/actions/packages/surge-preview-tools@v3
         id: surge-preview-tools
