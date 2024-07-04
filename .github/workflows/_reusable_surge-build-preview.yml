@@ -31,7 +31,7 @@ on:
         description: 'If `true`, ignores Antora error. Only applies when the `component-name` input is set.'
         required: false
         default: true
-      
+
 
 jobs:
   build-pr-preview:
@@ -85,6 +85,5 @@ jobs:
         if: github.event.action != 'closed'
         uses: actions/upload-artifact@v4
         with:
-          name: site
+          name: site  # must be kept in sync with the artifact name downloaded in the deployment stage
           path: build/site
-        
