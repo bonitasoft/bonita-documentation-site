@@ -19,7 +19,8 @@ jobs:
         uses: dawidd6/action-download-artifact@v6
         with:
           workflow: ${{ github.event.workflow_run.workflow_id }}
-          name: site  # must be kept in sync with the artifact name downloaded in the build stage
+          run_id: ${{ github.event.workflow_run.id }}
+          name: site  # must be kept in sync with the artifact name uploaded in the build stage
           path: build/site
       - uses: bonitasoft/actions/packages/surge-preview-tools@v3
         id: surge-preview-tools
@@ -34,5 +35,5 @@ jobs:
           github_token: ${{ secrets.BONITA_CI_PAT }} # Avoid rate limiting produced with default GITHUB_TOKEN
           dist: build/site
           failOnError: true
-          teardown: true
+          teardown: false # the teardown is managed in another workflow
           build: echo "site already built"
