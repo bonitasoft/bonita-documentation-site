@@ -36,6 +36,7 @@ content:
         - "2024.1"
         - "2024.2"
         - "2024.3"
+        - "2025.1"
     - url: https://github.com/bonitasoft/bonita-labs-doc.git
       branches:
         - "master"

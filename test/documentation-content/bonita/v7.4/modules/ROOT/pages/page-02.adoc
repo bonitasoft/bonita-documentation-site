@@ -1,3 +1,4 @@
 = Page 02
+:description: This is the page-02 of the root module for version 7.4
 
 Content
