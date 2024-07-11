@@ -54,7 +54,7 @@ content:
         - "1.0"
 ui:
   bundle:
-    url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.19.0/bonita-documentation-theme-v1.19.0.zip
+    url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.20.0/bonita-documentation-theme-v1.20.0.zip
 
 antora:
   # IMPORTANT: use the 'require' syntax to ensure that the preview script is able to always update the configuration
