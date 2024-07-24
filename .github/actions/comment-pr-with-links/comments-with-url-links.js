@@ -53,12 +53,13 @@ ${links?.deleted}`
 function prepareLinks({files, siteUrl, component, version}) {
     let preparedLinks = [];
     files.forEach(file => {
-        const splitPath = file.split('/');
-        splitPath.shift();
-        const pageName = splitPath.pop();
-        const moduleName = splitPath.shift();
-        let url = `${siteUrl}/${component}/${version}${moduleName === 'ROOT' ? '/' : `/${moduleName}/`}${pageName?.split('.').shift()}`;
-        preparedLinks.push(`- [ ] [${moduleName}/${pageName}](${url})`);
+        const regex = /modules\/(.*?)\/pages\/(.*?).adoc/;
+        const match = file.match(regex);
+        if (match) {
+            let moduleName = match[1] === 'ROOT' ? '' : match[1];
+            let url = `${siteUrl}/${component}/${version}/${moduleName}/${match[2]}`;
+            preparedLinks.push(`- [ ] [${moduleName}/${match[2]}](${url})`);
+        }
     });
     return preparedLinks.join('\n');
 }
