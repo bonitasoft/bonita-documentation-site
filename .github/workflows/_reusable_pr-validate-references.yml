@@ -29,19 +29,50 @@ jobs:
   validate_references:
     runs-on: ubuntu-22.04
     steps:
-      # This is a temporary implementation to switch from the composite action to the reusable action
-      # Once all repository will use it, the composite action will be removed and its content will be moved here
-      - uses: actions/checkout@v4 # access to the local action
+      - uses: actions/checkout@v4 # access to the local actions
         with:
           repository: 'bonitasoft/bonita-documentation-site'
           ref: ${{ inputs.doc-site-branch }}
-      - name: Validate references
-        uses: ./.github/actions/build-pr-site
+
+      - name: Validate PR branch name
+        uses: ./.github/actions/validate-pr-branch-name
+      - name: Build Setup
+        uses: ./.github/actions/build-setup
+      - name: Install antora dependencies for xref validation
+        shell: bash
+        # Antora 3.2 is needed by the Antora Atlas extension
+        run: npm install --save-dev antora@3.2.0-alpha.6
+      - name: Build Site for a single component
+        if: inputs.component-name != ''
+        shell: bash
+        # '>' Replace newlines with spaces (folded)
+        # '-' No newline at end (strip)
+        run: >-
+          ./build-preview.bash
+          --branch "${{ github.head_ref }}"
+          --component "${{ inputs.component-name }}"
+          --component-repo-url "${{ github.event.pull_request.head.repo.clone_url }}"
+          --fail-on-warning "${{ inputs.fail-on-warning }}"
+          --fetch-sources true
+          --pr "${{ github.event.pull_request.number }}"
+      - name: Build Site with custom build-preview command
+        if: inputs.component-name == ''
+        shell: bash
+        # '>' Replace newlines with spaces (folded)
+        # '-' No newline at end (strip)
+        run: >-
+          ${{ inputs.build-preview-command }}
+          --fail-on-warning "${{ inputs.fail-on-warning }}"
+          --fetch-sources true
+          --pr "${{ github.event.pull_request.number }}"
+      - name: List the content of the generated site
+        uses: ./.github/actions/log-built-site-details
+      - name: Archive site
+        uses: actions/upload-artifact@v4
         with:
-          build-preview-command: ${{ inputs.build-preview-command }}
-          component-name: ${{ inputs.component-name }}
-          doc-site-branch: ${{ inputs.doc-site-branch }}
-          fail-on-warning: ${{ inputs.fail-on-warning }}
+          name: site-reference-validation-pr-${{github.event.pull_request.number}}-${{github.sha}}
+          path: build/site
+
       - uses: actions/checkout@v4 # Ugly hack founds on https://github.com/actions/checkout/issues/692#issuecomment-1502203573
         with:
           repository: 'bonitasoft/bonita-documentation-site'
