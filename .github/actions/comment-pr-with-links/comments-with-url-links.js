@@ -56,8 +56,8 @@ function prepareLinks({files, siteUrl, component, version}) {
         const regex = /modules\/(.*?)\/pages\/(.*?).adoc/;
         const match = file.match(regex);
         if (match) {
-            let moduleName = match[1] === 'ROOT' ? '' : match[1];
-            let url = `${siteUrl}/${component}/${version}/${moduleName}/${match[2]}`;
+            let moduleName = match[1] === 'ROOT' ? '' : `/${match[1]}`;
+            let url = `${siteUrl}/${component}/${version}${moduleName}/${match[2]}`;
             preparedLinks.push(`- [ ] [${moduleName}/${match[2]}](${url})`);
         }
     });
