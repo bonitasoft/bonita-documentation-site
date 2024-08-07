@@ -1,0 +1,4 @@
+= Page 01 in module 02 and subfolder
+:description: Content in page 01 in module 02 and subfolder.
+
+Content in {bonitaVersion}  in page 01 in module 02 and subfolder.
