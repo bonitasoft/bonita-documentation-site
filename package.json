@@ -17,5 +17,8 @@
     "minimist": "~1.2.8",
     "netlify-cli": "~17.33.6",
     "rimraf": "~6.0.1"
+  },
+  "dependencies": {
+    "@antora/pdf-extension": "^1.0.0-alpha.9"
   }
 }

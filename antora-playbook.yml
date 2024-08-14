@@ -63,6 +63,9 @@ antora:
     - require: ./lib/antora/versions-alias-extension.js
     - require: ./lib/antora/log-aggregated-component-versions-extension.js
     - require: '@antora/atlas-extension'
+    - require: '@antora/pdf-extension'
+
+
 
 asciidoc:
   # Only enable for preview, we don't care for production, and it can have performance impacts

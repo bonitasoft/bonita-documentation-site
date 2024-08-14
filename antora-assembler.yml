@@ -1,0 +1,11 @@
+root_level: 0
+component_versions: 'bonita'
+asciidoc:
+  attributes:
+    source-highlighter: rouge
+    pdf-theme: ./pdf-theme.yml
+build:
+  command: bundle exec asciidoctor-pdf --trace
+  publish: false
+# Don't forget to have ruby available on the system, then run "bundle" command at the root of the project
+
