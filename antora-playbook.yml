@@ -52,6 +52,9 @@ content:
     - url: https://github.com/bonitasoft/bonita-central-doc.git
       branches:
         - "1.0"
+    - url: "https://github.com/bonitasoft/bonita-process-insights-doc.git"
+      branches:
+        - "main"
 ui:
   bundle:
     url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.20.0/bonita-documentation-theme-v1.20.0.zip
