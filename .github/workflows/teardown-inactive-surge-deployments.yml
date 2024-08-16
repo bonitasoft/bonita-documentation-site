@@ -15,3 +15,13 @@ jobs:
           regex: '[1-9]+ month.? ago'
         env:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN_DOC }}
+      - name: Send message to Slack channel
+        if: failure()
+        uses: bonitasoft/notify-slack-action@v1
+        with:
+          keeper-secret-config: ${{ secrets.KSM_CONFIG }}
+          channel-id: ${{ vars.RD_PLATFORM_SLACK_CHANNEL_ID }}
+          message: |
+            :red_circle: The teardown of inactive documentation preview sites has failed!
+
+            @channel *We need someone* !
