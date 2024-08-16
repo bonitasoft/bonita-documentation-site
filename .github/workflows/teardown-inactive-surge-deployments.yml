@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '0 3 * * 6'
   workflow_dispatch:
+    inputs:
+      slack-notifications:
+        type: boolean
+        description: "If checked, send slack notifications when errors occur"
+        default: false
 
 jobs:
   teardown_inactive_deployement:
@@ -15,8 +20,9 @@ jobs:
           regex: '[1-9]+ month.? ago'
         env:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN_DOC }}
+
       - name: Send message to Slack channel
-        if: failure()
+        if: failure() && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.slack-notifications == 'true') )
         uses: bonitasoft/notify-slack-action@v1
         with:
           keeper-secret-config: ${{ secrets.KSM_CONFIG }}
