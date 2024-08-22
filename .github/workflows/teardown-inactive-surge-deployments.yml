@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Teardown surge deployement inactive than more 1 month
-        uses: adrianjost/actions-surge.sh-teardown@v1.0.3
+        uses: adrianjost/actions-surge.sh-teardown@master
         with:
           regex: '[1-9]+ month.? ago'
         env:
