@@ -13,8 +13,8 @@ runtime:
     format: pretty
     # set to info to get details from the Antora extensions
     level: info
-    # Antora exits with a non-zero exit code if an error is logged -> https://docs.antora.org/antora/latest/playbook/runtime-log-failure-level
-    failure_level: error
+    # Antora exits with a non-zero exit code if a warning is logged -> https://docs.antora.org/antora/latest/playbook/runtime-log-failure-level
+    failure_level: warn
 
 content:
   # When adding a new url, add a new entry in generate-content-for-preview-antora-playbook.js to manage PR preview
