@@ -14,7 +14,7 @@ jobs:
   teardown_inactive_deployement:
     runs-on: ubuntu-22.04
     steps:
-      - name: Teardown surge deployement inactive than more 1 month
+      - name: Teardown deployments older than more 1 month
         uses: adrianjost/actions-surge.sh-teardown@v1.0.3
         timeout-minutes: 1
         with:
