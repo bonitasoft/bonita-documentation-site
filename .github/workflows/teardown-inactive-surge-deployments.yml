@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Teardown deployments older than 1 month
-        uses: adrianjost/actions-surge.sh-teardown@v1.0.3
+        uses: adrianjost/actions-surge.sh-teardown@v1.0.4
         timeout-minutes: 10
         with:
           regex: '[1-9]+ month.? ago'
