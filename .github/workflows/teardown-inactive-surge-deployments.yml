@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Teardown deployments older than more 1 month
         uses: adrianjost/actions-surge.sh-teardown@v1.0.3
-        timeout-minutes: 1
+        timeout-minutes: 10
         with:
           regex: '[1-9]+ month.? ago'
         env:
