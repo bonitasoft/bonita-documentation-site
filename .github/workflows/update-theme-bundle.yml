@@ -28,7 +28,7 @@ jobs:
           keeper-secret-config: ${{ secrets.KSM_CONFIG }}
 
       - name: Setup Perl environment
-        uses: shogo82148/actions-setup-perl@v1.31.2
+        uses: shogo82148/actions-setup-perl@v1.31.3
 
       - name: Update theme bundle in Antora playbook
         run: |
@@ -37,7 +37,7 @@ jobs:
           cat antora-playbook.yml    
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GH_TOKEN_DOC_TRIGGER_WF }}
           commit-message: "feat(theme): update theme bundle to ${{ env.release_name }}"
