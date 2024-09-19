@@ -25,7 +25,7 @@ jobs:
         with:
             surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
       - name: Comments PR with links
-        uses: bonitasoft/actions/packages/doc-contribs/pr-comments-with-links@feat/comments-with-links
+        uses: bonitasoft/actions/packages/doc-contribs/pr-comments-with-links@v3
         with:
           site-url: ${{ steps.surge-preview-tools.outputs.preview-url }}
           component-name: ${{ inputs.component-name }}
