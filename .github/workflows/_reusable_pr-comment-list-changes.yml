@@ -1,10 +1,10 @@
-# WARN: this workflow may be reused in other workflows
-# * triggered by a pull_request_target (to work with fork repository). This workflow doesn't do any unsecure action regarding the pull_request_target context.
-# * called with secret: inherit
-# * with:
-#    permissions:
-#     pull-requests: write
-name: Comments PR with changes list
+## WARN: this workflow may be reused in other workflows
+## * triggered by a pull_request_target (to work with fork repository). This workflow doesn't do any unsecure action regarding the pull_request_target context.
+## * called with secret: inherit
+## * with:
+##    permissions:
+##     pull-requests: write
+name: Check Antora content guidelines in Pull Request
 
 on:
   workflow_call: # this allows the workflow to be reused
@@ -14,17 +14,6 @@ on:
         description: "The name of the component to build."
         required: false
         default: "bonita"
-      pattern:
-        type: string
-        description: ""
-        required: false
-        default: "modules/**/pages/**/*.adoc"
-      # needed by content repositories (default master) and by the doc-site repository (computed)
-      doc-site-branch:
-        type: string
-        description: "The branch of the `bonita-documentation-site` used to download js files"
-        required: false
-        default: "master"
 
 jobs:
   # IMPORTANT: the job id must be the same as in "_reusable_surge-deploy-preview.yml" as the surge-preview-tools action uses it to generate the preview URL (current limitation of v3.2.0)
@@ -34,19 +23,9 @@ jobs:
       - uses: bonitasoft/actions/packages/surge-preview-tools@v3
         id: surge-preview-tools
         with:
-          surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
-      - uses: actions/checkout@v4 # access to the local action
-        with:
-          repository: 'bonitasoft/bonita-documentation-site'
-          ref: ${{ inputs.doc-site-branch }}
-      - name: Publish comments
-        uses: ./.github/actions/comment-pr-with-links
+            surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
+      - name: Comments PR with links
+        uses: bonitasoft/actions/packages/doc-contribs/pr-comments-with-links@v3
         with:
           site-url: ${{ steps.surge-preview-tools.outputs.preview-url }}
-          pattern: ${{ inputs.pattern }}
           component-name: ${{ inputs.component-name }}
-          doc-site-branch : ${{ inputs.doc-site-branch }}
-      - uses: actions/checkout@v4 # Ugly hack founds on https://github.com/actions/checkout/issues/692#issuecomment-1502203573
-        with:
-          repository: 'bonitasoft/bonita-documentation-site'
-          ref: ${{ inputs.doc-site-branch }}
