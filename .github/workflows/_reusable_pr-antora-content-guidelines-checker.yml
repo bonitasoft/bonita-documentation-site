@@ -8,15 +8,23 @@ name: Check Antora content guidelines in Pull Request
 
 on:
   workflow_call: # this allows the workflow to be reused
+    inputs:
+      # Available steps: https://github.com/bonitasoft/actions/blob/main/packages/doc-contribs/pr-antora-content-guidelines-checker/README.md#using-this-action
+      step-to-skip:
+        type: string
+        description: 'Comma-separated list of steps to skip, by default all steps are executed.'
+        default: ''
+        required: false
 
 jobs:
   checks:
     runs-on: ubuntu-22.04
     steps:
       - name: Check
-        uses: bonitasoft/actions/packages/doc-contribs/pr-antora-content-guidelines-checker@feat/check_file_name
+        uses: bonitasoft/actions/packages/doc-contribs/pr-antora-content-guidelines-checker@v3
         with:
           attributes-to-check: ':description:'
           files-to-check: 'adoc'
           # WARN: Be aware that spaces after/before the coma are not trimmed by the action. This means that the spaces are part of the pattern.
           forbidden-pattern-to-check: 'https://documentation.bonitasoft.com,link:https,link:http,link:,xref:https,xref:http,xref:_,xref:#,Bonita BPM,https://api-documentation.bonitasoft.com'
+          step-to-skip: ${{ inputs.step-to-skip }}
