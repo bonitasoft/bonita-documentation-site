@@ -1,7 +1,7 @@
 name: Comments PR with changes list
 
 on:
-  pull_request_target:
+  pull_request:
     paths:
       - '.github/workflows/_reusable_pr-comment-list-changes.yml'
       - '.github/workflows/pr-comment-list-changes.yml'

@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Check
-        uses: bonitasoft/actions/packages/doc-contribs/pr-antora-content-guidelines-checker@v3
+        uses: bonitasoft/actions/packages/doc-contribs/pr-antora-content-guidelines-checker@feat/list_renamed_file_from_pr
         with:
           attributes-to-check: ':description:'
           files-to-check: 'adoc'
