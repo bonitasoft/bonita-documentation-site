@@ -13,10 +13,15 @@ IgnoreURLs:
   # - "twitter.com" # work but not specific enough
   # - "^twitter.com/bonitasoft$" # not working
   - "twitter.com/bonitasoft"
+  - "x.com/bonitasoft"
   # Require authentication. Http code 999: https://stackoverflow.com/questions/46214017/public-linkedin-profile-url-returns-server-status-code-999
   # - "linkedin.com" # work but not specific enough
   #  https://www.linkedin.com/company/bonitasoft/
   - "linkedin.com/company/bonitasoft"
+  # only present when using a partial build and xref to other component versions is generated with Antora Atlas
+  # otherwise, the doc should not include such links
+  - "documentation.bonitasoft.com"
+
 
 #### TODO to be tested
 # EnforceHTTPS: true
