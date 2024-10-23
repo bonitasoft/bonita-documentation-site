@@ -393,7 +393,7 @@ The following commands explain how to build a site with a single component and a
 
 [source,shell]
 ----
-$./build-preview-dev.bash --hide-edit-page-links true --force-production-navbar true --type links-check --local-sources --component bonita --branch 2021.2
+$./build-preview-dev.bash --hide-edit-page-links true --force-production-navbar true --type links-check --local-sources --component bonita --branch 2022.2
 $./build-preview-dev.bash --hide-edit-page-links true --force-production-navbar true --type links-check --local-sources --component cloud --branch master
 ----
 
