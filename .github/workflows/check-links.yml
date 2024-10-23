@@ -21,16 +21,17 @@ jobs:
         # '-' No newline at end (strip)
         run: >-
           ./build-preview-dev.bash
-            --hide-edit-page-links true
-            --force-production-navbar true
-            --type links-check
-            --component bonita --branch 2022.2
+          --hide-edit-page-links true
+          --force-production-navbar true
+          --type links-check
+          --component bonita --branch 2022.2
       - name: List the content of the generated site
         uses: ./.github/actions/log-built-site-details
-      - name: Archive site preview
-        uses: ./.github/actions/upload-pr-built-site-artifact
+      - name: Upload site preview
+        uses: actions/upload-artifact@v4
         with:
-          site-type: preview
+          name: check-links-site
+          path: build/site
       - name: Install htmltest
         run: |
           echo "Installing htmltest"
