@@ -6,6 +6,10 @@ OutputDir: config
 IgnoreURLs:
   # Links used to demonstrate the target url
   - "^http://localhost"
+  - "bonita.server.url.to.change"
+  - "idp.saml.binding.url.to.change"
+  - "my.company.domain"
+  - "your_remote_git_repository"
   # - "^localhost" # not working
   # - "localhost" # work but not specific enough
   ### TODO require authentication, currently fail. See if we can use an option to prevent this
@@ -14,6 +18,7 @@ IgnoreURLs:
   # - "^twitter.com/bonitasoft$" # not working
   - "twitter.com/bonitasoft"
   - "x.com/bonitasoft"
+  # TODO use a specific user agent to avoid the 999 error code
   # Require authentication. Http code 999: https://stackoverflow.com/questions/46214017/public-linkedin-profile-url-returns-server-status-code-999
   # - "linkedin.com" # work but not specific enough
   #  https://www.linkedin.com/company/bonitasoft/
