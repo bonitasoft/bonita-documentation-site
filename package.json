@@ -15,7 +15,7 @@
     "fs-extra": "~11.2.0",
     "js-yaml": "~4.1.0",
     "minimist": "~1.2.8",
-    "netlify-cli": "~17.36.4",
+    "netlify-cli": "~17.37.1",
     "rimraf": "~6.0.1"
   }
 }
