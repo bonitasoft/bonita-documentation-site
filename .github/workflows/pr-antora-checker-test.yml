@@ -1,0 +1,15 @@
+name: Contribution checks on test data
+
+on:
+  # use pull_request event to test update done of the reusable workflow (update the branch of the reusable workflow as well in this case)
+  pull_request_target:
+    paths:
+      - '.github/workflows/_reusable_pr-antora-content-guidelines-checker.yml'
+      - '.github/workflows/pr-antora-checker-test.yml'
+      - 'test/documentation-content/**/*'
+
+jobs:
+  check_antora_content_guidelines:
+    permissions:
+      pull-requests: write # "pr-antora-content-guidelines-checker" write PR comments when the PR doesn't match the "Guidelines"
+    uses: ./.github/workflows/_reusable_pr-antora-content-guidelines-checker.yml

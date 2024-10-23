@@ -1,2 +1,4 @@
 ** xref:index.adoc[module-02]
 *** xref:page01.adoc[page 01 of module 02]
+*** subfolder
+**** xref:page01.adoc[page 01 of module 02 and subfolder]

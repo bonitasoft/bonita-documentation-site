@@ -1,0 +1,47 @@
+name: Surge deploy - preview test
+
+on:
+  workflow_run:
+    workflows:
+      - "Surge build - preview test"
+    types:
+      - completed
+
+jobs:
+  # MUST be unique across all surge preview deployments for a repository as the job id is used in the deployment URL
+  # IMPORTANT: the logic is duplicated in the `_reusable_surge-deploy-preview.yml` workflow. Keep both definitions in sync.
+  test:
+    runs-on: ubuntu-22.04
+    if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      pull-requests: write # "afc163/surge-preview@v1" write PR comments when the PR is deployed
+    steps:
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          workflow: ${{ github.event.workflow_run.workflow_id }}
+          run_id: ${{ github.event.workflow_run.id }}
+          name: site  # must be kept in sync with the artifact name uploaded in the build stage
+          path: build/site
+      # Provide a way to investigate what we try to deploy to surge
+      # See https://github.com/bonitasoft/bonita-documentation-site/issues/741
+      - name: Archive preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview
+          path: build/site
+      - uses: bonitasoft/actions/packages/surge-preview-tools@v3
+        id: surge-preview-tools
+        with:
+          surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
+          github-token: ${{ secrets.BONITA_CI_PAT }} # Avoid rate limiting produced with default GITHUB_TOKEN
+      - name: Publish preview
+        uses: afc163/surge-preview@v1
+        if: steps.surge-preview-tools.outputs.can-run-surge-command == 'true'
+        with:
+          surge_token: ${{ secrets.SURGE_TOKEN_DOC }}
+          github_token: ${{ secrets.BONITA_CI_PAT }} # Avoid rate limiting produced with default GITHUB_TOKEN
+          dist: build/site
+          failOnError: true
+          teardown: false # the teardown is managed in another workflow
+          build: echo "site already built"

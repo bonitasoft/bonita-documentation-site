@@ -16,6 +16,14 @@ force = true
 # Special redirect after introduction of Bonita branding version
 # Add a new entry when adding a new version/branch. This is generally done when the developments of a new version start
 [[redirects]]
+from = "/bonita/10.3/*"
+to = "/bonita/2025.1/:splat"
+
+[[redirects]]
+from = "/bonita/10.2/*"
+to = "/bonita/2024.3/:splat"
+
+[[redirects]]
 from = "/bonita/10.1/*"
 to = "/bonita/2024.2/:splat"
 
@@ -59,6 +67,10 @@ to = "/bonita/2021.1/:splat"
 ########################################
 # Add a new entry when archiving a version
 # Starting from version 7.12, when adding a redirect here, remove the redirect defined above in "Special redirect after introduction of Bonita branding version"
+[[redirects]]
+from = "/bonita/7.10/*"
+to = "/bonita/latest/:splat"
+
 [[redirects]]
 from = "/bonita/7.9/*"
 to = "/bonita/latest/:splat"
@@ -246,3 +258,10 @@ to = "/test-toolkit/latest/"
 [[redirects]]
 from = "/central/"
 to = "/central/latest/"
+
+########################################################################################################################
+# Bonita Process Insights redirects
+########################################################################################################################
+[[redirects]]
+from = "/bpi/"
+to = "/bpi/latest/"

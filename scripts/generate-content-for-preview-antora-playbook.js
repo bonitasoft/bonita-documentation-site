@@ -12,6 +12,7 @@ fse.removeSync(outputFile);
 const repoUrls = new Map([
     ['bcd', 'https://github.com/bonitasoft/bonita-continuous-delivery-doc.git'],
     ['bonita', 'https://github.com/bonitasoft/bonita-doc.git'],
+    ['bpi', 'https://github.com/bonitasoft/bonita-process-insights-doc.git'],
     ['central', 'https://github.com/bonitasoft/bonita-central-doc.git'],
     ['cloud', 'https://github.com/bonitasoft/bonita-cloud-doc.git'],
     ['labs', 'https://github.com/bonitasoft/bonita-labs-doc.git'],
@@ -117,6 +118,7 @@ else if (useTestSources) {
             'test/documentation-content/bonita/v2021.2',
             'test/documentation-content/bonita/v2022.1-beta',
             'test/documentation-content/bonita/v2022.2-alpha',
+            'test/documentation-content/bpi/latest',
             'test/documentation-content/central/1.0',
             'test/documentation-content/central/2.0',
             'test/documentation-content/cloud/latest',
@@ -138,7 +140,15 @@ else {
 
     // override the sources: only the single branch of the single component
     const repoUrl = getRepoUrl(componentName);
-    doc.content.sources = [{ url: repoUrl, branches: [branchName] }];
+    console.info(`Configured repo URL for the component: ${repoUrl}`);
+    // if provided a specific repository, use it. Calling getRepoUrl validates that the component is known
+    const repoUrlArg = getArgument(argv, 'component-repo-url', false);
+    if (repoUrlArg) {
+        console.info(`--> Overriding repo URL with the provided argument: ${repoUrlArg}`);
+        doc.content.sources = [{ url: repoUrlArg, branches: [branchName] }];
+    } else {
+        doc.content.sources = [{ url: repoUrl, branches: [branchName] }];
+    }
 
     const titlePreviewPart = prNumber ? `PR #${prNumber}` : `branch '${branchName}'`;
     doc.site.title = siteTitle || `Preview ${componentName} ${titlePreviewPart}`;

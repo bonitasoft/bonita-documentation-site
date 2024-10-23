@@ -1,0 +1,9 @@
+name: bpi
+title: Process Insights
+version: latest
+asciidoc:
+  attributes:
+    page-editable: true
+nav:
+  - modules/ROOT/taxonomy.adoc
+

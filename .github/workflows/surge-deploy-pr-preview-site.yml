@@ -1,0 +1,15 @@
+name: Surge deploy - preview site
+
+on:
+  workflow_run:
+    workflows:
+      - "Surge build - preview site"
+    types:
+      - completed
+
+jobs:
+  site:
+    permissions:
+      pull-requests: write # "afc163/surge-preview@v1" write PR comments when the PR is deployed
+    uses: ./.github/workflows/_reusable_surge-deploy-preview.yml
+    secrets: inherit

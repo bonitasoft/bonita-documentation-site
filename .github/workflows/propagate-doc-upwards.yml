@@ -37,6 +37,10 @@ jobs:
           path: ./${{ matrix.repo }}
           # Number of commits to fetch. 0 indicates all history for all branches and tags.
           fetch-depth: "0"
+      - name: Setup git
+        uses: bonitasoft/git-setup-action@v1
+        with:
+          keeper-secret-config: ${{ secrets.KSM_CONFIG }}
 
       - name: Run propagate doc upwards
         env:
@@ -45,10 +49,6 @@ jobs:
         run: |
           cd ./${{ matrix.repo }}
 
-          # configure committer information
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
-                   
           echo "########################################"
           echo "Performing the doc propagation"
           echo "########################################"

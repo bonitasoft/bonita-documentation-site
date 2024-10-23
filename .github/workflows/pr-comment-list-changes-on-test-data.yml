@@ -1,0 +1,26 @@
+name: Comments PR with changes list on Test Data
+
+on:
+  # use pull_request event to test update done of the reusable workflow (update the branch of the reusable workflow as well in this case)
+  pull_request_target:
+    paths:
+      - '.github/workflows/_reusable_pr-comment-list-changes.yml'
+      - '.github/workflows/pr-comment-list-changes.yml'
+      - 'test/documentation-content/**/*'
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    # It's a duplicate of _reusable_pr-comment-list-changes to allow us to validate updated in test data
+    permissions:
+      pull-requests: write # write PR comments
+    steps:
+      - uses: bonitasoft/actions/packages/surge-preview-tools@v3
+        id: surge-preview-tools
+        with:
+          surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
+      - name: Comments PR with links
+        uses: bonitasoft/actions/packages/doc-contribs/pr-comments-with-links@v3
+        with:
+          site-url: ${{ steps.surge-preview-tools.outputs.preview-url }}
+          component-name: ${{ inputs.component-name }}

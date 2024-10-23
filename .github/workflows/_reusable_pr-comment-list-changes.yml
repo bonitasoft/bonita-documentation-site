@@ -1,0 +1,31 @@
+## WARN: this workflow may be reused in other workflows
+## * triggered by a pull_request_target (to work with fork repository). This workflow doesn't do any unsecure action regarding the pull_request_target context.
+## * called with secret: inherit
+## * with:
+##    permissions:
+##     pull-requests: write
+name: Check Antora content guidelines in Pull Request
+
+on:
+  workflow_call: # this allows the workflow to be reused
+    inputs:
+      component-name:
+        type: string
+        description: "The name of the component to build."
+        required: false
+        default: "bonita"
+
+jobs:
+  # IMPORTANT: the job id must be the same as in "_reusable_surge-deploy-preview.yml" as the surge-preview-tools action uses it to generate the preview URL (current limitation of v3.2.0)
+  deploy:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: bonitasoft/actions/packages/surge-preview-tools@v3
+        id: surge-preview-tools
+        with:
+            surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
+      - name: Comments PR with links
+        uses: bonitasoft/actions/packages/doc-contribs/pr-comments-with-links@v3
+        with:
+          site-url: ${{ steps.surge-preview-tools.outputs.preview-url }}
+          component-name: ${{ inputs.component-name }}

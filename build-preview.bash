@@ -26,6 +26,7 @@ function usage() {
   echo "Antora configuration"
   echo "      --branch <branch-name>                  Name of the branch when keeping a single branch per component"
   echo "      --component <component-name>            Name of the component when keeping a single branch per component"
+  echo "      --component-repo-url <url>              Only relevant when keeping a single branch per component. Override the configured git repository URL for the provided component"
   echo "      --component-with-branches <form>        Components and branches when using 'Multiple Repositories'."
   echo "                                              Pass one argument per component. For instance, --component-with-branches bcd:3.4 --component-with-branches bonita:7.11,2021.1"
   echo "      --default-ui-bundle <parameter>         If set, use the Antora Default UI. If set to 'snapshot', fetch the bundle instead of retrieving it from the cache. Defaults to 'false'"
@@ -76,13 +77,18 @@ fi
 ########################################################################################################################
 
 # See the node script for the list of arguments
+echo "Use Nodejs $(node --version)"
 node scripts/generate-content-for-preview-antora-playbook.js ${scriptOptions}
 
 if [[ "$scriptOptions" == *"--only-generate-playbook"* ]]; then
   echo "Skip documentation generation"
   exit 0
 fi
-echo "Building the preview using Node $(node --version)..."
 rm -rf build/
+
+echo "Use Antora version:"
+npx antora --version
+
+echo "Building the preview..."
 npx antora --stacktrace antora-playbook-content-for-preview.yml
 echo "Preview built"

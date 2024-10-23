@@ -1,7 +1,7 @@
 site:
   title: Bonita Documentation
-  # features that depend on the site URL: https://docs.antora.org/antora/2.3/playbook/site-url/#when-should-the-site-url-be-set
-  url: https://documentation.bonitasoft.com/
+  # features that depend on the site URL: https://docs.antora.org/antora/latest/playbook/site-url/#when-should-the-site-url-be-set
+  url: https://documentation.bonitasoft.com
   start_page: bonita::index.adoc
   robots: allow
 
@@ -13,8 +13,8 @@ runtime:
     format: pretty
     # set to info to get details from the Antora extensions
     level: info
-    # Antora exits with a non-zero exit code if an error is logged -> https://docs.antora.org/antora/latest/playbook/runtime-log-failure-level
-    failure_level: error
+    # Antora exits with a non-zero exit code if a warning is logged -> https://docs.antora.org/antora/latest/playbook/runtime-log-failure-level
+    failure_level: warn
 
 content:
   # When adding a new url, add a new entry in generate-content-for-preview-antora-playbook.js to manage PR preview
@@ -26,7 +26,6 @@ content:
     - url: https://github.com/bonitasoft/bonita-doc.git
       branches:
         - "archives"
-        - "7.10"
         - "7.11"
         - "2021.1"
         - "2021.2"
@@ -36,6 +35,8 @@ content:
         - "2023.2"
         - "2024.1"
         - "2024.2"
+        - "2024.3"
+        - "2025.1"
     - url: https://github.com/bonitasoft/bonita-labs-doc.git
       branches:
         - "master"
@@ -47,12 +48,16 @@ content:
       branches:
         - "1.0"
         - "2.0"
+        - "3.0"
     - url: https://github.com/bonitasoft/bonita-central-doc.git
       branches:
         - "1.0"
+    - url: "https://github.com/bonitasoft/bonita-process-insights-doc.git"
+      branches:
+        - "main"
 ui:
   bundle:
-    url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.17.0/bonita-documentation-theme-v1.17.0.zip
+    url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.21.0/bonita-documentation-theme-v1.21.0.zip
 
 antora:
   # IMPORTANT: use the 'require' syntax to ensure that the preview script is able to always update the configuration

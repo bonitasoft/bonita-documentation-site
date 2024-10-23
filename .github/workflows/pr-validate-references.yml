@@ -1,0 +1,27 @@
+# Validate references of PR preview, until we can use Antora 3.2. When GA will be available, this will be directly done with the build of the preview
+name: Validate xref
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '.github/actions/build-setup/**/*'
+      - '.github/workflows/_reusable_pr-validate-references.yml'
+      - '.github/workflows/pr-validate-references.yml'
+      - '.nvmrc'
+      - 'resources/**/*'
+      - 'antora-playbook.yml'
+      - 'build-preview.bash'
+      - 'package.json'
+      - 'package-lock.json'
+
+jobs:
+  validate_xref:
+    uses: ./.github/workflows/_reusable_pr-validate-references.yml
+    with:
+      doc-site-branch: ${{ github.head_ref }}
+      # '>' Replace newlines with spaces (folded)
+      # '-' No newline at end (strip)
+      build-preview-command: >-
+        ./build-preview.bash
+        --single-branch-per-repo

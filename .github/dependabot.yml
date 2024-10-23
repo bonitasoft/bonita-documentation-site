@@ -5,16 +5,18 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "friday"
+      day: "wednesday"
       time: "05:00"
     open-pull-requests-limit: 2
     versioning-strategy: increase
+    rebase-strategy: "disabled"
 
   - package-ecosystem: "github-actions"
     # Workflow files stored in the default location of `.github/workflows`
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "friday"
+      day: "wednesday"
       time: "05:00"
     open-pull-requests-limit: 2
+    rebase-strategy: "disabled"
