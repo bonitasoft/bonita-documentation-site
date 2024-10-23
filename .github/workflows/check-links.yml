@@ -12,8 +12,8 @@ jobs:
       - uses: actions/checkout@v4 # access to the local action
       - name: Build Setup
         uses: ./.github/actions/build-setup
-        ## TODO duplicated with the build-pr-site action --> create a shared action
-        # only require if we build a part of the documentation
+        ## TODO duplicated with "_reusable_pr-validate-references.yml" --> a add parameter to the build-setup action
+        # only required if we build a part of the documentation
       - name: Install antora dependencies for xref validation
         run: npm install --save-dev antora@3.2.0-alpha.2
       - name: Build site
