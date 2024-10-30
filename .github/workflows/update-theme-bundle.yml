@@ -28,7 +28,7 @@ jobs:
           keeper-secret-config: ${{ secrets.KSM_CONFIG }}
 
       - name: Setup Perl environment
-        uses: shogo82148/actions-setup-perl@v1.31.3
+        uses: shogo82148/actions-setup-perl@v1.31.4
 
       - name: Update theme bundle in Antora playbook
         run: |
