@@ -1,0 +1,56 @@
+name: Check links of the site
+on:
+  # TODO schedule and workflow_dispatch in the final implementation
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  check_links:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4 # access to the local action
+      - name: Build Setup
+        uses: ./.github/actions/build-setup
+        ## TODO duplicated with "_reusable_pr-validate-references.yml" --> a add parameter to the build-setup action
+        # only required if we build a part of the documentation
+      - name: Install antora dependencies for xref validation
+        run: npm install --save-dev antora@3.2.0-alpha.2
+      - name: Build site
+        # '>' Replace newlines with spaces (folded)
+        # '-' No newline at end (strip)
+        run: >-
+          ./build-preview-dev.bash
+          --hide-edit-page-links true
+          --force-production-navbar true
+          --type links-check
+          --component bonita --branch 2022.2
+      - name: List the content of the generated site
+        uses: ./.github/actions/log-built-site-details
+      - name: Upload site preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: check-links-site
+          path: build/site
+      - name: Install htmltest
+        run: |
+          echo "Installing htmltest"
+          curl https://htmltest.wjdp.uk | bash -s -- -b scripts/htmltest v0.17.0
+          echo "Installation done"
+          ./scripts/htmltest/htmltest --version
+      - name: Check links
+        working-directory: scripts/htmltest
+        run: |
+          ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
+      # TODO remove this is only to validate that files have been generated
+      - name: list htmltest outputs
+        if: always()
+        run: |
+          ls -lh scripts/htmltest/config/
+      - name: Upload links analysis
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: check-links-${{github.sha}}
+          path: scripts/htmltest/config
+
