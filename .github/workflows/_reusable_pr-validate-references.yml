@@ -41,7 +41,7 @@ jobs:
       - name: Install antora dependencies for xref validation
         shell: bash
         # Antora 3.2 is needed by the Antora Atlas extension
-        run: npm install --save-dev antora@3.2.0-alpha.6
+        run: npm install --save-dev antora@3.2.0-alpha.8
       - name: Build Site for a single component
         if: inputs.component-name != ''
         shell: bash
