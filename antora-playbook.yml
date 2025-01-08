@@ -61,11 +61,11 @@ ui:
 antora:
   # IMPORTANT: use the 'require' syntax to ensure that the preview script is able to always update the configuration
   extensions:
-    - require: ./lib/antora/detect-unused-images-extension.js
+    - require: ./lib/antora/bonita-detect-unused-images-extension.js
     - require: ./lib/antora/versions-sorter-extension.js
-#    - require: ./lib/antora/versions-alias-extension.js
-#    - require: ./lib/antora/log-aggregated-component-versions-extension.js
-#    - require: '@antora/atlas-extension'
+    - require: ./lib/antora/versions-alias-extension.js
+    - require: ./lib/antora/log-aggregated-component-versions-extension.js
+    - require: '@antora/atlas-extension'
 
 asciidoc:
   # Only enable for preview, we don't care for production, and it can have performance impacts
