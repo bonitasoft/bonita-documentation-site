@@ -94,7 +94,7 @@ In the following, we use both scripts indifferently.
 ----
 
 [source,shell script]
-.Build BCD 3.4, Bonita 7.11 and Bonita 2021.1 versions (cross reference component versions check)
+.Build BCD 3.4, Bonita 7.11 and Bonita 2021.1 versions (cross-reference component versions check)
 ----
 ./build-preview-dev.bash \
   --use-multi-repositories \
@@ -263,7 +263,7 @@ Reference validation, which covers xrefs, includes, and images, is performed aut
 
 The validation errors are shown in the log output, and the build of the Bonita documentation site is configured to enforce reference validation.
 
-Each message shows the repository source, the refname, and the path from the root of that repository.
+Each message shows the repository source, the reference name, and the path from the root of that repository.
 
 ....
 [14:29:22.246] ERROR (asciidoctor): target of xref not found: :do-not-exist_for_sure.adoc
@@ -381,11 +381,11 @@ Here is an example of the command to build the partial site for links checking:
   --type links-check \
   --use-multi-repositories \
   --component-with-branches bcd:3.6,4.0 \
-  --component-with-branches bonita:archives,2021.2,2022.1,2022.2,2023.1,2023.2 \
+  --component-with-branches bonita:archives,2022.2,2023.1,2023.2,2024.1,2024.2,2024.3 \
   --component-with-branches central:1.0 \
   --component-with-branches cloud:master \
   --component-with-branches labs:master \
-  --component-with-branches test-toolkit:1.0,2.0 \
+  --component-with-branches test-toolkit:1.0,2.0,3.0 \
   --local-sources
 ----
 
