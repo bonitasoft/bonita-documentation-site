@@ -68,6 +68,10 @@ to = "/bonita/2021.1/:splat"
 # Add a new entry when archiving a version
 # Starting from version 7.12, when adding a redirect here, remove the redirect defined above in "Special redirect after introduction of Bonita branding version"
 [[redirects]]
+from = "/bonita/7.11/*"
+to = "/bonita/latest/:splat"
+
+[[redirects]]
 from = "/bonita/7.10/*"
 to = "/bonita/latest/:splat"
 
