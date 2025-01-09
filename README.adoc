@@ -279,7 +279,7 @@ source: https://github.com/bonitasoft/bonita-doc.git (branch: ci/simplify_xref_v
 For more details, see the {url-antora-docs}/page/xref/[Antora xref documentation]:
 
 [quote]
-An AsciiDoc xref macro is used to create a source-to-source cross reference from a resource to a publishable resource. The term cross reference, which is often abbreviated to xref, means to use the AsciiDoc xref macro to reference the source file of a publishable resource
+An AsciiDoc xref macro is used to create a source-to-source cross-reference from a resource to a publishable resource. The term cross reference, which is often abbreviated to xref, means to use the AsciiDoc xref macro to reference the source file of a publishable resource
 
 For more details about using xref in the documentation content, see the xref:docs/content/CONTRIBUTING.adoc[contributing guide].
 
