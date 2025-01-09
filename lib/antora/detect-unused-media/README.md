@@ -1,6 +1,6 @@
-# Detect unused images
+# Detect unused media
 
-This extension check if image assets (located in `assets/images`) are referenced in the `.adoc` content with `image:` or `image::`.
+This extension check if media assets (located in `assets/images`) are referenced in the `.adoc` content with `image:` or `video:`.
 
 You can configure this extension from configuration with attributes:
 
@@ -17,6 +17,6 @@ You can configure this extension from configuration with attributes:
    ```yml
    antora:
      extensions:
-     - require: ./lib/antora//detect-unused-images/detect-unused-images.js
+     - require: ./lib/antora//detect-unused-images/detect-unused-media.js
        excludeImageExtension:  ['.png', 'gif']       
    ```

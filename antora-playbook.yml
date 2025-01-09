@@ -61,7 +61,7 @@ ui:
 antora:
   # IMPORTANT: use the 'require' syntax to ensure that the preview script is able to always update the configuration
   extensions:
-    - require: ./lib/antora/detect-unused-images/detect-unused-images.js
+    - require: ./lib/antora/detect-unused-media/detect-unused-media.js
     - require: ./lib/antora/versions-sorter-extension.js
     - require: ./lib/antora/versions-alias-extension.js
     - require: ./lib/antora/log-aggregated-component-versions-extension.js
