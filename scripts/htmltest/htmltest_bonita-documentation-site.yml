@@ -5,13 +5,12 @@ OutputDir: config
 
 IgnoreURLs:
   # Links used to demonstrate the target url
-  - "^http://localhost"
   - "bonita.server.url.to.change"
   - "idp.saml.binding.url.to.change"
   - "my.company.domain"
-  - "your_remote_git_repository"
   # - "^localhost" # not working
   # - "localhost" # work but not specific enough
+  - "^http://localhost"
   ### TODO require authentication, currently fail. See if we can use an option to prevent this
   # Twitter requires authentication
   # - "twitter.com" # work but not specific enough
@@ -26,6 +25,10 @@ IgnoreURLs:
   # only present when using a partial build and xref to other component versions is generated with Antora Atlas
   # otherwise, the doc should not include such links
   - "documentation.bonitasoft.com"
+
+
+# TODO user agent
+# Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0
 
 
 #### TODO to be tested
