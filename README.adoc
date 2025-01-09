@@ -303,7 +303,7 @@ So, a special configuration must be put in place to make the Atlas extension wor
 
 Reference validation is done in a specific GitHub workflow when validating PR in documentation content repositories. It calls a dedicated action that handles the special configuration.
 
-To locally use the Atlas extension for reference validation, do the same as in xref:.github/actions/build-pr-site/action.yml[] to install the latest alpha Antora version.
+To locally use the Atlas extension for reference validation, do the same as in xref:.github/workflows/_reusable_pr-validate-references.yml[] to install the latest alpha Antora version.
 
 WARNING: be aware of the <<content-cache, cache>>. Once in cache, the site manifest file is put in cache and is never downloaded again.
 
