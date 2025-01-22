@@ -12,10 +12,10 @@
     "@antora/atlas-extension": "1.0.0-alpha.2",
     "@asciidoctor/tabs": "1.0.0-beta.6",
     "antora": "3.1.10",
-    "fs-extra": "~11.2.0",
+    "fs-extra": "~11.3.0",
     "js-yaml": "~4.1.0",
     "minimist": "~1.2.8",
-    "netlify-cli": "~18.0.0",
+    "netlify-cli": "~18.0.1",
     "rimraf": "~6.0.1"
   }
 }
