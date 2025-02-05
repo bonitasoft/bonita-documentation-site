@@ -22,7 +22,9 @@ jobs:
         with:
           # Use a PAT to use a specific user for the git operations
           token: ${{ secrets.BONITA_CI_PAT }}
+
       - name: Setup git
+        id: git-setup
         uses: bonitasoft/git-setup-action@v1
         with:
           keeper-secret-config: ${{ secrets.KSM_CONFIG }}
@@ -39,7 +41,9 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.GH_TOKEN_DOC_TRIGGER_WF }}
+          token: ${{ secrets.BONITA_CI_PAT }}
+          author: ${{ steps.git-setup.outputs.name}} <${{ steps.git-setup.outputs.email}}>
+          committer: ${{ steps.git-setup.outputs.name}} <${{ steps.git-setup.outputs.email}}>
           commit-message: "feat(theme): update theme bundle to ${{ env.release_name }}"
           branch: "feat/update_theme_${{ env.release_name }}"
           delete-branch: true
