@@ -26,5 +26,5 @@ jobs:
           attributes-to-check: ':description:'
           files-to-check: 'adoc'
           # WARN: Be aware that spaces after/before the coma are not trimmed by the action. This means that the spaces are part of the pattern.
-          forbidden-pattern-to-check: 'https://documentation.bonitasoft.com,link:https,link:http,link:,xref:https,xref:http,xref:_,xref:#,Bonita BPM,https://api-documentation.bonitasoft.com'
+          forbidden-pattern-to-check: 'customer.bonitasoft.com,https://documentation.bonitasoft.com,link:https,link:http,link:,xref:https,xref:http,xref:_,xref:#,Bonita BPM,https://api-documentation.bonitasoft.com'
           steps-to-skip: ${{ inputs.steps-to-skip }}
