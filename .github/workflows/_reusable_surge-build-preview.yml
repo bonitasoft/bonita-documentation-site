@@ -78,7 +78,7 @@ jobs:
           ${{ inputs.build-preview-command }}
           --fetch-sources true
           --pr "${{ github.event.pull_request.number }}"
-          
+          --pr-link "${{ github.event.pull_request.url }}"
           --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
       - name: List the content of the generated site
         if: github.event.action != 'closed'
