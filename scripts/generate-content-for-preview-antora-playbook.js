@@ -59,9 +59,11 @@ const useMultiComponents = getArgument(argv, 'use-multi-repositories', false);
 const useTestSources = getArgument(argv, 'use-test-sources', false);
 const siteUrl = getArgument(argv, 'site-url', false)
 const prNumber = getArgument(argv, 'pr', false)
+const prLink = getArgument(argv, 'pr-link', false)
 const siteTitle = getArgument(argv, 'site-title', false)
 const startPage = getArgument(argv, 'start-page', false);
 console.info(`PR: ${prNumber}`);
+console.info(`PR Link: ${prLink}`);
 console.info(`Site Url: ${siteUrl}`);
 console.info(`Site Title: ${siteTitle}`);
 console.info(`Start Page: ${startPage}`);
@@ -73,6 +75,7 @@ console.info('Antora Playbook source file loaded');
 if (useAllComponents) {
     console.info('Documentation content: all components and branches');
     doc.site.title = siteTitle || doc.site.title;
+    getSiteKeys(doc)['pr-link'] = prLink || undefined;
 }
 // single branch per component (site preview)
 else if (useSingleBranchPerComponent) {
@@ -84,6 +87,7 @@ else if (useSingleBranchPerComponent) {
             source.branches = source.branches[source.branches.length - 1];
         });
     doc.site.title = siteTitle || `Preview PR #${prNumber}`;
+    getSiteKeys(doc)['pr-link'] = prLink || undefined;
 }
 // multiple components, each with its own set of branches
 else if (useMultiComponents) {
