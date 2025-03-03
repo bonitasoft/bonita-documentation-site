@@ -16,7 +16,7 @@ on:
         default: "bonita"
 
 jobs:
-  # IMPORTANT: the job id must be the same as in "_reusable_surge-deploy-preview.yml" as the surge-preview-tools action uses it to generate the preview URL (current limitation of v3.2.0)
+  # IMPORTANT: the job id must be the same as in "_reusable_surge-build-preview.yml" and "_reusable_surge-deploy-preview.yml" as the surge-preview-tools action uses it to generate the preview URL (current limitation of v3.2.0)
   deploy:
     runs-on: ubuntu-22.04
     steps:
