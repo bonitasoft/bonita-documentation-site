@@ -9,7 +9,7 @@ on:
 
 jobs:
   # MUST be unique across all surge preview deployments for a repository as the job id is used in the deployment URL
-  # IMPORTANT: the job id must be the same as in "_reusable_pr-comment-list-changes.yml" as the surge-preview-tools action uses it to generate the preview URL (current limitation of v3.2.0)
+  # IMPORTANT: the job id must be the same as in "_reusable_pr-comment-list-changes.yml" and "_reusable_surge-build-preview.yml" as the surge-preview-tools action uses it to generate the preview URL (current limitation of v3.2.0)
   # IMPORTANT: the logic is duplicated in the `surge-deploy-pr-preview-test.yml` workflow. Keep both definitions in sync.
   deploy:
     runs-on: ubuntu-22.04
