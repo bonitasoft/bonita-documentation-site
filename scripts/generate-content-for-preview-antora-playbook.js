@@ -75,7 +75,6 @@ console.info('Antora Playbook source file loaded');
 if (useAllComponents) {
     console.info('Documentation content: all components and branches');
     doc.site.title = siteTitle || doc.site.title;
-    getSiteKeys(doc)['pr-link'] = prLink || undefined;
 }
 // single branch per component (site preview)
 else if (useSingleBranchPerComponent) {
@@ -87,7 +86,6 @@ else if (useSingleBranchPerComponent) {
             source.branches = source.branches[source.branches.length - 1];
         });
     doc.site.title = siteTitle || `Preview PR #${prNumber}`;
-    getSiteKeys(doc)['pr-link'] = prLink || undefined;
 }
 // multiple components, each with its own set of branches
 else if (useMultiComponents) {
@@ -275,6 +273,11 @@ const hideNavbarComponentsList = getArgument(argv, 'hide-navbar-components-list'
 console.info(`Hide Navbar Components List: ${hideNavbarComponentsList}`);
 if (hideNavbarComponentsList) {
     getSiteKeys(doc)['hide-navbar-components-list'] = true;
+}
+
+// PR link in the navbar
+if (prLink) {
+    getSiteKeys(doc)['pr-link'] = prLink;
 }
 
 // Ensure we get details where xref resolution fails
