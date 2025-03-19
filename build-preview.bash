@@ -41,6 +41,7 @@ function usage() {
   echo "      --local-ui-bundle <boolean>             'true': use locally build ui bundle whose sources are in a working directory along the one of this project, otherwise, use antora cache. Defaults to 'false'"
   echo "      --log-level <level>                     Set the Antora log level. Defaults to the original value defined in the Antora playbook."
   echo "      --pr <PR_NUMBER>                        Number of the Pull Request related to the preview (when apply). Used to display context information within the preview."
+  echo "      --pr-link <PR_LINK>                     Link of the Pull Request related to the preview (when apply). Used to set the link to navigate within the preview to PR."
   echo "      --single-branch-per-repo <boolean>      'true': only keep the latest declared branch for each component, 'false': use all branches. Defaults to 'false'"
   echo "      --site-url <url>                        Custom Url of the site preview. If set to 'DISABLED', remove the site.url from the Antora playbook. Defaults to the original url defined in the Antora playbook."
   echo "      --site-title <string>                   Title of the site preview. Use generated title if not set."

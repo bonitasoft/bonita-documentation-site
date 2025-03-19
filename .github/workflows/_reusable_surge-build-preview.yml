@@ -34,7 +34,8 @@ on:
 
 
 jobs:
-  build-pr-preview:
+  # IMPORTANT: the job id must be the same as in "_reusable_pr-comment-list-changes.yml" and "_reusable_surge-deploy-preview.yml" as the surge-preview-tools action uses it to generate the preview URL (current limitation of v3.2.0)
+  deploy:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
@@ -67,6 +68,7 @@ jobs:
           --fail-on-warning ${{inputs.fail-on-warning}}
           --ignore-errors ${{inputs.ignore-errors}}
           --pr "${{ github.event.pull_request.number }}"
+          --pr-link "${{ github.event.pull_request.html_url }}"
           --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
       - name: Build Site with custom build-preview command
         if: github.event.action != 'closed' && inputs.component-name == ''
@@ -77,10 +79,17 @@ jobs:
           ${{ inputs.build-preview-command }}
           --fetch-sources true
           --pr "${{ github.event.pull_request.number }}"
+          --pr-link "${{ github.event.pull_request.html_url }}"
           --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
       - name: List the content of the generated site
         if: github.event.action != 'closed'
         uses: ./.github/actions/log-built-site-details
+      - name: Upload Antora playbook
+        if: github.event.action != 'closed'
+        uses: actions/upload-artifact@v4
+        with:
+          name: antora-playbook-content-for-preview.yml
+          path: antora-playbook-content-for-preview.yml
       - name: Upload site preview
         if: github.event.action != 'closed'
         uses: actions/upload-artifact@v4

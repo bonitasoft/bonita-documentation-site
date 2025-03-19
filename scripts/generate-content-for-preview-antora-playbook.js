@@ -59,9 +59,11 @@ const useMultiComponents = getArgument(argv, 'use-multi-repositories', false);
 const useTestSources = getArgument(argv, 'use-test-sources', false);
 const siteUrl = getArgument(argv, 'site-url', false)
 const prNumber = getArgument(argv, 'pr', false)
+const prLink = getArgument(argv, 'pr-link', false)
 const siteTitle = getArgument(argv, 'site-title', false)
 const startPage = getArgument(argv, 'start-page', false);
 console.info(`PR: ${prNumber}`);
+console.info(`PR Link: ${prLink}`);
 console.info(`Site Url: ${siteUrl}`);
 console.info(`Site Title: ${siteTitle}`);
 console.info(`Start Page: ${startPage}`);
@@ -276,6 +278,11 @@ const hideNavbarComponentsList = getArgument(argv, 'hide-navbar-components-list'
 console.info(`Hide Navbar Components List: ${hideNavbarComponentsList}`);
 if (hideNavbarComponentsList) {
     getSiteKeys(doc)['hide-navbar-components-list'] = true;
+}
+
+// PR link in the navbar
+if (prLink) {
+    getSiteKeys(doc)['pr-link'] = prLink;
 }
 
 // Ensure we get details where xref resolution fails
