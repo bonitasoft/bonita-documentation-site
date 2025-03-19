@@ -27,6 +27,13 @@ IgnoreURLs:
   - "csc.bonitacloud.bonitasoft.com"
   # Non-OK status: 403
   - "mvnrepository.com"
+  # Non-OK status: 403 --- bonita/2022.2/process/sharepointexample.html --> https://portal.azure.com/
+  - "portal.azure.com"
+  #   hitting --- bonita/2022.2/index.html --> https://www.youtube.com/playlist?list=PLvvoQatxaHOMHRiP7hFayNXTJNdxIEiYp
+  #  Non-OK status: 404 --- bonita/2022.2/index.html --> https://www.youtube.com/playlist?list=PLvvoQatxaHOMHRiP7hFayNXTJNdxIEiYp
+  - "www.youtube.com"
+  # #  Non-OK status: 403 --- bonita/2022.2/runtime/database-configuration.html --> https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html
+  - "dev.mysql.com"
 
   # only present when using a partial build and xref to other component versions is generated with Antora Atlas
   # otherwise, the doc should not include such links
@@ -45,17 +52,6 @@ IgnoreURLs:
 # Default is: {"Range":  "bytes=0-0", "Accept": "*/*"}
 #HTTPHeaders: {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0"}
 HTTPHeaders: {"User-Agent": "Bacon/123", "Range":  "bytes=0-0", "Accept": "*/*"}
-
-#  Non-OK status: 404 --- bonita/2022.2/getting-started/create-application.html --> https://www.youtube.com/playlist?list=PLvvoQatxaHOMHRiP7hFayNXTJNdxIEiYp
-# Non-OK status: 403 --- bonita/2022.2/runtime/hardware-and-software-requirements.html --> https://dev.mysql.com/doc/refman/8.0/en/charset-unicode-utf8mb3.html
-  # The following does not work with default user agent
-  #   hitting --- bonita/2022.2/runtime/database-configuration.html --> https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html
-  #  Non-OK status: 403 --- bonita/2022.2/runtime/database-configuration.html --> https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html
-  #  hitting --- bonita/2022.2/runtime/database-configuration.html --> https://dev.mysql.com/doc/refman/8.0/en/packet-too-large.html
-  #  Non-OK status: 403 --- bonita/2022.2/runtime/database-configuration.html --> https://dev.mysql.com/doc/refman/8.0/en/packet-too-large.html
-
-  #  hitting --- bonita/2022.2/index.html --> https://www.youtube.com/playlist?list=PLvvoQatxaHOMHRiP7hFayNXTJNdxIEiYp
-  #  Non-OK status: 404 --- bonita/2022.2/index.html --> https://www.youtube.com/playlist?list=PLvvoQatxaHOMHRiP7hFayNXTJNdxIEiYp
 
 # Non-OK status: 500 --- bonita/2022.2/process/insert-data-in-a-docx-odt-template.html --> https://code.google.com/p/xdocreport/wiki/DesignReport
 
