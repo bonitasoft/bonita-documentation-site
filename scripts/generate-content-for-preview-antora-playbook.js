@@ -206,7 +206,7 @@ const previewTypeArgs = getArgumentAsArray(argv, 'type', false);
 const previewType = previewTypeArgs.slice(-1)[0];
 console.info(`Preview Type: ${previewType}`);
 switch (previewType) {
-    // htmltest links check: allow local file browsing, don't produce static HTML files for redirect
+    // htmltest links check: allow local file browsing, don't produce static HTML files for redirect, otherwise HTML pages are generated to create the redirects and they are checked by htmltest
     case 'links-check':
         doc.urls.html_extension_style = 'default';
         doc.urls.redirect_facility = 'netlify';
