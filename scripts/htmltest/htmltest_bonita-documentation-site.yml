@@ -37,7 +37,18 @@ IgnoreURLs:
 # Simulate a user agent of a real browser, because some sites block requests with the default user agent set by htmltest.
 # https://github.com/wjdp/htmltest/issues/150#issuecomment-678300908
 # Default is: {"Range":  "bytes=0-0", "Accept": "*/*"}
-HTTPHeaders: {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0"}
+#HTTPHeaders: {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0"}
+HTTPHeaders: {"User-Agent": "Bacon/123"}
+
+# hello world
+
+# when enabled custom user agent including ""Mozilla/5.0"
+# Non-OK status: 400 --- bonita/2022.2/data/define-a-search-index.html --> https://www.facebook.com/bonitasoftbpm
+# bonita/2022.2/data/documents-index.html
+#  hitting --- bonita/2022.2/data/documents-index.html --> https://www.facebook.com/bonitasoftbpm
+#  Non-OK status: 400 --- bonita/2022.2/data/documents-index.html --> https://www.facebook.com/bonitasoftbpm
+
+
 
 # Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0
 
