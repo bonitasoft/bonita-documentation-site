@@ -34,8 +34,31 @@ IgnoreURLs:
 #  - "^bonita/[^/]+/portal-js-dependencies.*"
 
 
-# TODO user agent
+# Simulate a user agent of a real browser, because some sites block requests with the default user agent set by htmltest.
+# https://github.com/wjdp/htmltest/issues/150#issuecomment-678300908
+# Default is: {"Range":  "bytes=0-0", "Accept": "*/*"}
+HTTPHeaders: {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0"}
+
 # Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0
+
+  # lead to a HTTP 400 error
+  # csc.bonitacloud.bonitasoft.com
+
+  # Non-OK status: 403 --- bonita/2022.2/process/connector-migration.html --> https://mvnrepository.com/
+  # hitting --- bonita/2022.2/identity/single-sign-on-with-saml.html --> https://csc.bonitacloud.bonitasoft.com/apps/CustomerServices/downloads
+  #  Non-OK status: 400 --- bonita/2022.2/identity/single-sign-on-with-saml.html --> https://csc.bonitacloud.bonitasoft.com/apps/CustomerServices/downloads
+  # hitting --- bonita/2022.2/runtime/licenses.html --> https://csc.bonitacloud.bonitasoft.com/apps/CustomerServices/licenses
+  #  Non-OK status: 400 --- bonita/2022.2/runtime/licenses.html --> https://csc.bonitacloud.bonitasoft.com/apps/CustomerServices/licenses
+  # The following does not work
+
+  #   hitting --- bonita/2022.2/runtime/database-configuration.html --> https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html
+  #  Non-OK status: 403 --- bonita/2022.2/runtime/database-configuration.html --> https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html
+  #  hitting --- bonita/2022.2/runtime/database-configuration.html --> https://dev.mysql.com/doc/refman/8.0/en/packet-too-large.html
+  #  Non-OK status: 403 --- bonita/2022.2/runtime/database-configuration.html --> https://dev.mysql.com/doc/refman/8.0/en/packet-too-large.html
+
+  #  hitting --- bonita/2022.2/index.html --> https://www.youtube.com/playlist?list=PLvvoQatxaHOMHRiP7hFayNXTJNdxIEiYp
+  #  Non-OK status: 404 --- bonita/2022.2/index.html --> https://www.youtube.com/playlist?list=PLvvoQatxaHOMHRiP7hFayNXTJNdxIEiYp
+
 
 
 #### TODO to be tested
