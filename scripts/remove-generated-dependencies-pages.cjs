@@ -2,6 +2,9 @@
 
 // Context: This script is used to remove specific HTML files from a site built to check external links
 // Bonita dependencies pages are generated and include broken links. As we cannot change the content of these pages, this is valid to ignore them.
+//
+// The script would be useless if the "dependencies" pages were all stored in a dedicated directory.
+// If so, we could use the htmltest IgnoreDirs option to ignore the directory. See https://github.com/wjdp/htmltest#wrench-configuration
 
 const fs = require('node:fs');
 const path = require('node:path');
