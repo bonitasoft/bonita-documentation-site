@@ -361,21 +361,17 @@ It runs the check on a subset of the site built locally as explained in the foll
 
 ==== Checking external links locally
 
-First, activate Atlas reference resolution by installing Antora 3.2 alpha as described in the <<validate-reference, validate references>> section.
-
-This ensures that internal references will be resolved even if the checked site doesn't contain all the documentation content.
-
-Then build a subset of the site locally using the preview script:
+Build a subset of the site locally using the preview script:
 
 * only build the supported version: out-of-support content is not updated
 * no "edit this page": generate a lot of links to GitHub, this is an Antora feature, we don't want to test that
 * force usage of the production navbar to have the content as close as possible of the production site
-    use a dedicated "type" option to produce convenient HTML files for URL checks (HTML extension for local file browsing, no redirect pages)
+* use a dedicated "type" option to produce convenient HTML files for URL checks (HTML extension for local file browsing, no redirect pages)
 
 Here is an example of the command to build the partial site for links checking:
 [source,shell]
 ----
-./build-preview-dev.bash \
+./build-preview.bash \
   --hide-edit-page-links true \
   --force-production-navbar \
   --type links-check \
@@ -393,13 +389,19 @@ The following commands explain how to build a site with a single component and a
 
 [source,shell]
 ----
-$./build-preview-dev.bash --hide-edit-page-links true --force-production-navbar true --type links-check --local-sources --component bonita --branch 2022.2
-$./build-preview-dev.bash --hide-edit-page-links true --force-production-navbar true --type links-check --local-sources --component cloud --branch master
+$./build-preview.bash --hide-edit-page-links true --force-production-navbar true --type links-check --local-sources --component bonita --branch 2022.2
+$./build-preview.bash --hide-edit-page-links true --force-production-navbar true --type links-check --local-sources --component cloud --branch master
 ----
 
 
 Install the `htmltest` tool in the xref:scripts/htmltest/[htmltest] folder by following the documentation in https://github.com/wjdp/htmltest.
 The configuration is already set up in the `htmltest` folder.
+
+Run a script to remove generated pages of the Bonita dependencies. They are known to contain broken links. As we cannot change the content of these pages, this is valid to ignore them.
+[source,shell]
+----
+TODO
+----
 
 Finally, run the `htmltest` tool on the generated HTML files from the `scripts/htmltest` folder
 [source,shell]
