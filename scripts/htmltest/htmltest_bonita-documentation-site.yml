@@ -32,8 +32,10 @@ IgnoreURLs:
   #   hitting --- bonita/2022.2/index.html --> https://www.youtube.com/playlist?list=PLvvoQatxaHOMHRiP7hFayNXTJNdxIEiYp
   #  Non-OK status: 404 --- bonita/2022.2/index.html --> https://www.youtube.com/playlist?list=PLvvoQatxaHOMHRiP7hFayNXTJNdxIEiYp
   - "www.youtube.com"
-  # #  Non-OK status: 403 --- bonita/2022.2/runtime/database-configuration.html --> https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html
+  #  Non-OK status: 403 --- bonita/2022.2/runtime/database-configuration.html --> https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html
   - "dev.mysql.com"
+  # Non-OK status: 403 --- bonita/latest/best-practices/gdpr-guidelines.html --> https://www.consilium.europa.eu/en/policies/data-protection/data-protection-regulation/
+  - "www.consilium.europa.eu"
 
   # only present when using a partial build and xref to other component versions is generated with Antora Atlas
   # otherwise, the doc should not include such links
