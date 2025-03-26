@@ -28,6 +28,9 @@ jobs:
         with:
           name: check-links-site
           path: build/site
+      - name: Remove pages that we don't want to check
+        run: |
+          node scripts/remove-generated-dependencies-pages.cjs
       - name: Install htmltest
         run: |
           echo "Installing htmltest"
