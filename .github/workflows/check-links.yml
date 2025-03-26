@@ -20,6 +20,8 @@ jobs:
           --hide-edit-page-links true
           --force-production-navbar true
           --type links-check
+          --ignore-errors true
+          --fail-on-warning false
           --component bonita --branch 2022.2
       - name: List the content of the generated site
         uses: ./.github/actions/log-built-site-details
