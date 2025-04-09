@@ -47,7 +47,7 @@ IgnoreURLs:
   # otherwise, the doc should not include such links
   - "documentation.bonitasoft.com"
 
-# The following does not work
+# The following does not work --> we use a script to remove the files instead
   # bonita-doc: ignore dependencies pages that are generated
 #  - "^bonita//portal-js-dependencies.html"
 #  - "^bonita\/[^\/]+\/portal-js-dependencies\.html"
@@ -64,12 +64,7 @@ HTTPHeaders: {"User-Agent": "Bacon/123", "Range":  "bytes=0-0", "Accept": "*/*"}
 # managed by antora reference validation. Also prevents detecting unresolved references to other component versions in the generated site (when building a single component branch version)
 CheckInternalHash: false
 
-# Non-OK status: 500 --- bonita/2022.2/process/insert-data-in-a-docx-odt-template.html --> https://code.google.com/p/xdocreport/wiki/DesignReport
 
 #### TODO to be tested
-# EnforceHTTPS: true
-# IgnoreHTTPS   Array of regexs of URLs to ignore for EnforceHTTPS. These URLs are still tested, unless also present in IgnoreURLs.
-# IgnoreCanonicalBrokenLinks  When true produces a warning, rather than an error, for broken canonical links. When testing a site which isn't live yet or before publishing a new page canonical links will fail.   true
-
-# LogSort   How to sort/present issues. Can be seq for sequential output or document to group by document.  document
-
+# see https://github.com/wjdp/htmltest#basic-options
+#CacheExpires
