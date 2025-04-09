@@ -5,7 +5,7 @@ OutputDir: config
 
 IgnoreDirs:
   # For bonita-doc, be ready when all dependencies pages will be moved there
-  - modules/dependencies
+  - bonita/.*/dependencies
 
 IgnoreURLs:
   # Links used to demonstrate the target url
