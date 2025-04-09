@@ -13,6 +13,7 @@ IgnoreURLs:
   - "bonita.server.url.to.change"
   - "idp.saml.binding.url.to.change"
   - "my.company.domain"
+  - "my-server" # bonita/latest/bcd/ci-samples.html --> http://my-server:8080/bonita
   # - "^localhost" # not working
   # - "localhost" # work but not specific enough
   - "^http://localhost"
