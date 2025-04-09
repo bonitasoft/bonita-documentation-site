@@ -16,13 +16,14 @@ const SITE_DIR = 'build/site';
 
 // Main function
 async function main() {
+  console.log("Removing specific generated pages listing Bonita dependencies from the bonita directory and subdirectories...");
+  console.log(`Site directory: ${SITE_DIR}`);
+
   // Check if the directory exists
   if (!fs.existsSync(SITE_DIR)) {
     console.error(`Error: ${SITE_DIR} directory does not exist.`);
     process.exit(1);
   }
-
-  console.log("Removing specific generated pages listing Bonita dependencies from bonita directory and subdirectories...");
 
   // Define files to remove
   const filesToRemove = [
@@ -42,17 +43,18 @@ async function main() {
     try {
       // Use glob to find all matching files
       const files = await glob(`${SITE_DIR}/bonita/**/${file}`);
-      console.log(`  Found ${files.length} files matching ${file}:`);
+      let filesNumber = files.length ?? 0;
 
-      // Delete each file found
-      for (const filePath of files) {
-        console.log(`  Deleting: ${filePath}`);
-        fs.unlinkSync(filePath);
-        console.log(`  Deleted: ${filePath}`);
-      }
-
-      if (files.length === 0) {
+      if (filesNumber === 0) {
         console.log(`  No files found matching ${file}`);
+      } else {
+        console.log(`  Found ${filesNumber} files matching ${file}:`);
+        // Delete each file found
+        for (const filePath of files) {
+          console.log(`  Deleting: ${filePath}`);
+          fs.unlinkSync(filePath);
+          console.log(`  Deleted: ${filePath}`);
+        }
       }
     } catch (error) {
       console.error(`Error while processing ${file}: ${error.message}`);
