@@ -8,13 +8,13 @@ IgnoreDirs:
   - bonita/.*/dependencies
 
 IgnoreURLs:
-  # Links used to demonstrate the target url
-  # TODO may no longer be needed because we have escaped most of the wrong links in the documentation
+  # Links used to demonstrate the target url in various examples
   - "bonita.server.url.to.change"
   - "idp.saml.binding.url.to.change"
   - "my.company.domain"
   - "my-server" # bonita/latest/bcd/ci-samples.html --> http://my-server:8080/bonita
   - "host.docker.internal" # bonita/latest/applications/ui-builder/download-and-launch.html --> http://host.docker.internal:8080/bonita/API
+  - "bonita-app" # bonita/latest/applications/ui-builder/production-packaging.html --> http://bonita-app:8080/bonita/API
   # - "^localhost" # not working
   # - "localhost" # work but not specific enough
   - "^http://localhost"
