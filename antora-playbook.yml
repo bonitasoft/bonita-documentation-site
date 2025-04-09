@@ -56,12 +56,13 @@ content:
         - "main"
 ui:
   bundle:
-    url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.24.0/bonita-documentation-theme-v1.24.0.zip
+    url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.25.0/bonita-documentation-theme-v1.25.0.zip
 
 antora:
   # IMPORTANT: use the 'require' syntax to ensure that the preview script is able to always update the configuration
   extensions:
     - require: '@bonitasoft/antora-detect-unused-media-extension'
+    - require: '@springio/antora-extensions/asciinema-extension'
     - require: ./lib/antora/versions-sorter-extension.js
     - require: ./lib/antora/versions-alias-extension.js
     - require: ./lib/antora/log-aggregated-component-versions-extension.js
