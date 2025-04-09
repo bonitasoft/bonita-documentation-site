@@ -46,9 +46,9 @@ async function main() {
       let filesNumber = files.length ?? 0;
 
       if (filesNumber === 0) {
-        console.log(`  No files found matching ${file}`);
+        console.log(`  No files found`);
       } else {
-        console.log(`  Found ${filesNumber} files matching ${file}:`);
+        console.log(`  Found ${filesNumber} files:`);
         // Delete each file found
         for (const filePath of files) {
           console.log(`  Deleting: ${filePath}`);
