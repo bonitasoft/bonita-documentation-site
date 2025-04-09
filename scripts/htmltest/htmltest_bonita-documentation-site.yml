@@ -43,6 +43,7 @@ IgnoreURLs:
   # Non-OK status: 403 --- bonita/latest/best-practices/gdpr-guidelines.html --> https://www.consilium.europa.eu/en/policies/data-protection/data-protection-regulation/
   - "www.consilium.europa.eu"
 
+# TODO check if still needed as we don't use Atlas anymore
   # only present when using a partial build and xref to other component versions is generated with Antora Atlas
   # otherwise, the doc should not include such links
   - "documentation.bonitasoft.com"
