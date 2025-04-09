@@ -3,6 +3,10 @@
 LogLevel: 1 # info
 OutputDir: config
 
+IgnoreDirs:
+  # For bonita-doc, be ready when all dependencies pages will be moved there
+  - modules/dependencies
+
 IgnoreURLs:
   # Links used to demonstrate the target url
   # TODO may no longer be needed because we have escaped most of the wrong links in the documentation
