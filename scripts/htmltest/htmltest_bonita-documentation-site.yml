@@ -14,6 +14,7 @@ IgnoreURLs:
   - "idp.saml.binding.url.to.change"
   - "my.company.domain"
   - "my-server" # bonita/latest/bcd/ci-samples.html --> http://my-server:8080/bonita
+  - "host.docker.internal" # bonita/latest/applications/ui-builder/download-and-launch.html --> http://host.docker.internal:8080/bonita/API
   # - "^localhost" # not working
   # - "localhost" # work but not specific enough
   - "^http://localhost"
