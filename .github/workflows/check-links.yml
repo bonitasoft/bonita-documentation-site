@@ -23,7 +23,7 @@ jobs:
           --ignore-errors true
           --fail-on-warning false
           --use-multi-repositories
-          --component-with-branches bonita:archives,2022.2,2023.1,2023.2
+          --component-with-branches bonita:archives,2022.2,2023.1,2023.2,2024.1,2024.2,2024.3,2025.1
       - name: List the content of the generated site
         uses: ./.github/actions/log-built-site-details
       - name: Upload site preview
