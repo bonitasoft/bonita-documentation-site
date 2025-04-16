@@ -17,8 +17,8 @@ runtime:
     failure_level: warn
 
 content:
-  # When adding a new url, add a new entry in generate-content-for-preview-antora-playbook.js to manage PR preview
-  # The site preview only use the latest declared branch for each source
+  # When adding a new URL, add a new entry in generate-content-for-preview-antora-playbook.js to manage PR preview
+  # Also update the "check-links" workflow with any new version or component
   sources:
     - url: https://github.com/bonitasoft/bonita-cloud-doc.git
       branches:
