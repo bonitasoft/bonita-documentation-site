@@ -32,14 +32,14 @@ jobs:
           --component-with-branches test-toolkit:1.0,2.0,3.0
       - name: List the content of the generated site
         uses: ./.github/actions/log-built-site-details
-      - name: Upload site preview
-        uses: actions/upload-artifact@v4
-        with:
-          name: check-links-site
-          path: build/site
       - name: Remove pages that we don't want to check
         run: |
           node scripts/remove-generated-dependencies-pages.cjs
+      - name: Upload site used for links check
+        uses: actions/upload-artifact@v4
+        with:
+          name: check-links-site-${{github.sha}}
+          path: build/site
       - name: Install htmltest
         run: |
           echo "Installing htmltest"
@@ -59,6 +59,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: check-links-resources-${{github.sha}}
+          name: check-links-outputs-${{github.sha}}
           path: scripts/htmltest/config
 
