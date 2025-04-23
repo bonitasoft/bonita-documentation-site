@@ -1,5 +1,13 @@
 name: Check links of the site
 on:
+  schedule:
+    - cron: "0 5 * * 3" # every wednesday at 5:00 UTC
+  workflow_dispatch:
+    inputs:
+      slack-notifications:
+        type: boolean
+        description: "If checked, send slack notifications when errors occur"
+        default: false
   # TODO schedule and workflow_dispatch in the final implementation
   pull_request:
     branches:
@@ -50,15 +58,24 @@ jobs:
         working-directory: scripts/htmltest
         run: |
           ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
-      # TODO remove this is only to validate that files have been generated
-      - name: list htmltest outputs
-        if: always()
-        run: |
-          ls -lh scripts/htmltest/config/
       - name: Upload links analysis
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: check-links-outputs-${{github.sha}}
+          name: check-links-analysis-${{github.sha}}
           path: scripts/htmltest/config
 
+      - name: Send message to Slack channel
+        if: failure() && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.slack-notifications == 'true') )
+        uses: bonitasoft/notify-slack-action@v1
+        with:
+          keeper-secret-config: ${{ secrets.KSM_CONFIG }}
+          channel-id: ${{ vars.RD_PLATFORM_SLACK_CHANNEL_ID }}
+          message: |
+            :fire: The documentation contains broken links! :fire:
+            @channel *We need someone*!
+            - Add a :fire_extinguisher:if you take the action to resolve the conflicts (only one person is required)
+            - Add a :sweat_drops: when it’s done (and eventually a :party_parrot:)
+            Run the logs of the GitHub workflow run or download the check links analysis to find the pages including the broken links.
+            Then, create a Pull Request in the related content repository to fix the broken links (do the fix on the oldest version including the problemg).
+  
