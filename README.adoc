@@ -94,7 +94,7 @@ In the following, we use both scripts indifferently.
 ----
 
 [source,shell script]
-.Build BCD 3.4, Bonita 7.11 and Bonita 2021.1 versions (cross reference component versions check)
+.Build BCD 3.4, Bonita 7.11 and Bonita 2021.1 versions (cross-reference component versions check)
 ----
 ./build-preview-dev.bash \
   --use-multi-repositories \
@@ -263,7 +263,7 @@ Reference validation, which covers xrefs, includes, and images, is performed aut
 
 The validation errors are shown in the log output, and the build of the Bonita documentation site is configured to enforce reference validation.
 
-Each message shows the repository source, the refname, and the path from the root of that repository.
+Each message shows the repository source, the reference name, and the path from the root of that repository.
 
 ....
 [14:29:22.246] ERROR (asciidoctor): target of xref not found: :do-not-exist_for_sure.adoc
@@ -279,7 +279,7 @@ source: https://github.com/bonitasoft/bonita-doc.git (branch: ci/simplify_xref_v
 For more details, see the {url-antora-docs}/page/xref/[Antora xref documentation]:
 
 [quote]
-An AsciiDoc xref macro is used to create a source-to-source cross reference from a resource to a publishable resource. The term cross reference, which is often abbreviated to xref, means to use the AsciiDoc xref macro to reference the source file of a publishable resource
+An AsciiDoc xref macro is used to create a source-to-source cross-reference from a resource to a publishable resource. The term cross reference, which is often abbreviated to xref, means to use the AsciiDoc xref macro to reference the source file of a publishable resource
 
 For more details about using xref in the documentation content, see the xref:docs/content/CONTRIBUTING.adoc[contributing guide].
 
@@ -303,7 +303,7 @@ So, a special configuration must be put in place to make the Atlas extension wor
 
 Reference validation is done in a specific GitHub workflow when validating PR in documentation content repositories. It calls a dedicated action that handles the special configuration.
 
-To locally use the Atlas extension for reference validation, do the same as in xref:.github/actions/build-pr-site/action.yml[] to install the latest alpha Antora version.
+To locally use the Atlas extension for reference validation, do the same as in xref:.github/workflows/_reusable_pr-validate-references.yml[] to install the latest alpha Antora version.
 
 WARNING: be aware of the <<content-cache, cache>>. Once in cache, the site manifest file is put in cache and is never downloaded again.
 
@@ -350,6 +350,64 @@ Shared resources are:
 * xref:.github/actions/[shared actions]
 * xref:.github/workflows/[reusable workflows]: by convention, the reusable workflows are prefixed with `_reusable_`
 
+
+=== Checking external links
+
+The xref:.github/workflows/check-links.yml[check links workflow] that check the external links on periodically.
+
+The workflow relies on https://github.com/wjdp/htmltest[htmltest] to check the links.
+
+It runs the check on a subset of the site built locally as explained in the following paragraph.
+
+==== Checking external links locally
+
+Build a subset of the site locally using the preview script:
+
+* only build the supported version: out-of-support content is not updated
+* no "edit this page": generate a lot of links to GitHub, this is an Antora feature, we don't want to test that
+* force usage of the production navbar to have the content as close as possible of the production site
+* use a dedicated "type" option to produce convenient HTML files for URL checks (HTML extension for local file browsing, no redirect pages)
+
+Here is an example of the command to build the partial site for links checking:
+[source,shell]
+----
+./build-preview.bash \
+  --hide-edit-page-links true \
+  --force-production-navbar true \
+  --type links-check \
+  --use-multi-repositories \
+  --component-with-branches bcd:3.6,4.0 \
+  --component-with-branches bonita:archives,2022.2,2023.1,2023.2,2024.1,2024.2,2024.3 \
+  --component-with-branches central:1.0 \
+  --component-with-branches cloud:master \
+  --component-with-branches labs:master \
+  --component-with-branches test-toolkit:1.0,2.0,3.0 \
+  --local-sources
+----
+
+The following commands explain how to build a site with a single component and a single version:
+
+[source,shell]
+----
+$./build-preview.bash --hide-edit-page-links true --force-production-navbar true --type links-check --local-sources --component bonita --branch 2022.2
+$./build-preview.bash --hide-edit-page-links true --force-production-navbar true --type links-check --local-sources --component cloud --branch master
+----
+
+
+Install the `htmltest` tool in the xref:scripts/htmltest/[htmltest] folder by following the documentation in https://github.com/wjdp/htmltest.
+The configuration is already set up in the `htmltest` folder.
+
+Run a script to remove generated pages of the Bonita dependencies. They are known to contain broken links. As we cannot change the content of these pages, this is valid to ignore them.
+[source,shell]
+----
+node scripts/remove-generated-dependencies-pages.cjs
+----
+
+Finally, run the `htmltest` tool on the generated HTML files from the `scripts/htmltest` folder
+[source,shell]
+----
+./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
+----
 
 
 === Production build

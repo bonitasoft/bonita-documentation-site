@@ -1,0 +1,57 @@
+# For configuration details, see https://github.com/wjdp/htmltest#wrench-configuration
+
+LogLevel: 1 # info
+OutputDir: config
+
+IgnoreDirs:
+  # For bonita-doc, ignore the generated pages listing the dependencies of Bonita components
+  # A script is also used to remove the generated pages that are not located in this directory
+  - bonita/.*/dependencies
+
+IgnoreURLs:
+  # Links used to demonstrate the target url in various examples
+  - "bonita.server.url.to.change"
+  - "idp.saml.binding.url.to.change"
+  - "my.company.domain"
+  - "my-server" # bonita/latest/bcd/ci-samples.html --> http://my-server:8080/bonita
+  - "host.docker.internal" # bonita/latest/applications/ui-builder/download-and-launch.html --> http://host.docker.internal:8080/bonita/API
+  - "bonita-app" # bonita/latest/applications/ui-builder/production-packaging.html --> http://bonita-app:8080/bonita/API
+  - "^http://localhost"
+  # Twitter requires authentication
+  - "twitter.com/bonitasoft"
+  - "x.com/bonitasoft"
+  # Even with a custom user-agent, linkedin returns a "999" error code
+  # See https://stackoverflow.com/questions/46214017/public-linkedin-profile-url-returns-server-status-code-999
+  - "linkedin.com/company/bonitasoft"
+  # Non-OK status: 400
+  - "csc.bonitacloud.bonitasoft.com"
+  # Non-OK status: 403
+  - "mvnrepository.com"
+  # Non-OK status: 403 --- bonita/2022.2/process/sharepointexample.html --> https://portal.azure.com/
+  - "portal.azure.com"
+  #   hitting --- bonita/2022.2/index.html --> https://www.youtube.com/playlist?list=PLvvoQatxaHOMHRiP7hFayNXTJNdxIEiYp
+  #  Non-OK status: 404 --- bonita/2022.2/index.html --> https://www.youtube.com/playlist?list=PLvvoQatxaHOMHRiP7hFayNXTJNdxIEiYp
+  - "www.youtube.com"
+  #  Non-OK status: 403 --- bonita/2022.2/runtime/database-configuration.html --> https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html
+  - "dev.mysql.com"
+  # Non-OK status: 403 --- bonita/latest/best-practices/gdpr-guidelines.html --> https://www.consilium.europa.eu/en/policies/data-protection/data-protection-regulation/
+  - "www.consilium.europa.eu"
+  # Non-OK status: 403 --- bpi/latest/spo/index.html --> https://openai.com/
+  - "openai.com"
+  # Only static links use this URL, this is ban by automatic checks in the documentation content
+  - "documentation.bonitasoft.com"
+
+
+# Simulate a user agent of a real browser, because some sites block requests with the default user agent set by htmltest.
+# https://github.com/wjdp/htmltest/issues/150#issuecomment-678300908
+# Default is: {"Range":  "bytes=0-0", "Accept": "*/*"}
+#HTTPHeaders: {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0"}
+HTTPHeaders: {"User-Agent": "Bacon/123", "Range":  "bytes=0-0", "Accept": "*/*"}
+
+# managed by antora reference validation. Also prevents detecting unresolved references to other component versions in the generated site (when building a single component branch version)
+CheckInternalHash: false
+
+
+#### For the future, when we will use the cache
+# see https://github.com/wjdp/htmltest#basic-options
+# CacheExpires: 336h # default (2 weeks)
