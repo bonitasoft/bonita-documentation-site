@@ -4,7 +4,8 @@ LogLevel: 1 # info
 OutputDir: config
 
 IgnoreDirs:
-  # For bonita-doc, be ready when all dependencies pages will be moved there
+  # For bonita-doc, ignore the generated pages listing the dependencies of Bonita components
+  # A script is also used to remove the generated pages that are not located in this directory
   - bonita/.*/dependencies
 
 IgnoreURLs:
@@ -15,19 +16,12 @@ IgnoreURLs:
   - "my-server" # bonita/latest/bcd/ci-samples.html --> http://my-server:8080/bonita
   - "host.docker.internal" # bonita/latest/applications/ui-builder/download-and-launch.html --> http://host.docker.internal:8080/bonita/API
   - "bonita-app" # bonita/latest/applications/ui-builder/production-packaging.html --> http://bonita-app:8080/bonita/API
-  # - "^localhost" # not working
-  # - "localhost" # work but not specific enough
   - "^http://localhost"
-  ### TODO require authentication, currently fail. See if we can use an option to prevent this
   # Twitter requires authentication
-  # - "twitter.com" # work but not specific enough
-  # - "^twitter.com/bonitasoft$" # not working
   - "twitter.com/bonitasoft"
   - "x.com/bonitasoft"
-  # TODO use a specific user agent to avoid the 999 error code
-  # Require authentication. Http code 999: https://stackoverflow.com/questions/46214017/public-linkedin-profile-url-returns-server-status-code-999
-  # - "linkedin.com" # work but not specific enough
-  #  https://www.linkedin.com/company/bonitasoft/
+  # Even with a custom user-agent, linkedin returns a "999" error code
+  # See https://stackoverflow.com/questions/46214017/public-linkedin-profile-url-returns-server-status-code-999
   - "linkedin.com/company/bonitasoft"
   # Non-OK status: 400
   - "csc.bonitacloud.bonitasoft.com"
@@ -44,18 +38,8 @@ IgnoreURLs:
   - "www.consilium.europa.eu"
   # Non-OK status: 403 --- bpi/latest/spo/index.html --> https://openai.com/
   - "openai.com"
-
-# TODO check if still needed as we don't use Atlas anymore
-  # only present when using a partial build and xref to other component versions is generated with Antora Atlas
-  # otherwise, the doc should not include such links
+  # Only static links use this URL, this is ban by automatic checks in the documentation content
   - "documentation.bonitasoft.com"
-
-# The following does not work --> we use a script to remove the files instead
-  # bonita-doc: ignore dependencies pages that are generated
-#  - "^bonita//portal-js-dependencies.html"
-#  - "^bonita\/[^\/]+\/portal-js-dependencies\.html"
-#  - "^bonita/[^/]+/portal-js-dependencies.html"
-#  - "^bonita/[^/]+/portal-js-dependencies.*"
 
 
 # Simulate a user agent of a real browser, because some sites block requests with the default user agent set by htmltest.
@@ -68,6 +52,6 @@ HTTPHeaders: {"User-Agent": "Bacon/123", "Range":  "bytes=0-0", "Accept": "*/*"}
 CheckInternalHash: false
 
 
-#### TODO to be tested
+#### For the future, when we will use the cache
 # see https://github.com/wjdp/htmltest#basic-options
-#CacheExpires
+# CacheExpires: 336h # default (2 weeks)
