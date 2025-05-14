@@ -41,6 +41,8 @@ IgnoreURLs:
   - "openai.com"
   # Only static links use this URL, this is ban by automatic checks in the documentation content
   - "documentation.bonitasoft.com"
+  # In the footer of all pages, this link is not used in the documentation content, so we can ignore it 
+  - "surge.sh"
 
 
 # Simulate a user agent of a real browser, because some sites block requests with the default user agent set by htmltest.
