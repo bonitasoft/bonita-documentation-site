@@ -37,25 +37,23 @@ jobs:
   # IMPORTANT: the job id must be the same as in "_reusable_pr-comment-list-changes.yml" and "_reusable_surge-deploy-preview.yml" as the surge-preview-tools action uses it to generate the preview URL (current limitation of v3.2.0)
   deploy:
     runs-on: ubuntu-22.04
+    if: github.event.action != 'closed'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        if: github.event.action != 'closed'
         with:
           repository: 'bonitasoft/bonita-documentation-site'
           ref: ${{ inputs.doc-site-branch }}
       - name: Validate PR branch name
         uses: ./.github/actions/validate-pr-branch-name
-        if: github.event.action != 'closed'
       - uses: bonitasoft/actions/packages/surge-preview-tools@v3
         id: surge-preview-tools
         with:
           surge-token: ${{ secrets.SURGE_TOKEN_DOC }}
       - name: Build Setup
         uses: ./.github/actions/build-setup
-        if: github.event.action != 'closed'
       - name: Build Site for a single component
-        if: github.event.action != 'closed' && inputs.component-name != ''
+        if: inputs.component-name != ''
         shell: bash
         # '>' Replace newlines with spaces (folded)
         # '-' No newline at end (strip)
@@ -71,7 +69,7 @@ jobs:
           --pr-link "${{ github.event.pull_request.html_url }}"
           --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
       - name: Build Site with custom build-preview command
-        if: github.event.action != 'closed' && inputs.component-name == ''
+        if: inputs.component-name == ''
         shell: bash
         # '>' Replace newlines with spaces (folded)
         # '-' No newline at end (strip)
@@ -82,16 +80,13 @@ jobs:
           --pr-link "${{ github.event.pull_request.html_url }}"
           --site-url "${{ steps.surge-preview-tools.outputs.preview-url }}"
       - name: List the content of the generated site
-        if: github.event.action != 'closed'
         uses: ./.github/actions/log-built-site-details
       - name: Upload Antora playbook
-        if: github.event.action != 'closed'
         uses: actions/upload-artifact@v4
         with:
           name: antora-playbook-content-for-preview.yml
           path: antora-playbook-content-for-preview.yml
       - name: Upload site preview
-        if: github.event.action != 'closed'
         uses: actions/upload-artifact@v4
         with:
           name: site  # must be kept in sync with the artifact name downloaded in the deployment stage
