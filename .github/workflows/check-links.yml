@@ -8,6 +8,8 @@ on:
         type: boolean
         description: "If checked, send slack notifications when errors occur"
         default: false
+  # TODO remove this temp configuration, used to test the configuration changes in this PR
+  pull_request:
 
 jobs:
   check_links:
