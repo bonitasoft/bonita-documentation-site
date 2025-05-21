@@ -30,7 +30,7 @@ jobs:
           --use-multi-repositories
           --component-with-branches bcd:3.6,4.0
           --component-with-branches bpi:main
-          --component-with-branches bonita:archives,2022.2,2023.1,2023.2,2024.1,2024.2,2024.3,2025.1
+          --component-with-branches bonita:archives,2023.2,2024.1,2024.2,2024.3,2025.1
           --component-with-branches central:1.0
           --component-with-branches cloud:master
           --component-with-branches labs:master

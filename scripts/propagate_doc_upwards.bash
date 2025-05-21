@@ -48,8 +48,6 @@ log "Configuration: REPO_NAME=${REPO_NAME}"
 git config merge.ours.driver true
 
 if [ "${REPO_NAME}" == "bonita-doc" ]; then
-  merge "2022.2" "2023.1"
-  merge "2023.1" "2023.2"
   merge "2023.2" "2024.1"
   merge "2024.1" "2024.2"
   merge "2024.2" "2024.3"
