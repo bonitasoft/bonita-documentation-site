@@ -1,0 +1,23 @@
+name: Compress Images
+on:
+  workflow_call: # this allows the workflow to be reused
+
+  # permissions:
+#   pull-requests: write
+#   contents: write
+
+jobs:
+  compress:
+    # The GITHUB_TOKEN only has read permissions when the Pull Request is created from a forked repositories
+    # It doesn't allow `image-actions` to push to the related branch nor to create PR comment
+    if: ${{ !github.event.pull_request.head.repo.fork }}
+    name: calibreapp/image-actions
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Compress Images
+        uses: calibreapp/image-actions@82caf2e46a1950e602c8440fde4730ec1da6fef4
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
