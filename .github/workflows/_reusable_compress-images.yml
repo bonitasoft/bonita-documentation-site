@@ -1,0 +1,26 @@
+# WARN: this workflow may be reused in other workflows triggered by a pull_request_target.
+# So, do not add steps that can be used as attack vectors.
+# See https://securitylab.github.com/research/github-actions-preventing-pwn-requests/ for more information.
+
+# Permissions required by this workflow that MUST be set in the calling workflow as this workflow can only downgrade permissions (https://docs.github.com/en/actions/using-workflows/reusing-workflows#supported-keywords-for-jobs-that-call-a-reusable-workflow)
+# pull-requests: write / "calibreapp/image-actions" write PR comments to explain the image compression results
+# content: write / "calibreapp/image-actions" commit the compressed images to the branch of the Pull Request
+name: Compress Images
+on:
+  workflow_call: # this allows the workflow to be reused
+
+jobs:
+  compress:
+    # The GITHUB_TOKEN only has read permissions when the Pull Request is created from a forked repositories
+    # It doesn't allow `image-actions` to push to the related branch nor to create PR comment
+    if: ${{ !github.event.pull_request.head.repo.fork }}
+    name: calibreapp/image-actions
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Compress Images
+        uses: calibreapp/image-actions@82caf2e46a1950e602c8440fde4730ec1da6fef4
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
