@@ -13,7 +13,7 @@ jobs:
   compress:
     # The GITHUB_TOKEN only has read permissions when the Pull Request is created from a forked repositories
     # It doesn't allow `image-actions` to push to the related branch nor to create PR comment
-    if: ${{ !github.event.pull_request.head.repo.fork }}
+    if: ${{ github.event.pull_request_target || !github.event.pull_request.head.repo.fork }}
     name: calibreapp/image-actions
     runs-on: ubuntu-22.04
     steps:
