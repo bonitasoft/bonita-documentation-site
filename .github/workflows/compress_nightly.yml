@@ -1,0 +1,12 @@
+# Compress images on demand (workflow_dispatch), and at 8pm every Monday (schedule).
+# Open a Pull Request if any images can be compressed.
+name: Compress Images Nightly
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '00 8 * * 1'
+jobs:
+  compress-images:
+    uses: ./.github/workflows/_reusable_nightly_compress_image.yml
+    secrets:
+      github-token: ${{ secrets.BONITA_CI_PAT }}

@@ -1,0 +1,42 @@
+# WARN: this workflow may be reused in other workflows triggered by a workflow_dispatch or a cron.
+name: Compress Images Nightly
+on:
+  workflow_call:
+    inputs:
+      pr-title:
+        description: 'Title of the Pull Request to create'
+        type: string
+        default: 'refactor: Compressed Images'
+      branch-name:
+        description: 'Name of the branch to create'
+        type: string
+        default: 'refactor/compressed-images'
+    secrets:
+      github-token:
+        description: 'GitHub token for authentication'
+        required: true
+
+jobs:
+  compress:
+    name: Compress images on ${{ github.ref_name }}
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Compress Images
+        id: calibre
+        uses: calibreapp/image-actions@main
+        with:
+          githubToken: ${{ secrets.github-token }}
+          compressOnly: true
+
+      - name: Create New Pull Request If Needed
+        if: steps.calibre.outputs.markdown != ''
+        uses: peter-evans/create-pull-request@v4
+        with:
+          title: ${{ inputs.pr-title }} on ${{ github.ref_name }}
+          commit-message: 'refactor: Images compressed'
+          branch: ${{ inputs.branch-name }}
+          branch-suffix: 'timestamp'
+          body: ${{ steps.calibre.outputs.markdown }}
