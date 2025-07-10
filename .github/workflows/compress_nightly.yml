@@ -7,6 +7,6 @@ on:
     - cron: '00 8 * * 1'
 jobs:
   compress-images:
-    uses: ./.github/workflows/_reusable_nightly_compress_image.yml
+    uses: ./.github/workflows/_reusable_compress_images_nightly.yml
     secrets:
       github-token: ${{ secrets.BONITA_CI_PAT }}
