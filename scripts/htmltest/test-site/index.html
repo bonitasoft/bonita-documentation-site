@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+These are links were sometimes not reachable by htmltest, but are valid links. Generated 502 errors:
+<ul>
+    <li><a href="http://www.quartz-scheduler.org/documentation/">Quartz Scheduler Documentation</a></li>
+    <li><a href="http://getbootstrap.com/">Bootstrap Documentation</a></li>
+    <li><a href="https://git-scm.com/downloads">Git Downloads</a></li>
+</ul>
+
+Working link to the bonitasoft website: <a href="https://www.bonitasoft.com/">Bonitasoft</a>
+
+May fail:
+<ul>
+    <!-- Even with a custom user-agent, linkedin may return a "999" error code -->
+    <!-- See https://stackoverflow.com/questions/46214017/public-linkedin-profile-url-returns-server-status-code-999 -->
+    <li>error 999: <a href="https://www.linkedin.com/company/bonitasoft">Bonitasoft LinkedIn</a></li>
+    <li>error 400: <a href="https://www.facebook.com/bonitasoftbpm">Bonitasoft Facebook</a></li>
+    <li>error 503: <a href="https://bugs.launchpad.net/ubuntu/+source/openjdk-lts/+bug/1988843">OpenJDK Bug</a></li>
+
+</ul>
+
+</html>

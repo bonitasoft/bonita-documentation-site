@@ -409,6 +409,7 @@ Finally, run the `htmltest` tool on the generated HTML files from the `scripts/h
 ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
 ----
 
+TIP: To validate the configuration, it is also possible to check the `test-site/` directory, that includes some URL that have required `htmltest` configuration tuning in the past.
 
 === Production build
 
