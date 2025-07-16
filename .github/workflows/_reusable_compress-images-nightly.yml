@@ -6,7 +6,7 @@ on:
       pr-title:
         description: 'Title of the Pull Request to create'
         type: string
-        default: 'refactor: Compressed Images'
+        default: 'refactor: compress images'
       branch-name:
         description: 'Name of the branch to create'
         type: string
@@ -38,7 +38,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           title: ${{ inputs.pr-title }} on ${{ github.ref_name }}
-          commit-message: 'refactor: Images compressed'
+          commit-message: 'refactor: compress images'
           branch: ${{ inputs.branch-name }}
           branch-suffix: 'timestamp'
           body: ${{ steps.calibre.outputs.markdown }}
