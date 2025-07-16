@@ -13,7 +13,7 @@ on:
         default: 'refactor/compressed-images'
     secrets:
       github-token:
-        description: 'GitHub token for authentication'
+        description: 'GitHub token for Git operations and API calls'
         required: true
 
 jobs:
@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.github-token }}
 
       - name: Compress Images
         id: calibre
@@ -40,3 +42,4 @@ jobs:
           branch: ${{ inputs.branch-name }}
           branch-suffix: 'timestamp'
           body: ${{ steps.calibre.outputs.markdown }}
+          token: ${{ secrets.github-token }}
