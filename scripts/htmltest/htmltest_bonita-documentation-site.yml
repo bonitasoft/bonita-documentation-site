@@ -48,7 +48,11 @@ IgnoreURLs:
 # This is often used to check if a resource exists and supports partial content requests, without downloading the entire file.
 #
 # The Accept-Encoding header tells the server which content-encoding methods the client supports.
-# Some servers like (powered by Cloudfare) may block requests that do not specify a user agent or accept encoding.
+# Some servers like those protected by Cloudflare may block requests that do not specify a user agent or accept encoding.
+# For example:
+#    http://www.quartz-scheduler.org/documentation/
+#    http://getbootstrap.com/
+#    https://git-scm.com/downloads
 HTTPHeaders: {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0", "Accept": "*/*", "Range": "bytes=0-0", "Accept-Encoding": "gzip, deflate, br"}
 
 # managed by antora reference validation. Also prevents detecting unresolved references to other component versions in the generated site (when building a single component branch version)
