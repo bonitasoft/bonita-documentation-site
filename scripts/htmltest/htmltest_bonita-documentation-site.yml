@@ -18,13 +18,8 @@ IgnoreURLs:
   - "host.docker.internal" # bonita/latest/applications/ui-builder/download-and-launch.html --> http://host.docker.internal:8080/bonita/API
   - "bonita-app" # bonita/latest/applications/ui-builder/production-packaging.html --> http://bonita-app:8080/bonita/API
   - "^http://localhost"
-  # Twitter requires authentication
-  - "twitter.com/bonitasoft"
-  - "x.com/bonitasoft"
   # Non-OK status: 400
   - "csc.bonitacloud.bonitasoft.com"
-  # Non-OK status: 400 --- central/latest/page-01.html --> https://www.facebook.com/bonitasoftbpm
-  - "www.facebook.com/bonitasoftbpm"
   # Non-OK status: 403
   - "mvnrepository.com"
   # Non-OK status: 403 --- bonita/2022.2/process/sharepointexample.html --> https://portal.azure.com/
@@ -38,8 +33,14 @@ IgnoreURLs:
   - "www.consilium.europa.eu"
   # Non-OK status: 403 --- bpi/latest/spo/index.html --> https://openai.com/
   - "openai.com"
-  # In the footer of all pages, this link is not used in the documentation content, so we can ignore it
+  ###############
+  # The following are present in the footer of all pages. These links are not used in the documentation content, so we can ignore it
+  # Non-OK status: 400 --- central/latest/page-01.html --> https://www.facebook.com/bonitasoftbpm
+  - "www.facebook.com/bonitasoftbpm"
   - "surge.sh"
+  # Twitter requires authentication
+  - "twitter.com/bonitasoft"
+  - "x.com/bonitasoft"
 
 
 # Simulate a user agent of a real browser, because some sites block requests with the default user agent set by htmltest.
