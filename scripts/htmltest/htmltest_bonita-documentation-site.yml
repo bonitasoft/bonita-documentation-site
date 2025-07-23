@@ -23,6 +23,8 @@ IgnoreURLs:
   - "x.com/bonitasoft"
   # Non-OK status: 400
   - "csc.bonitacloud.bonitasoft.com"
+  # Non-OK status: 400 --- central/latest/page-01.html --> https://www.facebook.com/bonitasoftbpm
+  - "www.facebook.com/bonitasoftbpm"
   # Non-OK status: 403
   - "mvnrepository.com"
   # Non-OK status: 403 --- bonita/2022.2/process/sharepointexample.html --> https://portal.azure.com/
