@@ -18,12 +18,6 @@ IgnoreURLs:
   - "host.docker.internal" # bonita/latest/applications/ui-builder/download-and-launch.html --> http://host.docker.internal:8080/bonita/API
   - "bonita-app" # bonita/latest/applications/ui-builder/production-packaging.html --> http://bonita-app:8080/bonita/API
   - "^http://localhost"
-  # Twitter requires authentication
-  - "twitter.com/bonitasoft"
-  - "x.com/bonitasoft"
-  # Even with a custom user-agent, linkedin returns a "999" error code
-  # See https://stackoverflow.com/questions/46214017/public-linkedin-profile-url-returns-server-status-code-999
-  - "linkedin.com/company/bonitasoft"
   # Non-OK status: 400
   - "csc.bonitacloud.bonitasoft.com"
   # Non-OK status: 403
@@ -39,17 +33,30 @@ IgnoreURLs:
   - "www.consilium.europa.eu"
   # Non-OK status: 403 --- bpi/latest/spo/index.html --> https://openai.com/
   - "openai.com"
-  # Only static links use this URL, this is ban by automatic checks in the documentation content
-  - "documentation.bonitasoft.com"
-  # In the footer of all pages, this link is not used in the documentation content, so we can ignore it 
+  ###############
+  # The following are present in the footer of all pages. These links are not used in the documentation content, so we can ignore it
+  # Non-OK status: 400 --- central/latest/page-01.html --> https://www.facebook.com/bonitasoftbpm
+  - "www.facebook.com/bonitasoftbpm"
   - "surge.sh"
+  # Twitter requires authentication
+  - "twitter.com/bonitasoft"
+  - "x.com/bonitasoft"
 
 
 # Simulate a user agent of a real browser, because some sites block requests with the default user agent set by htmltest.
 # https://github.com/wjdp/htmltest/issues/150#issuecomment-678300908
 # Default is: {"Range":  "bytes=0-0", "Accept": "*/*"}
-#HTTPHeaders: {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0"}
-HTTPHeaders: {"User-Agent": "Bacon/123", "Range":  "bytes=0-0", "Accept": "*/*"}
+#
+# The HTTP header "Range": "bytes=0-0" tells the server to send only the first byte (byte 0) of the requested resource.
+# This is often used to check if a resource exists and supports partial content requests, without downloading the entire file.
+#
+# The Accept-Encoding header tells the server which content-encoding methods the client supports.
+# Some servers like those protected by Cloudflare may block requests that do not specify a user agent or accept encoding.
+# For example:
+#    http://www.quartz-scheduler.org/documentation/
+#    http://getbootstrap.com/
+#    https://git-scm.com/downloads
+HTTPHeaders: {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0", "Accept": "*/*", "Range": "bytes=0-0", "Accept-Encoding": "gzip, deflate, br"}
 
 # managed by antora reference validation. Also prevents detecting unresolved references to other component versions in the generated site (when building a single component branch version)
 CheckInternalHash: false
