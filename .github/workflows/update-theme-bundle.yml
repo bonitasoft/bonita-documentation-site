@@ -18,7 +18,7 @@ jobs:
       pull-requests: write # Create the Pull Request
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           # Use a PAT to use a specific user for the git operations
           token: ${{ secrets.BONITA_CI_PAT }}
@@ -30,7 +30,7 @@ jobs:
           keeper-secret-config: ${{ secrets.KSM_CONFIG }}
 
       - name: Setup Perl environment
-        uses: shogo82148/actions-setup-perl@v1.34.0
+        uses: shogo82148/actions-setup-perl@v1.35.0
 
       - name: Update theme bundle in Antora playbook
         run: |
