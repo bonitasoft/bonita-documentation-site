@@ -14,7 +14,7 @@ jobs:
   check_links:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4 # access to the local action
+      - uses: actions/checkout@v5 # access to the local action
       - name: Build Setup
         uses: ./.github/actions/build-setup
       - name: Build site
