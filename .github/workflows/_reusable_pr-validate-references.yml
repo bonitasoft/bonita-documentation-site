@@ -29,7 +29,7 @@ jobs:
   validate_references:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4 # access to the local actions
+      - uses: actions/checkout@v5 # access to the local actions
         with:
           repository: 'bonitasoft/bonita-documentation-site'
           ref: ${{ inputs.doc-site-branch }}
@@ -73,7 +73,7 @@ jobs:
           name: site-reference-validation-pr-${{github.event.pull_request.number}}-${{github.sha}}
           path: build/site
 
-      - uses: actions/checkout@v4 # Ugly hack founds on https://github.com/actions/checkout/issues/692#issuecomment-1502203573
+      - uses: actions/checkout@v5 # Ugly hack founds on https://github.com/actions/checkout/issues/692#issuecomment-1502203573
         with:
           repository: 'bonitasoft/bonita-documentation-site'
           ref: ${{ inputs.doc-site-branch }}
