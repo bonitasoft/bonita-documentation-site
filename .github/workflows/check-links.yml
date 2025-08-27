@@ -63,10 +63,11 @@ jobs:
           name: check-links-analysis-run_01-${{github.sha}}
           path: scripts/htmltest/config
 
-# TODO run only if 1st run failed
-      # Run a second time htmltest to see if some errors are intermittent (network issues, temporary unavailability of a site, etc.)
+# TODO run only if the previous run failed
+      # Run htmltest again to see if some errors are intermittent (network issues, temporary unavailability of a site, etc.)
       - name: Check links (2nd run)
         id: check_links_run_02
+        continue-on-error: true
         working-directory: scripts/htmltest
         run: |
           ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
@@ -77,7 +78,19 @@ jobs:
           name: check-links-analysis-run_02-${{github.sha}}
           path: scripts/htmltest/config
 
-
+# TODO run only if the previous run failed
+      # Run htmltest again to see if some errors are intermittent (network issues, temporary unavailability of a site, etc.)
+      - name: Check links (3rd run)
+        id: check_links_run_03
+        working-directory: scripts/htmltest
+        run: |
+          ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
+      - name: Upload links analysis (3rd run)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: check-links-analysis-run_03-${{github.sha}}
+          path: scripts/htmltest/config
 
       # This step is commented out because we don't want to send notifications to Slack for now, we can uncomment it later, when all errors will be fixed.
       # For now, we will monitor the workflow result each week manually.
