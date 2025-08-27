@@ -51,19 +51,36 @@ jobs:
           curl https://htmltest.wjdp.uk | bash -s -- -b scripts/htmltest v0.17.0
           echo "Installation done"
           ./scripts/htmltest/htmltest --version
-      - name: Check links
+      - name: Check links (1st run)
+        id: check_links_run_01
+        continue-on-error: true
         working-directory: scripts/htmltest
         run: |
           ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
-      - name: Upload links analysis
-        if: always()
+      - name: Upload links analysis (1st run)
         uses: actions/upload-artifact@v4
         with:
-          name: check-links-analysis-${{github.sha}}
+          name: check-links-analysis-run_01-${{github.sha}}
           path: scripts/htmltest/config
 
+# TODO run only if 1st run failed
+      # Run a second time htmltest to see if some errors are intermittent (network issues, temporary unavailability of a site, etc.)
+      - name: Check links (2nd run)
+        id: check_links_run_02
+        working-directory: scripts/htmltest
+        run: |
+          ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
+      - name: Upload links analysis (2nd run)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: check-links-analysis-run_02-${{github.sha}}
+          path: scripts/htmltest/config
+
+
+
       # This step is commented out because we don't want to send notifications to Slack for now, we can uncomment it later, when all errors will be fixed.
-      # For now, we will monitor the workflow resultt each week manually.
+      # For now, we will monitor the workflow result each week manually.
       # - name: Send message to Slack channel
       #   if: failure() && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.slack-notifications == 'true') )
       #   uses: bonitasoft/notify-slack-action@v1
@@ -77,4 +94,3 @@ jobs:
       #       - Add a :sweat_drops: when it’s done (and eventually a :party_parrot:)
       #       Run the logs of the GitHub workflow run or download the check links analysis to find the pages including the broken links.
       #       Then, create a Pull Request in the related content repository to fix the broken links (do the fix on the oldest version including the problem).
-  
