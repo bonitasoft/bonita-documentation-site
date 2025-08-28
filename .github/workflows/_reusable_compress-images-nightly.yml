@@ -28,9 +28,9 @@ jobs:
 
       - name: Compress Images
         id: calibre
-        uses: calibreapp/image-actions@3eb31922bc77188ca24bd8c0f98d5c246405ef4c
+        uses: calibreapp/image-actions@1.4.0
         with:
-          githubToken: ${{ secrets.github-token }}
+          GITHUB_TOKEN: ${{ secrets.github-token }}
           compressOnly: true
 
       - name: Create New Pull Request If Needed
