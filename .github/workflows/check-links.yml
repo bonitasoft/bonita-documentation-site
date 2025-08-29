@@ -34,7 +34,7 @@ jobs:
           --component-with-branches central:1.0
           --component-with-branches cloud:master
           --component-with-branches labs:master
-          --component-with-branches test-toolkit:1.0,2.0,3.0
+          --component-with-branches test-toolkit:1.0,2.0,3.0,3.1
       - name: List the content of the generated site
         uses: ./.github/actions/log-built-site-details
       - name: Remove pages that we don't want to check
