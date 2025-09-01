@@ -49,6 +49,7 @@ content:
         - "1.0"
         - "2.0"
         - "3.0"
+        - "3.1"
     - url: https://github.com/bonitasoft/bonita-central-doc.git
       branches:
         - "1.0"
