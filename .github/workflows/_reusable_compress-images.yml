@@ -14,7 +14,7 @@ jobs:
     # It doesn't allow `image-actions` to push to the related branch nor to create PR comment
     if: ${{ github.event.pull_request_target || !github.event.pull_request.head.repo.fork }}
     name: calibreapp/image-actions
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-2.04
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v5
@@ -22,4 +22,4 @@ jobs:
       - name: Compress Images
         uses: calibreapp/image-actions@1.4.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BONITA_CI_PAT }}
