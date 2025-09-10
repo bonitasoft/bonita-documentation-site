@@ -9,7 +9,7 @@
     "serve": "netlify dev -d build/site --debug --port 8080"
   },
   "devDependencies": {
-    "@antora/atlas-extension": "1.0.0-alpha.2",
+    "@antora/atlas-extension": "1.0.0-alpha.4",
     "@asciidoctor/tabs": "1.0.0-beta.6",
     "@bonitasoft/antora-detect-unused-media-extension": "1.0.0",
     "@springio/antora-extensions": "~1.14.7",
