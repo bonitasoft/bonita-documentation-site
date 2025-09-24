@@ -8,3 +8,4 @@ on:
 jobs:
   compress-images:
     uses: ./.github/workflows/_reusable_compress-images-nightly.yml
+    secrets: inherit
