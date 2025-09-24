@@ -11,35 +11,51 @@ on:
         description: 'Name of the branch to create'
         type: string
         default: 'refactor/compressed-images'
-    secrets:
-      github-token:
-        description: 'GitHub token for Git operations and API calls'
-        required: true
 
 jobs:
   compress:
     name: Compress images on ${{ github.ref_name }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v5
         with:
-          token: ${{ secrets.github-token }}
+          token: ${{ secrets.BONITA_CI_PAT }}
+
+      - name: Setup git
+        id: git-setup
+        uses: bonitasoft/git-setup-action@v1
+        with:
+          keeper-secret-config: ${{ secrets.KSM_CONFIG }}
 
       - name: Compress Images
         id: calibre
-        uses: calibreapp/image-actions@006692e15ca7d6312e06cc49b57a466d8ed45848
+        uses: calibreapp/image-actions@1.4.1
         with:
-          githubToken: ${{ secrets.github-token }}
+          GITHUB_TOKEN: ${{ secrets.BONITA_CI_PAT }}
           compressOnly: true
 
-      - name: Create New Pull Request If Needed
+      - name: Get Last Commit Timestamp
+        id: last-commit
+        run: echo "timestamp=$(git log -1 --format=%cI)" >> "$GITHUB_OUTPUT"
+
+      - name: Create or Update Pull Request
         if: steps.calibre.outputs.markdown != ''
         uses: peter-evans/create-pull-request@v7
         with:
           title: ${{ inputs.pr-title }} on ${{ github.ref_name }}
           commit-message: 'refactor: compress images'
           branch: ${{ inputs.branch-name }}
-          branch-suffix: 'timestamp'
-          body: ${{ steps.calibre.outputs.markdown }}
-          token: ${{ secrets.github-token }}
+          body: |
+            ${{ steps.calibre.outputs.markdown }}
+            
+            ---
+            
+            🔄 This PR has been automatically updated with the latest compressed images.
+            
+            _Last updated: [Run #${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})_
+            _Updated on: ${{ steps.last-commit.outputs.timestamp }}_
+          token: ${{ secrets.BONITA_CI_PAT }}
+          author: ${{ steps.git-setup.outputs.name}} <${{ steps.git-setup.outputs.email}}>
+          committer: ${{ steps.git-setup.outputs.name}} <${{ steps.git-setup.outputs.email}}>
+          delete-branch: true
