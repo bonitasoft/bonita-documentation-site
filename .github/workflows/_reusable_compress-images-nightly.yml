@@ -35,14 +35,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.BONITA_CI_PAT }}
           compressOnly: true
 
-      - name: Create New Pull Request If Needed
+      - name: Get Last Commit Timestamp
+        id: last-commit
+        run: echo "timestamp=$(git log -1 --format=%cI)" >> "$GITHUB_OUTPUT"
+
+      - name: Create or Update Pull Request
         if: steps.calibre.outputs.markdown != ''
         uses: peter-evans/create-pull-request@v7
         with:
           title: ${{ inputs.pr-title }} on ${{ github.ref_name }}
           commit-message: 'refactor: compress images'
           branch: ${{ inputs.branch-name }}
-          branch-suffix: 'timestamp'
           body: |
             ${{ steps.calibre.outputs.markdown }}
             
@@ -51,7 +54,7 @@ jobs:
             🔄 This PR has been automatically updated with the latest compressed images.
             
             _Last updated: Run #${{ github.run_number }} (${{ github.run_id }})_
-            _Updated on: ${{ github.event.head_commit.timestamp }}_
+            _Updated on: ${{ steps.last-commit.outputs.timestamp }}_
           token: ${{ secrets.BONITA_CI_PAT }}
           author: ${{ steps.git-setup.outputs.name}} <${{ steps.git-setup.outputs.email}}>
           committer: ${{ steps.git-setup.outputs.name}} <${{ steps.git-setup.outputs.email}}>
