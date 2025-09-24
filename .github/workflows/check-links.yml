@@ -59,7 +59,7 @@ jobs:
           ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
       - name: Upload links analysis (1st run)
         uses: actions/upload-artifact@v4
-        if: steps.check_links_run_01.outcome == 'success'
+        if: steps.check_links_run_01.outcome == 'success' || steps.check_links_run_01.outcome == 'failure' # only if the check links step was executed
         with:
           name: check-links-analysis-run_01-${{github.sha}}
           path: scripts/htmltest/config
@@ -74,7 +74,7 @@ jobs:
           ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
       - name: Upload links analysis (2nd run)
         uses: actions/upload-artifact@v4
-        if: steps.check_links_run_02.outcome == 'success'
+        if: steps.check_links_run_02.outcome == 'success' || steps.check_links_run_02.outcome == 'failure' # only if the check links step was executed
         with:
           name: check-links-analysis-run_02-${{github.sha}}
           path: scripts/htmltest/config
@@ -88,7 +88,7 @@ jobs:
           ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
       - name: Upload links analysis (3rd run)
         uses: actions/upload-artifact@v4
-        if: steps.check_links_run_03.outcome == 'success'
+        if: steps.check_links_run_03.outcome == 'success' || steps.check_links_run_03.outcome == 'failure' # only if the check links step was executed
         with:
           name: check-links-analysis-run_03-${{github.sha}}
           path: scripts/htmltest/config
