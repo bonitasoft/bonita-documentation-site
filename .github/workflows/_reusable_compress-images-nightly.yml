@@ -11,10 +11,6 @@ on:
         description: 'Name of the branch to create'
         type: string
         default: 'refactor/compressed-images'
-    secrets:
-      github-token:
-        description: 'GitHub token for Git operations and API calls'
-        required: true
 
 jobs:
   compress:
