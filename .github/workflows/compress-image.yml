@@ -16,3 +16,5 @@ jobs:
       contents: write
       pull-requests: write
     uses: ./.github/workflows/_reusable_compress-images.yml
+    secrets:
+      github-token: ${{ secrets.BONITA_CI_PAT }}

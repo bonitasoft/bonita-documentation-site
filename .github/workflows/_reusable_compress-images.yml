@@ -8,6 +8,10 @@
 name: Compress Images
 on:
   workflow_call: # this allows the workflow to be reused
+    secrets:
+      github-token:
+        description: 'GitHub token for Git operations and API calls'
+        required: true
 
 jobs:
   compress:
