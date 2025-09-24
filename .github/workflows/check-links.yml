@@ -59,35 +59,36 @@ jobs:
           ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
       - name: Upload links analysis (1st run)
         uses: actions/upload-artifact@v4
+        if: steps.check_links_run_01.outcome == 'success'
         with:
           name: check-links-analysis-run_01-${{github.sha}}
           path: scripts/htmltest/config
 
-# TODO run only if the previous run failed
       # Run htmltest again to see if some errors are intermittent (network issues, temporary unavailability of a site, etc.)
       - name: Check links (2nd run)
         id: check_links_run_02
+        if: steps.check_links_run_01.outcome == 'failure'
         continue-on-error: true
         working-directory: scripts/htmltest
         run: |
           ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
       - name: Upload links analysis (2nd run)
         uses: actions/upload-artifact@v4
-        if: always()
+        if: steps.check_links_run_02.outcome == 'success'
         with:
           name: check-links-analysis-run_02-${{github.sha}}
           path: scripts/htmltest/config
 
-# TODO run only if the previous run failed
       # Run htmltest again to see if some errors are intermittent (network issues, temporary unavailability of a site, etc.)
       - name: Check links (3rd run)
         id: check_links_run_03
+        if: steps.check_links_run_02.outcome == 'failure'
         working-directory: scripts/htmltest
         run: |
           ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
       - name: Upload links analysis (3rd run)
         uses: actions/upload-artifact@v4
-        if: always()
+        if: steps.check_links_run_03.outcome == 'success'
         with:
           name: check-links-analysis-run_03-${{github.sha}}
           path: scripts/htmltest/config
