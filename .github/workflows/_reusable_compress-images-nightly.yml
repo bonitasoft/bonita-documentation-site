@@ -19,18 +19,24 @@ on:
 jobs:
   compress:
     name: Compress images on ${{ github.ref_name }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v5
         with:
-          token: ${{ secrets.github-token }}
+          token: ${{ secrets.BONITA_CI_PAT }}
+
+      - name: Setup git
+        id: git-setup
+        uses: bonitasoft/git-setup-action@v1
+        with:
+          keeper-secret-config: ${{ secrets.KSM_CONFIG }}
 
       - name: Compress Images
         id: calibre
-        uses: calibreapp/image-actions@1.4.0
+        uses: calibreapp/image-actions@1.4.1
         with:
-          GITHUB_TOKEN: ${{ secrets.github-token }}
+          GITHUB_TOKEN: ${{ secrets.BONITA_CI_PAT }}
           compressOnly: true
 
       - name: Create New Pull Request If Needed
@@ -42,4 +48,6 @@ jobs:
           branch: ${{ inputs.branch-name }}
           branch-suffix: 'timestamp'
           body: ${{ steps.calibre.outputs.markdown }}
-          token: ${{ secrets.github-token }}
+          token: ${{ secrets.BONITA_CI_PAT }}
+          author: ${{ steps.git-setup.outputs.name}} <${{ steps.git-setup.outputs.email}}>
+          committer: ${{ steps.git-setup.outputs.name}} <${{ steps.git-setup.outputs.email}}>
