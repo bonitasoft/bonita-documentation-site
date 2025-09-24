@@ -43,7 +43,16 @@ jobs:
           commit-message: 'refactor: compress images'
           branch: ${{ inputs.branch-name }}
           branch-suffix: 'timestamp'
-          body: ${{ steps.calibre.outputs.markdown }}
+          body: |
+            ${{ steps.calibre.outputs.markdown }}
+            
+            ---
+            
+            🔄 This PR has been automatically updated with the latest compressed images.
+            
+            _Last updated: Run #${{ github.run_number }} (${{ github.run_id }})_
+            _Updated on: ${{ github.event.head_commit.timestamp }}_
           token: ${{ secrets.BONITA_CI_PAT }}
           author: ${{ steps.git-setup.outputs.name}} <${{ steps.git-setup.outputs.email}}>
           committer: ${{ steps.git-setup.outputs.name}} <${{ steps.git-setup.outputs.email}}>
+          delete-branch: true
