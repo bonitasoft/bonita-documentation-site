@@ -83,6 +83,7 @@ jobs:
       - name: Check links (3rd run)
         id: check_links_run_03
         if: steps.check_links_run_02.outcome == 'failure'
+        continue-on-error: true
         working-directory: scripts/htmltest
         run: |
           ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
@@ -92,6 +93,10 @@ jobs:
         with:
           name: check-links-analysis-run_03-${{github.sha}}
           path: scripts/htmltest/config
+
+      - name: Fail workflow if 3rd link check failed
+        if: steps.check_links_run_03.outcome == 'failure'
+        run: exit 1
 
       # This step is commented out because we don't want to send notifications to Slack for now, we can uncomment it later, when all errors will be fixed.
       # For now, we will monitor the workflow result each week manually.
