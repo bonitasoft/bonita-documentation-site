@@ -41,7 +41,7 @@ IgnoreURLs:
   # Twitter requires authentication
   - "twitter.com/bonitasoft"
   - "x.com/bonitasoft"
-  # npmjs.com see https://github.com/orgs/community/discussions/174098
+  # npmjs.com (403 errors) see https://github.com/orgs/community/discussions/174098
   - "npmjs.com"
 
 
