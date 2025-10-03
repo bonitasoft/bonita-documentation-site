@@ -1,9 +1,7 @@
 # For configuration details, see https://github.com/wjdp/htmltest#wrench-configuration
 
 # Logging level, 0-3: debug, info, warning, error. Default: 2
-# TODO temp configuration for investigation
-LogLevel: 1 # info
-#LogLevel: 3 # error
+LogLevel: 3 # error
 OutputDir: config
 
 IgnoreDirs:
