@@ -12,6 +12,8 @@ IgnoreDirs:
   - bonita/.*/dependencies
 
 IgnoreURLs:
+  # canonical URLs, we don't want to check them
+  - "documentation.bonitasoft.com"
   # Links used to demonstrate the target url in various examples
   - "bonita.server.url.to.change"
   - "idp.saml.binding.url.to.change"
