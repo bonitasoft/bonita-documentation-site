@@ -6,13 +6,16 @@ inputs:
     required: true
   working-directory:
     description: 'Directory to run htmltest in.'
-    required: true
+    required: false
+    default: 'scripts/htmltest'
   config-file:
     description: 'htmltest config file path.'
-    required: true
+    required: false
+    default: './htmltest_bonita-documentation-site.yml'
   site-path:
     description: 'Path to the built site.'
-    required: true
+    required: false
+    default: '../../build/site'
 runs:
   using: 'composite'
   steps:
@@ -26,4 +29,3 @@ runs:
       with:
         name: check-links-analysis-run_${{ inputs.run-number }}-${{ github.sha }}
         path: ${{ inputs.working-directory }}/config
-

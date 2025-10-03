@@ -57,9 +57,6 @@ jobs:
         uses: ./.github/actions/check-links-run
         with:
           run-number: '01'
-          working-directory: scripts/htmltest
-          config-file: ./htmltest_bonita-documentation-site.yml
-          site-path: ../../build/site
 
       - name: Check links (2nd run)
         id: check_links_run_02
@@ -68,9 +65,6 @@ jobs:
         uses: ./.github/actions/check-links-run
         with:
           run-number: '02'
-          working-directory: scripts/htmltest
-          config-file: ./htmltest_bonita-documentation-site.yml
-          site-path: ../../build/site
 
       - name: Check links (3rd run)
         id: check_links_run_03
@@ -79,9 +73,6 @@ jobs:
         uses: ./.github/actions/check-links-run
         with:
           run-number: '03'
-          working-directory: scripts/htmltest
-          config-file: ./htmltest_bonita-documentation-site.yml
-          site-path: ../../build/site
 
       - name: Check links (4th run)
         id: check_links_run_04
@@ -90,9 +81,6 @@ jobs:
         uses: ./.github/actions/check-links-run
         with:
           run-number: '04'
-          working-directory: scripts/htmltest
-          config-file: ./htmltest_bonita-documentation-site.yml
-          site-path: ../../build/site
 
       - name: Check links (5th run)
         id: check_links_run_05
@@ -101,9 +89,6 @@ jobs:
         uses: ./.github/actions/check-links-run
         with:
           run-number: '05'
-          working-directory: scripts/htmltest
-          config-file: ./htmltest_bonita-documentation-site.yml
-          site-path: ../../build/site
 
       - name: Fail workflow if 5th link check failed
         if: steps.check_links_run_05.outcome == 'failure'
