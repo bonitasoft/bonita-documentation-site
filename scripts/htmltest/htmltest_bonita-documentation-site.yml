@@ -10,6 +10,8 @@ IgnoreDirs:
   - bonita/.*/dependencies
 
 IgnoreURLs:
+  # canonical URLs, we don't want to check them
+  - "documentation.bonitasoft.com"
   # Links used to demonstrate the target url in various examples
   - "bonita.server.url.to.change"
   - "idp.saml.binding.url.to.change"
@@ -41,6 +43,10 @@ IgnoreURLs:
   # Twitter requires authentication
   - "twitter.com/bonitasoft"
   - "x.com/bonitasoft"
+  # 403 errors due to Cloudflare protections, see https://github.com/orgs/community/discussions/174098
+  - "npmjs.com"
+  # 403 errors, probably due to Cloudflare protections
+  - "swapi.py4e.com"
 
 
 # Simulate a user agent of a real browser, because some sites block requests with the default user agent set by htmltest.
