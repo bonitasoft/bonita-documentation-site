@@ -57,7 +57,6 @@ jobs:
         uses: ./.github/actions/check-links-run
         with:
           run-number: '01'
-          sleep-before: 'false'
 
       - name: Check links (2nd run)
         id: check_links_run_02
