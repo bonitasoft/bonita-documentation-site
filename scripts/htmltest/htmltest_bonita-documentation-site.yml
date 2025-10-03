@@ -44,6 +44,7 @@ IgnoreURLs:
   # 403 errors due to cloudfare protections, see https://github.com/orgs/community/discussions/174098
   - "npmjs.com"
   # 403 errors, probably due to cloudfare protections
+  - "swapi.py4e.com"
 
 
 # Simulate a user agent of a real browser, because some sites block requests with the default user agent set by htmltest.
