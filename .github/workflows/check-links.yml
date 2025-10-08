@@ -52,11 +52,9 @@ jobs:
           echo "Installation done"
           ./scripts/htmltest/htmltest --version
 
-# TODO improve comment
-        # Retry the link check several times to avoid false positives due to temporary network issues or
-        #  The cache produced by the previous execution will be used so the check will query less external sites and will be faster.
-        # Workaround for HTTP 429 errors returned by GitHub.
-        # Run the check several times if needed until it passes. As it uses the cache from the first run, fewer requests are sent to GH, so the subsequent runs may not have errors.
+        # Retry the link check multiple times to reduce false positives from temporary network issues.
+        # Each retry uses cache from previous runs to minimize external requests and speed up subsequent checks.
+        # Mitigates HTTP 429 (rate limit) errors from GitHub by reusing cached results and retrying until success.
       - name: Check links
         id: check_links
         uses: nick-fields/retry@v3
