@@ -61,7 +61,6 @@ jobs:
         with:
           timeout_minutes: 15 # the first analysis takes around 7 minutes
           max_attempts: 5
-          continue_on_error: true
           # use a workaround as there is no working directory input in the retry action, see https://github.com/nick-fields/retry/issues/89
           command: |
             cd scripts/htmltest
@@ -73,10 +72,6 @@ jobs:
         with:
           name: check-links-analysis-${{ github.sha }}
           path: scripts/htmltest/config
-
-      - name: Fail workflow if link check failed
-        if: steps.check_links.outcome == 'failure'
-        run: exit 1
 
 
       # This step is commented out because we don't want to send notifications to Slack for now, we can uncomment it later, when all errors will be fixed.
