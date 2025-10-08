@@ -61,6 +61,11 @@ jobs:
 #        run: |
 #          ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
 
+# TODO improve comment
+        # Retry the link check several times to avoid false positives due to temporary network issues or
+        #  The cache produced by the previous execution will be used so the check will query less external sites and will be faster.
+        # Workaround for HTTP 429 errors returned by GitHub.
+        # Run the check several times if needed until it passes. As it uses the cache from the first run, fewer requests are sent to GH, so the subsequent runs may not have errors.
       - name: Check links
         id: check_links
         uses: nick-fields/retry@v3
@@ -68,7 +73,10 @@ jobs:
           timeout_minutes: 15 # the first analysis takes around 7 minutes
           max_attempts: 5
           continue_on_error: true
-          command: /htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
+          # use a workaround as there is no working directory input in the retry action, see https://github.com/nick-fields/retry/issues/89
+          command: |
+            cd scripts/htmltest
+            ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
 
       - name: Upload links analysis
         if: always()
