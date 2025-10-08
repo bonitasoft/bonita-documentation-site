@@ -52,15 +52,6 @@ jobs:
           echo "Installation done"
           ./scripts/htmltest/htmltest --version
 
-        # TODO remove if the retry action configuration does not work as expected
-#      - name: Check links
-#        id: check_links
-#        continue-on-error: true
-#        working-directory: scripts/htmltest
-#        shell: bash
-#        run: |
-#          ./htmltest -c ./htmltest_bonita-documentation-site.yml ../../build/site
-
 # TODO improve comment
         # Retry the link check several times to avoid false positives due to temporary network issues or
         #  The cache produced by the previous execution will be used so the check will query less external sites and will be faster.
@@ -89,49 +80,6 @@ jobs:
         if: steps.check_links.outcome == 'failure'
         run: exit 1
 
-      # TODO remove if the retry action configuration is ok
-#      - name: Check links (1st run)
-#        id: check_links_run_01
-#        continue-on-error: true
-#        uses: ./.github/actions/check-links-run
-#        with:
-#          run-number: '01'
-#
-#      - name: Check links (2nd run)
-#        id: check_links_run_02
-#        if: steps.check_links_run_01.outcome == 'failure'
-#        continue-on-error: true
-#        uses: ./.github/actions/check-links-run
-#        with:
-#          run-number: '02'
-#
-#      - name: Check links (3rd run)
-#        id: check_links_run_03
-#        if: steps.check_links_run_02.outcome == 'failure'
-#        continue-on-error: true
-#        uses: ./.github/actions/check-links-run
-#        with:
-#          run-number: '03'
-#
-#      - name: Check links (4th run)
-#        id: check_links_run_04
-#        if: steps.check_links_run_03.outcome == 'failure'
-#        continue-on-error: true
-#        uses: ./.github/actions/check-links-run
-#        with:
-#          run-number: '04'
-#
-#      - name: Check links (5th run)
-#        id: check_links_run_05
-#        if: steps.check_links_run_04.outcome == 'failure'
-#        continue-on-error: true
-#        uses: ./.github/actions/check-links-run
-#        with:
-#          run-number: '05'
-#
-#      - name: Fail workflow if 5th link check failed
-#        if: steps.check_links_run_05.outcome == 'failure'
-#        run: exit 1
 
       # This step is commented out because we don't want to send notifications to Slack for now, we can uncomment it later, when all errors will be fixed.
       # For now, we will monitor the workflow result each week manually.
