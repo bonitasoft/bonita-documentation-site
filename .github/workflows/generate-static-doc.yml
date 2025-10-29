@@ -59,7 +59,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN_DOC_TRIGGER_WF }}
       - name: archives-artefact
         if: (github.event.inputs.newRelease != 'true')
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: documentation-${{ github.event.inputs.component }}-${{ github.event.inputs.branch }}
           path: build/site

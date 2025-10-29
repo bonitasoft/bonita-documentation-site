@@ -82,12 +82,12 @@ jobs:
       - name: List the content of the generated site
         uses: ./.github/actions/log-built-site-details
       - name: Upload Antora playbook
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: antora-playbook-content-for-preview.yml
           path: antora-playbook-content-for-preview.yml
       - name: Upload site preview
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: site  # must be kept in sync with the artifact name downloaded in the deployment stage
           path: build/site
