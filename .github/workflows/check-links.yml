@@ -41,7 +41,7 @@ jobs:
         run: |
           node scripts/remove-generated-dependencies-pages.cjs
       - name: Upload site used for links check
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: check-links-site-${{github.sha}}
           path: build/site
@@ -68,7 +68,7 @@ jobs:
 
       - name: Upload links analysis
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: check-links-analysis-${{ github.sha }}
           path: scripts/htmltest/config
