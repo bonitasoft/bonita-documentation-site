@@ -19,6 +19,6 @@
     "js-yaml": "~4.1.0",
     "minimist": "~1.2.8",
     "netlify-cli": "~23.9.5",
-    "rimraf": "~6.0.1"
+    "rimraf": "~6.1.0"
   }
 }
