@@ -15,7 +15,7 @@
     "@springio/antora-extensions": "~1.14.7",
     "antora": "3.1.14",
     "fs-extra": "~11.3.2",
-    "glob": "~11.0.3",
+    "glob": "~11.1.0",
     "js-yaml": "~4.1.1",
     "minimist": "~1.2.8",
     "netlify-cli": "~23.10.0",
