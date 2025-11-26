@@ -26,11 +26,11 @@ jobs:
           - bonita-test-toolkit-doc
     steps:
       - name: Checkout bonita-documentation-site
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: ./bonita-documentation-site
       - name: Checkout ${{ matrix.repo }}
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: bonitasoft/${{ matrix.repo }}
           token: ${{ secrets.GH_TOKEN_DOC_TRIGGER_WF }} # Dedicated token to have 'write' and 'workflow' (needed to update workflows content) permissions (we later push to this repository)
