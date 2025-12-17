@@ -68,7 +68,7 @@ jobs:
       - name: List the content of the generated site
         uses: ./.github/actions/log-built-site-details
       - name: Archive site
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: site-reference-validation-pr-${{github.event.pull_request.number}}-${{github.sha}}
           path: build/site
