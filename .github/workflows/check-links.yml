@@ -3,12 +3,11 @@ on:
   schedule:
     - cron: "0 5 * * 3" # every wednesday at 5:00 UTC
   workflow_dispatch:
-    # This configuration is commented out because we don't want to send notifications to Slack (see later in this file)
-    # inputs:
-    #   slack-notifications:
-    #     type: boolean
-    #     description: "If checked, send slack notifications when errors occur"
-    #     default: false
+    inputs:
+      slack-notifications:
+        type: boolean
+        description: "If checked, send slack notifications when errors occur"
+        default: false
 
 jobs:
   check_links:
@@ -73,19 +72,16 @@ jobs:
           name: check-links-analysis-${{ github.sha }}
           path: scripts/htmltest/config
 
-
-      # This step is commented out because we don't want to send notifications to Slack for now, we can uncomment it later, when all errors will be fixed.
-      # For now, we will monitor the workflow result each week manually.
-      # - name: Send message to Slack channel
-      #   if: failure() && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.slack-notifications == 'true') )
-      #   uses: bonitasoft/notify-slack-action@v1
-      #   with:
-      #     keeper-secret-config: ${{ secrets.KSM_CONFIG }}
-      #     channel-id: ${{ vars.RD_PLATFORM_SLACK_CHANNEL_ID }}
-      #     message: |
-      #       :fire: The documentation contains broken links! :fire:
-      #       @channel *We need someone*!
-      #       - Add a :fire_extinguisher:if you take the action to resolve the conflicts (only one person is required)
-      #       - Add a :sweat_drops: when it’s done (and eventually a :party_parrot:)
-      #       Run the logs of the GitHub workflow run or download the check links analysis to find the pages including the broken links.
-      #       Then, create a Pull Request in the related content repository to fix the broken links (do the fix on the oldest version including the problem).
+      - name: Send message to Slack channel
+        if: failure() && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.slack-notifications == 'true') )
+        uses: bonitasoft/notify-slack-action@v1
+        with:
+          keeper-secret-config: ${{ secrets.KSM_CONFIG }}
+          channel-id: ${{ vars.RD_PLATFORM_SLACK_CHANNEL_ID }}
+          message: |
+            :fire: The documentation contains broken links to external resources! :fire:
+            @channel *We need someone*!
+            - Add a :fire_extinguisher:if you take the action to resolve the conflicts (only one person is required)
+            - Add a :sweat_drops: when it’s done (and eventually a :party_parrot:)
+            Read the logs of the GitHub workflow run or download the check links analysis to find the pages including the broken links.
+            Then, create a Pull Request in the related content repository to fix the broken links (do the fix on the oldest version including the problem).
