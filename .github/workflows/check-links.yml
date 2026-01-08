@@ -3,12 +3,11 @@ on:
   schedule:
     - cron: "0 5 * * 3" # every wednesday at 5:00 UTC
   workflow_dispatch:
-    # This configuration is commented out because we don't want to send notifications to Slack (see later in this file)
-    # inputs:
-    #   slack-notifications:
-    #     type: boolean
-    #     description: "If checked, send slack notifications when errors occur"
-    #     default: false
+    inputs:
+      slack-notifications:
+        type: boolean
+        description: "If checked, send slack notifications when errors occur"
+        default: false
 
 jobs:
   check_links:
