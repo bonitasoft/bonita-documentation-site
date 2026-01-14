@@ -7,13 +7,7 @@ on:
   repository_dispatch:
     types: [source_documentation_change]
   workflow_dispatch:
-    inputs:
-      branch:
-        required: false
-        description: "Branch of component"
-      component:
-        required: false
-        description: "Name of component which triggers the build"
+
   push:
     branches:
       - master
@@ -36,28 +30,40 @@ jobs:
     runs-on: ubuntu-22.04
     env:
       GOOGLE_ANALYTICS_KEY: GTM-TXHBK7
-      COMPONENT: ${{ github.event.client_payload.component || github.event.inputs.component }}
-      BRANCH: ${{ github.event.client_payload.branch || github.event.inputs.branch }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
       - name: Build Setup
         uses: ./.github/actions/build-setup
+
       - name: Build site
         run: GOOGLE_ANALYTICS_KEY=${{env.GOOGLE_ANALYTICS_KEY}} npm run build
+
       - name: Prepare site manifest
         run: gzip build/site/site-manifest.json
+
       - name: List the content of the generated site
         uses: ./.github/actions/log-built-site-details
-      - name: Create deploy message if no component defined
-        if: ( github.event_name == 'workflow_dispatch' ||  github.event_name == 'repository_dispatch' ) && env.COMPONENT == ''
-        run: echo "deploy_message=Deploy ${{github.sha}} from manual request" >> $GITHUB_ENV
-      - name: Create deploy message if component defined
-        if: ( github.event_name == 'workflow_dispatch' ||  github.event_name == 'repository_dispatch' ) && env.COMPONENT != ''
-        run: echo "deploy_message=Deploy ${{ env.COMPONENT }} ${{ env.BRANCH }} update" >> $GITHUB_ENV
+
+      - name: Debug repository_dispatch event payload
+        if: github.event_name == 'repository_dispatch'
+        run: |
+          echo "Client payload:"
+          echo '${{ toJSON(github.event.client_payload) }}'
+
+      - name: Create deploy message if workflow_dispatch
+        if: github.event_name == 'workflow_dispatch'
+        run: echo "deploy_message=site manual ${{github.sha}}" >> $GITHUB_ENV
+
+      - name: Create deploy message if repository_dispatch
+        if: github.event_name == 'repository_dispatch'
+        run: echo "deploy_message=${{ github.event.client_payload.component }} ${{ github.event.client_payload.branch }} ${{ github.event.client_payload.commit_sha }}" >> $GITHUB_ENV
+
       - name: Create deploy message if push or pull request
         if: github.event_name == 'push'
-        run: echo "deploy_message=Deploy ${{ github.sha }}" >> $GITHUB_ENV
+        run: echo "deploy_message=site ${{ github.sha }}" >> $GITHUB_ENV
+
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
@@ -77,6 +83,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 10
+
       - name: Send message to Slack channel
         if: failure()
         uses: bonitasoft/notify-slack-action@v1
