@@ -62,7 +62,7 @@ jobs:
 
       - name: Create deploy message if repository_dispatch
         if: github.event_name == 'repository_dispatch'
-        run: echo "deploy_message=${{ github.event.client_payload.component }} ${{ github.event.client_payload.branch }} ${{ github.event.client_payload.commit_sha }}" >> $GITHUB_ENV
+        run: echo "deploy_message=${{ github.event.client_payload.component }}-${{ github.event.client_payload.branch }} push ${{ github.event.client_payload.commit_sha }}" >> $GITHUB_ENV
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
