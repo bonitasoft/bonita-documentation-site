@@ -18,4 +18,4 @@ jobs:
           token: ${{secrets.GH_TOKEN_DOC_TRIGGER_WF}}
           repository: bonitasoft/bonita-documentation-site
           event-type: source_documentation_change
-          client-payload: '{ "component": "${{ inputs.component }}", "branch": "${{ github.ref_name }}", "commit_sha": "${{ github.sha }}" }'
+          client-payload: '{ "component": "${{ inputs.component }}", "branch": "${{ github.ref_name }}", "commit_sha": "${{ github.sha }}", "repository_url": "${{ github.server_url }}/${{ github.repository }}" }'
