@@ -52,17 +52,19 @@ jobs:
           echo "Client payload:"
           echo '${{ toJSON(github.event.client_payload) }}'
 
-      - name: Create deploy message if workflow_dispatch
-        if: github.event_name == 'workflow_dispatch'
-        run: echo "deploy_message=site manual ${{github.sha}}" >> $GITHUB_ENV
-
-      - name: Create deploy message if push
-        if: github.event_name == 'push'
-        run: echo "deploy_message=site push ${{ github.sha }}" >> $GITHUB_ENV
-
-      - name: Create deploy message if repository_dispatch
-        if: github.event_name == 'repository_dispatch'
-        run: echo "deploy_message=${{ github.event.client_payload.component }}-${{ github.event.client_payload.branch }} push ${{ github.event.client_payload.commit_sha }}" >> $GITHUB_ENV
+      - name: Create deploy message
+        run: |
+          case "${{ github.event_name }}" in
+            workflow_dispatch)
+              echo "deploy_message=site manual ${{ github.sha }}" >> $GITHUB_ENV
+              ;;
+            push)
+              echo "deploy_message=site push ${{ github.sha }}" >> $GITHUB_ENV
+              ;;
+            repository_dispatch)
+              echo "deploy_message=${{ github.event.client_payload.component }}-${{ github.event.client_payload.branch }} push ${{ github.event.client_payload.commit_sha }}" >> $GITHUB_ENV
+              ;;
+          esac
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
