@@ -56,7 +56,7 @@ jobs:
         run: |
           case "${{ github.event_name }}" in
             workflow_dispatch)
-              echo "deploy_message=site manual ${GITHUB_SHA::7}" >> $GITHUB_ENV
+              echo "deploy_message=site request ${GITHUB_SHA::7}" >> $GITHUB_ENV
               ;;
             push)
               echo "deploy_message=site push ${GITHUB_SHA::7}" >> $GITHUB_ENV
