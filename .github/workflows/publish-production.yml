@@ -56,13 +56,13 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         run: echo "deploy_message=site manual ${{github.sha}}" >> $GITHUB_ENV
 
+      - name: Create deploy message if push
+        if: github.event_name == 'push'
+        run: echo "deploy_message=site push ${{ github.sha }}" >> $GITHUB_ENV
+
       - name: Create deploy message if repository_dispatch
         if: github.event_name == 'repository_dispatch'
         run: echo "deploy_message=${{ github.event.client_payload.component }} ${{ github.event.client_payload.branch }} ${{ github.event.client_payload.commit_sha }}" >> $GITHUB_ENV
-
-      - name: Create deploy message if push or pull request
-        if: github.event_name == 'push'
-        run: echo "deploy_message=site ${{ github.sha }}" >> $GITHUB_ENV
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
