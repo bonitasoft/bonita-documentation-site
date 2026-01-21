@@ -56,13 +56,14 @@ jobs:
         run: |
           case "${{ github.event_name }}" in
             workflow_dispatch)
-              echo "deploy_message=site manual ${{ github.sha }}" >> $GITHUB_ENV
+              echo "deploy_message=site manual ${GITHUB_SHA::7}" >> $GITHUB_ENV
               ;;
             push)
-              echo "deploy_message=site push ${{ github.sha }}" >> $GITHUB_ENV
+              echo "deploy_message=site push ${GITHUB_SHA::7}" >> $GITHUB_ENV
               ;;
             repository_dispatch)
-              echo "deploy_message=${{ github.event.client_payload.component }}-${{ github.event.client_payload.branch }} push ${{ github.event.client_payload.commit_sha }}" >> $GITHUB_ENV
+              commit_sha="${{ github.event.client_payload.commit_sha }}"
+              echo "deploy_message=${{ github.event.client_payload.component }}-${{ github.event.client_payload.branch }} push ${commit_sha::7}" >> $GITHUB_ENV
               ;;
           esac
 
