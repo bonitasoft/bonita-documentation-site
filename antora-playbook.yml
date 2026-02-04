@@ -34,7 +34,8 @@ content:
         - "2023.2"
         - "2024.1"
         - "2024.2"
-        - "2024.3"
+        # TODO: RESTORE BEFORE MERGE
+        - "feat/remove_uib_internal_doc"
         - "2025.1"
         - "2025.2"
         - "2026.1"
