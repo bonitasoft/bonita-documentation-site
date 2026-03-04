@@ -47,7 +47,7 @@ IgnoreURLs:
   - "npmjs.com"
   # 403 errors, probably due to Cloudflare protections
   - "swapi.py4e.com"
-  # 403 errors, probably due to Cloudflare protections
+  # 503 errors when using htmltest
   - "narayana.io/docs/product/"
 
 
