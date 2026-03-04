@@ -47,6 +47,8 @@ IgnoreURLs:
   - "npmjs.com"
   # 403 errors, probably due to Cloudflare protections
   - "swapi.py4e.com"
+  # 503 errors when using htmltest
+  - "narayana.io/docs/product/"
 
 
 # Simulate a user agent of a real browser, because some sites block requests with the default user agent set by htmltest.
