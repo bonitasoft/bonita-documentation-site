@@ -20,47 +20,46 @@ content:
   # When adding a new URL, add a new entry in generate-content-for-preview-antora-playbook.js to manage PR preview
   # Also update the "check-links" workflow with any new version or component
   sources:
-#    - url: https://github.com/bonitasoft/bonita-cloud-doc.git
-#      branches:
-#        - "master"
+    - url: https://github.com/bonitasoft/bonita-cloud-doc.git
+      branches:
+        - "master"
     - url: https://github.com/bonitasoft/bonita-doc.git
       branches:
         - "archives"
-#        - "2021.1"
-#        - "2021.2"
-#        - "2022.1"
-#        - "2022.2"
-#        - "2023.1"
-#        - "2023.2"
-#        - "2024.1"
-#        - "2024.2"
-        # TODO: RESTORE BEFORE MERGE
-        - "feat/remove_uib_internal_doc"
+        - "2021.1"
+        - "2021.2"
+        - "2022.1"
+        - "2022.2"
+        - "2023.1"
+        - "2023.2"
+        - "2024.1"
+        - "2024.2"
+        - "2024.3"
         - "2025.1"
         - "2025.2"
         - "2026.1"
-#    - url: https://github.com/bonitasoft/bonita-labs-doc.git
-#      branches:
-#        - "master"
-#    - url: https://github.com/bonitasoft/bonita-continuous-delivery-doc.git
-#      branches:
-#        - "3.6"
-#        - "4.0"
-#    - url: https://github.com/bonitasoft/bonita-test-toolkit-doc.git
-#      branches:
-#        - "1.0"
-#        - "2.0"
-#        - "3.0"
-#        - "3.1"
-#    - url: https://github.com/bonitasoft/bonita-central-doc.git
-#      branches:
-#        - "1.0"
-#    - url: "https://github.com/bonitasoft/bonita-process-insights-doc.git"
-#      branches:
-#        - "main"
-    - url: "https://github.com/bonitasoft/bonita-ui-builder-doc.git"
+    - url: https://github.com/bonitasoft/bonita-labs-doc.git
       branches:
-        - "feat/rapatriate-bonita-doc-changes"
+        - "master"
+    - url: https://github.com/bonitasoft/bonita-continuous-delivery-doc.git
+      branches:
+        - "3.6"
+        - "4.0"
+    - url: https://github.com/bonitasoft/bonita-test-toolkit-doc.git
+      branches:
+        - "1.0"
+        - "2.0"
+        - "3.0"
+        - "3.1"
+    - url: https://github.com/bonitasoft/bonita-central-doc.git
+      branches:
+        - "1.0"
+    - url: https://github.com/bonitasoft/bonita-process-insights-doc.git
+      branches:
+        - "main"
+    - url: https://github.com/bonitasoft/bonita-ui-builder-doc.git
+      branches:
+        - "1.3"
 ui:
   bundle:
     url: https://github.com/bonitasoft/bonita-documentation-theme/releases/download/v1.25.0/bonita-documentation-theme-v1.25.0.zip
