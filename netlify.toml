@@ -13,10 +13,6 @@ force = true
 # Bonita redirects
 ########################################################################################################################
 
-[[redirects]]
-from = "/bonita/*/"
-to = "/bonita/2021.1/:splat"
-
 # Special redirect after introduction of Bonita branding version
 # Add a new entry when adding a new version/branch. This is generally done when the developments of a new version start
 [[redirects]]
@@ -72,6 +68,26 @@ to = "/bonita/2021.2/:splat"
 [[redirects]]
 from = "/bonita/7.12/*"
 to = "/bonita/2021.1/:splat"
+
+########################################
+# Special redirections from Bonita Old contents about UIB to the new UIB component
+########################################
+
+[[redirects]]
+from = "/bonita/2024.3/applications/ui-builder/*"
+to = "/ui-builder/latest/:splat"
+
+[[redirects]]
+from = "/bonita/2025.1/applications/ui-builder/*"
+to = "/ui-builder/latest/:splat"
+
+[[redirects]]
+from = "/bonita/2025.2/applications/ui-builder/*"
+to = "/ui-builder/latest/:splat"
+
+[[redirects]]
+from = "/bonita/latest/applications/ui-builder/*"
+to = "/ui-builder/latest/:splat"
 
 
 ########################################
