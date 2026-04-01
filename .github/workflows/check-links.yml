@@ -56,7 +56,7 @@ jobs:
         # Mitigates HTTP 429 (rate limit) errors from GitHub by reusing cached results and retrying until success.
       - name: Check links
         id: check_links
-        uses: nick-fields/retry@v3
+        uses: nick-fields/retry@v4
         with:
           timeout_minutes: 15 # the first analysis takes around 7 minutes
           max_attempts: 5
