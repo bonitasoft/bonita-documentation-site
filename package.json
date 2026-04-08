@@ -18,7 +18,7 @@
     "glob": "~13.0.6",
     "js-yaml": "~4.1.1",
     "minimist": "~1.2.8",
-    "netlify-cli": "~24.0.0",
+    "netlify-cli": "~24.10.0",
     "rimraf": "~6.1.2"
   }
 }
