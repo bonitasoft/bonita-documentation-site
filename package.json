@@ -14,7 +14,7 @@
     "@bonitasoft/antora-detect-unused-media-extension": "1.0.0",
     "@springio/antora-extensions": "~1.14.9",
     "antora": "3.1.14",
-    "fs-extra": "~11.3.3",
+    "fs-extra": "~11.3.4",
     "glob": "~13.0.6",
     "js-yaml": "~4.1.1",
     "minimist": "~1.2.8",
