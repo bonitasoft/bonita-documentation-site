@@ -19,6 +19,7 @@ force = true
 from = "/bonita/11.0/*"
 to = "/bonita/2026.1/:splat"
 
+# Redirect for "no-existing" 10.5 version. This version is renamed to 11.0.
 [[redirects]]
 from = "/bonita/10.5/*"
 to = "/bonita/2026.1/:splat"
