@@ -58,6 +58,9 @@ IgnoreURLs:
   - "admin.google.com"
   # Require authentication
   - "console.mistral.ai"
+  # Internal links to pages deleted post-build by scripts/remove-generated-dependencies-pages.cjs.
+  # The target file no longer exists on disk, so links pointing to it must be excluded from validation.
+  - "bonita-runtime-dependencies\\.html$"
 
 # Simulate a user agent of a real browser, because some sites block requests with the default user agent set by htmltest.
 # https://github.com/wjdp/htmltest/issues/150#issuecomment-678300908
