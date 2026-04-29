@@ -43,13 +43,19 @@ IgnoreURLs:
   # Twitter requires authentication
   - "twitter.com/bonitasoft"
   - "x.com/bonitasoft"
+  ###############
   # 403 errors due to Cloudflare protections, see https://github.com/orgs/community/discussions/174098
   - "npmjs.com"
   # 403 errors, probably due to Cloudflare protections
   - "swapi.py4e.com"
   # 503 errors when using htmltest
   - "narayana.io/docs/product/"
-
+  # 403 errors, probably due to Cloudflare protections
+  - "spnego.sourceforge.net"
+  #  Non-OK status: 400
+  - "business.facebook.com"
+  # Get "https://www.google.com/sorry/index?continue=https://admin.google.com/&q=EgQ0oJWBGPXDxs8GIjDM8dLxhOqRD-CADjtYL9e9feVBrqdrX7r3DTTTNyb74PjpaFF2EG4USOj8vqmOVUwyBz5qY25kclJaAUM": stopped after 10 redirects --- bonita/2025.2/process/google-drive.html --> https://admin.google.com
+  - "admin.google.com"
 
 # Simulate a user agent of a real browser, because some sites block requests with the default user agent set by htmltest.
 # https://github.com/wjdp/htmltest/issues/150#issuecomment-678300908
