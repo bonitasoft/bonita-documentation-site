@@ -56,6 +56,8 @@ IgnoreURLs:
   - "business.facebook.com"
   # Get "https://www.google.com/sorry/index?continue=https://admin.google.com/&q=EgQ0oJWBGPXDxs8GIjDM8dLxhOqRD-CADjtYL9e9feVBrqdrX7r3DTTTNyb74PjpaFF2EG4USOj8vqmOVUwyBz5qY25kclJaAUM": stopped after 10 redirects --- bonita/2025.2/process/google-drive.html --> https://admin.google.com
   - "admin.google.com"
+  # Require authentication
+  - "console.mistral.ai"
 
 # Simulate a user agent of a real browser, because some sites block requests with the default user agent set by htmltest.
 # https://github.com/wjdp/htmltest/issues/150#issuecomment-678300908
