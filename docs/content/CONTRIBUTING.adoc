@@ -246,7 +246,9 @@ So use the preview to test the alias configuration: `<base_preview_url/bonita/20
 
 === Adding reference between pages of two components or between pages of 2 versions of the same component
 
-WARNING: **DO NOT** hard code urls with https://documentation.bonitasoft.com/xxxx or ../../my-page.adoc, use xref instead. An automatic check rejects your Pull Request if you hard code such links.
+WARNING: **DO NOT** hard code urls with https://documentation.ofelia.com/xxxx or ../../my-page.adoc, use xref instead
+. An
+automatic check rejects your Pull Request if you hard code such links.
 
 Rationale
 
