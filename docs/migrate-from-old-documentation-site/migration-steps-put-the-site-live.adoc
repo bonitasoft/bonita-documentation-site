@@ -116,7 +116,7 @@ Strategy:
 
 update the antora playbook
 
-* site.url: https://documentation.bonitasoft.com
+* site.url: https://documentation.ofelia.com
 
 
 === Search
