@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the **Bonita Documentation Site** — a multi-repository documentation aggregator built with [Antora](https://antora.org). It fetches AsciiDoc content from 8 separate Git repositories (bonita-doc, bonita-cloud-doc, bonita-labs-doc, bonita-continuous-delivery-doc, bonita-test-toolkit-doc, bonita-central-doc, bonita-process-insights-doc, bonita-ui-builder-doc) and generates a static HTML site.
+This is the **Bonita Documentation Site** — a multi-repository documentation aggregator built with [Antora](https://antora.org). It fetches AsciiDoc content from 8 separate Git repositories (bonita-doc, bonita-cloud-doc, bonita-labs-doc, bonita-continuous-delivery-doc, bonita-test-toolkit-doc, bonita-process-insights-doc, bonita-ui-builder-doc) and generates a static HTML site.
 
 **Hosted on Netlify** at `https://documentation.ofelia.com`. Search is provided by Algolia DocSearch. PR previews 
 deploy to Surge.sh.
