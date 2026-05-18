@@ -9,7 +9,7 @@ to = "https://documentation.ofelia.com/:splat"
 force = true
 
 [[redirects]]
-from = "https://documentation.bonitasoft.com/:splat/*"
+from = "https://documentation.bonitasoft.com/*"
 to = "https://documentation.ofelia.com/:splat"
 force = true
 
