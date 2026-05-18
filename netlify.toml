@@ -9,7 +9,7 @@ to = "https://documentation.ofelia.com/:splat"
 force = true
 
 [[redirects]]
-from = "https://documentation.bonitasoft.com/:splat/*"
+from = "https://documentation.bonitasoft.com/*"
 to = "https://documentation.ofelia.com/:splat"
 force = true
 
@@ -309,11 +309,11 @@ from = "/test-toolkit/"
 to = "/test-toolkit/latest/"
 
 ########################################################################################################################
-# Bonita Central redirects
+# Bonita Central redirects (archived)
 ########################################################################################################################
 [[redirects]]
-from = "/central/"
-to = "/central/latest/"
+from = "/central/*"
+to = "/bonita/0/archives/central"
 
 ########################################################################################################################
 # Bonita Process Insights redirects

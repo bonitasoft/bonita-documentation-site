@@ -152,8 +152,6 @@ For instance:
 ----
 root
   |
-  -- bonita-central-doc
-  |
   -- bonita-cloud-doc
   |
   -- bonita-continuous-delivery-doc
@@ -368,7 +366,7 @@ Build a subset of the site locally using the preview script:
 * force usage of the production navbar to have the content as close as possible of the production site
 * use a dedicated "type" option to produce convenient HTML files for URL checks (HTML extension for local file browsing, no redirect pages)
 
-Here is an example of the command to build the partial site for links checking:
+Here is an example of the command to build the partial site for link’s checking:
 [source,shell]
 ----
 ./build-preview.bash \
@@ -378,7 +376,6 @@ Here is an example of the command to build the partial site for links checking:
   --use-multi-repositories \
   --component-with-branches bcd:3.6,4.0 \
   --component-with-branches bonita:archives,2022.2,2023.1,2023.2,2024.1,2024.2,2024.3 \
-  --component-with-branches central:1.0 \
   --component-with-branches cloud:master \
   --component-with-branches labs:master \
   --component-with-branches test-toolkit:1.0,2.0,3.0 \

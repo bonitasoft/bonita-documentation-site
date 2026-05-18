@@ -38,7 +38,7 @@ IgnoreURLs:
   - "openai.com"
   ###############
   # The following are present in the footer of all pages. These links are not used in the documentation content, so we can ignore it
-  # Non-OK status: 400 --- central/latest/page-01.html --> https://www.facebook.com/bonitasoftbpm
+  # Non-OK status: 400 --> https://www.facebook.com/bonitasoftbpm
   - "www.facebook.com/bonitasoftbpm"
   - "surge.sh"
   # Twitter requires authentication
