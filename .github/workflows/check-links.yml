@@ -12,6 +12,8 @@ on:
 jobs:
   check_links:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read # to checkout the code
     steps:
       - uses: actions/checkout@v6 # access to the local action
       - name: Build Setup

@@ -16,6 +16,7 @@ on:
 jobs:
   propagate-doc-upwards:
     runs-on: ubuntu-24.04
+    permissions: {} # no permissions needed as we use a dedicated token with specific permissions for the checkout action
     strategy:
       # we want to run the full build on all os: don't cancel running jobs even if one fails
       fail-fast: false
