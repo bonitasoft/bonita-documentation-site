@@ -11,7 +11,7 @@ on:
 
 jobs:
   check_links:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6 # access to the local action
       - name: Build Setup
@@ -27,7 +27,7 @@ jobs:
           --ignore-errors true
           --fail-on-warning false
           --use-multi-repositories
-          --component-with-branches bcd:3.6,4.0
+          --component-with-branches bcd:4.0
           --component-with-branches bpi:main
           --component-with-branches bonita:archives,2023.2,2024.1,2024.2,2024.3,2025.1,2025.2,2026.1,2026.2
           --component-with-branches cloud:master
