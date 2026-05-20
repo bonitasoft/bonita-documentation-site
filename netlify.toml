@@ -67,10 +67,6 @@ to = "/bonita/2023.1/:splat"
 from = "/bonita/7.16/*"
 to = "/bonita/2023.1/:splat"
 
-[[redirects]]
-from = "/bonita/7.15/*"
-to = "/bonita/2022.2/:splat"
-
 
 ########################################
 # Special redirections from Bonita Old contents about UIB to the new UIB component
@@ -98,6 +94,13 @@ to = "/ui-builder/latest/:splat"
 ########################################
 # Add a new entry when archiving a version
 # Starting from version 2021.1/7.12, when adding a redirect here, move the redirect defined above in "Special redirect after introduction of Bonita branding version" here and rediret it to latest instead of the specific version.
+[[redirects]]
+from = "/bonita/2022.2/*"
+to = "/bonita/latest/:splat"
+[[redirects]]
+from = "/bonita/7.15/*"
+to = "/bonita/latest/:splat"
+
 [[redirects]]
 from = "/bonita/2022.1/*"
 to = "/bonita/latest/:splat"
@@ -220,6 +223,10 @@ from = "/bcd/"
 to = "/bcd/latest/"
 
 # Archives
+[[redirects]]
+from = "/bcd/3.6/*"
+to = "/bcd/latest/:splat"
+
 [[redirects]]
 from = "/bcd/3.5/*"
 to = "/bcd/latest/:splat"
