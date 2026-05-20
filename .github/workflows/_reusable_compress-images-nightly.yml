@@ -30,7 +30,7 @@ jobs:
 
       - name: Compress Images
         id: calibre
-        uses: calibreapp/image-actions@1.4.1
+        uses: calibreapp/image-actions@1.5.0
         with:
           GITHUB_TOKEN: ${{ secrets.BONITA_CI_PAT }}
           compressOnly: true
