@@ -119,7 +119,6 @@ else if (useTestSources) {
             'test/documentation-content/bonita/v2021.2',
             'test/documentation-content/bonita/v2022.1-beta',
             'test/documentation-content/bonita/v2022.2-alpha',
-            'test/documentation-content/bpi/latest',
             'test/documentation-content/cloud/latest',
             'test/documentation-content/labs/latest',
             'test/documentation-content/test-toolkit/1.0',
