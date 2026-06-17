@@ -55,6 +55,7 @@ if [ "${REPO_NAME}" == "bonita-doc" ]; then
   merge "2025.1" "2025.2"
   merge "2025.2" "2026.1"
   merge "2026.1" "2026.2"
+  merge "2026.2" "2027.1"
 elif [ "${REPO_NAME}" == "bonita-test-toolkit-doc" ]; then
   merge "1.0" "2.0"
   merge "2.0" "3.0"
