@@ -16,7 +16,7 @@
     "antora": "3.1.14",
     "fs-extra": "~11.3.5",
     "glob": "~13.0.6",
-    "js-yaml": "~4.1.1",
+    "js-yaml": "~4.2.0",
     "minimist": "~1.2.8",
     "netlify-cli": "~26.0.2",
     "rimraf": "~6.1.3"
