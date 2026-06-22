@@ -41,6 +41,9 @@ IgnoreURLs:
   # Non-OK status: 400 --> https://www.facebook.com/bonitasoftbpm
   - "www.facebook.com/bonitasoftbpm"
   - "surge.sh"
+  # Starting from 2026-05-19, LinkedIn is returning a 429 Too Many Requests
+  - "linkedin.com/company/bonitasoft"
+  - "linkedin.com/company/ofelia"
   # Twitter requires authentication
   - "twitter.com/bonitasoft"
   - "x.com/bonitasoft"

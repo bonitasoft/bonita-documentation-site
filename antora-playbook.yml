@@ -29,7 +29,6 @@ content:
     - url: https://github.com/bonitasoft/bonita-doc.git
       branches:
         - "archives"
-        - "2022.2"
         - "2023.1"
         - "2023.2"
         - "2024.1"
@@ -39,12 +38,12 @@ content:
         - "2025.2"
         - "2026.1"
         - "2026.2"
+        - "2027.1"
     - url: https://github.com/bonitasoft/bonita-labs-doc.git
       branches:
         - "master"
     - url: https://github.com/bonitasoft/bonita-continuous-delivery-doc.git
       branches:
-        - "3.6"
         - "4.0"
     - url: https://github.com/bonitasoft/bonita-test-toolkit-doc.git
       branches:
@@ -52,9 +51,6 @@ content:
         - "2.0"
         - "3.0"
         - "3.1"
-    - url: https://github.com/bonitasoft/bonita-process-insights-doc.git
-      branches:
-        - "main"
     - url: https://github.com/bonitasoft/bonita-ui-builder-doc.git
       branches:
         - "1.3"

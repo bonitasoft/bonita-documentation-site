@@ -21,6 +21,10 @@ force = true
 # Special redirect after introduction of Bonita branding version
 # Add a new entry when adding a new version/branch. This is generally done when the developments of a new version start
 [[redirects]]
+from = "/bonita/11.2/*"
+to = "/bonita/2027.1/:splat"
+
+[[redirects]]
 from = "/bonita/11.1/*"
 to = "/bonita/2026.2/:splat"
 
@@ -67,10 +71,6 @@ to = "/bonita/2023.1/:splat"
 from = "/bonita/7.16/*"
 to = "/bonita/2023.1/:splat"
 
-[[redirects]]
-from = "/bonita/7.15/*"
-to = "/bonita/2022.2/:splat"
-
 
 ########################################
 # Special redirections from Bonita Old contents about UIB to the new UIB component
@@ -98,6 +98,13 @@ to = "/ui-builder/latest/:splat"
 ########################################
 # Add a new entry when archiving a version
 # Starting from version 2021.1/7.12, when adding a redirect here, move the redirect defined above in "Special redirect after introduction of Bonita branding version" here and rediret it to latest instead of the specific version.
+[[redirects]]
+from = "/bonita/2022.2/*"
+to = "/bonita/latest/:splat"
+[[redirects]]
+from = "/bonita/7.15/*"
+to = "/bonita/latest/:splat"
+
 [[redirects]]
 from = "/bonita/2022.1/*"
 to = "/bonita/latest/:splat"
@@ -221,6 +228,10 @@ to = "/bcd/latest/"
 
 # Archives
 [[redirects]]
+from = "/bcd/3.6/*"
+to = "/bcd/latest/:splat"
+
+[[redirects]]
 from = "/bcd/3.5/*"
 to = "/bcd/latest/:splat"
 
@@ -292,6 +303,13 @@ to = "/labs/latest/bici/:splat"
 from = "/ici/:version/*"
 to = "/labs/latest/bici/:splat"
 
+[[redirects]]
+from = "/bpi/"
+to = "/labs/latest/bpi/"
+[[redirects]]
+from = "/bpi/latest/*"
+to = "/labs/latest/bpi/:splat"
+
 
 ########################################################################################################################
 # Bonita Cloud redirects
@@ -308,6 +326,7 @@ to = "/cloud/latest/"
 from = "/test-toolkit/"
 to = "/test-toolkit/latest/"
 
+
 ########################################################################################################################
 # Bonita Central redirects (archived)
 ########################################################################################################################
@@ -315,12 +334,6 @@ to = "/test-toolkit/latest/"
 from = "/central/*"
 to = "/bonita/0/archives/central"
 
-########################################################################################################################
-# Bonita Process Insights redirects
-########################################################################################################################
-[[redirects]]
-from = "/bpi/"
-to = "/bpi/latest/"
 
 ########################################################################################################################
 # Bonita UI Builder
