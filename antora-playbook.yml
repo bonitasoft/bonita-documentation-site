@@ -38,6 +38,7 @@ content:
         - "2025.2"
         - "2026.1"
         - "2026.2"
+        - "2027.1"
     - url: https://github.com/bonitasoft/bonita-labs-doc.git
       branches:
         - "master"
@@ -50,9 +51,6 @@ content:
         - "2.0"
         - "3.0"
         - "3.1"
-    - url: https://github.com/bonitasoft/bonita-process-insights-doc.git
-      branches:
-        - "main"
     - url: https://github.com/bonitasoft/bonita-ui-builder-doc.git
       branches:
         - "1.3"
