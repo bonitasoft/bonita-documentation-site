@@ -15,7 +15,7 @@ jobs:
     permissions:
       contents: read # to checkout the code
     steps:
-      - uses: actions/checkout@v6 # access to the local action
+      - uses: actions/checkout@v7 # access to the local action
       - name: Build Setup
         uses: ./.github/actions/build-setup
       - name: Build site
