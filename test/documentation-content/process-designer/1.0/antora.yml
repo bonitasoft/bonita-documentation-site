@@ -1,0 +1,13 @@
+name: process-designer
+title: Process Designer
+version: '1.0'
+start_page: ROOT:index.adoc
+asciidoc:
+  attributes:
+    # page attributes
+    page-editable: true
+    page-out-of-support: false
+    page-pagination: true # display links to previous/next pages at the bottom of the page
+
+nav:
+  - modules/ROOT/nav.adoc

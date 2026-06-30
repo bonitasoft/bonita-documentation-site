@@ -122,6 +122,7 @@ else if (useTestSources) {
             'test/documentation-content/bonita/v2022.2-alpha',
             'test/documentation-content/cloud/latest',
             'test/documentation-content/labs/latest',
+            'test/documentation-content/process-designer/1.0',
             'test/documentation-content/test-toolkit/1.0',
             'test/documentation-content/test-toolkit/2.0',
         ],
