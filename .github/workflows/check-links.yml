@@ -33,6 +33,7 @@ jobs:
           --component-with-branches bonita:archives,2023.2,2024.1,2024.2,2024.3,2025.1,2025.2,2026.1,2026.2,2027.1
           --component-with-branches cloud:master
           --component-with-branches labs:master
+          --component-with-branches process-designer:1.0
           --component-with-branches test-toolkit:1.0,2.0,3.0,3.1
           --component-with-branches ui-builder:1.3
       - name: List the content of the generated site
