@@ -10,11 +10,11 @@ fse.ensureDirSync(outputDirectory);
 fse.removeSync(outputFile);
 
 const repoUrls = new Map([
-    ['process-designer', 'https://github.com/bonitasoft/bonita-process-designer-doc.git'],
     ['bcd', 'https://github.com/bonitasoft/bonita-continuous-delivery-doc.git'],
     ['bonita', 'https://github.com/bonitasoft/bonita-doc.git'],
     ['cloud', 'https://github.com/bonitasoft/bonita-cloud-doc.git'],
     ['labs', 'https://github.com/bonitasoft/bonita-labs-doc.git'],
+    ['process-designer', 'https://github.com/bonitasoft/bonita-process-designer-doc.git'],
     ['test-toolkit', 'https://github.com/bonitasoft/bonita-test-toolkit-doc.git'],
     ['ui-builder', 'https://github.com/bonitasoft/bonita-ui-builder-doc.git'],
 ]);
