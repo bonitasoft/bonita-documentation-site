@@ -1,6 +1,6 @@
 = Page 01
 
-:description: this is a description
+:description: this is a description which is long enough. It is about a page of the process designer documentation.
 
 I am a page of {page-component-title} for {page-component-display-version}
 
