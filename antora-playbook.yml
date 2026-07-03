@@ -23,9 +23,6 @@ content:
   # When adding a new URL, add a new entry in generate-content-for-preview-antora-playbook.js to manage PR preview
   # Also update the "check-links" workflow with any new version or component
   sources:
-    - url: https://github.com/bonitasoft/bonita-process-designer-doc.git
-      branches:
-        - "1.0"
     - url: https://github.com/bonitasoft/bonita-cloud-doc.git
       branches:
         - "master"
