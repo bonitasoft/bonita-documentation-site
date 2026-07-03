@@ -18,7 +18,7 @@ on:
 
 jobs:
   checks:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Check
         uses: bonitasoft/actions/packages/doc-contribs/pr-antora-content-guidelines-checker@v3
