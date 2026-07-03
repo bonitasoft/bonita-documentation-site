@@ -1,0 +1,11 @@
+= Bonita Process Designer
+
+:description: this is a description which is long enough. It is about the home of the process designer documentation.
+
+I am the home of {page-component-title} for {page-component-display-version}
+
+
+[NOTE]
+====
+This is a NOTE
+====
