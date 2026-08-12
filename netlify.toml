@@ -170,12 +170,12 @@ to = "/bonita/latest/:splat"
 # Bonita Javadoc redirect
 [[redirects]]
 from = "/javadoc/api/*"
-to = "https://javadoc.bonitasoft.com/api/:splat"
+to = "https://javadoc.documentation.ofelia.com/api/:splat"
 
 # Bonita 'asciidoc-templating' redirect
 [[redirects]]
 from = "/asciidoc-templating/*"
-to = "https://javadoc.bonitasoft.com/asciidoc-templating/:splat"
+to = "https://javadoc.documentation.ofelia.com/asciidoc-templating/:splat"
 
 # Bonita Community redirect to getting Started
 [[redirects]]
@@ -195,7 +195,7 @@ to = "/bonita/next/:splat"
 
 ########################################
 # Bonita Legacy Documentation redirects
-# 5.x, 6.x-7.2. versions before the documentation site rewrite in 2016 (https://community.bonitasoft.com/blog/did-you-read-friendly-manual-story-bonita-documentation)
+# 5.x, 6.x-7.2. versions before the documentation site rewrite in 2016 (https://community.ofelia.com/blog/did-you-read-friendly-manual-story-bonita-documentation)
 ########################################
 
 # specific redirects for 6.x-7.2
