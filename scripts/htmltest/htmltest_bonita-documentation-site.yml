@@ -23,6 +23,7 @@ IgnoreURLs:
   - "^http://localhost"
   # Non-OK status: 400
   - "csc.bonitacloud.bonitasoft.com"
+  - "csc.bonitacloud.ofelia.com"
   # Non-OK status: 403
   - "mvnrepository.com"
   # Non-OK status: 403 --- bonita/2022.2/process/sharepointexample.html --> https://portal.azure.com/
