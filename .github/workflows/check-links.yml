@@ -83,7 +83,7 @@ jobs:
           message: |
             :fire: The documentation contains broken links to external resources! :fire:
             @channel *We need someone*!
-            - Add a :fire_extinguisher:if you take the action to resolve the conflicts (only one person is required)
+            - Add a :fire_extinguisher:if you take the action to fix the links (only one person is required)
             - Add a :sweat_drops: when it’s done (and eventually a :party_parrot:)
             Read the logs of the GitHub workflow run or download the check links analysis to find the pages including the broken links.
             Then, create a Pull Request in the related content repository to fix the broken links (do the fix on the oldest version including the problem).
